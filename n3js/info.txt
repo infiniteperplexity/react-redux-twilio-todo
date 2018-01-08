@@ -1,0 +1,6 @@
+https://github.com/RubenVerborgh/N3.js/
+https://www.w3.org/2000/10/swap/Primer.html
+https://www.w3.org/2004/02/skos/vocabs
+https://www.w3.org/TR/rdf11-primer/
+https://www.w3.org/TR/rdf-schema/
+https://www.w3.org/TR/2012/REC-owl2-primer-20121211/
