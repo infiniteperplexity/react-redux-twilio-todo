@@ -1,0 +1,13 @@
+- www.unpkg.com is a website that hosts all npm packages.
+- React.js is a JSX framework.
+- Babel.js transpiles scripts with type/babel.
+- document.querySelector lets you use CSS selector in JS.
+- JSX lets you use DOM tags in JS.
+- Is this the only special thing about JSX?
+- React Components seem to create new "tag" types for JSX.
+- Do all class statements in JSX create new tag types?
+- React Components have a render() method that must return JSX.
+- Do they have any methods other than render()?
+- I'm a little confused by the this.props.children call.  Is "innerHTML" usable?
+- I'm also a little confused by the type="submit" thing.
+- Are the curly brace escapes from DOM elements part of the JSX standard?
