@@ -48,7 +48,10 @@ class Card extends React.Component {
 ReactDOM.render(
 	<div>
   		<Card color="#FFA737"/>
+  		<br/>
   		<Card color="#FF6663"/>
  	</div>,
 	destination
 );
+
+// intersting things...use of drop-shadow.
