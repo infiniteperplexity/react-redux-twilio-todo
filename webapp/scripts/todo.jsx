@@ -1,70 +1,61 @@
 let destination = document.querySelector("#container");
 
-class TodoList extends React.Component {
-  constructor(props, context) {
-  	super(props, context);
-  	this.state = {
-    	items: []
-  	};
-  }
+class App extends React.Component {
   render() {
     return (
-      <div className="todoListMain">
-        <div className="header">
-          <form onSubmit={this.addItem}>
-            <input ref={(a)=>this._inputElement=a} placeholder="enter task">
-            </input>
-            <button type="submit">add</button>
-          </form>
-        </div>
-        <TodoItems entries={this.state.items} delete={this.deleteItem}/>
+      <div>
+        <TaskForm />
+        <TaskList />
       </div>
     );
   }
-  addItem = (e) => {
-  	let itemArray = this.state.items;
- 	  if (this._inputElement.value !== "") {
-    	itemArray.unshift({
-        	text: this._inputElement.value,
-        	key: Date.now()
-    	});
-    	this.setState({
-      		items: itemArray
-    	});
-    	this._inputElement.value = "";
-  	}
-  	console.log(itemArray);
-  	e.preventDefault();
+}
+class TaskForm extends React.Component {
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.addTask}>
+          <input ref={(e)=>(this._label=e)} placeholder="Enter task."></input>
+          <input ref={(e)=>(this._comments=e)} placeholder="Enter comments."></input>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    )
   }
-  deleteItem = (key) => {
-  	let filteredItems = this.state.items.filter((item)=>(item.key!==key));
-  	this.setState({
-    	items: filteredItems
-  	});
+  addTask = (e) => {
+    if (this._label.value !== "") {
+      store.dispatch({
+        type: "BEGIN_ADD_TASK",
+        task: {
+          id: uuid.v4(),
+          label: this._label.value,
+          comments: this._comments.value
+        }
+      });
+      this._label.value = "";
+      this._comments.value = "";
+    }
+    e.preventDefault();
   }
 }
 
-class TodoItems extends React.Component {
-  createTasks = (item) => {
-    return <li onClick={()=>this.delete(item.key)} key={item.key}>{item.text}</li>
+class TaskList extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {tasks: []};
+    store.subscribe(()=>(this.setState({tasks: store.getState().tasks})));
   }
-  delete = (key) => {
-    this.props.delete(key);
+  renderTask = (task) => {
+    return <li key={task.id}>{task.label}<button onClick={()=>(this.deleteTask(task.id))}>Delete</button></li>
+  }
+  deleteTask = (id) => {
+    store.dispatch({type: "BEGIN_DELETE_TASK", id: id});
   }
   render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
     return (
-      <ul className="theList">
-         {listItems}
+      <ul>
+        {this.state.tasks.map((task)=>(this.renderTask(task)))}
       </ul>
     );
   }
 };
-
-ReactDOM.render(
-	<div>
-  		<TodoList/>
- 	</div>,
-	destination
-);

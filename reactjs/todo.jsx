@@ -66,7 +66,7 @@ class TodoItems extends React.Component {
 
 ReactDOM.render(
 	<div>
-  		<TodoList/>
+  		<App/>
  	</div>,
 	destination
 );
