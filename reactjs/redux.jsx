@@ -6,10 +6,10 @@ class Counter extends React.Component {
     return (
       <div className="container">
         <button className="buttons"
-                onClick={this.props.decreaseCount}>-</button>
-        <span>{this.props.countValue}</span>
+                onClick={this.props.dec}>-</button>
+        <span>{this.props.n}</span>
         <button className="buttons"
-                onClick={this.props.increaseCount}>+</button>
+                onClick={this.props.inc}>+</button>
       </div>
     );
   }
@@ -17,24 +17,24 @@ class Counter extends React.Component {
 // A Higher-Order Component made using ReactRedux.connect
   // attaches properties to the "wrapped" component
 let App = ReactRedux.connect(
-  (state)=>({countValue: state.count}),
+  (state)=>({n: state.n}),
   (dispatch)=>({
-      increaseCount: ()=>{dispatch({type: "increase"})},
-      decreaseCount: ()=>{dispatch({type: "decrease"})}
+      inc: ()=>{dispatch({type: "inc"})},
+      dec: ()=>{dispatch({type: "dec"})}
   })
 )(Counter);
 
 // a reducer function for a Redux store
 function counter(state, action) {
   if (state === undefined) {
-    return { count: 0 };
+    return {n: 0};
   }
-  let count = state.count;
+  let n = state.n;
   switch (action.type) {
-    case "increase":
-      return { count: count + 1 };
-    case "decrease":
-      return { count: count - 1 };
+    case "inc":
+      return {n: n+1};
+    case "dec":
+      return {n: n-1};
     default:
       return state;
   }
