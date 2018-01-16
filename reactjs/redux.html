@@ -4,22 +4,50 @@
     <meta charset="utf-8">
      <style>
        body {
-          padding: 50px;
-          background-color: #66CCFF;
-          font-family: sans-serif;
-        }
-        #container {
-          display: flex;
-          justify-content: center;
-        }
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        background-color: #8E7C93;
+      }
+       
+      .container {
+        background-color: #FFF;
+        margin: 100px;
+        padding: 10px;
+        border-radius: 3px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+       
+      .buttons {
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 3px;
+        transition: all .15s ease-in;
+      }
+       
+      .buttons:hover:nth-child(1) {
+        background-color: #F45B69;
+      }
+       
+      .buttons:hover:nth-child(3) {
+        background-color: #C0DFA1;
+      }
     </style>
     <link rel="stylesheet" type="text/css" href="todo.css" />
-    <title>Favorite Colors!</title>
+    <title>React Redux</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/react-flip-move@2.10.2/dist/react-flip-move.js"></script>
     <script src="https://unpkg.com/redux@latest/dist/redux.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.js"></script>
   </head>
   <body>
     <div id="container">

@@ -1,59 +1,72 @@
 let destination = document.querySelector("#container");
-function addColor(value) {
-  return {
-    type: "ADD",
-    color: value
-  }
-}
  
-function removeColor(value) {
-  return {
-    type: "REMOVE",
-    color: value
-  }
-}
+let Provider = ReactRedux.Provider;
 
-function favoriteColors(state, action) {
+ function counter(state, action) {
   if (state === undefined) {
-    state = [];
+    return { count: 0 };
   }
+  let count = state.count;
+  switch (action.type) {
+    case "increase":
+      return { count: count + 1 };
+    case "decrease":
+      return { count: count - 1 };
+    default:
+      return state;
+  }
+}
+
+// Action
+var increaseAction = { type: "increase" };
+var decreaseAction = { type: "decrease" };
  
-  if (action.type === "ADD") {
-    return state.concat(action.color);
-  } else if (action.type === "REMOVE") {
-    return state.filter(function(item) {
-      return item !== action.color;
-    });
-  } else {
-    return state;
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  return {
+    increaseCount: function() {
+      return dispatch(increaseAction);
+    },
+    decreaseCount: function() {
+      return dispatch(decreaseAction);
+    }
   }
 }
 
-let store = Redux.createStore(favoriteColors);
-store.subscribe(render);
-function render() {
-  console.log(store.getState());
+
+class Counter extends React.Component {
+  render() {
+    return (
+      <div className="container">
+        <button className="buttons"
+                onClick={this.props.decreaseCount}>-</button>
+        <span>{this.props.countValue}</span>
+        <button className="buttons"
+                onClick={this.props.increaseCount}>+</button>
+      </div>
+    );
+  }
+};
+
+function mapStateToProps(state) {
+  return {
+    countValue: state.count
+  };
 }
+ 
 
-store.dispatch(addColor("blue"));
-store.dispatch(addColor("yellow"));
-store.dispatch(addColor("green"));
-store.dispatch(addColor("red"));
-store.dispatch(addColor("gray"));
-store.dispatch(addColor("orange"));
-store.dispatch(removeColor("gray"));
+// The HOC
+let App = ReactRedux.connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
 
-console.log(store.getState());
-
-
+// Store
+let store = Redux.createStore(counter);
+   
 ReactDOM.render(
-	<div>
-  		<br/>
- 	</div>,
-	destination
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  destination
 );
-
-// Actions and reducers.
-// Reducers should never have side effects
-  // this example doesn't even mutate the "state" variable; instead, it returns new state
-// so the store only has one reducer?  that conditionally checks the different types of Action?
