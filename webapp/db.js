@@ -1,4 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
+const uuid = require('uuid');
+
 let resources = [
 	[':Task','rdfs:subClassOf','rdfs:Class'],
 	[':isDueOn','rdfs:domain',':Task'],
