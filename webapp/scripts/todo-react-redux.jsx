@@ -43,10 +43,6 @@ let TaskFormHOC = ReactRedux.connect(
 )(TaskForm);
 
 class TaskList extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {tasks: []};
-  }
   renderTask = (task) => {
     return <li key={task.id}>{task.label}<button onClick={()=>(this.deleteTask(task.id))}>Delete</button></li>
   }
