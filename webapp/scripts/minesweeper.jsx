@@ -1,7 +1,7 @@
 let destination = document.querySelector("#container");
 const ROWS = 9;
 const COLS = 9;
-const BOMBS = 10;
+const BOMBS = 15;
 
 class BombGrid extends React.Component {
   renderRow = (row,i) => {
@@ -88,7 +88,7 @@ class BombGrid extends React.Component {
     };
     // call floodfill on starting cell
     floodfill(i,j);
-    // asynchronous so the state can update
+    // asynchronous victory check, so the state can update first
     setTimeout(()=>(this.checkAll()),0);
   }
   revealAll = () => {
@@ -221,7 +221,7 @@ class ControlPanel extends React.Component {
       <div>
         <button onClick={this.newGame}>New Game</button>
         <span id="spacer"></span>
-        <span id="timer">{minutes+":"+seconds}</span>
+        <button onClick={(e)=>{e.preventDefault();}}>{minutes+":"+seconds}</button>
       </div>
     );
   }
