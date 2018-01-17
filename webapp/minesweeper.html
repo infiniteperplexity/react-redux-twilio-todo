@@ -11,6 +11,50 @@
   <script src="https://unpkg.com/redux@latest/dist/redux.js"></script>
   <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.js"></script>
   <style>
+    .minecell {
+      height: 32px;
+      width: 32px;
+    }
+    .minecell[symbol="0"] {
+      color: #BBBBBB;
+    }
+    .minecell[symbol="1"] {
+      color: blue;
+    }
+    .minecell[symbol="2"] {
+      color: green;
+    }
+    .minecell[symbol="3"] {
+      color: red;
+    }
+    .minecell[symbol="4"] {
+      color: brown;
+    }
+    .minecell[symbol="5"] {
+      color: purple;
+    }
+    .minecell[symbol="6"] {
+      color: orange;
+    }
+    .minecell[symbol="7"] {
+      color: magenta;
+    }
+    .minecell[symbol="8"] {
+      color: black;
+    }
+    #spacer {
+      display: inline-block;
+      width: 152px;
+    }
+    #timer {
+      display: inline-block;
+      height: 18px;
+      width: 48px;
+      text-align: center;
+      border-style: solid;
+      border-width: 1px;
+
+    }
   </style>
 </head>
 <body>
