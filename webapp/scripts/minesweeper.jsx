@@ -1,7 +1,7 @@
 let destination = document.querySelector("#container");
 const ROWS = 9;
 const COLS = 9;
-const BOMBS = 15;
+const BOMBS = 9;
 
 class BombGrid extends React.Component {
   renderRow = (row,i) => {
@@ -44,52 +44,35 @@ class BombGrid extends React.Component {
     return (<div key={i}>{row.map(renderCell)}</div>);
   }
   reveal = (i,j) => {
-    // keep track of what's been checked
-    let checked = {};
-    checked[i+","+j] = true;
-    // declare the floodfill function
-    let floodfill = (m,n) => {
-      // reveal the current cell
-      this.props.reveal(m,n);
-      // check for a bomb
-      if (this.props.rows[m][n].bomb) {
-        this.props.explode(m,n);
-        this.revealAll();
-        this.props.stopTime();
-        this.props.gameOver();
-        return;
-      }
-      // if the number of neighboring bombs is zero, recurse
-      if (this.props.rows[m][n].neighbors===0) {
-        for (let x of [m-1,m,m+1]) {
+    this.props.reveal(i,j);
+    // force an early state update so we can use recursion
+    this.props.rows[i][j].revealed = true;
+    if (this.props.rows[i][j].bomb) {
+      this.props.explode(i,j);
+      this.revealAll();
+      this.props.stopTime();
+      this.props.gameOver();
+      return;
+    } else if (this.props.rows[i][j].neighbors===0) {
+      for (let x of [i-1,i,i+1]) {
+        // skip if out of bounds
+        if (x<0 || x>=ROWS) {
+          continue;
+        }
+        for (let y of [j-1,j,j+1]) {
           // skip if out of bounds
-          if (x<0 || x>=ROWS) {
+          if (y<0 || y>=COLS) {
             continue;
           }
-          for (let y of [n-1,n,n+1]) {
-            // skip if out of bounds
-            if (y<0 || y>=COLS) {
-              continue;
-            }
-            // skip if already checked
-            if (checked[x+","+y]) {
-              continue;
-            }
-            checked[x+","+y] = true;
-            // skip if already revealed
-            if (this.props.rows[x][y].revealed) {
-              continue;
-            }
-            // otherwise, reveal
-            floodfill(x,y);
+          // skip if already revealed
+          if (this.props.rows[x][y].revealed) {
+            continue;
           }
+          this.reveal(x,y);
         }
       }
-    };
-    // call floodfill on starting cell
-    floodfill(i,j);
-    // asynchronous victory check, so the state can update first
-    setTimeout(()=>(this.checkAll()),0);
+    }
+    this.checkAll();
   }
   revealAll = () => {
     for (let i=0; i<ROWS; i++) {
