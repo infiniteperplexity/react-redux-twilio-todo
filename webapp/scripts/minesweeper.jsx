@@ -4,45 +4,6 @@ const COLS = 9;
 const BOMBS = 9;
 
 class BombGrid extends React.Component {
-  renderRow = (row,i) => {
-    let renderCell = (cell,j) => {
-      // need to set font color eventually
-      let symbol;
-      if (this.props.rows[i][j].revealed) {
-        if (this.props.rows[i][j].exploded) {
-          symbol = String.fromCodePoint(0x1F4A5);
-        } else if (this.props.rows[i][j].bomb) {
-          symbol = String.fromCodePoint(0x1F4A3);
-        } else {
-          symbol = countBombs(this.props.rows,i,j);
-        }
-      } else if (this.props.rows[i][j].flagged) {
-        symbol = "\u26A0\uFE0F";
-      } else {
-        symbol = "\u2753\uFE0F";
-      }
-      return (<button
-        className="minecell"
-        symbol={symbol}
-        key={i+","+j}
-        onContextMenu={(e)=>{
-          if (this.props.active) {
-            this.props.toggleFlag(i,j);
-          }
-          e.preventDefault();
-        }}
-        onClick={(e)=>{
-          if (this.props.active) {
-            this.reveal(i,j);
-          }
-          e.preventDefault();
-        }}
-      >
-        {symbol}
-      </button>);
-    };
-    return (<div key={i}>{row.map(renderCell)}</div>);
-  }
   reveal = (i,j) => {
     this.props.reveal(i,j);
     // force an early state update so we can use recursion
@@ -101,7 +62,48 @@ class BombGrid extends React.Component {
   }
   render() {
     let rows = this.props.rows;
-    let grid = rows.map(this.renderRow);
+    let grid = [];
+    for (let i=0; i<rows.length; i++) {
+      let row = [];
+      grid.push([<div key={i}>{row}</div>]);
+      for (let j=0; j<rows[i].length; j++) {
+        let symbol;
+        if (this.props.rows[i][j].revealed) {
+          if (this.props.rows[i][j].exploded) {
+            symbol = String.fromCodePoint(0x1F4A5);
+          } else if (this.props.rows[i][j].bomb) {
+            symbol = String.fromCodePoint(0x1F4A3);
+          } else {
+            symbol = countBombs(this.props.rows,i,j);
+          }
+        } else if (this.props.rows[i][j].flagged) {
+          symbol = "\u26A0\uFE0F";
+        } else {
+          symbol = "\u2753\uFE0F";
+        }
+        row.push(
+          <button
+            className="minecell"
+            symbol={symbol}
+            key={j}
+            onContextMenu={(e)=>{
+              if (this.props.active) {
+                this.props.toggleFlag(i,j);
+              }
+              e.preventDefault();
+            }}
+            onClick={(e)=>{
+              if (this.props.active) {
+                this.reveal(i,j);
+              }
+              e.preventDefault();
+            }}
+          >
+            {symbol}
+          </button>
+        )
+      }
+    }
     return (
       <div>
         {grid}
