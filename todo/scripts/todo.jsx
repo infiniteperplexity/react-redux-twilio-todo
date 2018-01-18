@@ -47,6 +47,7 @@ class TaskDisplay extends React.Component {
 	render() {
 		return (
 			<div className="taskdisplay appframe">
+				test
 			</div>
 		);
 	}
@@ -63,7 +64,7 @@ class TaskMenu extends React.Component {
 	render() {
 		return (
 			<div className="taskmenu appframe">
-			
+				test
 			</div>
 		);
 	}
@@ -79,7 +80,7 @@ class TaskList extends React.Component {
 	render() {
 		return (
 			<div className="tasklist appframe">
-			
+				test
 			</div>
 		);
 	}
@@ -94,7 +95,7 @@ class TaskDetails extends React.Component {
 	render() {
 		return (
 			<div className="taskdetails appframe">
-			
+				test
 			</div>
 		);
 	}
