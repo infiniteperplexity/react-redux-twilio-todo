@@ -29,7 +29,6 @@ app.post('/db.*', function(req, res) {
   		inserts.push('"'+o+'"');
   		inserts.push('"'+user+'")');
   	}
-  	console.log(inserts);
   	let insert = inserts.join(',');
 	db.serialize(()=> {
 		db.run("DELETE FROM quads WHERE graph = ?",user,(err)=>{

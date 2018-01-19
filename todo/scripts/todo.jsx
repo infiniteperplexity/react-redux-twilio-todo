@@ -3,11 +3,15 @@ let store;
 function reducer(state, action) {
 	if (!state) {
 		return {
+			// application state
 			filters: [],
-			triples: [],
+			selected: null,
+			// data sorted usefully
 			tasks: [],
 			labels: {},
-			completed: {}
+			completed: {},
+			// raw data
+			triples: []
 		};
 	}
 	switch (action.type) {
@@ -17,6 +21,14 @@ function reducer(state, action) {
 		case "SET_FILTERS":
 			let filters = action.filters;
 			return {...state, filters: filters};
+		case "SELECT_TASK":
+			let task = {
+				id: action.id,
+				label: state.labels[action.id],
+				completed: state.completed[action.id],
+				created: state.created[action.id]
+			};
+			return {...state, selected: task};
 		case "ADD_TRIPLES":
 			// add some triples
 			updateTriples(state.triples.concat(action.triples));
@@ -43,7 +55,8 @@ function reducer(state, action) {
 			let predicates = {
 				tasks: [],
 				labels: {},
-				completed: {}
+				completed: {},
+				created: {}
 			}
 			let triples = [];
 			for (let {subject, predicate, object} of action.data) {
@@ -58,6 +71,9 @@ function reducer(state, action) {
 						break;
 					case ":completed":
 						predicates.completed[subject] = object;
+						break;
+					case ":created":
+						predicates.created[subject] = object;
 						break;
 					default:
 						// do nothing
@@ -134,6 +150,9 @@ class TaskDisplay extends React.Component {
 	completeTask = (id) => {
 		this.props.completeTasks([id]);
 	}
+	selectTask = (id) => {
+		this.props.selectTask(id);
+	}
 	render() {
 		// this system works pretty well
 		let tasks = this.props.tasks;
@@ -143,6 +162,7 @@ class TaskDisplay extends React.Component {
 		let labels = this.props.labels;
 		let items = tasks.map((taskid,i)=>(
 				<li key={i}>
+					<button onClick={()=>this.selectTask(taskid)}>{String.fromCodePoint(0x1F50D)}</button>
 					<button onClick={()=>this.completeTask(taskid)}>{"\u2714"}</button>
 					<button onClick={()=>this.deleteTask(taskid)}>{"\u274C"}</button>
 					{labels[taskid]}
@@ -172,7 +192,8 @@ let TaskDisplayHOC = ReactRedux.connect(
 	(dispatch) => ({
 		addTriples: (triples) => dispatch({type: "ADD_TRIPLES", triples: triples}),
 		deleteTasks: (ids) => dispatch({type: "DELETE_IDS", ids: ids}),
-		completeTasks: (ids) => dispatch({type: "COMPLETE_IDS", ids: ids})
+		completeTasks: (ids) => dispatch({type: "COMPLETE_IDS", ids: ids}),
+		selectTask: (id) => dispatch({type: "SELECT_TASK", id: id})
 	})
 )(TaskDisplay);
 
@@ -230,16 +251,23 @@ let TaskMenuHOC = ReactRedux.connect(
 
 class TaskDetails extends React.Component {
 	render() {
-		return (
+		let task = this.props.selected;
+		if (!task) {
+			return (<div className="taskdetails appframe" />);
+		}
+		return ( 
 			<div className="taskdetails appframe">
-			
+				<div>{task.label}</div>
+				<div>{"ID: "+task.id}</div>
+				<div>{"Created: "+task.created}</div>
+				<div>{"Completed: "+((task.completed) ? task.completed : "N/A")}</div>
 			</div>
 		);
 	}
 }
 
 let TaskDetailsHOC = ReactRedux.connect(
-	(state) => ({}),
+	(state) => ({selected: state.selected, tasks: state.tasks}),
 	(dispatch) => ({})
 )(TaskDetails);
 
