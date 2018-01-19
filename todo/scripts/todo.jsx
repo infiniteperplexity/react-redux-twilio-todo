@@ -9,33 +9,70 @@ So we technically need the following things:
 
 
 */
-
+let user = "glenn";
+let store;
 function reducer(state, action) {
 	if (!state) {
-		return {};
+		return {tasks: []};
 	}
 	switch (action.type) {
-		case "BEGIN_ADD_TASK":
-			return {...state};
-		case "COMPLETE_ADD_TASK":
-			return {...state};
+		case "INITIALIZE":
+			getTasks();
+			return state;
+		case "ADD_TASK":
+			// do stuff
+			updateTasks();
+			return state;
 		case "DELETE_TASK":
-			return {...state};
-		case "COMPLETE_ADD_TASK":
-			return {...state};
+			// do stuff
+			updateTasks();
+			return state;
+		case "MODIFY_TASK":
+			// do stuff
+			updateTasks();
+			return state;
+		case "DB_UPDATE":
+			let tasks = action.data.map((e)=>{
+				let {subject, predicate, object} = e;
+				return [subject, predicate, object];
+			});
+			return {...state, tasks: tasks};
+		case "FAIL_UPDATE":
+			alert("database update failed.");
+			console.log("database update failed.");
+			return state;
 		default:
 			return state;
 	}
 }
-let store = Redux.createStore(reducer);
+store = Redux.createStore(reducer);
 
-// fake database connection for now
-let connection = {
-	query: function (str, callback) {
-		results = {};
-		setTimeout(function() {store.dispatch(callback(results));},50);
-	}
-};
+// database connection functions
+function getTasks() {
+	fetch('db.'+user).then((res)=>{
+		if (res.status!==200) {
+	        store.dispatch({type: "FAIL_UPDATE"});
+	    } else {
+			res.json().then((data)=>store.dispatch({type: "DB_UPDATE", data: data}));
+		}
+	});
+}
+
+function updateTasks(tasks) {
+	tasks = tasks || store.getState().tasks;
+	fetch('db.'+user, {
+		method: 'POST',
+		headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+		body: JSON.stringify(tasks)
+	}).then((res)=>{
+		if (res.status!==200) {
+	        store.dispatch({type: "FAIL_UPDATE"});
+	    } else {
+			res.json().then((data)=>store.dispatch({type: "DB_UPDATE", data: data}));
+		}
+	});
+}
+
 
 
 class App extends React.Component {
@@ -123,21 +160,7 @@ ReactDOM.render(
 	destination
 );
 
-
-
-let tasks;
-fetch('db.glenn',{}).then((res)=>{
-	if (res.status!==200) {
-        console.log('Looks like there was a problem. Status Code: '+res.status);
-        return;
-    }
-	res.json().then((data)=>{
-		tasks = data;	
-	});
-});
-
-
-let newtasks = [
+let exampletasks = [
 	[':Task','rdfs:subClassOf','rdfs:Class'],
 	[':isDueOn','rdfs:domain',':Task'],
 	[':isDueOn','rdfs:range','xsd:date'],
@@ -153,23 +176,6 @@ let newtasks = [
 	[':taggedAs','rdfs:range',':TaskTag']
 ];
 
-function post() {
-	let pargs = {
-		method: 'POST',
-		headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-		body: JSON.stringify(newtasks)
-	};
-	fetch('db.glenn',pargs).then((res)=>{
-		if (res.status!==200) {
-	        console.log('Looks like there was a problem. Status Code: '+res.status);
-	        return;
-	    }
-		res.json().then((data)=>{
-			tasks = data;
-			console.log(tasks);	
-		});
-	});
-}
-
-
-setTimeout(post, 2000);
+setTimeout(()=>{
+	updateTasks(exampletasks);
+},2000);
