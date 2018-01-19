@@ -1,0 +1,17 @@
+So...
+
+- I can possibly boil this down to...
+	...9 actions dealing with tasks...
+	- BEGIN_CREATE
+	- COMPLETE_CREATE
+	- FAIL_CREATE
+	- BEGIN_MODIFY
+	- COMPLETE_MODIFY
+	- FAIL_MODIFY
+	- BEGIN_DELETE
+	- COMPLETE_DELETE
+	- FAIL_DELETE
+	...plus some actions dealing with application state...
+	
+
+

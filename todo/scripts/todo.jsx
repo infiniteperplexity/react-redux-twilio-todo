@@ -1,4 +1,14 @@
+/*
+Let's talk about state, baby.
 
+So we technically need the following things:
+- All "list-level" tasks.
+- All current-filter tasks.
+- The details of any currently-selected task.
+
+
+
+*/
 
 function reducer(state, action) {
 	if (!state) {
@@ -47,7 +57,6 @@ class TaskDisplay extends React.Component {
 	render() {
 		return (
 			<div className="taskdisplay appframe">
-				test
 			</div>
 		);
 	}
@@ -64,7 +73,7 @@ class TaskMenu extends React.Component {
 	render() {
 		return (
 			<div className="taskmenu appframe">
-				test
+			
 			</div>
 		);
 	}
@@ -80,7 +89,7 @@ class TaskList extends React.Component {
 	render() {
 		return (
 			<div className="tasklist appframe">
-				test
+			
 			</div>
 		);
 	}
@@ -95,7 +104,7 @@ class TaskDetails extends React.Component {
 	render() {
 		return (
 			<div className="taskdetails appframe">
-				test
+			
 			</div>
 		);
 	}
