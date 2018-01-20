@@ -2,9 +2,10 @@
   "name": "node-example",
   "version": "0.0.1",
   "dependencies": {
-    "express": "4.8.8"
-    , "sqlite3": ""
-    , "path": ""
+    "body-parser": "^1.18.2",
+    "express": "4.8.8",
+    "path": "",
+    "sqlite3": "^3.1.13"
   },
   "engines": {
     "node": "",
