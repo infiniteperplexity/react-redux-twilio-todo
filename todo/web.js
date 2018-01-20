@@ -2,9 +2,14 @@ const port = process.env.PORT || 8080;
 const path = require("path");
 const express = require('express');
 const app = express();
-const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
+const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+// app.use(express.logger({
+//   format: 'dev', 
+//   stream: fs.createWriteStream('app.log', {'flags': 'w'})
+// }));
 
 // assign and open database
 const db = new sqlite3.Database('./db/todo.db');
@@ -53,8 +58,6 @@ app.post('/db.*', function(req, res) {
 				console.log("had an error retrieving updated rows.");
 				res.status(404).send();
 			}
-			console.log("sending updated rows...");
-			console.log(JSON.stringify(rows));
 			res.send(JSON.stringify(rows));
 		});
 	});
@@ -70,8 +73,6 @@ app.get('/db.*', function(req, res) {
 			console.log("had an error retrieving rows.");
 			res.status(404).send();
 		}
-		console.log("sending rows...");;
-		console.log(JSON.stringify(rows));
 		res.send(JSON.stringify(rows));
 	});
 });
