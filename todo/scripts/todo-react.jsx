@@ -42,22 +42,31 @@ class TaskDisplay extends React.Component {
 		}
 		let labels = this.props.labels;
 		let items = tasks.map((taskid,i)=>(
-				<li key={i}>
-					<button onClick={()=>this.selectTask(taskid)}>{String.fromCodePoint(0x1F50D)}</button>
-					<button onClick={()=>this.completeTask(taskid)}>{"\u2714"}</button>
-					<button onClick={()=>this.deleteTask(taskid)}>{"\u274C"}</button>
-					{labels[taskid]}
-				</li>
+			<div className="card" key={i}>
+				<div className="card-header">
+					<a className= "card-link" data-toggle = "collapse" data-parent="#accordion" href={"#collapse"+i}>
+						{labels[taskid]}
+						<button style={{float:"right"}} className="btn" onClick={()=>this.deleteTask(taskid)}>{"\u2717\uFE0E"}</button>
+						<button style={{float:"right"}} className="btn" onClick={()=>this.completeTask(taskid)}>{"\u2713"}</button>
+					</a>
+				</div>
+				<div id={"collapse"+i} className="collapse">
+					<div className="card-body">
+						{taskid}<br />
+						some more text here
+					</div>
+				</div>
+			</div>
 			)
 		);
 		return (
 			<div className="taskdisplay appframe">
 				<form onSubmit={this.addTask}>
-		        	<input ref={(e)=>this._label=e} placeholder="enter task." />
-		        	<button type="submit">add</button>
-		        	<ul>
+		        <input type="text" className="form-control" ref={(e)=>this._label=e} placeholder="Enter Task." />
+		        <button type="submit" className="btn">Add Task.</button>
+		        	<div id="accordion">
 		        		{items}
-		        	</ul>
+		        	</div>
 		        </form>
 			</div>
 		);
@@ -234,3 +243,18 @@ ReactDOM.render(
 //         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 //       </div>
 // tooltips are a no-brainer
+
+
+// so...one possible layout is that *everything* is a task.
+// that would include lists, and there are even some default things...
+//...the "root" task, for example, and the "front-page" task.
+// alright, so in Remember The Milk, Smart Lists are based off search results.
+// search results use RTM's own "search language"
+
+
+// come up with a system for building and navigating lists
+// come up with a system for dailies.
+// come up with some sort of sorting mechanism...note that you can use ORDER BY when pulling from SQL...but not when inserting
+// split my test account from my user account
+// really learn the bootstrap stuff well and maybe fork my own versions
+// so you can always handle list membership using tags and filters
