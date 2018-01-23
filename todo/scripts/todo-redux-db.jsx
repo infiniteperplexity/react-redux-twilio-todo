@@ -1,15 +1,31 @@
+
+
+
 let user = "TEST";
 //let user = "GLENN";
 let store;
+let filters = {
+	complete: function(task) {
+		return (task in this.props.completed && !(task in this.props.repeating));
+	},
+	inbox: function(task) {
+		return (!(task in this.props.completed) && !(task in this.props.repeating));
+	},
+	repeating: function(task) {
+		return (task in this.props.repeating);
+	},
+	all: function(task) { return true;}
+}
 function reducer(state, action) {
 	if (!state) {
 		return {
 			// application state
-			filters: [],
-			selected: null,
+			filters: filters,
+			filter: "inbox",
 			// data sorted usefully
 			tasks: [],
 			labels: {},
+			inputs: {},
 			completed: {},
 			repeating: {},
 			// raw data
@@ -20,9 +36,8 @@ function reducer(state, action) {
 		case "INITIALIZE":
 			getTriples();
 			return state;
-		case "SET_FILTERS":
-			let filters = action.filters;
-			return {...state, filters: filters};
+		case "SET_FILTER":
+			return {...state, filter: action.filter};
 		case "SELECT_TASK":
 			let task = {
 				id: action.id,
@@ -58,6 +73,8 @@ function reducer(state, action) {
 			let predicates = {
 				tasks: [],
 				labels: {},
+				inputs: {},
+				statuses: {},
 				completed: {},
 				repeating: {},
 				created: {}
@@ -76,11 +93,20 @@ function reducer(state, action) {
 					case ":completed":
 						predicates.completed[subject] = object;
 						break;
+					case ":status":
+						predicates.statuses[subject] = predicates.statuses[subject] || {};
+						predicates.statuses[subject][object] = predicates.statuses[subject][object] || {};
+						break;
 					case ":created":
 						predicates.created[subject] = object;
 						break;
 					case ":repeats":
 						predicates.repeating[subject] = object;
+						break;
+					case ":inputs":
+						predicates.inputs[subject] = object;
+						break;
+					case "rdfs:value":
 						break;
 					default:
 						// do nothing

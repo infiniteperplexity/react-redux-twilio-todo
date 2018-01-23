@@ -10,9 +10,10 @@ let resources = [
 	[':created','rdfs:domain',':Task'],
 	[':created','rdfs:range','xsd:dateTime'],
 	[':status','rdfs:domain',':Task'],
-	[':status','rdfs:range',':Completion'],
-	[':updated','rdfs:domain',':Completion'],
-	[':updated','rdfs:domain',':xsd:dateTime']
+	[':status','rdfs:range',':Status'],
+	[':updated','rdfs:domain',':Status'],
+	// wanted this to be "time or datetime" but there is no common superclass
+	[':updated','rdfs:domain',':rdfs:Literal']
 	[':SubTasks','rdfs:subClassOf','rdf:Seq'],
 	[':hasSubTasks','rdfs:domain',':Task'],
 	[':hasSubTasks','rdfs:range',':SubTasks'],
