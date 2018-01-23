@@ -1,3 +1,8 @@
+// $(document).ready(function(){
+//     $('[data-toggle="popover"]').popover();
+// });
+
+
 class App extends React.Component {
 	render() {
 		return (
@@ -86,7 +91,12 @@ class TaskDisplay extends React.Component {
 			} else if (properties[task].inputType===":number") {
 				taskdays = days.map((day,j) => <td key={j}><input type="number" step="any" style={{width: "50px"}} /></td>);
 			} else {
-				taskdays = days.map((day,j) => <td key={j}><textarea rows="5" cols="12" defaultValue="notes"></textarea></td>);
+				taskdays = days.map((day,j) => (
+					<td key={j}>
+						<button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">notes</button>
+  						
+					</td>)
+				);
 			}
 			return (
 			<tr key={i} height="25px">
@@ -110,6 +120,18 @@ class TaskDisplay extends React.Component {
 						{tasktable}
 					</tbody>
 				</table>
+				<div className="modal fade" id="myModal" role="dialog">
+    				<div className="modal-dialog">
+      					<div className="modal-content">
+        					<div className="modal-body">
+          						<textarea cols="48" rows="10" defaultValue="notes." />
+        					</div>
+        					<div className="modal-footer">
+          						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        					</div>
+      					</div>
+    				</div>
+  				</div>
 			</div>
 		);
 	}
