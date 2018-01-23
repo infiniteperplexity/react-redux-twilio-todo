@@ -4,7 +4,6 @@ class App extends React.Component {
 			<div className="taskapp">
 				<TaskMenuHOC />
 				<TaskDisplayHOC />
-				<TaskDetailsHOC />
 			</div>
 		);
 	}
@@ -35,9 +34,93 @@ class TaskDisplay extends React.Component {
 		this.props.selectTask(id);
 	}
 	render() {
+		//return this.renderAsList();
+		return this.renderAsCalendar();
+	}
+	renderAsCalendar = () => {
+		let tasks = this.props.tasks;
+		for (let filter of this.props.filters) {
+			// okay...so this is where the filter actually gets called.  It's kind of bizarre, actually...
+			// the methods are defined on another class, but only ever called on this one
+			// my friggin' brain :(...
+
+			tasks = tasks.filter(filter.bind(this));
+		}
+		let labels = this.props.labels;
+		// placeholder values
+		tasks = ["taskone","tasktwo","taskthree"];
+		labels = {taskone: "Task one", tasktwo: "Task two", taskthree: "Task three"};
+		// even ad-hockier
+		let properties = {
+			taskone: {
+				inputType: ":check"
+			},
+			tasktwo: {
+				inputType: ":number"
+			},
+			taskthree: {
+				inputType: ":note"
+			}
+		}
+		let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday"];
+		let today = new Date(Date());
+		for (let i=0; i<today.getDay(); i++) {
+			days.push(days.shift());
+		}
+		let dayheaders = days.map((e,i) => {
+			return (
+				<th scope="col" key={i}>{e}</th>
+			);
+		});
+		dayheaders.unshift(<th scope="col" key={-1} />);
+
+		let tasktable = tasks.map((task,i) => {
+			// now, there are at least four potential ways these can go...
+				// null, if it doesn't repeat on that day.
+				// boolean (done or not done...checkmark.
+				// number
+				// note
+			let taskdays;
+			if (properties[task].inputType===":check") {
+				taskdays = days.map((day,j) => <td key={j}><input type="checkbox" /></td>);
+			} else if (properties[task].inputType===":number") {
+				taskdays = days.map((day,j) => <td key={j}><input type="number" step="any" style={{width: "50px"}} /></td>);
+			} else {
+				taskdays = days.map((day,j) => <td key={j}><textarea rows="5" cols="12" defaultValue="notes"></textarea></td>);
+			}
+			return (
+			<tr key={i} height="25px">
+				<th scope="row">
+					{labels[task]}
+				</th>
+				{taskdays}
+			</tr>
+
+			);
+		});
+		return (
+			<div id="#calendar">
+				<table className="table table-bordered">
+					<thead>
+						<tr height="25px">
+							{dayheaders}
+						</tr>
+					</thead>
+					<tbody>
+						{tasktable}
+					</tbody>
+				</table>
+			</div>
+		);
+	}
+	renderAsList = () => {
 		// this system works pretty well
 		let tasks = this.props.tasks;
 		for (let filter of this.props.filters) {
+			// okay...so this is where the filter actually gets called.  It's kind of bizarre, actually...
+			// the methods are defined on another class, but only ever called on this one
+			// my friggin' brain :(...
+
 			tasks = tasks.filter(filter.bind(this));
 		}
 		let labels = this.props.labels;
@@ -77,7 +160,8 @@ let TaskDisplayHOC = ReactRedux.connect(
 	(state) => ({	tasks: state.tasks,
 					labels: state.labels,
 					filters: state.filters,
-					completed: state.completed
+					completed: state.completed,
+					repeating: state.repeating
 				}),
 	(dispatch) => ({
 		addTriples: (triples) => dispatch({type: "ADD_TRIPLES", triples: triples}),
@@ -92,25 +176,40 @@ let TaskDisplayHOC = ReactRedux.connect(
 class TaskMenu extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-		this.props.setFilters([this.filterIncomplete]);
+		this.props.setFilters([this.filterInbox]);
 	}
-	filterComplete(task) {
-		return (task in this.props.completed);
+	filterComplete = (task) => {
+		return (task in this.props.completed && !(task in this.props.repeating));
 	}
-	filterIncomplete(task) {
-		return (!(task in this.props.completed));
+	filterInbox = (task) => {
+		return (!(task in this.props.completed) && !(task in this.props.repeating));
+	}
+	filterRepeating = (task) => {
+		return (task in this.props.repeating);
+	}
+	nofilters = (task) => {
+		return true;
 	}
 	handleChange = (e) => {
+		let filter;
 		switch(e.target.value) {
 			case "incomplete":
-				this.props.setFilters([this.filterIncomplete]);
-				return;
+				filter = this.filterInbox;		
+				break;
 			case "complete":
-				this.props.setFilters([this.filterComplete]);
-				return;
+				filter = this.filterComplete;
+				break;
+			case "repeating":
+				filter = this.filterRepeating;
+				break;
+			case "all":
+				filter = this.nofilters;
+				break;
 			default:
 				return;
+			
 		}
+		this.props.setFilters([filter]);
 	}
 	render() {
 		return (
@@ -118,14 +217,28 @@ class TaskMenu extends React.Component {
 				<form>
 					<input 	type="radio"
 							value="incomplete"
-							checked={this.props.filters.indexOf(this.filterIncomplete)!==-1}
+							checked={this.props.filters.indexOf(this.filterInbox)!==-1}
 							onChange={this.handleChange}
-					/>To-Do<br />
+					/>
+					Inbox
+					<br />
+					<input 	type="radio"
+							value="repeating"
+							checked={this.props.filters.indexOf(this.filterRepeating)!==-1}
+							onChange={this.handleChange}
+					/>Repeating
+					<br />
 					<input 	type="radio"
 							value="complete"
 							checked={this.props.filters.indexOf(this.filterComplete)!==-1}
 							onChange={this.handleChange}
 					/>Complete
+					<br />
+					<input 	type="radio"
+							value="all"
+							checked={this.props.filters.indexOf(this.nofilters)!==-1}
+							onChange={this.handleChange}
+					/>All
 				</form>
 			</div>
 		);
@@ -138,28 +251,6 @@ let TaskMenuHOC = ReactRedux.connect(
 		setFilters: (filters) => dispatch({type: "SET_FILTERS", filters: filters})
 	})
 )(TaskMenu);
-
-class TaskDetails extends React.Component {
-	render() {
-		let task = this.props.selected;
-		if (!task) {
-			return (<div className="taskdetails appframe" />);
-		}
-		return ( 
-			<div className="taskdetails appframe">
-				<div>{task.label}</div>
-				<div>{"ID: "+task.id}</div>
-				<div>{"Created: "+task.created}</div>
-				<div>{"Completed: "+((task.completed) ? task.completed : "N/A")}</div>
-			</div>
-		);
-	}
-}
-
-let TaskDetailsHOC = ReactRedux.connect(
-	(state) => ({selected: state.selected, tasks: state.tasks}),
-	(dispatch) => ({})
-)(TaskDetails);
 
 let destination = document.querySelector("#container");
 ReactDOM.render(

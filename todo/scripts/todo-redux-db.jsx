@@ -1,4 +1,5 @@
-let user = "glenn";
+let user = "TEST";
+//let user = "GLENN";
 let store;
 function reducer(state, action) {
 	if (!state) {
@@ -10,6 +11,7 @@ function reducer(state, action) {
 			tasks: [],
 			labels: {},
 			completed: {},
+			repeating: {},
 			// raw data
 			triples: []
 		};
@@ -26,7 +28,8 @@ function reducer(state, action) {
 				id: action.id,
 				label: state.labels[action.id],
 				completed: state.completed[action.id],
-				created: state.created[action.id]
+				created: state.created[action.id],
+				repeats: state.repeating[action.id]
 			};
 			return {...state, selected: task};
 		case "ADD_TRIPLES":
@@ -56,6 +59,7 @@ function reducer(state, action) {
 				tasks: [],
 				labels: {},
 				completed: {},
+				repeating: {},
 				created: {}
 			}
 			let triples = [];
@@ -74,6 +78,9 @@ function reducer(state, action) {
 						break;
 					case ":created":
 						predicates.created[subject] = object;
+						break;
+					case ":repeats":
+						predicates.repeating[subject] = object;
 						break;
 					default:
 						// do nothing

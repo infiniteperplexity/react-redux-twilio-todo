@@ -3,18 +3,43 @@ const uuid = require('uuid');
 
 let resources = [
 	[':Task','rdfs:subClassOf','rdfs:Class'],
-	[':isDueOn','rdfs:domain',':Task'],
-	[':isDueOn','rdfs:range','xsd:date'],
+	[':List','rdfs:subClassOf',':Task'],
+	[':Filter','rdfs:subClasSOf','rdfs:Class'],
+	[':due','rdfs:domain',':Task'],
+	[':due','rdfs:range','xsd:date'],
 	[':created','rdfs:domain',':Task'],
-	[':created','rdfs:range','xsd:date'],
-	[':isComplete','rdfs:domain',':Task'],
-	[':isComplete','rdfs:range','xsd:boolean'],
+	[':created','rdfs:range','xsd:dateTime'],
+	[':status','rdfs:domain',':Task'],
+	[':status','rdfs:range',':Completion'],
+	[':updated','rdfs:domain',':Completion'],
+	[':updated','rdfs:domain',':xsd:dateTime']
 	[':SubTasks','rdfs:subClassOf','rdf:Seq'],
 	[':hasSubTasks','rdfs:domain',':Task'],
 	[':hasSubTasks','rdfs:range',':SubTasks'],
-	[':TaskTag','rdfs:subClassOf','rdfs:Class'],
-	[':taggedAs','rdfs:domain',':Task'],
-	[':taggedAs','rdfs:range',':TaskTag']
+	[':Tag','rdfs:subClassOf','rdfs:Class'],
+	[':tagged','rdfs:domain',':Task'],
+	[':tagged','rdfs:range',':Tag'],
+	[':repeats','rdfs:domain',':Task'],
+	[':repeats','rdfs:range','rdfs:Literal']
+];
+
+let statics = [
+	// The list of all tasks; only need if Lists are tasks
+	['$Root','a',':List'],
+	// The dynamic list of all lists
+	['$List','a',':List'],
+	// The dynamic list of all untagged tasks
+	['$Inbox','a',':List'],
+	// The dynamic list of all repeating tasks
+	['$Repeating','a',':List']
+	// The dynamic list of all completed, non-repeating tasks
+	['$Completed','a',':List'],
+	// The dynamic list of all incomplete, non-repeating tasks
+	['$Incomplete','a',':List'],
+	// A list of all tags...wait, but if tags aren't tasks, then it wouldn't work like that
+	['$Tags','a',':List'],
+	// A tag you can attach to one and only one list
+	['$Home','a',':Tag'],
 ];
 let db = new sqlite3.Database('./db/todo.db', (err) => {
   	if (err) {
