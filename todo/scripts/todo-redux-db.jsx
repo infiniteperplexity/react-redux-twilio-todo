@@ -12,6 +12,7 @@ function reducer(state, action) {
 			tasks: {}
 		};
 	}
+	let tasks, statuses;
 	switch (action.type) {
 		/// **** Actions that modify client state only ********
 		case "SET_FILTER":
@@ -22,38 +23,43 @@ function reducer(state, action) {
 			return state;
 		// Parse triples into hierarchical object data
 		case "GET_DATA":
+			console.log("got data");
+			console.log(action.data);
 			let predicates = {};
-			for (let [s, p, o] of action.data) {
+			predicates.a = [];
+			predicates['rdfs:value'] = [];
+			predicates[':moment'] = [];
+			predicates[':completed'] = [];
+			predicates[':occasion'] = [];
+			predicates[':repeats'] = [];
+			predicates[':created'] = [];
+			predicates['rdfs:label'] = [];
+			predicates[':inputs'] = [];
+			for (let {subject: s, predicate: p, object: o} of action.data) {
 				if (!predicates[p]) {
 					predicates[p] = [];
 				}
 				predicates[p].push([s,o]);
 			}
-			let tasks = {};
-			let statuses = {};
+			tasks = {};
+			statuses = {};
 			for (let [s,o] of predicates.a) {
 				if (o===":Task") {
 					tasks[s] = {
 						id: s,
 						filters: {
-							Inbox: false,
-							Repeating: false
+							Inbox: true,
+							Repeating: false,
 							All: true,
 							Completed: false
 						}
-						// label:
-						// created: 
-						// completed:
-						// repeats: 
-						// occasions:
-						// inputs:
 					};
 				} else if (o===":Status") {
 					statuses[s] = {
 						id: s,
 						value: null,
 						moment: null
-					});
+					};
 				}
 			}
 			for (let [s,o] of predicates["rdfs:value"]) {
@@ -74,8 +80,8 @@ function reducer(state, action) {
 			for (let [s,o] of predicates[":occasion"]) {
 				if (s in tasks) {
 					let task = tasks[s];
-					task.occasions = task.occasions || [];
-					task.occasions.push(stasuses[o]);
+					task.occasions = task.occasions || {};
+					task.occasions[statuses[o].moment] = statuses[o];
 				}
 			}
 			for (let [s,o] of predicates[":repeats"]) {
@@ -98,10 +104,24 @@ function reducer(state, action) {
 					tasks[s].inputs = o;
 				}
 			}
+			for (let key in tasks) {
+				let task = tasks[key];
+				if (task.completed) {
+					task.filters.Completed = true;
+					task.filters.Inbox = false;
+				} else if (task.repeats) {
+					task.filters.Repeating = true;
+					task.filters.Inbox = false;
+				}
+			}
+			console.log("got tasks");
+			console.log(tasks);
 			return {...state, tasks: tasks};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
-			let tasks = {...state.tasks};
+			console.log("modifying data");
+			console.log(action);
+			tasks = {...state.tasks};
 			for (let id of action.delete) {
 				delete tasks[id];
 			}
@@ -129,8 +149,10 @@ function reducer(state, action) {
 					triples.push([task.completed.id, ":moment", task.completed.moment]);
 				}
 				if (task.occasions) {
-					for (let o of task.occasions) {
-						triples.push([id, :"occasion", o.id]);
+					console.log("TESTING!");
+					for (let key in task.occasions) {
+						let o = task.occasions[key];
+						triples.push([id, ":occasion", o.id]);
 						triples.push([o.id, "a", ":Status"]);
 						triples.push([o.id, "rdfs:value", o.value]);
 						triples.push([o.id, ":moment", o.moment]);
@@ -157,13 +179,14 @@ function getTriples() {
 		if (res.status!==200) {
 	        store.dispatch({type: "FAIL_UPDATE", response: res});
 	    } else {
-			res.json().then((data)=>store.dispatch({type: "DB_UPDATE", data: data}));
+			res.json().then((data)=>store.dispatch({type: "GET_DATA", data: data}));
 		}
 	});
 }
 // POST
-function updateTriples(triples) {	
-	triples = triples || store.getState().triples;
+function updateTriples(triples) {
+	console.log("sending data");
+	console.log(triples);
 	fetch('db.'+user, {
 		method: 'POST',
 		headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
@@ -172,7 +195,7 @@ function updateTriples(triples) {
 		if (res.status!==200) {
 	        store.dispatch({type: "FAIL_UPDATE", response: res});
 	    } else {
-			res.json().then((data)=>store.dispatch({type: "DB_UPDATE", data: data}));
+			res.json().then((data)=>store.dispatch({type: "GET_DATA", data: data}));
 		}
 	});
 }

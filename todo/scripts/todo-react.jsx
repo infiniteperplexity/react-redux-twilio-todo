@@ -5,17 +5,11 @@
 
 class App extends React.Component {
 	// this is where task addition and modification should go.
-	addTask = (task)=> {
-		let tasks = {...this.props.tasks};
-		tasks[task.id] = task;
-		// now...we *don't* set state explc
-		this.props.tasks = tasks;
-	}
 	render() {
 		return (
 			<div className="taskapp">
-				<TaskMenuHOC {...this.props} />
-				<TaskDisplayHOC {...this.props} />
+				<TaskMenuHOC />
+				<TaskDisplayHOC />
 			</div>
 		);
 	}
@@ -24,36 +18,38 @@ class App extends React.Component {
 class TaskDisplay extends React.Component {
 	addTask = (e) => {
 		e.preventDefault();
-		let label = this._label.value;
-		if (label!=="") {
-			let task = uuid.v4();
-			let triples = [
-				[task,"a",":Task"],
-				[task,":created",Date()],
-				[task,"rdfs:label",label]
-			];
-			if (this.props.filter==="repeating") {
-				triples.push([task,":repeats","daily"]);
-				triples.push([task,":inputs","check"]);
+		if (this._label.value!=="") {
+			let task = {
+				id: uuid.v4(),
+				label: this._label.value,
+				created: moment().unix(),
+				inputs: "check"
+			}
+			if (this.props.app.filter==="Repeating") {
+				task.repeats = "daily";
 			}
 			this._label.value = "";
-			this.props.addTriples(triples);
+			this.props.addTask(task);
 		}
 	}
 	deleteTask = (id) => {
-		this.props.deleteTasks([id]);
+		this.props.deleteTask(id);
 	}
 	completeTask = (id) => {
-		this.props.completeTasks([id]);
-	}
-	selectTask = (id) => {
-		this.props.selectTask(id);
+		let tasks = {...this.props.tasks};
+		let completed = {
+			id: uuid.v4(),
+			moment: moment().unix(),
+			value: true
+		}
+		let task = {...tasks[id], completed: completed};
+		this.props.modifyTask(task);
 	}
 	render() {
-		let tasks = this.props.tasks;
-		let filter = this.props.filters[this.props.filter];
-		tasks = tasks.filter(filter.bind(this));
-		let listing = (this.props.filter==="repeating") ? this.renderCalendar(tasks) : this.renderList(tasks);
+		let filter = this.props.app.filter;
+		let tasks = Object.values(this.props.tasks);
+		tasks = tasks.filter((task)=>(task.filters[filter]));
+		let listing = (filter==="Repeating") ? this.renderCalendar(tasks) : this.renderList(tasks);
 		return 	(
 			<div className="taskdisplay appframe">
 				<form onSubmit={this.addTask}>
@@ -64,106 +60,69 @@ class TaskDisplay extends React.Component {
 			</div>
 		);
 	}
-	handleCalendarElement = (e,task,day) => {
-		let {value, type} = e.target;
-		let completions = this.props.completed[task] || [];
-		// need to assume this is an array for this kind of task
-		for (let completion of completions) {
-			if (day.isSame(completion,'day')) {
-				// delete that completion
-				// or maybe filter this...shouldn't mutate state.
-			}
-		}
-		// except this is wrong, since it can't handle other completion statuses.
-		this.props.addTriples([[task, ":completed", day.format("YYYY-MM-DD")]]);
-		// maybe...or just reuse the old one?  yeah.
-		let status = uuid.v4();
-		// this.props.addTriples([
-		// 	[task, ":status", status],
-		// 	[status, "rdfs:value", value],
-		// 	[status, ":updated", day.format("YYYY-MM-DD")]
-		// ]);
-	}
-	handleCalendarElementN3 = (e,task,day) => {
-		// how would we do this one?
-		let {value, type} = e.target;
-		store.getObjects(task,":status",null);
-		store.getSubjects(null,"rdfs:value","completed");
-		// take the intersection
-
-		// this will return a list of all the status for the task...
-
-
-		let completions = this.props.completed[task] || [];
-		// need to assume this is an array for this kind of task
-		for (let completion of completions) {
-			if (day.isSame(completion,'day')) {
-				// delete that completion
-				// or maybe filter this...shouldn't mutate state.
-			}
-		}
-		// except this is wrong, since it can't handle other completion statuses.
-		this.props.addTriples([[task, ":completed", day.format("YYYY-MM-DD")]]);
-		// maybe...or just reuse the old one?  yeah.
-		let status = uuid.v4();
-		// this.props.addTriples([
-		// 	[task, ":status", status],
-		// 	[status, "rdfs:value", value],
-		// 	[status, ":updated", day.format("YYYY-MM-DD")]
-		// ]);
+	handleCalendarElement = (e, task, day) => {
+		e.preventDefault();
+		task = {...task};
+		let occasions = {...(task.occasions || {})};
+		let occasion = {
+			id: uuid.v4(),
+			value: e.target.checked,
+			moment: day
+		};
+		occasions[day] = occasion;
+		task.occasions = occasions;
+		this.props.modifyTask(task);
 	}
 	renderCalendar = (tasks) => {
-		let labels = this.props.labels;
-		let inputs = this.props.inputs;
-		// we need to pull old completions
-		let days = [moment()];
+		let days = [moment().startOf('day')];
 		for (let i=0; i<6; i++) {
 			let day = moment(days[0]);
 			days.unshift(day.subtract(1,'days'));
 		}
 		let dayheaders = days.map((day,i) => {
 			return (
-				<th scope="col" key={i}>{day.format('ddd')+" "+day.format('D')}</th>
+		 		<th scope="col" key={i}>{day.format('ddd')+" "+day.format('D')}</th>
 			);
 		});
+		days = days.map((day)=>day.unix());
 		dayheaders.unshift(<th scope="col" key={-1} />);
 		let tasktable = tasks.map((task,i) => {
 			let taskdays;
-			if (inputs[task]==="number") {
-				taskdays = days.map((day,j) =>
-					<td key={j}>
-						<input 	type="number" 
+			if (task.inputs==="number") {
+		 		taskdays = days.map((day,j) =>
+		 			<td key={j}>
+			 			<input	type="number" 
 								step="any"
 								style={{width: "50px"}}
 								onChange={()=>(this.handleCalendarElement(e,task,day))}
 						/>
 					</td>
 				);
-			} else if (inputs[task]==="note") {
+			} else if (task.inputs==="note") {
 				taskdays = days.map((day,j) => (
 					<td key={j}>
 						<button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">notes</button>				
 					</td>)
 				);
-			} else { //if (inputs[task]==="check") {
-				taskdays = days.map((day,j) =>
-					<td key={j}>
+			} else if (task.inputs==="check") {
+				taskdays = days.map((day,j) => {
+					return <td key={j}>
 						<input 	type="checkbox"
+								checked={(task.occasions && task.occasions[day]) ? task.occasions[day].value==="true" : false}
 								onChange={(e)=>(this.handleCalendarElement(e,task,day))}
-					/>
+						/>
 					</td>
-				);
+				});
 			}
 			return (
-			<tr key={i} height="25px">
-				<th scope="row">
-					{labels[task]}
-				</th>
-				{taskdays}
-			</tr>
-
-			);
-		});
+				<tr key={i} height="25px">
+			 		<th scope="row">
+						{task.label}
+			 		</th>
+				 		{taskdays}
+				 </tr>
+		 	);
+	 	});
 		return (
 			<div id="#calendar">
 				<table className="table table-bordered">
@@ -188,24 +147,28 @@ class TaskDisplay extends React.Component {
       					</div>
     				</div>
   				</div>
-			</div>
+		 	</div>
 		);
 	}
 	renderList = (tasks) => {
-		let labels = this.props.labels;
-		let items = tasks.map((taskid,i)=>(
+		let items = tasks.map((task,i)=>(
 			<div className="card" key={i}>
 				<div className="card-header">
 					<a className= "card-link" data-toggle = "collapse" data-parent="#accordion" href={"#collapse"+i}>
-						{labels[taskid]}
-						<button style={{float:"right"}} className="btn" onClick={()=>this.deleteTask(taskid)}>{"\u2717\uFE0E"}</button>
-						<button style={{float:"right"}} className="btn" onClick={()=>this.completeTask(taskid)}>{"\u2713"}</button>
+						{task.label}
+						<button style={{float:"right"}} className="btn" onClick={(e)=>{
+							e.preventDefault();
+							this.deleteTask(task.id);
+						}}>{"\u2717\uFE0E"}</button>
+						<button style={{float:"right"}} className="btn" onClick={(e)=>{
+							e.preventDefault();
+							this.completeTask(task.id);
+						}}>{"\u2713"}</button>
 					</a>
 				</div>
 				<div id={"collapse"+i} className="collapse">
 					<div className="card-body">
-						{taskid}<br />
-						some more text here
+						<pre>{JSON.stringify(task, null, 2)}</pre>
 					</div>
 				</div>
 			</div>
@@ -233,7 +196,7 @@ let TaskDisplayHOC = ReactRedux.connect(
 class TaskMenu extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-		this.props.setFilter("inbox");
+		this.props.setFilter("Inbox");
 	}
 	handleChange = (e) => {
 		this.props.setFilter(e.target.value);
@@ -243,27 +206,27 @@ class TaskMenu extends React.Component {
 			<div className="taskmenu appframe">
 				<form>
 					<input 	type="radio"
-							value="inbox"
-							checked={this.props.filter==="inbox"}
+							value="Inbox"
+							checked={this.props.app.filter==="Inbox"}
 							onChange={this.handleChange}
 					/>
 					Inbox
 					<br />
 					<input 	type="radio"
-							value="repeating"
-							checked={this.props.filter==="repeating"}
+							value="Repeating"
+							checked={this.props.app.filter==="Repeating"}
 							onChange={this.handleChange}
 					/>Repeating
 					<br />
 					<input 	type="radio"
-							value="complete"
-							checked={this.props.filter==="complete"}
+							value="Completed"
+							checked={this.props.app.filter==="Completed"}
 							onChange={this.handleChange}
-					/>Complete
+					/>Completed
 					<br />
 					<input 	type="radio"
-							value="all"
-							checked={this.props.filter==="all"}
+							value="All"
+							checked={this.props.app.filter==="All"}
 							onChange={this.handleChange}
 					/>All
 				</form>

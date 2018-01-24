@@ -13,7 +13,7 @@ let resources = [
 	[':status','rdfs:range',':Status'],
 	[':updated','rdfs:domain',':Status'],
 	// wanted this to be "time or datetime" but there is no common superclass
-	[':updated','rdfs:domain',':rdfs:Literal']
+	[':updated','rdfs:domain',':rdfs:Literal'],
 	[':SubTasks','rdfs:subClassOf','rdf:Seq'],
 	[':hasSubTasks','rdfs:domain',':Task'],
 	[':hasSubTasks','rdfs:range',':SubTasks'],
