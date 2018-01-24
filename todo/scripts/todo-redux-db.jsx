@@ -1,119 +1,144 @@
-
-
-
 let user = "TEST";
 //let user = "GLENN";
-let store;
-let filters = {
-	complete: function(task) {
-		return (task in this.props.completed && !(task in this.props.repeating));
-	},
-	inbox: function(task) {
-		return (!(task in this.props.completed) && !(task in this.props.repeating));
-	},
-	repeating: function(task) {
-		return (task in this.props.repeating);
-	},
-	all: function(task) { return true;}
-}
 function reducer(state, action) {
 	if (!state) {
 		return {
 			// application state
-			filters: filters,
-			filter: "inbox",
-			// data sorted usefully
-			tasks: [],
-			labels: {},
-			inputs: {},
-			completed: {},
-			repeating: {},
-			// raw data
-			triples: []
+			app: {
+				filters: ["Inbox","Repeating","Complete","All"],
+				filter: "Inbox"
+			},
+			// tasks
+			tasks: {}
 		};
 	}
 	switch (action.type) {
+		/// **** Actions that modify client state only ********
+		case "SET_FILTER":
+			return {...state, app: {...state.app, filter: action.filter}};
+		// ****Actions that get or post data from the server
 		case "INITIALIZE":
 			getTriples();
 			return state;
-		case "SET_FILTER":
-			return {...state, filter: action.filter};
-		case "SELECT_TASK":
-			let task = {
-				id: action.id,
-				label: state.labels[action.id],
-				completed: state.completed[action.id],
-				created: state.created[action.id],
-				repeats: state.repeating[action.id]
-			};
-			return {...state, selected: task};
-		case "ADD_TRIPLES":
-			// add some triples
-			updateTriples(state.triples.concat(action.triples));
-			return state;
-		case "DELETE_IDS":
-			// delete all triples with that task ID as the subject or the predicate
-			if (action.ids.length===0) {
-				return;
+		// Parse triples into hierarchical object data
+		case "GET_DATA":
+			let predicates = {};
+			for (let [s, p, o] of action.data) {
+				if (!predicates[p]) {
+					predicates[p] = [];
+				}
+				predicates[p].push([s,o]);
 			}
-			updateTriples(state.triples
-				.filter(([subject, predicate, object])=>(action.ids.indexOf(subject)===-1 && action.ids.indexOf(object)===-1)));
-			return state;
-		case "COMPLETE_IDS":
-			let completed = action.ids.map((id)=>([id, ":completed",Date()]));
-			updateTriples(state.triples
-					.filter(([subject, predicate, object])=>(action.ids.indexOf(subject)===-1 || predicate!==":completed"))
-					.concat(completed)
-			);
-			return state;
-		case "MODIFY_TASKS":
-			updateTriples();
-			return state;
-		case "DB_UPDATE":
-			let predicates = {
-				tasks: [],
-				labels: {},
-				inputs: {},
-				statuses: {},
-				completed: {},
-				repeating: {},
-				created: {}
-			}
-			let triples = [];
-			for (let {subject, predicate, object} of action.data) {
-				switch (predicate) {
-					case "a":
-						if (object===":Task") {
-							predicates.tasks.push(subject);
+			let tasks = {};
+			let statuses = {};
+			for (let [s,o] of predicates.a) {
+				if (o===":Task") {
+					tasks[s] = {
+						id: s,
+						filters: {
+							Inbox: false,
+							Repeating: false
+							All: true,
+							Completed: false
 						}
-						break;
-					case "rdfs:label":
-						predicates.labels[subject] = object;
-						break;
-					case ":completed":
-						predicates.completed[subject] = object;
-						break;
-					case ":status":
-						predicates.statuses[subject] = predicates.statuses[subject] || {};
-						predicates.statuses[subject][object] = predicates.statuses[subject][object] || {};
-						break;
-					case ":created":
-						predicates.created[subject] = object;
-						break;
-					case ":repeats":
-						predicates.repeating[subject] = object;
-						break;
-					case ":inputs":
-						predicates.inputs[subject] = object;
-						break;
-					case "rdfs:value":
-						break;
-					default:
-						// do nothing
-				}				
-				triples.push([subject, predicate, object]);
+						// label:
+						// created: 
+						// completed:
+						// repeats: 
+						// occasions:
+						// inputs:
+					};
+				} else if (o===":Status") {
+					statuses[s] = {
+						id: s,
+						value: null,
+						moment: null
+					});
+				}
 			}
-			return {...state, ...predicates, triples: triples};
+			for (let [s,o] of predicates["rdfs:value"]) {
+				if (s in statuses) {
+					statuses[s].value = o;
+				}
+			}
+			for (let [s,o] of predicates[":moment"]) {
+				if (s in statuses) {
+					statuses[s].moment = o;
+				}
+			}
+			for (let [s,o] of predicates[":completed"]) {
+				if (s in tasks) {
+					tasks[s].completed = statuses[o];
+				}
+			}
+			for (let [s,o] of predicates[":occasion"]) {
+				if (s in tasks) {
+					let task = tasks[s];
+					task.occasions = task.occasions || [];
+					task.occasions.push(stasuses[o]);
+				}
+			}
+			for (let [s,o] of predicates[":repeats"]) {
+				if (s in tasks) {
+					tasks[s].repeats = o;
+				}
+			}
+			for (let [s,o] of predicates["rdfs:label"]) {
+				if (s in tasks) {
+					tasks[s].label = o;
+				}
+			}
+			for (let [s,o] of predicates[":created"]) {
+				if (s in tasks) {
+					tasks[s].created = o;
+				}
+			}
+			for (let [s,o] of predicates[":inputs"]) {
+				if (s in tasks) {
+					tasks[s].inputs = o;
+				}
+			}
+			return {...state, tasks: tasks};
+		case "MODIFY_DATA":
+			// delete, add, or modify tasks
+			let tasks = {...state.tasks};
+			for (let id of action.delete) {
+				delete tasks[id];
+			}
+			for (let task of action.modify) {
+				tasks[task.id] = task;
+			}
+			for (let task of action.add) {
+				tasks[task.id] = task;
+			}
+			// parse hierarchical data into triples
+			let triples = [];
+			for (let id in tasks) {
+				let task = tasks[id];
+				triples.push([id, "a", ":Task"]);
+				triples.push([id, "rdfs:label", task.label]);
+				triples.push([id, ":created", task.created]);
+				triples.push([id, ":inputs", task.inputs]);
+				if (task.repeats) {
+					triples.push([id, ":repeats", task.repeats]);
+				}
+				if (task.completed) {
+					triples.push([id, ":completed", task.completed.id]);
+					triples.push([task.completed.id, "a", ":Status"]);
+					triples.push([task.completed.id, "rdfs:value", task.completed.value]);
+					triples.push([task.completed.id, ":moment", task.completed.moment]);
+				}
+				if (task.occasions) {
+					for (let o of task.occasions) {
+						triples.push([id, :"occasion", o.id]);
+						triples.push([o.id, "a", ":Status"]);
+						triples.push([o.id, "rdfs:value", o.value]);
+						triples.push([o.id, ":moment", o.moment]);
+					}
+				}
+			}
+			updateTriples(triples);
+			return state;
 		case "FAIL_UPDATE":
 			alert("database update failed.");
 			console.log(res);
@@ -122,10 +147,11 @@ function reducer(state, action) {
 			return state;
 	}
 }
-store = Redux.createStore(reducer);
+let store = Redux.createStore(reducer);
+store.dispatch({type: "INITIALIZE"});
 
-
-// database connection functions
+// **** database connection functions
+// GET
 function getTriples() {
 	fetch('db.'+user).then((res)=>{
 		if (res.status!==200) {
@@ -135,7 +161,7 @@ function getTriples() {
 		}
 	});
 }
-
+// POST
 function updateTriples(triples) {	
 	triples = triples || store.getState().triples;
 	fetch('db.'+user, {
@@ -151,6 +177,3 @@ function updateTriples(triples) {
 	});
 }
 
-store.dispatch({type: "INITIALIZE"});
-
-// we need a salad spinner

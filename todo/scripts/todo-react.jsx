@@ -4,11 +4,18 @@
 
 
 class App extends React.Component {
+	// this is where task addition and modification should go.
+	addTask = (task)=> {
+		let tasks = {...this.props.tasks};
+		tasks[task.id] = task;
+		// now...we *don't* set state explc
+		this.props.tasks = tasks;
+	}
 	render() {
 		return (
 			<div className="taskapp">
-				<TaskMenuHOC />
-				<TaskDisplayHOC />
+				<TaskMenuHOC {...this.props} />
+				<TaskDisplayHOC {...this.props} />
 			</div>
 		);
 	}
@@ -213,19 +220,11 @@ class TaskDisplay extends React.Component {
 }
 
 let TaskDisplayHOC = ReactRedux.connect(
-	(state) => ({	tasks: state.tasks,
-					labels: state.labels,
-					inputs: state.inputs,
-					filters: state.filters,
-					filter: state.filter,
-					completed: state.completed,
-					repeating: state.repeating
-				}),
+	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
-		addTriples: (triples) => dispatch({type: "ADD_TRIPLES", triples: triples}),
-		deleteTasks: (ids) => dispatch({type: "DELETE_IDS", ids: ids}),
-		completeTasks: (ids) => dispatch({type: "COMPLETE_IDS", ids: ids}),
-		selectTask: (id) => dispatch({type: "SELECT_TASK", id: id})
+		addTask: (task) => dispatch({type: "MODIFY_DATA", add: [task], delete: [], modify: []}),
+		deleteTask: (id) => dispatch({type: "MODIFY_DATA", add: [], delete: [id], modify: []}),
+		modifyTask: (task) => dispatch({type: "MODIFY_DATA", add: [], delete: [], modify: [task]})
 	})
 )(TaskDisplay);
 
@@ -274,7 +273,7 @@ class TaskMenu extends React.Component {
 }
 
 let TaskMenuHOC = ReactRedux.connect(
-	(state) => ({filters: state.filters, filter: state.filter}),
+	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
 		setFilter: (filter) => dispatch({type: "SET_FILTER", filter: filter})
 	})
