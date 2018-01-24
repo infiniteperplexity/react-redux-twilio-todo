@@ -36,54 +36,6 @@ let resources = [
   [':baz','rdfs:value','"5"']
 ];
 
-let tutprefixes = {
-  vCard: "http://www.w3.org/2001/vcard-rdf/3.0#",
-  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-}
-tutprefixes[""]="#";
-let tutdata =`
-@prefix vCard:   <http://www.w3.org/2001/vcard-rdf/3.0#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix :        <#> .
-
-<http://somewhere/MattJones/>
-    vCard:FN    "Matt Jones" ;
-    vCard:N     [ vCard:Family
-                              "Jones" ;
-                  vCard:Given
-                              "Matthew"
-                ] .
-
-<http://somewhere/RebeccaSmith/>
-    vCard:FN    "Becky Smith" ;
-    vCard:N     [ vCard:Family
-                              "Smith" ;
-                  vCard:Given
-                              "Rebecca"
-                ] .
-
-<http://somewhere/JohnSmith/>
-    vCard:FN    "John Smith" ;
-    vCard:N     [ vCard:Family
-                              "Smith" ;
-                  vCard:Given
-                              "John"
-                ] .
-
-<http://somewhere/SarahJones/>
-    vCard:FN    "Sarah Jones" ;
-    vCard:N     [ vCard:Family
-                              "Jones" ;
-                  vCard:Given
-                              "Sarah"
-                ] .
-`;
-
-// let triples = parser.parse(tutdata);
-// console.log(triples);
-// let writer = N3.Writer({prefixes: tutprefixes});
-// writer.addTriples(triples);
-
 let writer = N3.Writer({prefixes: preparsed});
 writer.addTriples(resources.map(([subj, pred, obj]) => ({subject: subj, predicate: pred, object: obj})));
 
@@ -121,5 +73,13 @@ function query() {
     ,(err,res)=>{
       console.log("results...");
       console.log(res);
+  });
+}
+
+function test() {
+  store.graph((e,g)=> {
+    store.graph((f,h)=> {
+      console.log(g.triples);
+    });
   });
 }
