@@ -6,7 +6,8 @@ function reducer(state, action) {
 			// application state
 			app: {
 				filters: ["Inbox","Repeating","Complete","All"],
-				filter: "Inbox"
+				filter: "Inbox",
+				modal: null
 			},
 			// tasks
 			tasks: {}
@@ -18,6 +19,8 @@ function reducer(state, action) {
 		case "SET_FILTER":
 			return {...state, app: {...state.app, filter: action.filter}};
 		// ****Actions that get or post data from the server
+		case "SET_MODAL":
+			return {...state, app: {...state.app, modal: action.modal}};
 		case "INITIALIZE":
 			getTriples();
 			return state;
@@ -149,7 +152,6 @@ function reducer(state, action) {
 					triples.push([task.completed.id, ":moment", task.completed.moment]);
 				}
 				if (task.occasions) {
-					console.log("TESTING!");
 					for (let key in task.occasions) {
 						let o = task.occasions[key];
 						triples.push([id, ":occasion", o.id]);
