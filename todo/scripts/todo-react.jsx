@@ -245,9 +245,67 @@ let TaskMenuHOC = ReactRedux.connect(
 	})
 )(TaskMenu);
 
+
+/*
+...huh.  This is looking pretty bleak.
+So...I can probably do this is a way that swaps around certain text...
+...but getting it to swap around entire DOM elements is questionable.
+I might be able to hide or unhide certain properties.
+And also set certain properties.
+
+Okay...now, I could use this definitely to set display: none vs display: initial on certain components.
+
+I should also be able to use it to bind data properties to those components.
+
+And the functions attached to the components can reference those data properties.
+
+Yay I solved it!  Oh wait.  Okay, so this all depends on whether myModal is sitting in the DOM at the time...
+Okay, so I'm pretty sure the onEvent has to happen *before* the event happens, elsewise preventdefault couldn't work.
+So...we haven't shown the modal yet...and there's no state change happening, so render() doesn't get called.
+
+
+*/
 class SharedModal extends React.Component {
+	handleModal(event) {
+		let triggerer = event.relatedTarget;
+	}
+	componentDidMount() {
+		document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		console.log("blah blah blah");
+	}
+	componentDidUpdate() {
+		document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		console.log("blee blee blee");
+	}
 	render() {
-		return (<div className="modal fade" id="myModal" hidden="true" tabindex="-1" ></div>)
+		return (
+			<div ref={(e)=>{this._modal=e}} className="modal fade" id="myModal" hidden="true" tabIndex="-1" >
+				<div className="modal-dialog" role="document">
+				    <div className="modal-content">
+				      	<div className="modal-header">
+				        	<h5 className="modal-title" id="exampleModalLabel">New message</h5>
+				        	<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          		<span aria-hidden="true">&times;</span>
+				        	</button>
+				      	</div>
+				      	<div className="modal-body">
+				        	<form>
+					          	<div className="form-group">
+					            	<input type="text" className="form-control" id="recipient-name" />
+					          	</div>
+					          	<div className="form-group">
+					            	<textarea className="form-control" id="message-text"></textarea>
+					          	</div>
+				        	</form>
+				      	</div>
+				      	<div className="modal-footer">
+				        	<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        	<button type="button" className="btn btn-primary">Send message</button>
+				      	</div>
+			    	</div>
+			  	</div>
+			</div>
+		);
 	}
 }
 
@@ -255,6 +313,7 @@ let SharedModalHOC = ReactRedux.connect(
 	(state) => ({app: state.app, task: state.tasks}),
 	(dispatch) => ({})
 )(SharedModal);
+
 
 
 let destination = document.querySelector("#container");
@@ -267,48 +326,15 @@ ReactDOM.render(
 
 /*
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
+<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
 </div>
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
+
 */
 
 
@@ -332,56 +358,56 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 // .alert .alert-success .alert-dismissablef fade show
 // .btn for buttons
-  // <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+  // <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
   //   Dropdown button
   // </button>
-  // <div class="dropdown-menu">
-  // <div class="dropdown-header">Dropdown header 1</div> 
-  //   <a class="dropdown-item" href="#">Link 1<
+  // <div className="dropdown-menu">
+  // <div className="dropdown-header">Dropdown header 1</div> 
+  //   <a className="dropdown-item" href="#">Link 1<
 
-//  <div class="dropdown-divider"></div> 
+//  <div className="dropdown-divider"></div> 
 // .badge can go inside elements
-// <ul class="pagination">
-//  <li class="page-item"><a class="page-link" href="#">
-// <ul class="breadcrumb">
-//  <li class="breadcrumb-item"><a href="#">Photos</a></li>
-// <ul class="list-group">
-//  <li class="list-group-item .list-group-item-action active">Active item</li>
-// <div class="card">
-//  <div class="card-header">Header</div>
-//  <div class="card-body">Content</div>
-//  <div class="card-footer">Footer</div>
+// <ul className="pagination">
+//  <li className="page-item"><a className="page-link" href="#">
+// <ul className="breadcrumb">
+//  <li className="breadcrumb-item"><a href="#">Photos</a></li>
+// <ul className="list-group">
+//  <li className="list-group-item .list-group-item-action active">Active item</li>
+// <div className="card">
+//  <div className="card-header">Header</div>
+//  <div className="card-body">Content</div>
+//  <div className="card-footer">Footer</div>
 // </div>
 // collapse looks pretty cool
-//<a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+//<a className="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 // not totally clear on how .nav-tabs work
 // I Think the data-toggle="tab" and .tab-pane system is what I want.
 // .navbar may or may not be useful
 // form-group and form-control
 // modals are pop-ups and have a bunch of classes
-// <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+// <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">
 //   Open modal
 // </button>
 
 // <!-- The Modal -->
-// <div class="modal fade" id="myModal">
-//   <div class="modal-dialog">
-//     <div class="modal-content">
+// <div className="modal fade" id="myModal">
+//   <div className="modal-dialog">
+//     <div className="modal-content">
 
 //       <!-- Modal Header -->
-//       <div class="modal-header">
-//         <h4 class="modal-title">Modal Heading</h4>
-//         <button type="button" class="close" data-dismiss="modal">&times;</button>
+//       <div className="modal-header">
+//         <h4 className="modal-title">Modal Heading</h4>
+//         <button type="button" className="close" data-dismiss="modal">&times;</button>
 //       </div>
 
 //       <!-- Modal body -->
-//       <div class="modal-body">
+//       <div className="modal-body">
 //         Modal body..
 //       </div>
 
 //       <!-- Modal footer -->
-//       <div class="modal-footer">
-//         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+//       <div className="modal-footer">
+//         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 //       </div>
 // tooltips are a no-brainer
 
