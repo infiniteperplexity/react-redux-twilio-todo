@@ -94,23 +94,23 @@ class TaskDisplay extends React.Component {
 			if (task.inputs==="number") {
 		 		taskdays = days.map((day,j) =>
 		 			<td key={j}>
-			 			<input	type="number" 
-								step="any"
-								style={{width: "50px"}}
-								onChange={()=>(this.handleCalendarElement(e,task,day))}
-						/>
+			 		 	
 					</td>
 				);
-			} else if (task.inputs==="note") {
-				taskdays = days.map((day,j) => (
-					<td key={j}>
-						<button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">notes</button>				
-					</td>)
-				);
+			// } else if (task.inputs==="note") {
+			// 	taskdays = days.map((day,j) => (
+			// 		<td key={j}>
+			// 			<button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">notes</button>				
+			// 		</td>)
+			// 	);
 			} else if (task.inputs==="check") {
 				taskdays = days.map((day,j) => {
 					return <td key={j}>
+						<button type="button" custfield={i+":"+j} className="btn btn-primary" data-toggle="modal" data-target="#myModal">
+							Open modal
+						</button>
 						<input 	type="checkbox"
+								
 								checked={(task.occasions && task.occasions[day]) ? task.occasions[day].value==="true" : false}
 								onChange={(e)=>(this.handleCalendarElement(e,task,day))}
 						/>
@@ -138,18 +138,6 @@ class TaskDisplay extends React.Component {
 						{tasktable}
 					</tbody>
 				</table>
-				<div className="modal fade" id="myModal" role="dialog">
-    				<div className="modal-dialog">
-      					<div className="modal-content">
-        					<div className="modal-body">
-          						<textarea cols="48" rows="10" defaultValue="notes." />
-        					</div>
-        					<div className="modal-footer">
-          						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        					</div>
-      					</div>
-    				</div>
-  				</div>
 		 	</div>
 		);
 	}
@@ -185,6 +173,12 @@ class TaskDisplay extends React.Component {
 	}
 }
 
+
+// <input	type="number" 
+// 						 		step="any"
+// 								style={{width: "50px"}}
+// 						 		onChange={()=>(this.handleCalendarElement(e,task,day))}
+// 						/>
 let TaskDisplayHOC = ReactRedux.connect(
 	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
@@ -254,7 +248,6 @@ I might be able to hide or unhide certain properties.
 And also set certain properties.
 
 Okay...now, I could use this definitely to set display: none vs display: initial on certain components.
-
 I should also be able to use it to bind data properties to those components.
 
 And the functions attached to the components can reference those data properties.
@@ -267,19 +260,27 @@ So...we haven't shown the modal yet...and there's no state change happening, so 
 */
 class SharedModal extends React.Component {
 	handleModal(event) {
+		console.log("handling modal");
 		let triggerer = event.relatedTarget;
+		//console.log(triggerer);
+		document.getElementById("teetering").value = triggerer.getAttribute("custfield");
 	}
 	componentDidMount() {
-		document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		//document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		//document.getElementById("myModal").addEventListener("mousedown", this.handleModal);
+		//document.getElementById("myModal").onclick=  this.handleModal;
+		$('#myModal').on('show.bs.modal', this.handleModal);
 		console.log("blah blah blah");
 	}
 	componentDidUpdate() {
-		document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		//document.getElementById("myModal").addEventListener("show.bs.modal", this.handleModal);
+		//document.getElementById("myModal").addEventListener("mousedown", this.handleModal);	
+		$('#myModal').on('show.bs.modal', this.handleModal);
 		console.log("blee blee blee");
 	}
 	render() {
 		return (
-			<div ref={(e)=>{this._modal=e}} className="modal fade" id="myModal" hidden="true" tabIndex="-1" >
+			<div className="modal fade" id="myModal" tabIndex="-1" >
 				<div className="modal-dialog" role="document">
 				    <div className="modal-content">
 				      	<div className="modal-header">
@@ -291,10 +292,7 @@ class SharedModal extends React.Component {
 				      	<div className="modal-body">
 				        	<form>
 					          	<div className="form-group">
-					            	<input type="text" className="form-control" id="recipient-name" />
-					          	</div>
-					          	<div className="form-group">
-					            	<textarea className="form-control" id="message-text"></textarea>
+					            	<textarea id="teetering" className="form-control" defaultValue="nothing at all."></textarea>
 					          	</div>
 				        	</form>
 				      	</div>
