@@ -200,6 +200,9 @@ function reducer(state, action) {
 				if (t.subtasks) {
 					for (let i=0; i<t.subtasks.length; i++) {
 						let subtask = t.subtasks[i];
+						if (subtask===undefined) {
+							console.log(t.subtasks);
+						}
 						//if (subtask.id[0]==="$")
 						// this is actually an rdfs: thing I think
 						triples.push([id, "_"+(i+1), subtask.id]);

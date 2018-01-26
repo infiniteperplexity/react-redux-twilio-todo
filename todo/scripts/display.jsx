@@ -40,14 +40,32 @@ class TaskDisplay extends React.Component {
 		let task = {...tasks[id], completed: completed};
 		this.props.modifyTask(task);
 	}
+	sortTask = (id, n) => {
+		let filter = this.props.app.filter;
+		let list = this.props.tasks[filter];
+		let index = list.subtasks.indexOf(this.props.tasks[id]);
+		if (index+n < 0 || index+n >= list.subtasks.length) {
+			return;
+		} else {
+			let newlist = [];
+			for (let item of list.subtasks) {
+				newlist.push(item);
+			}
+			newlist[index] = newlist[index+n];
+			newlist[index+n] = this.props.tasks[id];
+			this.props.modifyTask({...list, subtasks: newlist});
+		}
+	}
 	sortTaskUp = (id) => {
-
+		this.sortTask(id,-1);
 	}
 	sortTaskDown = (id) => {
-
+		this.sortTask(id,+1);
 	}
 	viewSubtasks = (id) => {
-
+		let task = this.props.tasks[id];
+		task.subtasks = task.subtasks || [];
+		this.props.setFilter(id);
 	}
 	inspectTask = (id) => {
 		// for now...let's allow changing the label.
@@ -91,15 +109,11 @@ class TaskDisplay extends React.Component {
 	}
 	render() {
 		let filter = this.props.app.filter;
-		let tasks = Object.values(this.props.tasks);
-		if (["Inbox","Repeating","Clickers","Completed","Everything","Static","Lists"].indexOf(filter)!==-1) {
-			tasks = tasks.filter((task)=>(this.props.tasks["$"+filter].subtasks.indexOf(task)!==-1));
-		} else if (this.props.tasks[filter].subtasks) {
-			tasks = tasks.filter((task)=>(this.props.tasks[filter].subtasks.indexOf(task)!==-1));
-		} else {
-			tasks = [];
+		let tasks = [];
+		if (this.props.tasks[filter]) {
+			tasks = this.props.tasks[filter].subtasks;
 		}
-		let listing = (filter==="Repeating") ? this.renderCalendar(tasks) : this.renderList(tasks);
+		let listing = (filter==="$Repeating") ? this.renderCalendar(tasks) : this.renderList(tasks);
 		return 	(
 			<div className="taskdisplay appframe">
 				<form onSubmit={this.addTask}>
@@ -277,6 +291,7 @@ let TaskDisplayHOC = ReactRedux.connect(
 		addTask: (task) => dispatch({type: "MODIFY_DATA", add: [task], delete: [], modify: []}),
 		deleteTask: (id) => dispatch({type: "MODIFY_DATA", add: [], delete: [id], modify: []}),
 		modifyTask: (task) => dispatch({type: "MODIFY_DATA", add: [], delete: [], modify: [task]}),
-		showModal: (modal) => dispatch({type: "SET_MODAL", modal: modal})
+		showModal: (modal) => dispatch({type: "SET_MODAL", modal: modal}),
+		setFilter: (id) => dispatch({type: "SET_FILTER", filter: id})
 	})
 )(TaskDisplay);

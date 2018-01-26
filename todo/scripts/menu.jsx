@@ -2,7 +2,7 @@
 class TaskMenu extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-		this.props.setFilter("Inbox");
+		this.props.setFilter("$Inbox");
 	}
 	handleChange = (e) => {
 		this.props.setFilter(e.target.value);
@@ -15,8 +15,8 @@ class TaskMenu extends React.Component {
 		stat = stat.map((list,i)=>(
 			<div key={i}>
 				<input	type="radio"
-						value={list.label}
-						checked={this.props.app.filter===list.label}
+						value={list.id}
+						checked={this.props.app.filter===list.id}
 						onChange={this.handleChange}
 				/>
 				{list.label}
