@@ -14,8 +14,14 @@ class TaskDisplay extends React.Component {
 			}
 			if (this.props.app.filter==="Repeating") {
 				task.repeats = "daily";
-			} else if (this.props.app.filter==="Countdowns") {
-				task.repeats = "countdown";
+			} else if (this.props.app.filter==="Clicker") {
+				task.repeats = "instantly";
+			} else if (this.props.app.filter==="Lists") {
+				this.props.tasks.$Lists.subtasks = this.props.tasks.$Lists.subtasks.concat(task);
+			} else if (["Inbox","Everything","Static"].indexOf(this.props.app.filter)===-1) {
+				let list = this.props.tasks[this.props.app.filter];
+				list.subtasks = list.subtasks || [];
+				list.subtasks = list.subtasks.concat(task);
 			}
 			this._label.value = "";
 			this.props.addTask(task);
@@ -86,7 +92,13 @@ class TaskDisplay extends React.Component {
 	render() {
 		let filter = this.props.app.filter;
 		let tasks = Object.values(this.props.tasks);
-		tasks = tasks.filter((task)=>(task.filters[filter]));
+		if (["Inbox","Repeating","Clickers","Completed","Everything","Static","Lists"].indexOf(filter)!==-1) {
+			tasks = tasks.filter((task)=>(this.props.tasks["$"+filter].subtasks.indexOf(task)!==-1));
+		} else if (this.props.tasks[filter].subtasks) {
+			tasks = tasks.filter((task)=>(this.props.tasks[filter].subtasks.indexOf(task)!==-1));
+		} else {
+			tasks = [];
+		}
 		let listing = (filter==="Repeating") ? this.renderCalendar(tasks) : this.renderList(tasks);
 		return 	(
 			<div className="taskdisplay appframe">
@@ -108,7 +120,6 @@ class TaskDisplay extends React.Component {
 		} else if (e.target.type==="number") {
 			value = e.target.value;
 		}
-		console.log(value);
 		let occasion = {
 			id: uuid.v4(),
 			value: value,
@@ -236,7 +247,15 @@ class TaskDisplay extends React.Component {
 					</div>
 					<div id={"collapse"+i} className="collapse">
 						<div className="card-body">
-							<pre>{JSON.stringify(task, null, 2)}</pre>
+							<pre>{
+								JSON.stringify(task, (k,v)=>{
+									if (k==="subtasks") {
+										return v.map((task)=>(task.id+":"+task.label));
+									} else {
+										return v;
+									}
+								}, 2)
+							}</pre>
 						</div>
 					</div>
 				</div>

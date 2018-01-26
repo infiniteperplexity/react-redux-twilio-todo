@@ -5,13 +5,11 @@ function reducer(state, action) {
 		return {
 			// application state
 			app: {
-				filters: ["Inbox","Repeating","Complete","All"],
-				filter: "Inbox",
+				filter: "$Inbox",
 				modal: null
 			},
 			// persistent data
-			tasks: {},
-			lists: []
+			tasks: {}
 		};
 	}
 	let tasks, statuses;
@@ -29,13 +27,28 @@ function reducer(state, action) {
 		case "GET_DATA":
 			console.log("got data");
 			console.log(action.data);
+			tasks = {};
+			statuses = {};
+			// set up static lists
+			let staticLists = ["Inbox","Repeating","Clickers","Completed","Everything","Static","Lists"];
+			for (let list of staticLists) {
+				tasks["$"+list] = {
+					id: "$"+list,
+					label: list,
+					subtasks: [],
+				}
+			}
+			for (let list of staticLists) {
+				tasks.$Static.subtasks.push(tasks["$"+list]);
+				tasks.$Everything.subtasks.push(tasks["$"+list]);
+			}
 			let predicates = {};
 			for (let {predicate: p} of action.data) {
 				if (!predicates[p]) {
 					predicates[p] = [];	
 				}
 			}
-			for (let p of [
+			for (let p of [	
 					"a",
 					":completed",
 					"rdfs:value",
@@ -56,21 +69,10 @@ function reducer(state, action) {
 				}
 				predicates[p].push([s,o]);
 			}
-			tasks = {};
-			statuses = {};
-			let lists = [];
 			for (let [s,o] of predicates.a) {
 				if (o===":Task") {
 					tasks[s] = {
-						id: s,
-						filters: {
-							Inbox: true,
-							Repeating: false,
-							Countdowns: false,
-							All: true,
-							Completed: false,
-							List: false
-						}
+						id: s
 					};
 				} else if (o===":Status") {
 					statuses[s] = {
@@ -79,7 +81,7 @@ function reducer(state, action) {
 						moment: null
 					};
 				} else if (o===":List") {
-					//do something
+					//don't implement yet
 				}
 			}
 			for (let [s,o] of predicates["rdfs:value"]) {
@@ -124,46 +126,55 @@ function reducer(state, action) {
 					tasks[s].inputs = o;
 				}
 			}
-			for (let key in tasks) {
-				let task = tasks[key];
-				if (task.completed) {
-					task.filters.Completed = true;
-					task.filters.Inbox = false;
-				} else if (task.repeats) {
-					task.filters.Inbox = false;
-					if (task.repeats==="daily") {
-						task.filters.Repeating = true;
-					} else if (task.repeats==="countdown") {
-						task.filters.Countdowns = true;
+			// populate list items
+			let lists = [];
+			for (let nth in predicates) {
+				let [_, ...n] = nth;
+				if (_==="_" && !isNaN(n)) {
+					for (let [s,o] of predicates[nth]) {
+						tasks[s].subtasks = tasks[s].subtasks || [];
+						tasks[s].subtasks[n] = tasks[o];
+						if (lists.indexOf(tasks[s])===-1) {
+							lists.push(tasks[s]);
+						}
 					}
 				}
 			}
-			function staticList(name) {
-				tasks["$"+name] = {
-					id: "$"+name,
-					label: name,
-
-				}
+			// clean up lists
+			for (let list of lists) {
+				list.subtasks = list.subtasks.filter((e)=>(e!==undefined))
 			}
-			let staticLists = ["Inbox","Repeating","Countdowns","Completed","All","Lists"];
-			for (let list of staticLists) {
-				tasks["$"+list] = {
-					id: "$"+list,
-					label: list,
-					tags: ["$List"],
-					list: [],
-					filters: {
-
-					}
+			// re-filter smartlists
+			tasks.$Inbox.subtasks = tasks.$Inbox.subtasks.filter((task)=>(
+				!task.completed && !task.repeats
+			));
+			tasks.$Repeating.subtasks = tasks.$Repeating.subtasks.filter((task)=>(
+				task.repeats==="daily"
+			));
+			tasks.$Clickers.subtasks = tasks.$Clickers.subtasks.filter((task)=>(
+				task.repeats==="instantly"
+			));
+			tasks.$Completed.subtasks = tasks.$Completed.subtasks.filter((task)=>(
+				task.completed
+			));
+			// re-populate smartlists
+			for (let id in tasks) {
+				if (tasks[id].completed && tasks.$Completed.subtasks.indexOf(tasks[id])===-1) {
+					tasks.$Completed.subtasks.push(tasks[id]);
+				} else if (tasks[id].repeats==="daily" && tasks.$Repeating.subtasks.indexOf(tasks[id])===-1) {
+					tasks.$Repeating.subtasks.push(tasks[id]);
+				} else if (tasks[id].repeats==="instantly" && tasks.$Clickers.subtasks.indexOf(tasks[id])===-1) {
+					tasks.$Clickers.subtasks.push(tasks[id]);
+				} //else if (	id[0]!=="$" && tasks.$Inbox.subtasks.indexOf(tasks[id])===-1) {
+				//	tasks.$Inbox.subtasks.push(tasks[id]);
+				//}
+				if (tasks.$Everything.subtasks.indexOf(tasks[id])===-1) {
+					tasks.$Everything.subtasks.push(tasks[id]);
 				}
-				for (let filter of staticLists) {
-					tasks["$"+list].filters[filter] = (filter==="Lists" || filter==="All") ? true : false;
-				}
-				lists.push(tasks["$"+list]);
 			}
 			console.log("got tasks");
 			console.log(tasks);
-			return {...state, tasks: tasks, lists: lists};
+			return {...state, tasks: tasks};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			console.log("modifying data");
@@ -181,7 +192,20 @@ function reducer(state, action) {
 			// parse hierarchical data into triples
 			let triples = [];
 			for (let id in tasks) {
-				// skip static tasks
+				if (id==="$Static") {
+					continue;
+				}
+				let t = tasks[id];
+				// deal with list items...can store for static lists
+				if (t.subtasks) {
+					for (let i=0; i<t.subtasks.length; i++) {
+						let subtask = t.subtasks[i];
+						//if (subtask.id[0]==="$")
+						// this is actually an rdfs: thing I think
+						triples.push([id, "_"+(i+1), subtask.id]);
+					}
+				}
+				// skip the rest for static tasks
 				if (id[0]==="$") {
 					continue;
 				}
@@ -208,6 +232,7 @@ function reducer(state, action) {
 						triples.push([o.id, ":moment", o.moment]);
 					}
 				}
+				
 			}
 			updateTriples(triples);
 			return state;
