@@ -53,6 +53,16 @@ class TaskDisplay extends React.Component {
 				</select>
 			</div>
 		;
+		// applies only to static lists for now
+		if (id[0]==="$") {
+			children = <div>
+				<input type="text" ref={(e)=>(label=e)} readOnly="true" value={this.props.tasks[id].label} />
+			</div>
+			;
+			inputs = {
+				value: undefined
+			}
+		}
 		let modal = {
 			children: children,
 			submitModal: () => {
@@ -224,7 +234,7 @@ class TaskDisplay extends React.Component {
 	}
 }
 let TaskDisplayHOC = ReactRedux.connect(
-	(state) => ({app: state.app, tasks: state.tasks}),
+	(state) => ({app: state.app, tasks: state.tasks, lists: state.lists}),
 	(dispatch) => ({
 		addTask: (task) => dispatch({type: "MODIFY_DATA", add: [task], delete: [], modify: []}),
 		deleteTask: (id) => dispatch({type: "MODIFY_DATA", add: [], delete: [id], modify: []}),

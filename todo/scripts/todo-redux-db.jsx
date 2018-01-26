@@ -9,8 +9,9 @@ function reducer(state, action) {
 				filter: "Inbox",
 				modal: null
 			},
-			// tasks
-			tasks: {}
+			// persistent data
+			tasks: {},
+			lists: []
 		};
 	}
 	let tasks, statuses;
@@ -29,15 +30,11 @@ function reducer(state, action) {
 			console.log("got data");
 			console.log(action.data);
 			let predicates = {};
-			predicates.a = [];
-			predicates['rdfs:value'] = [];
-			predicates[':moment'] = [];
-			predicates[':completed'] = [];
-			predicates[':occasion'] = [];
-			predicates[':repeats'] = [];
-			predicates[':created'] = [];
-			predicates['rdfs:label'] = [];
-			predicates[':inputs'] = [];
+			for (let {predicate: p} of action.data) {
+				if (!predicates[p]) {
+					predicates[p] = [];	
+				}
+			}
 			for (let {subject: s, predicate: p, object: o} of action.data) {
 				if (!predicates[p]) {
 					predicates[p] = [];
@@ -46,6 +43,7 @@ function reducer(state, action) {
 			}
 			tasks = {};
 			statuses = {};
+			let lists = [];
 			for (let [s,o] of predicates.a) {
 				if (o===":Task") {
 					tasks[s] = {
@@ -54,7 +52,8 @@ function reducer(state, action) {
 							Inbox: true,
 							Repeating: false,
 							All: true,
-							Completed: false
+							Completed: false,
+							List: false
 						}
 					};
 				} else if (o===":Status") {
@@ -63,6 +62,8 @@ function reducer(state, action) {
 						value: null,
 						moment: null
 					};
+				} else if (o===":List") {
+					//do something
 				}
 			}
 			for (let [s,o] of predicates["rdfs:value"]) {
@@ -117,9 +118,31 @@ function reducer(state, action) {
 					task.filters.Inbox = false;
 				}
 			}
+			function staticList(name) {
+				tasks["$"+name] = {
+					id: "$"+name,
+					label: name,
+
+				}
+			}
+			let staticLists = ["Inbox","Repeating","Completed","All","Lists"];
+			for (let list of staticLists) {
+				tasks["$"+list] = {
+					id: "$"+list,
+					label: list,
+					tags: ["$List"],
+					filters: {
+
+					}
+				}
+				for (let filter of staticLists) {
+					tasks["$"+list].filters[filter] = (filter==="Lists" || filter==="All") ? true : false;
+				}
+				lists.push(tasks["$"+list]);
+			}
 			console.log("got tasks");
 			console.log(tasks);
-			return {...state, tasks: tasks};
+			return {...state, tasks: tasks, lists: lists};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			console.log("modifying data");
@@ -137,6 +160,10 @@ function reducer(state, action) {
 			// parse hierarchical data into triples
 			let triples = [];
 			for (let id in tasks) {
+				// skip static tasks
+				if (id[0]==="$") {
+					continue;
+				}
 				let task = tasks[id];
 				triples.push([id, "a", ":Task"]);
 				triples.push([id, "rdfs:label", task.label]);

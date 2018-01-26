@@ -8,40 +8,28 @@ class TaskMenu extends React.Component {
 		this.props.setFilter(e.target.value);
 	}
 	render() {
+		let lists = this.props.lists;
+		lists = lists.map((list,i)=>(
+			<div key={i}>
+				<input	type="radio"
+						value={list.label}
+						checked={this.props.app.filter===list.label}
+						onChange={this.handleChange}
+				/>
+				{list.label}
+			</div>
+		));
 		return (
 			<div className="taskmenu appframe">
 				<form>
-					<input 	type="radio"
-							value="Inbox"
-							checked={this.props.app.filter==="Inbox"}
-							onChange={this.handleChange}
-					/>
-					Inbox
-					<br />
-					<input 	type="radio"
-							value="Repeating"
-							checked={this.props.app.filter==="Repeating"}
-							onChange={this.handleChange}
-					/>Repeating
-					<br />
-					<input 	type="radio"
-							value="Completed"
-							checked={this.props.app.filter==="Completed"}
-							onChange={this.handleChange}
-					/>Completed
-					<br />
-					<input 	type="radio"
-							value="All"
-							checked={this.props.app.filter==="All"}
-							onChange={this.handleChange}
-					/>All
+					{lists}
 				</form>
 			</div>
 		);
 	}
 }
 let TaskMenuHOC = ReactRedux.connect(
-	(state) => ({app: state.app, tasks: state.tasks}),
+	(state) => ({app: state.app, tasks: state.tasks, lists: state.lists}),
 	(dispatch) => ({
 		setFilter: (filter) => dispatch({type: "SET_FILTER", filter: filter})
 	})
