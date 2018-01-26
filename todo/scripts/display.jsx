@@ -14,6 +14,8 @@ class TaskDisplay extends React.Component {
 			}
 			if (this.props.app.filter==="Repeating") {
 				task.repeats = "daily";
+			} else if (this.props.app.filter==="Countdowns") {
+				task.repeats = "countdown";
 			}
 			this._label.value = "";
 			this.props.addTask(task);
@@ -43,10 +45,11 @@ class TaskDisplay extends React.Component {
 	}
 	inspectTask = (id) => {
 		// for now...let's allow changing the label.
-		let label, inputs;
+		let label, inputs, list;
 		let children =
 			<div>
 				<input type="text" ref={(e)=>(label=e)} defaultValue={this.props.tasks[id].label} />
+				<input type="checkbox" ref={(e)=>(list=e)} defaultChecked={this.props.tasks[id].list!==undefined} />
 				<select ref={(e)=>(inputs=e)} defaultValue={this.props.tasks[id].inputs}>
 				    <option value="check">Check</option>
 				    <option value="number">Number</option>
@@ -57,6 +60,7 @@ class TaskDisplay extends React.Component {
 		if (id[0]==="$") {
 			children = <div>
 				<input type="text" ref={(e)=>(label=e)} readOnly="true" value={this.props.tasks[id].label} />
+				<input type="checkbox" ref={(e)=>(list=e)} readOnly="true" checked="true" />
 			</div>
 			;
 			inputs = {
@@ -66,8 +70,15 @@ class TaskDisplay extends React.Component {
 		let modal = {
 			children: children,
 			submitModal: () => {
-				this.props.tasks[id].label = label.value;
-				this.props.tasks[id].inputs = inputs.value;
+				let task = {...this.props.tasks[id]};
+				task.label = label.value;
+				task.inputs = inputs.value;
+				if (!task.list && list.checked) {
+					task.list = [];
+				} else if (task.list && !list.checked) {
+					delete task.list;
+				}
+				this.props.modifyTask(task);
 			}
 		};
 		this.props.showModal(modal);
@@ -174,10 +185,17 @@ class TaskDisplay extends React.Component {
 		);
 	}
 	renderList = (tasks) => {
+		if (this.props.app.filter==="Countdowns") {
+			// sort by days since
+		}
 		let items = tasks.map((task,i)=>{
+			let counter;
+			if (this.props.app.filter==="Countdowns") {
+				counter = <div className="badge badge-pill badge-primary">#</div>;
+			}
 			let buttons = [
 				["complete task", this.completeTask, "\u2713"],
-				["inspect/modify task", this.inspectTask, "\u2692"],
+				["inspect/modify task", this.inspectTask, "?"],
 				["view subtasks as list", this.viewSubtasks, "\u2261"],
 				["sort task up", this.sortTaskUp, "\u2191"],
 				["sort task down", this.sortTaskDown, "\u2193"],
@@ -212,6 +230,7 @@ class TaskDisplay extends React.Component {
 					<div className="card-header">
 						<a className= "card-link" data-toggle = "collapse" data-parent="#accordion" href={"#collapse"+i}>
 							{task.label}
+							{counter}
 							{buttons}
 						</a>
 					</div>

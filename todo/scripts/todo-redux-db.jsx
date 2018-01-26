@@ -35,6 +35,21 @@ function reducer(state, action) {
 					predicates[p] = [];	
 				}
 			}
+			for (let p of [
+					"a",
+					":completed",
+					"rdfs:value",
+					":moment",
+					":occasion",
+					":repeats",
+					"rdfs:label",
+					":created",
+					":inputs"
+				]) {
+				if (!predicates[p]) {
+					predicates[p] = [];	
+				}
+			}
 			for (let {subject: s, predicate: p, object: o} of action.data) {
 				if (!predicates[p]) {
 					predicates[p] = [];
@@ -51,6 +66,7 @@ function reducer(state, action) {
 						filters: {
 							Inbox: true,
 							Repeating: false,
+							Countdowns: false,
 							All: true,
 							Completed: false,
 							List: false
@@ -114,8 +130,12 @@ function reducer(state, action) {
 					task.filters.Completed = true;
 					task.filters.Inbox = false;
 				} else if (task.repeats) {
-					task.filters.Repeating = true;
 					task.filters.Inbox = false;
+					if (task.repeats==="daily") {
+						task.filters.Repeating = true;
+					} else if (task.repeats==="countdown") {
+						task.filters.Countdowns = true;
+					}
 				}
 			}
 			function staticList(name) {
@@ -125,12 +145,13 @@ function reducer(state, action) {
 
 				}
 			}
-			let staticLists = ["Inbox","Repeating","Completed","All","Lists"];
+			let staticLists = ["Inbox","Repeating","Countdowns","Completed","All","Lists"];
 			for (let list of staticLists) {
 				tasks["$"+list] = {
 					id: "$"+list,
 					label: list,
 					tags: ["$List"],
+					list: [],
 					filters: {
 
 					}
