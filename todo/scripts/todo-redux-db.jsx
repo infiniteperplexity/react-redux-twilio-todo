@@ -1,3 +1,6 @@
+/// currently, completing a task on any list other than inbox doesn't work right.
+
+
 let user = "TEST";
 //let user = "GLENN";
 function reducer(state, action) {

@@ -252,7 +252,7 @@ class TaskDisplay extends React.Component {
 			)).reverse();
 			return (
 				<div className="card" key={i}>
-					<div className="card-header">
+					<div className="card-header" style={{paddingTop: "4px", paddingBottom: "4px"}}>
 						<a className= "card-link" data-toggle = "collapse" data-parent="#accordion" href={"#collapse"+i}>
 							{task.label}
 							{counter}
