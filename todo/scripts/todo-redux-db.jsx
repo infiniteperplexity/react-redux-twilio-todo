@@ -10,14 +10,16 @@ function reducer(state, action) {
 			app: {
 				filter: "$Inbox",
 				modal: null
-			},
-			// persistent data
-			tasks: {}
+			}
 		};
 	}
 	let tasks, statuses;
 	switch (action.type) {
 		/// **** Actions that modify client state only ********
+		case "CONTROL_APP":
+			let app = {...state.app};
+			app[action.control] = action.value;
+			return {...state, app: app};
 		case "SET_FILTER":
 			return {...state, app: {...state.app, filter: action.filter}};
 		// ****Actions that get or post data from the server
@@ -135,8 +137,14 @@ function reducer(state, action) {
 				let [_, ...n] = nth;
 				if (_==="_" && !isNaN(n)) {
 					for (let [s,o] of predicates[nth]) {
+						// how is $Inbox on $Everything 9 times?
+						if (o==="$Inbox") {
+							console.log(s);
+						}
 						tasks[s].subtasks = tasks[s].subtasks || [];
-						tasks[s].subtasks[n] = tasks[o];
+						if (tasks[s].subtasks.indexOf(tasks[o])===-1) {
+							tasks[s].subtasks[n] = tasks[o];
+						}
 						if (lists.indexOf(tasks[s])===-1) {
 							lists.push(tasks[s]);
 						}
@@ -183,6 +191,9 @@ function reducer(state, action) {
 			console.log("modifying data");
 			console.log(action);
 			tasks = {...state.tasks};
+			action.add = action.add || [];
+			action.delete = action.delete || [];
+			action.modify = action.modify || [];
 			for (let id of action.delete) {
 				delete tasks[id];
 			}

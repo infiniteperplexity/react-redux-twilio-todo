@@ -1,35 +1,18 @@
+/*
+This guy, unlike the other two, is way too big.
+
+So...conceivably, the "addTask" field and stuff could be its own separate control panel.
+
+So there are maybe "Task" components, a whole list of them.
+
+So, does each 
+*/
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
 class TaskDisplay extends React.Component {
-	addTask = (e) => {
-		e.preventDefault();
-		if (this._label.value!=="") {
-			let task = {
-				id: uuid.v4(),
-				label: this._label.value,
-				created: moment().unix(),
-				inputs: "check"
-			}
-			if (this.props.app.filter==="Repeating") {
-				task.repeats = "daily";
-			} else if (this.props.app.filter==="Clicker") {
-				task.repeats = "instantly";
-			} else if (this.props.app.filter==="Lists") {
-				this.props.tasks.$Lists.subtasks = this.props.tasks.$Lists.subtasks.concat(task);
-			} else if (["Inbox","Everything","Static"].indexOf(this.props.app.filter)===-1) {
-				let list = this.props.tasks[this.props.app.filter];
-				list.subtasks = list.subtasks || [];
-				list.subtasks = list.subtasks.concat(task);
-			}
-			this._label.value = "";
-			this.props.addTask(task);
-		}
-	}
-	deleteTask = (id) => {
-		this.props.deleteTask(id);
-	}
 	completeTask = (id) => {
 		let tasks = {...this.props.tasks};
 		let completed = {
