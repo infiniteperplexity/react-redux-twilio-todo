@@ -9,6 +9,9 @@ function TaskDisplay({tasks, app, ...rest}) {
 	if (tasks[filter]) {
 		filtered = tasks[filter].subtasks || [];
 	}
+	if (filter!=="$Completed") {
+		filtered = filtered.filter(task=>!task.completed);
+	}
 	let listing;
 	if (filter==="$Repeating") {
 		listing = <TaskCalendar app={app} tasks={tasks} filtered={filtered} {...rest} />;
@@ -32,7 +35,6 @@ class TaskToolbar extends React.Component {
 	}
 	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(this.props.app.toolbar.label);
 		if (this.props.app.toolbar.label!=="") {
 			let filter = this.props.app.filter;
 			let args = {label: this.props.app.toolbar.label};
@@ -53,7 +55,7 @@ class TaskToolbar extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<input type="text" className="form-control" value={this.props.app.addTaskLabel} onChange={this.handleChange} placeholder="Enter Task." />
+				<input type="text" className="form-control" value={this.props.app.toolbar.label} onChange={this.handleChange} placeholder="Enter Task." />
 				<button type="submit" className="btn">Add Task.</button>
 			</form>
 		);

@@ -11,18 +11,31 @@ function ListRadio({filter, id, setControl}) {
 
 class TaskMenu extends React.Component {
 	handleDrag = (event) => {
-		event.dataTransfer.setData("text", event.target.getAttribute("taskid"));
+		// disable for now
+		//event.dataTransfer.setData("text", event.target.getAttribute("taskid"));
 	}
 	allowDrop = (event) => {
 		event.preventDefault();
+		event.target.style.fontWeight = "bold";
+	}
+	dragLeave = (event) => {
+		event.preventDefault();
+		event.target.style.fontWeight = "normal";
 	}
 	handleDrop = (event) => {
 		event.preventDefault();
-		let id = event.dataTransfer.getData("text");
+		event.target.style.fontWeight = "normal";
+		let json = event.dataTransfer.getData("text");
+		let {taskid: id, listid: old} = JSON.parse(json);
 		let tasks = this.props.tasks;
-		let task1 = tasks[id];
-		let task2 = tasks[event.target.getAttribute("taskid")];
-		console.log("Dragged "+task1.label+" onto "+task2.label+".");
+		let task = tasks[id];
+		let oldlist = tasks[old];
+		let newlist = tasks[event.target.getAttribute("taskid")];
+		if (task===newlist) {
+			return;
+		}
+		console.log("Dragged "+task.label+" onto "+newlist.label+".");
+		this.props.changeList(task, oldlist, newlist);
 	}
 	render() {
 		let tasks = this.props.tasks;
@@ -37,6 +50,7 @@ class TaskMenu extends React.Component {
 					draggable="true"
 					onDragStart={this.handleDrag}
 					onDragOver={this.allowDrop}
+					onDragLeave={this.dragLeave}
 					onDrop={this.handleDrop}
 			>
 				<ListRadio id={list.id} filter={app.filter} setControl={setControl} />
@@ -49,6 +63,7 @@ class TaskMenu extends React.Component {
 					draggable="true"
 					onDragStart={this.handleDrag}
 					onDragOver={this.allowDrop}
+					onDragLeave={this.dragLeave}
 					onDrop={this.handleDrop}
 			>
 				<ListRadio id={list.id} filter={app.filter} setControl={setControl} />

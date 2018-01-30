@@ -32,6 +32,25 @@ let App = ReactRedux.connect(
 			let task = {...tasks[id], completed: completed};
 			return dispatch({type: "MODIFY_DATA", modify: [task]});
 		},
+		changeList: (task, oldlist, newlist) => {
+			let noMove = ["$Everything","$Repeating","$Clickers","$Completed","$Static","$Inbox","$Lists"];
+			let noAdd = ["$Everything","$Repeating","$Clickers","$Completed","$Static"];
+			let noRemove = ["$Everything","$Repeating","$Clickers","$Completed","$Static"];
+			if (noMove.indexOf(task.id)!==-1 || noRemove.indexOf(oldlist.id)!==-1 || noAdd.indexOf(newlist.id)!==-1) {
+				console.log("don't be tryin' nothing crazy for now...");
+				return;
+			}
+			oldlist = {...oldlist};
+			newlist = {...newlist};
+			newlist.subtasks = newlist.subtasks || [];
+			let oldsub = [...oldlist.subtasks];
+			let newsub = [...newlist.subtasks];
+			oldsub.splice(oldsub.indexOf(task),1);
+			newsub.push(task);
+			oldlist.subtasks = oldsub;
+			newlist.subtasks = newsub;
+			return dispatch({type: "MODIFY_DATA", modify: [oldlist, newlist]});
+		},
 		addTask: (args) => {
 			args = args || {};
 			let tasks = store.getState().tasks;
@@ -46,7 +65,7 @@ let App = ReactRedux.connect(
 			if (args.memberof) {
 				let tasks = store.getState().tasks;
 				for (let listid of args.memberof) {
-					console.log(listid);
+					tasks[listid].subtasks = tasks[listid].subtasks || [];
 					let list = {...tasks[listid], subtasks: tasks[listid].subtasks.concat(task)};
 					memberships.push(list);
 				}
@@ -55,6 +74,7 @@ let App = ReactRedux.connect(
 			return dispatch({type: "MODIFY_DATA", add: [task], modify: memberships});
 		},
 		sortTask: (taskid, listid, n) => {
+			// immediately sort all completed tasks to the bottom?
 			let task = store.getState().tasks[taskid];
 			let list = store.getState().tasks[listid];
 			let index = list.subtasks.indexOf(task);
@@ -67,6 +87,9 @@ let App = ReactRedux.connect(
 				}
 				newlist[index] = newlist[index+n];
 				newlist[index+n] = task;
+				let incomplete = newlist.filter(t=>!t.completed);
+				let completed = newlist.filter(t=>t.completed);
+				newlist = incomplete.concat(completed);
 				return dispatch({type: "MODIFY_DATA", modify: [{...list, subtasks: newlist}], });
 			}
 		}
