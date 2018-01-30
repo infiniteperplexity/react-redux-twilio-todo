@@ -13,13 +13,13 @@ function TaskList(props) {
 		</div>
 	);
 }
-function TaskCard({app, label, id, showModal, setControl, completeTask, sortTask, deleteTask}) {
+function TaskCard({app, label, id, showDetails, setControl, completeTask, sortTask, deleteTask}) {
 	return (
 		<div style={{overflow: "hidden"}}>
 			{label}
 			<span style={{float: "right"}}>
 				<TaskButton id={id} onClick={completeTask} tooltip="complete task">{"\u2713"}</TaskButton>
-				<TaskButton id={id} onClick={showModal} tooltip="inspect/modify">{"?"}</TaskButton>
+				<TaskButton id={id} onClick={showDetails} tooltip="inspect/modify">{"?"}</TaskButton>
 				<TaskButton id={id} onClick={x=>setControl("filter",x)} tooltip="show subtasks">{"\u2261"}</TaskButton>			
 				<TaskButton id={id} onClick={x=>sortTask(x,app.filter,-1)} tooltip="sort task up">{"\u2191"}</TaskButton>
 				<TaskButton id={id} onClick={x=>sortTask(x,app.filter,+1)} tooltip="sort task down">{"\u2193"}</TaskButton>

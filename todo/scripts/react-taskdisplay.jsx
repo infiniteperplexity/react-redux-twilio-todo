@@ -27,13 +27,15 @@ function TaskDisplay({tasks, app, ...rest}) {
 class TaskToolbar extends React.Component {
 	handleChange = (event) => {
 		event.preventDefault();
-		this.props.setControl("addTaskLabel",event.target.value);
+		let toolbar = {...this.props.app.toolbar, label: event.target.value};
+		this.props.setControl("toolbar",toolbar);
 	}
 	handleSubmit = (event) => {
 		event.preventDefault();
-		if (this.props.app.addTaskLabel!=="") {
+		console.log(this.props.app.toolbar.label);
+		if (this.props.app.toolbar.label!=="") {
 			let filter = this.props.app.filter;
-			let args = {label: this.props.app.addTaskLabel};
+			let args = {label: this.props.app.toolbar.label};
 			if (filter==="$Repeating") {
 				args.repeats = "daily";
 			} else if (args.filter==="$Clickers") {
@@ -45,7 +47,8 @@ class TaskToolbar extends React.Component {
  			}
  			this.props.addTask(args);
 		}
-		this.props.handleChange("addTaskLabel","");
+		let toolbar = {...this.props.app.toolbar, label: ""};
+		this.props.setControl("toolbar",toolbar);
 	}
 	render() {
 		return (

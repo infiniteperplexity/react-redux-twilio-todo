@@ -9,37 +9,34 @@ function reducer(state, action) {
 			// application state
 			app: {
 				filter: "$Inbox",
-				addTaskLabel: "",
-				modal: null
+				toolbar: {
+					label: ""
+				},
+				modify: {
+					id: null,
+					label: "",
+					inputs: ""
+				}
 			}
 		};
 	}
-	let tasks, statuses;
+	let tasks, statuses, app;
 	switch (action.type) {
 		/// **** Action that modifies client state only ********
 		case "SET_CONTROL":
-			// only one used for far is "filter"
-			// oh, and task toolbar label or whatever
-			let app = {...state.app};
+			app = {...state.app};
 			app[action.control] = action.value;
-			if (action.control==="filter") {
-				state.tasks[action.value].subtasks = state.tasks[action.value].subtasks || [];
-			}
 			return {...state, app: app};
-		// ****Actions that get or post data from the server
-		case "SET_MODAL":
-			if (!(action.modal in state.tasks)) {
-				// maybe some day we'll set something other than a task id?
-				// that's what would happen if 
-				return {...state, modal: null}
+		case "SHOW_DETAILS":
+			app = {...state.app};
+			let task = state.tasks[action.id];
+			app.modify = {
+				id: action.id,
+				label: task.label,
+				inputs: task.inputs
 			}
-			let task = state.tasks[action.modal];
-			let modal = {
-				id: task.id,
-				label: modal.label,
-				inputs: modal.inputs
-			};
-			return {...state, app: {...state.app, modal: modal}};
+			return {...state, app};
+		// ****Actions that get or post data from the server
 		case "INITIALIZE":
 			getTriples();
 			return state;

@@ -37,13 +37,21 @@ function CalendarHeader({days}) {
 }
 
 function CalendarRow({days, ...props}) {
+	let app = props.app;
+	let task = props.task;
 	let listing = days.map((day, i) =>
 		<CalendarDay key={i} day={day.unix()} {...props} />
 	);
 	return (
 		<tr>
 			<th scope="row">
-				{props.task.label}
+				{task.label}
+				<span style={{float: "right"}}>
+					<TaskButton id={task.id} onClick={props.showDetails} tooltip="inspect/modify">{"?"}</TaskButton>
+					<TaskButton id={task.id} onClick={x=>props.sortTask(x,app.filter,-1)} tooltip="sort task up">{"\u2191"}</TaskButton>
+					<TaskButton id={task.id} onClick={x=>props.sortTask(x,app.filter,+1)} tooltip="sort task down">{"\u2193"}</TaskButton>
+					<TaskButton id={task.id} onClick={props.deleteTask} tooltip="delete task">{"\u2717"}</TaskButton>
+				</span>
 			</th>
 			{listing}
 		</tr>
@@ -101,7 +109,7 @@ class CalendarNumberInput extends React.Component {
 		return  (
 			<input 	type="number"
 					step="any"
-					value={this.props.occasion.value || null}
+					value={this.props.occasion.value || ""}
 					onChange={this.handleChange}
 					style={{width: "60px"}}
 			/>
