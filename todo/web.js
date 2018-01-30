@@ -5,6 +5,7 @@ const app = express();
 const fs = require('fs');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.json());
 // app.use(express.logger({
 //   format: 'dev', 
@@ -60,6 +61,11 @@ app.post('/db.*', function(req, res) {
 			}
 			console.log("sending rows");
 			res.send(JSON.stringify(rows));
+			fs.writeFile(__dirname+"/serialize/"+user+".txt",JSON.stringify(rows,null,2), (err)=> {
+				if (err) {
+					return console.log(err);
+				}
+			});
 		});
 	});
 });

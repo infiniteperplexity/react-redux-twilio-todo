@@ -1,0 +1,1862 @@
+[
+  {
+    "subject": "$Inbox",
+    "predicate": "_1",
+    "object": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
+    "predicate": "_2",
+    "object": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
+    "predicate": "_3",
+    "object": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_1",
+    "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_2",
+    "object": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_3",
+    "object": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_4",
+    "object": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_5",
+    "object": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_6",
+    "object": "57188fce-7510-4905-b21d-927832a6ce41",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_7",
+    "object": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_8",
+    "object": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_9",
+    "object": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Repeating",
+    "predicate": "_10",
+    "object": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_1",
+    "object": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_2",
+    "object": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_3",
+    "object": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_4",
+    "object": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_5",
+    "object": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_6",
+    "object": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_7",
+    "object": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_8",
+    "object": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_9",
+    "object": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_10",
+    "object": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_1",
+    "object": "$Inbox",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_2",
+    "object": "$Repeating",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_3",
+    "object": "$Clickers",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_4",
+    "object": "$Completed",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_5",
+    "object": "$Everything",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_6",
+    "object": "$Static",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_7",
+    "object": "$Lists",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_8",
+    "object": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_9",
+    "object": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_10",
+    "object": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_11",
+    "object": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_12",
+    "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_13",
+    "object": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_14",
+    "object": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_15",
+    "object": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_16",
+    "object": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_17",
+    "object": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_18",
+    "object": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_19",
+    "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_20",
+    "object": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_21",
+    "object": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_22",
+    "object": "57188fce-7510-4905-b21d-927832a6ce41",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_23",
+    "object": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_24",
+    "object": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_25",
+    "object": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_26",
+    "object": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_27",
+    "object": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_28",
+    "object": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_29",
+    "object": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_30",
+    "object": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_31",
+    "object": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_32",
+    "object": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_33",
+    "object": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_34",
+    "object": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_35",
+    "object": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_36",
+    "object": "6ba7b9b7-a817-47ab-8169-61661c150d31",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_37",
+    "object": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_38",
+    "object": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_39",
+    "object": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_40",
+    "object": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_1",
+    "object": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_2",
+    "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_3",
+    "object": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "predicate": "rdfs:label",
+    "object": "contact Trappers",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "predicate": ":created",
+    "object": "1516940103",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a7135848-9a77-4253-bdf1-190df790fea1",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "predicate": "rdfs:label",
+    "object": "send poi to Dark Monk",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "predicate": ":created",
+    "object": "1516940302",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "predicate": "rdfs:label",
+    "object": "get Brigid a fire wand",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "predicate": ":created",
+    "object": "1516940305",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "predicate": "rdfs:label",
+    "object": "Projects",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "predicate": ":created",
+    "object": "1517006761",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "predicate": "_1",
+    "object": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "predicate": "rdfs:label",
+    "object": "Today",
+    "graph": "TEST"
+  },
+  {
+    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "predicate": ":created",
+    "object": "1517078540",
+    "graph": "TEST"
+  },
+  {
+    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "predicate": "rdfs:label",
+    "object": "absinthe tasting",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "predicate": ":created",
+    "object": "1517078618",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03355f72-d195-40bd-a336-cc32e9e9abbf",
+    "predicate": ":completed",
+    "object": "7ffee8e0-add6-45e9-ae3e-222b98ce9775",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7ffee8e0-add6-45e9-ae3e-222b98ce9775",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7ffee8e0-add6-45e9-ae3e-222b98ce9775",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7ffee8e0-add6-45e9-ae3e-222b98ce9775",
+    "predicate": ":moment",
+    "object": "1517255167",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "predicate": "rdfs:label",
+    "object": "change fish tank water",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "predicate": ":created",
+    "object": "1517103065",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bdfe3903-4810-4869-b10b-26c9f15029bb",
+    "predicate": ":completed",
+    "object": "590b0910-87ab-4baa-8647-5ee1ed367737",
+    "graph": "TEST"
+  },
+  {
+    "subject": "590b0910-87ab-4baa-8647-5ee1ed367737",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "590b0910-87ab-4baa-8647-5ee1ed367737",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "590b0910-87ab-4baa-8647-5ee1ed367737",
+    "predicate": ":moment",
+    "object": "1517103085",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "predicate": "rdfs:label",
+    "object": "change kitty litter",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "predicate": ":created",
+    "object": "1517103069",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
+    "predicate": ":completed",
+    "object": "9883fdb3-dacc-42de-a7eb-4a2368563141",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9883fdb3-dacc-42de-a7eb-4a2368563141",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9883fdb3-dacc-42de-a7eb-4a2368563141",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9883fdb3-dacc-42de-a7eb-4a2368563141",
+    "predicate": ":moment",
+    "object": "1517103083",
+    "graph": "TEST"
+  },
+  {
+    "subject": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "predicate": "rdfs:label",
+    "object": "write check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "predicate": ":created",
+    "object": "1517103072",
+    "graph": "TEST"
+  },
+  {
+    "subject": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
+    "predicate": ":completed",
+    "object": "28b8b1fb-79e1-4772-9afa-ba869cd7e342",
+    "graph": "TEST"
+  },
+  {
+    "subject": "28b8b1fb-79e1-4772-9afa-ba869cd7e342",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "28b8b1fb-79e1-4772-9afa-ba869cd7e342",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "28b8b1fb-79e1-4772-9afa-ba869cd7e342",
+    "predicate": ":moment",
+    "object": "1517103081",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "predicate": "rdfs:label",
+    "object": "hang up Mouth picture",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "predicate": ":created",
+    "object": "1517103078",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0575512b-1a8c-49a8-a4b0-130000133229",
+    "predicate": ":completed",
+    "object": "19d63159-6204-4c55-b769-9c16729d73de",
+    "graph": "TEST"
+  },
+  {
+    "subject": "19d63159-6204-4c55-b769-9c16729d73de",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "19d63159-6204-4c55-b769-9c16729d73de",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "19d63159-6204-4c55-b769-9c16729d73de",
+    "predicate": ":moment",
+    "object": "1517108846",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "predicate": "rdfs:label",
+    "object": "pay kaiser bill",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "predicate": ":created",
+    "object": "1517108842",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
+    "predicate": ":completed",
+    "object": "ebc29368-f0b6-4d25-b639-80c37ea44e2f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ebc29368-f0b6-4d25-b639-80c37ea44e2f",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ebc29368-f0b6-4d25-b639-80c37ea44e2f",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ebc29368-f0b6-4d25-b639-80c37ea44e2f",
+    "predicate": ":moment",
+    "object": "1517108847",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": "rdfs:label",
+    "object": "drinks",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":created",
+    "object": "1517287330",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":inputs",
+    "object": "number",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "6d65dc66-17e9-45df-b0be-5694b19533e2",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6d65dc66-17e9-45df-b0be-5694b19533e2",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6d65dc66-17e9-45df-b0be-5694b19533e2",
+    "predicate": "rdfs:value",
+    "object": "3",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6d65dc66-17e9-45df-b0be-5694b19533e2",
+    "predicate": ":moment",
+    "object": "1517126400",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "4ea04e09-d0f9-488c-9b40-b69c38b07ce2",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4ea04e09-d0f9-488c-9b40-b69c38b07ce2",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4ea04e09-d0f9-488c-9b40-b69c38b07ce2",
+    "predicate": "rdfs:value",
+    "object": "3",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4ea04e09-d0f9-488c-9b40-b69c38b07ce2",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": "rdfs:label",
+    "object": "exercise",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":created",
+    "object": "1517288174",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":occasion",
+    "object": "bf70c7bf-8558-404c-bfbb-ace50fe3066d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bf70c7bf-8558-404c-bfbb-ace50fe3066d",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bf70c7bf-8558-404c-bfbb-ace50fe3066d",
+    "predicate": "rdfs:value",
+    "object": "false",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bf70c7bf-8558-404c-bfbb-ace50fe3066d",
+    "predicate": ":moment",
+    "object": "1517126400",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":occasion",
+    "object": "e1e8e8be-fa34-47d1-828c-3cdf35b456e7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e1e8e8be-fa34-47d1-828c-3cdf35b456e7",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e1e8e8be-fa34-47d1-828c-3cdf35b456e7",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e1e8e8be-fa34-47d1-828c-3cdf35b456e7",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": "rdfs:label",
+    "object": "ice trays",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": ":created",
+    "object": "1517288217",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2325eacc-25ce-4611-bbce-eaaa174edc54",
+    "predicate": ":occasion",
+    "object": "a19c3e55-6f50-402c-bbbe-3973bac02c9a",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a19c3e55-6f50-402c-bbbe-3973bac02c9a",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a19c3e55-6f50-402c-bbbe-3973bac02c9a",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a19c3e55-6f50-402c-bbbe-3973bac02c9a",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": "rdfs:label",
+    "object": "gratitude",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": ":created",
+    "object": "1517288277",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": ":occasion",
+    "object": "39bfaec7-4705-46ca-9597-ca48fdf4f992",
+    "graph": "TEST"
+  },
+  {
+    "subject": "39bfaec7-4705-46ca-9597-ca48fdf4f992",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "39bfaec7-4705-46ca-9597-ca48fdf4f992",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "39bfaec7-4705-46ca-9597-ca48fdf4f992",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": "rdfs:label",
+    "object": "pride",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": ":created",
+    "object": "1517288282",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5821ccd-fc06-4e56-869c-04671b2d473d",
+    "predicate": ":occasion",
+    "object": "1a3ca273-827c-4ba7-b47a-b88426442576",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1a3ca273-827c-4ba7-b47a-b88426442576",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1a3ca273-827c-4ba7-b47a-b88426442576",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1a3ca273-827c-4ba7-b47a-b88426442576",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": "rdfs:label",
+    "object": "anticipation",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": ":created",
+    "object": "1517288330",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
+    "predicate": ":occasion",
+    "object": "b46f0eaf-b63a-42bc-88f1-cdde7741c301",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b46f0eaf-b63a-42bc-88f1-cdde7741c301",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b46f0eaf-b63a-42bc-88f1-cdde7741c301",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b46f0eaf-b63a-42bc-88f1-cdde7741c301",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": "rdfs:label",
+    "object": "feed Blue",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": ":created",
+    "object": "1517288354",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
+    "predicate": ":occasion",
+    "object": "aecb4022-1db9-4f88-80da-4deff80cf8ee",
+    "graph": "TEST"
+  },
+  {
+    "subject": "aecb4022-1db9-4f88-80da-4deff80cf8ee",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "aecb4022-1db9-4f88-80da-4deff80cf8ee",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "aecb4022-1db9-4f88-80da-4deff80cf8ee",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": "rdfs:label",
+    "object": "caffeine",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": ":created",
+    "object": "1517288428",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": ":inputs",
+    "object": "number",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
+    "predicate": ":occasion",
+    "object": "0ddda565-029a-401e-a9d5-f854d0385889",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
+    "predicate": "rdfs:value",
+    "object": "3",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": "rdfs:label",
+    "object": "check leftovers",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": ":created",
+    "object": "1517288467",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
+    "predicate": ":occasion",
+    "object": "8f54ad50-ef92-4f07-bb5c-a368e196512b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8f54ad50-ef92-4f07-bb5c-a368e196512b",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8f54ad50-ef92-4f07-bb5c-a368e196512b",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8f54ad50-ef92-4f07-bb5c-a368e196512b",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": "rdfs:label",
+    "object": "stretching",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": ":created",
+    "object": "1517294230",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": ":repeats",
+    "object": "daily",
+    "graph": "TEST"
+  },
+  {
+    "subject": "950e9579-5180-4b93-b087-5aa1207977d0",
+    "predicate": ":occasion",
+    "object": "0e147487-97a1-463c-8859-ac94bfab5021",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0e147487-97a1-463c-8859-ac94bfab5021",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0e147487-97a1-463c-8859-ac94bfab5021",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0e147487-97a1-463c-8859-ac94bfab5021",
+    "predicate": ":moment",
+    "object": "1517212800",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_1",
+    "object": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_2",
+    "object": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_3",
+    "object": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_4",
+    "object": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_5",
+    "object": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_6",
+    "object": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_7",
+    "object": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_8",
+    "object": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_9",
+    "object": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "rdfs:label",
+    "object": "App",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": ":created",
+    "object": "1517344603",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "predicate": "rdfs:label",
+    "object": "correctly fill out label input",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "predicate": ":created",
+    "object": "1517344766",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
+    "predicate": ":completed",
+    "object": "034a9d5a-1612-4573-a17b-82ca3f98f691",
+    "graph": "TEST"
+  },
+  {
+    "subject": "034a9d5a-1612-4573-a17b-82ca3f98f691",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "034a9d5a-1612-4573-a17b-82ca3f98f691",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "034a9d5a-1612-4573-a17b-82ca3f98f691",
+    "predicate": ":moment",
+    "object": "1517345059",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "predicate": "rdfs:label",
+    "object": "allow dragging onto lists, for most lists",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "predicate": ":created",
+    "object": "1517344776",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
+    "predicate": ":completed",
+    "object": "fe86b01d-edf2-4d06-91cb-1e58a91a0e95",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fe86b01d-edf2-4d06-91cb-1e58a91a0e95",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fe86b01d-edf2-4d06-91cb-1e58a91a0e95",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fe86b01d-edf2-4d06-91cb-1e58a91a0e95",
+    "predicate": ":moment",
+    "object": "1517351754",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "predicate": "rdfs:label",
+    "object": "make task cards look better",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "predicate": ":created",
+    "object": "1517344792",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b3e93840-219a-444d-af14-f0ad4e28d144",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "predicate": "rdfs:label",
+    "object": "make it obvious when there are subtasks",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "predicate": ":created",
+    "object": "1517344803",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
+    "predicate": ":completed",
+    "object": "f153f8cc-7bfd-49de-9b36-589a6be4a3e3",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f153f8cc-7bfd-49de-9b36-589a6be4a3e3",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f153f8cc-7bfd-49de-9b36-589a6be4a3e3",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f153f8cc-7bfd-49de-9b36-589a6be4a3e3",
+    "predicate": ":moment",
+    "object": "1517349082",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "predicate": "rdfs:label",
+    "object": "make calendar view optional",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "predicate": ":created",
+    "object": "1517344814",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "predicate": "rdfs:label",
+    "object": "find out if I can make the back button work",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "predicate": ":created",
+    "object": "1517347872",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
+    "predicate": ":completed",
+    "object": "ed286038-4888-4ed7-8983-eb95c6c6d156",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ed286038-4888-4ed7-8983-eb95c6c6d156",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ed286038-4888-4ed7-8983-eb95c6c6d156",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ed286038-4888-4ed7-8983-eb95c6c6d156",
+    "predicate": ":moment",
+    "object": "1517354638",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
+    "predicate": "rdfs:label",
+    "object": "test",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
+    "predicate": ":created",
+    "object": "1517349016",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "predicate": "rdfs:label",
+    "object": "system for multiple list membership",
+    "graph": "TEST"
+  },
+  {
+    "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "predicate": ":created",
+    "object": "1517351834",
+    "graph": "TEST"
+  },
+  {
+    "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
+    "predicate": "rdfs:label",
+    "object": "subtesting",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
+    "predicate": ":created",
+    "object": "1517354144",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "predicate": "rdfs:label",
+    "object": "serialize tasks to server",
+    "graph": "TEST"
+  },
+  {
+    "subject": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "predicate": ":created",
+    "object": "1517354652",
+    "graph": "TEST"
+  },
+  {
+    "subject": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "predicate": ":completed",
+    "object": "affe35ec-950f-411b-ae70-e2424238ce91",
+    "graph": "TEST"
+  },
+  {
+    "subject": "affe35ec-950f-411b-ae70-e2424238ce91",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "affe35ec-950f-411b-ae70-e2424238ce91",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "affe35ec-950f-411b-ae70-e2424238ce91",
+    "predicate": ":moment",
+    "object": "1517355247",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "predicate": "rdfs:label",
+    "object": "look into longer comments",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "predicate": ":created",
+    "object": "1517354660",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  }
+]
