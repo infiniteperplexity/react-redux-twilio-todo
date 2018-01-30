@@ -18,18 +18,19 @@ function reducer(state, action) {
 	switch (action.type) {
 		/// **** Action that modifies client state only ********
 		case "SET_CONTROL":
+			// only one used for far is "filter"
+			// oh, and task toolbar label or whatever
 			let app = {...state.app};
-			if (action.property) {
-				app[action.property][action.control = action.value]
-			} else {
-				app[action.control] = action.value;
-				if (action.control==="filter") {
+			app[action.control] = action.value;
+			if (action.control==="filter") {
 				state.tasks[action.value].subtasks = state.tasks[action.value].subtasks || [];
 			}
 			return {...state, app: app};
 		// ****Actions that get or post data from the server
 		case "SET_MODAL":
 			if (!(action.modal in state.tasks)) {
+				// maybe some day we'll set something other than a task id?
+				// that's what would happen if 
 				return {...state, modal: null}
 			}
 			let task = state.tasks[action.modal];

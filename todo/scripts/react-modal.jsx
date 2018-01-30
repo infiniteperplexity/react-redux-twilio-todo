@@ -1,26 +1,37 @@
-function TaskModal(props) {
-  if (!props.app.modal) {
-    return null;
+class TaskModal extends React.Component {
+  setModalState = (control, value) => {
+    let modal = {...this.props.app.modal};
+    modal[control] = value;
+    this.props.setControl("modal",modal);
   }
-  let task = props.tasks[props.app.modal];
-  return (
-    <div className="apprframe taskmodal" style={{
-      borderStyle: "solid",
-      borderWidth: "1px",
-      position: "absolute",
-      zIndex: "1",
-      height: "720px",
-      width: "80%",
-      left: "20%",
-      top: "0%"
-    }}>
-      <TaskModalControls task={task} {...props} />
-      <ModalButtons task={task} {...props} />
-    </div>
-  );
+  render() {
+    if (!props.app.modal) {
+      return null;
+    }
+    return (
+      <div className="apprframe taskmodal" style={{
+        borderStyle: "solid",
+        borderWidth: "1px",
+        position: "absolute",
+        zIndex: "1",
+        height: "720px",
+        width: "80%",
+        left: "20%",
+        top: "0%"
+      }}>
+        <TaskModalControls {...props} />
+        <ModalSubmission {...props} />
+      </div>
+    );
+  }
 }
 
-class ModalButtons extends React.Component {
+/****
+I really want the Modal to be presentation-only, which probably means that I need to do something
+different than this...maybe not set_modal ID but rather task_details ID?  Yes.
+
+***/
+class ModalSubmission extends React.Component {
   handleSubmit = (event) => {
     let task = this.props.task;
     task = {
@@ -54,7 +65,10 @@ function TaskModalControls(props) {
       <div>
         Label: <ModalLabelInput {...props} />
       </div>
-      
+      <div>
+        Inputs: <ModalInputsType {...props} />
+      </div>
+      <ModalButtons />
     </div>
   );
 }
