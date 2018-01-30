@@ -33,7 +33,8 @@ function reducer(state, action) {
 			app.modify = {
 				id: action.id,
 				label: task.label,
-				inputs: task.inputs
+				inputs: task.inputs,
+				repeats: task.repeats
 			}
 			return {...state, app};
 		// ****Actions that get or post data from the server

@@ -40,16 +40,24 @@ function TaskButton({id, onClick, tooltip, children}) {
 				onMouseLeave={(e)=>(e.target.querySelector("span").style.visibility="hidden")}
 		>
 			{children}
-			<span style={{
-				position: "absolute",
-				visibility: "hidden",
-				zIndex: "1",
-				width: "120px",
-				marginLeft: "-120px",
-				backgroundColor: "white"
-			}}>
+			<TaskToolTip>
 				{tooltip}
-			</span>
+			</TaskToolTip>
 		</button>
+	);
+}
+
+function TaskToolTip(props) {
+	return (
+		<span style={{
+			position: "absolute",
+			visibility: "hidden",
+			zIndex: "1",
+			width: "120px",
+			marginLeft: "-150px",
+			backgroundColor: "white"
+		}}>
+			{props.children}
+		</span>
 	);
 }

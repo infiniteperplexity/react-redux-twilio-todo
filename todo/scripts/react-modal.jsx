@@ -25,6 +25,7 @@ class TaskModalControls extends React.Component {
     let modify = {...this.props.app.modify};
     task.label = modify.label;
     task.inputs = modify.inputs;
+    task.repeats = modify.repeats;
     this.props.modifyTask(task);
     this.props.setControl("modify", {})
   }
@@ -36,6 +37,9 @@ class TaskModalControls extends React.Component {
         </div>
         <div>
           Inputs: <ModalInputsType {...this.props} />
+        </div>
+        <div>
+          Repeats: <ModalRepeatsInput {...this.props} />
         </div>
         <div style={{overflow: "hidden"}}>
           <span style={{float: "right"}}>
@@ -84,3 +88,22 @@ class ModalInputsType extends React.Component {
     );
   }
 }
+class ModalRepeatsInput extends React.Component {
+  handleChange = (event) => {
+    event.preventDefault();
+    let modify = {...this.props.app.modify, repeats: event.target.value};
+    this.props.setControl("modify",modify);
+  }
+  render() {
+    return (
+      <select value={this.props.app.modify.repeats}
+              onChange={this.handleChange}
+      >
+        <option value="none">None</option>
+        <option value="daily">Daily</option>
+        <option value="instanty">Instant</option>
+      </select>
+    );
+  }
+}
+
