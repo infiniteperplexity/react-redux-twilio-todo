@@ -26,7 +26,7 @@ app.post('/db.*', function(req, res) {
 	let user = req.url.split(".")[1];
 	let inserts = [];
 	console.log("received rows");
-	console.log(req.body);
+	// console.log(req.body);
 	for (let triplet of req.body) {
   		let [s, p, o] = triplet;
   		inserts.push('("'+s+'"');
@@ -58,6 +58,7 @@ app.post('/db.*', function(req, res) {
 				console.log("had an error retrieving updated rows.");
 				res.status(404).send();
 			}
+			console.log("sending rows");
 			res.send(JSON.stringify(rows));
 		});
 	});
