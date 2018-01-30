@@ -18,7 +18,12 @@ class Container extends React.Component {
 let App = ReactRedux.connect(
 	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
-		setControl: (control, value) => dispatch({type: "SET_CONTROL", control: control, value: value}),
+		setControl: (control, value) => {
+			if (control==="filter" && value!==store.getState().app.filter) {
+				window.history.pushState({filter: value},"");
+			}
+			dispatch({type: "SET_CONTROL", control: control, value: value});
+		},
 		showDetails: (id) => dispatch({type: "SHOW_DETAILS", id: id}),
 		modifyTask: (task) => dispatch({type: "MODIFY_DATA", modify: [task]}),
 		deleteTask: (id) => dispatch({type: "MODIFY_DATA", delete: [id]}),
@@ -96,7 +101,12 @@ let App = ReactRedux.connect(
 	})
 )(Container);
 
-
+window.onpopstate = function(event) {
+   	if (event.state) {
+  		store.dispatch({type: "SET_CONTROL", control: "filter", value: event.state.filter});
+  	}
+};
+window.history.replaceState({filter: "$Inbox"},"title", window.location);
 let destination = document.querySelector("#container");
 ReactDOM.render(
 	<ReactRedux.Provider store={store}>

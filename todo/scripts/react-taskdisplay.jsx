@@ -5,6 +5,11 @@ function TaskDisplay({tasks, app, ...rest}) {
 		return null;
 	}
 	let filter = app.filter;
+	if (!tasks[filter]) {
+		// usually only when back button is involved
+		rest.setControl("filter","$Inbox");
+		filter = "$Inbox";
+	}
 	let filtered = [];
 	if (tasks[filter]) {
 		filtered = tasks[filter].subtasks || [];
