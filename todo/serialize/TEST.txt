@@ -80,7 +80,7 @@
   {
     "subject": "$Inbox",
     "predicate": "_14",
-    "object": "64d66b2e-b881-450b-a566-0ee80dcb96a2",
+    "object": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
     "graph": "TEST"
   },
   {
@@ -303,6 +303,12 @@
     "subject": "$Completed",
     "predicate": "_11",
     "object": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_12",
+    "object": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
     "graph": "TEST"
   },
   {
@@ -1238,7 +1244,13 @@
   {
     "subject": "$Everything",
     "predicate": "_156",
-    "object": "64d66b2e-b881-450b-a566-0ee80dcb96a2",
+    "object": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_157",
+    "object": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
     "graph": "TEST"
   },
   {
@@ -3087,6 +3099,30 @@
     "subject": "0449ef7a-2f93-4d15-ab05-28e93f712392",
     "predicate": ":inputs",
     "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0449ef7a-2f93-4d15-ab05-28e93f712392",
+    "predicate": ":completed",
+    "object": "5eb79248-8d68-42f1-b04e-996f83ba4156",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5eb79248-8d68-42f1-b04e-996f83ba4156",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5eb79248-8d68-42f1-b04e-996f83ba4156",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5eb79248-8d68-42f1-b04e-996f83ba4156",
+    "predicate": ":moment",
+    "object": "1517434810",
     "graph": "TEST"
   },
   {
@@ -6087,6 +6123,78 @@
     "subject": "bc3829a9-a41d-46a5-bea7-aa244951b8a3",
     "predicate": ":inputs",
     "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "predicate": "rdfs:label",
+    "object": "add Cook from RTM",
+    "graph": "TEST"
+  },
+  {
+    "subject": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "predicate": ":created",
+    "object": "1517434676",
+    "graph": "TEST"
+  },
+  {
+    "subject": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
+    "predicate": "rdfs:label",
+    "object": "testing",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
+    "predicate": ":created",
+    "object": "1517434689",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "fc218e24-a2c2-4f49-851e-9db4b2ed3d59",
+    "predicate": ":completed",
+    "object": "c3531380-f1c1-4b61-9639-5d946fdc2a9f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3531380-f1c1-4b61-9639-5d946fdc2a9f",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3531380-f1c1-4b61-9639-5d946fdc2a9f",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c3531380-f1c1-4b61-9639-5d946fdc2a9f",
+    "predicate": ":moment",
+    "object": "1517434804",
     "graph": "TEST"
   }
 ]

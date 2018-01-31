@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 // this escape library isn't that great for SQLite...
 function escape(s) {
 	if (typeof(s)==="boolean") {
-		return String(s);
+		return String("'"+s+"'");
 	}
 	let san = sqlstring.escape(s);
 	san = san.replace(/\\'/g,"''");
