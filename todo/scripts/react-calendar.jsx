@@ -86,7 +86,6 @@ class CalendarCheckboxInput extends React.Component {
 		this.props.modifyTask(task);
 	}
 	render() {
-		console.log(this.props.occasion.value);
 		return (
 			<input 	type="checkbox"
 					checked={(this.props.occasion.value==="true") ? true : false}

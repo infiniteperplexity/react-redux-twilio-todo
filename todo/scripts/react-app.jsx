@@ -64,8 +64,6 @@ let App = ReactRedux.connect(
 				created: args.moment || moment().unix(),
 				inputs: args.inputs || "check"
 			};
-			console.log("member of...");
-			console.log(args.memberof);
 			task = {...task, ...args};
 			let inbox = {...tasks.$Inbox, subtasks: tasks.$Inbox.subtasks.concat(task)};
 			let memberships = [];

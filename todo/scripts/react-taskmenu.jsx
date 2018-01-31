@@ -34,7 +34,6 @@ class TaskMenu extends React.Component {
 		if (task===newlist) {
 			return;
 		}
-		console.log("Dragged "+task.label+" onto "+newlist.label+".");
 		this.props.changeList(task, oldlist, newlist);
 	}
 	render() {

@@ -39,7 +39,6 @@ class TaskCard extends React.Component {
 		if (task===newtask) {
 			return;
 		}
-		console.log("Dragged "+task.label+" onto "+newtask.label+".");
 		this.props.changeList(task, oldlist, newtask);
 	}
 	render() {
