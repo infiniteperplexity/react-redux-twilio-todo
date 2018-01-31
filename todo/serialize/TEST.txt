@@ -42,6 +42,12 @@
     "graph": "TEST"
   },
   {
+    "subject": "$Inbox",
+    "predicate": "_8",
+    "object": "ed0f2fd2-4827-4aea-bf34-d2ff5cf79398",
+    "graph": "TEST"
+  },
+  {
     "subject": "$Calendar",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -674,7 +680,7 @@
   {
     "subject": "$Everything",
     "predicate": "_69",
-    "object": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
+    "object": "ed0f2fd2-4827-4aea-bf34-d2ff5cf79398",
     "graph": "TEST"
   },
   {
@@ -1584,54 +1590,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
-    "predicate": ":occasion",
-    "object": "6d33a6df-4031-4f76-b41f-4eee16cf675a",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6d33a6df-4031-4f76-b41f-4eee16cf675a",
-    "predicate": "a",
-    "object": ":Status",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6d33a6df-4031-4f76-b41f-4eee16cf675a",
-    "predicate": "rdfs:value",
-    "object": "3",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6d33a6df-4031-4f76-b41f-4eee16cf675a",
-    "predicate": ":moment",
-    "object": "1517299200",
-    "graph": "TEST"
-  },
-  {
-    "subject": "032b2d2d-51fa-4848-8124-baea0decca21",
-    "predicate": ":occasion",
-    "object": "0ddda565-029a-401e-a9d5-f854d0385889",
-    "graph": "TEST"
-  },
-  {
-    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
-    "predicate": "a",
-    "object": ":Status",
-    "graph": "TEST"
-  },
-  {
-    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
-    "predicate": "rdfs:value",
-    "object": "2",
-    "graph": "TEST"
-  },
-  {
-    "subject": "0ddda565-029a-401e-a9d5-f854d0385889",
-    "predicate": ":moment",
-    "object": "1517212800",
-    "graph": "TEST"
-  },
-  {
     "subject": "03ffee74-2e07-4ca9-97ea-18762268da29",
     "predicate": "a",
     "object": ":Task",
@@ -1815,12 +1773,6 @@
     "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "predicate": "_13",
     "object": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
-    "graph": "TEST"
-  },
-  {
-    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
-    "predicate": "_14",
-    "object": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
     "graph": "TEST"
   },
   {
@@ -2234,7 +2186,7 @@
   {
     "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
     "predicate": ":comments",
-    "object": "Not a problem with a SQLite backend\n",
+    "object": "Not a problem with a SQLite backend\\\\\\\\n",
     "graph": "TEST"
   },
   {
@@ -2313,30 +2265,6 @@
     "subject": "d25e93f2-dc2e-4922-a177-c2ec1b6d25b4",
     "predicate": ":repeats",
     "object": "daily",
-    "graph": "TEST"
-  },
-  {
-    "subject": "d25e93f2-dc2e-4922-a177-c2ec1b6d25b4",
-    "predicate": ":occasion",
-    "object": "6eb864e5-8700-4d2c-ac28-a9f89b3606a7",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6eb864e5-8700-4d2c-ac28-a9f89b3606a7",
-    "predicate": "a",
-    "object": ":Status",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6eb864e5-8700-4d2c-ac28-a9f89b3606a7",
-    "predicate": "rdfs:value",
-    "object": "3",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6eb864e5-8700-4d2c-ac28-a9f89b3606a7",
-    "predicate": ":moment",
-    "object": "1517212800",
     "graph": "TEST"
   },
   {
@@ -3025,30 +2953,6 @@
   },
   {
     "subject": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
-    "predicate": "rdfs:label",
-    "object": "talk to Hugh, tri staff and triple stores",
-    "graph": "TEST"
-  },
-  {
-    "subject": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
-    "predicate": ":created",
-    "object": "1517364606",
-    "graph": "TEST"
-  },
-  {
-    "subject": "7a846087-1e42-4dd7-881e-da5a0c0ace9d",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"

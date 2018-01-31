@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const uuid = require('uuid');
+const sqlstring = require('sqlstring');
 
 let resources = [
 	[':Task','rdfs:subClassOf','rdfs:Class'],
@@ -50,9 +51,9 @@ let db = new sqlite3.Database('./db/todo.db', (err) => {
   		let inserts = [];
   		for (let triplet of resources) {
   			let [s, p, o] = triplet;
-  			inserts.push('("'+s+'"');
-  			inserts.push('"'+p+'"');
-  			inserts.push('"'+o+'"');
+  			inserts.push('("'+sqlstring.escape(s)+'"');
+  			inserts.push('"'+sqlstring.escape(p)+'"');
+  			inserts.push('"'+sqlstring.escape(o)+'"');
   			inserts.push('"resources")');
   		}
   		let insert = inserts.join(',');
@@ -62,7 +63,8 @@ let db = new sqlite3.Database('./db/todo.db', (err) => {
 		 	subject text NOT NULL,
 		 	predicate text NOT NULL,
 		 	object text NOT NULL,
-		 	graph text NOT NULL
+		 	graph text NOT NULL,
+		 	UNIQUE(subject, predicate, object, graph)
 		 )`)
 		 .run(`INSERT INTO quads (
 		 	subject,
