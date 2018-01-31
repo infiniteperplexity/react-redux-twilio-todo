@@ -7,6 +7,11 @@ const sqlite3 = require('sqlite3');
 const sqlstring = require('sqlstring');
 const bodyParser = require('body-parser');
 
+function escape(s) {
+	let san = sqlstring.escape(s);
+	san = san.replace(/\\'/g,"''");
+	return san;
+}
 app.use(bodyParser.json());
 // assign and open database
 const db = new sqlite3.Database('./db/todo.db');
@@ -22,7 +27,7 @@ app.get('/*.js*', function(req, res) {
 app.post('/db.*', function(req, res) {
 	//let user = sqlstring.escape(req.url.split(".")[1]);
 	let user = req.url.split(".")[1];
-	if (sqlstring.escape(user)!==("'"+user+"'")) {
+	if (escape(user)!==("'"+user+"'")) {
 		console.log("no special characters allowed in user name.");
 		console.log(err);
 		res.status(404).send();
@@ -32,9 +37,9 @@ app.post('/db.*', function(req, res) {
 	console.log("received rows");
 	for (let triplet of req.body) {
   		let [s, p, o] = triplet;
-  		inserts.push('('+sqlstring.escape(s));
-  		inserts.push(sqlstring.escape(p));
-  		inserts.push(sqlstring.escape(o));
+  		inserts.push('('+escape(s));
+  		inserts.push(escape(p));
+  		inserts.push(escape(o));
   		inserts.push('"'+user+'")');
   	}
   	let insert = inserts.join(',');
@@ -68,10 +73,10 @@ app.post('/db.*', function(req, res) {
 						// recover from backup
 						inserts = [];
 						for (let {subject, predicate, object, graph} of backup) {
-							inserts.push('('+sqlstring.escape(subject));
-					  		inserts.push(sqlstring.escape(predicate));
-					  		inserts.push(sqlstring.escape(object));
-					  		inserts.push(sqlstring.escape(graph)+')');
+							inserts.push('('+escape(subject));
+					  		inserts.push(escape(predicate));
+					  		inserts.push(escape(object));
+					  		inserts.push(escape(graph)+')');
 						}
 			  			let insert = inserts.join(',');
 			  			console.log(insert);
