@@ -2,6 +2,7 @@ function TaskList(props) {
 	let tasks = props.filtered;
 	let listing = props.filtered.map((task, i) => 
 		<TaskCard	key={i}
+					n={i}
 					label={task.label}
 					id={task.id}
 					{...props}
@@ -55,7 +56,7 @@ class TaskCard extends React.Component {
 					style={{
 						className: "border border-dark",
 						overflow: "hidden",
-						backgroundColor: "white"
+						backgroundColor: (this.props.n%2===0) ? "#FFFFEE" : "#EEEEFF"
 					}}
 			>
 				{this.props.label}
