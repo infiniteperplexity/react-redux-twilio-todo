@@ -26,13 +26,19 @@
   {
     "subject": "$Inbox",
     "predicate": "_5",
-    "object": "df89cad6-1eef-49dc-b99f-06418fdef2e4",
+    "object": "0449ef7a-2f93-4d15-ab05-28e93f712392",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
     "predicate": "_6",
-    "object": "0449ef7a-2f93-4d15-ab05-28e93f712392",
+    "object": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
+    "predicate": "_7",
+    "object": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
     "graph": "TEST"
   },
   {
@@ -326,253 +332,373 @@
   {
     "subject": "$Everything",
     "predicate": "_12",
-    "object": "5875944c-3ccc-447f-8b52-b339f0cac678",
+    "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
     "predicate": "_13",
-    "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_14",
     "object": "03355f72-d195-40bd-a336-cc32e9e9abbf",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_15",
+    "predicate": "_14",
     "object": "bdfe3903-4810-4869-b10b-26c9f15029bb",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_16",
+    "predicate": "_15",
     "object": "e9ad795e-d58b-4a10-8454-ff4c21e057b7",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_17",
+    "predicate": "_16",
     "object": "73ed95e1-db65-4479-ae5c-155c99e66cfc",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_18",
+    "predicate": "_17",
     "object": "0575512b-1a8c-49a8-a4b0-130000133229",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_19",
+    "predicate": "_18",
     "object": "5347abfb-c3e9-4a48-9bb7-0addf29d18cc",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_20",
+    "predicate": "_19",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_21",
+    "predicate": "_20",
     "object": "7c515db2-4663-4f10-a941-b4c28d526e32",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_22",
+    "predicate": "_21",
     "object": "2325eacc-25ce-4611-bbce-eaaa174edc54",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_23",
+    "predicate": "_22",
     "object": "57188fce-7510-4905-b21d-927832a6ce41",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_24",
+    "predicate": "_23",
     "object": "b5821ccd-fc06-4e56-869c-04671b2d473d",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_25",
+    "predicate": "_24",
     "object": "be983204-bdaf-4415-b7df-cd761bcd6ce9",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_26",
+    "predicate": "_25",
     "object": "366e501c-5a07-4ee2-b2c4-b07f4a5bc41f",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_27",
+    "predicate": "_26",
     "object": "032b2d2d-51fa-4848-8124-baea0decca21",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_28",
+    "predicate": "_27",
     "object": "03ffee74-2e07-4ca9-97ea-18762268da29",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_29",
+    "predicate": "_28",
     "object": "950e9579-5180-4b93-b087-5aa1207977d0",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_30",
+    "predicate": "_29",
     "object": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_31",
+    "predicate": "_30",
     "object": "c3d6cfd9-7a79-4317-8676-0a1c4ec79132",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_32",
+    "predicate": "_31",
     "object": "5b45837f-9108-4565-b72f-19cf7c7b8e65",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_33",
+    "predicate": "_32",
     "object": "b3e93840-219a-444d-af14-f0ad4e28d144",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_34",
+    "predicate": "_33",
     "object": "a89a9f4c-ce5b-4e3e-aa91-22b9721a8455",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_35",
+    "predicate": "_34",
     "object": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_36",
+    "predicate": "_35",
     "object": "c27bc084-7ff4-4a7a-8aed-497ff47c4cdf",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_37",
+    "predicate": "_36",
     "object": "6ba7b9b7-a817-47ab-8169-61661c150d31",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_38",
+    "predicate": "_37",
     "object": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_39",
+    "predicate": "_38",
     "object": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_40",
+    "predicate": "_39",
     "object": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_41",
+    "predicate": "_40",
     "object": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_42",
+    "predicate": "_41",
     "object": "2cc6292d-be18-4c8c-ae71-7d845dfc6d23",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_43",
+    "predicate": "_42",
     "object": "d3b0d91b-7d59-40e8-a759-31b9129fa810",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_44",
+    "predicate": "_43",
     "object": "d25e93f2-dc2e-4922-a177-c2ec1b6d25b4",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_45",
+    "predicate": "_44",
     "object": "465f3c40-9d9a-4008-aec5-9d840031e2fa",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_46",
+    "predicate": "_45",
     "object": "ffe4b28e-e374-4324-86d2-1699862c49b5",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_47",
+    "predicate": "_46",
     "object": "6db8def9-f6fe-4896-a8fc-46d1c6193e3e",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_48",
+    "predicate": "_47",
     "object": "0bb79084-0bdf-4083-9d0e-1504aa1a5104",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_49",
+    "predicate": "_48",
     "object": "636e035b-a78e-4125-b527-a6dd81755108",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_50",
+    "predicate": "_49",
     "object": "df89cad6-1eef-49dc-b99f-06418fdef2e4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_50",
+    "object": "0449ef7a-2f93-4d15-ab05-28e93f712392",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_51",
+    "object": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_52",
+    "object": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_53",
+    "object": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_54",
+    "object": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_55",
+    "object": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_56",
+    "object": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_57",
+    "object": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_58",
+    "object": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_59",
+    "object": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_60",
+    "object": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_61",
+    "object": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_62",
+    "object": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_63",
+    "object": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_64",
+    "object": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_65",
+    "object": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_66",
+    "object": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_67",
+    "object": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
     "graph": "TEST"
   },
   {
     "subject": "$Lists",
     "predicate": "_1",
-    "object": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Lists",
-    "predicate": "_2",
     "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
     "graph": "TEST"
   },
   {
     "subject": "$Lists",
-    "predicate": "_3",
+    "predicate": "_2",
     "object": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_3",
+    "object": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_4",
+    "object": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_5",
+    "object": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Lists",
+    "predicate": "_6",
+    "object": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
     "graph": "TEST"
   },
   {
@@ -643,30 +769,6 @@
   },
   {
     "subject": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "predicate": "rdfs:label",
-    "object": "Projects",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "predicate": ":created",
-    "object": "1517006761",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"
@@ -1651,6 +1753,12 @@
   },
   {
     "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_13",
+    "object": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "predicate": "a",
     "object": ":Task",
     "graph": "TEST"
@@ -1658,7 +1766,7 @@
   {
     "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "predicate": "rdfs:label",
-    "object": "App",
+    "object": "To-Do App",
     "graph": "TEST"
   },
   {
@@ -2323,6 +2431,510 @@
   },
   {
     "subject": "0449ef7a-2f93-4d15-ab05-28e93f712392",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "predicate": "rdfs:label",
+    "object": "Hecatomb",
+    "graph": "TEST"
+  },
+  {
+    "subject": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "predicate": ":created",
+    "object": "1517363365",
+    "graph": "TEST"
+  },
+  {
+    "subject": "60774fc1-c3fd-4e56-84a0-7419ebb415b1",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_1",
+    "object": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_2",
+    "object": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_3",
+    "object": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_4",
+    "object": "df89cad6-1eef-49dc-b99f-06418fdef2e4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_5",
+    "object": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_6",
+    "object": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_7",
+    "object": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "_8",
+    "object": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": "rdfs:label",
+    "object": "Apartment",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": ":created",
+    "object": "1517363369",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1c8ccd5-52c7-458f-a99f-657622ec65ce",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "predicate": "rdfs:label",
+    "object": "garbage disposal",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "predicate": ":created",
+    "object": "1517363377",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a45a4b3f-a3c2-46e8-91f7-c3216f0b5384",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "predicate": "rdfs:label",
+    "object": "faucet",
+    "graph": "TEST"
+  },
+  {
+    "subject": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "predicate": ":created",
+    "object": "1517363385",
+    "graph": "TEST"
+  },
+  {
+    "subject": "41bfe6f3-ba04-495a-bdd5-3faae97ef9ab",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "predicate": "rdfs:label",
+    "object": "fridge door",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "predicate": ":created",
+    "object": "1517363388",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a302337-4a7b-46db-9e27-7151a3e11792",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "predicate": "rdfs:label",
+    "object": "Coral Bleaching",
+    "graph": "TEST"
+  },
+  {
+    "subject": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "predicate": ":created",
+    "object": "1517363408",
+    "graph": "TEST"
+  },
+  {
+    "subject": "481890ea-360a-443e-a55f-e620cc7c3582",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "predicate": "rdfs:label",
+    "object": "some system for dividers?",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "predicate": ":created",
+    "object": "1517363439",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b2c6ecc2-06c0-478e-a6d8-c081d2fb1c6a",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "predicate": "rdfs:label",
+    "object": "hall closet",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "predicate": ":created",
+    "object": "1517363457",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f1ee6881-dfca-4bee-ad99-bb1734d1f10d",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "predicate": "rdfs:label",
+    "object": "cupboards",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "predicate": ":created",
+    "object": "1517363459",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1ff1ba61-77d2-4870-b227-cf0b6f64c445",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "predicate": "rdfs:label",
+    "object": "shelving units",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "predicate": ":created",
+    "object": "1517363463",
+    "graph": "TEST"
+  },
+  {
+    "subject": "c2dcf3e9-844e-45c8-a024-b85db306530d",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "predicate": "rdfs:label",
+    "object": "bedroom closets",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "predicate": ":created",
+    "object": "1517363468",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8c3f231e-d8bc-4d04-8451-7bf9784f5ca4",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "predicate": "rdfs:label",
+    "object": "check into time safe again",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "predicate": ":created",
+    "object": "1517363561",
+    "graph": "TEST"
+  },
+  {
+    "subject": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "_1",
+    "object": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "_2",
+    "object": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "_3",
+    "object": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "_4",
+    "object": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": "rdfs:label",
+    "object": "Not Peer Reviewed",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": ":created",
+    "object": "1517363586",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4af5c0c9-145c-4ebd-b33e-2c9de87da594",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "predicate": "rdfs:label",
+    "object": "Flynns book on IQ",
+    "graph": "TEST"
+  },
+  {
+    "subject": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "predicate": ":created",
+    "object": "1517363619",
+    "graph": "TEST"
+  },
+  {
+    "subject": "693a8610-e3d5-45ef-8094-411c1f9b3a90",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "predicate": "rdfs:label",
+    "object": "The Nurture Assumption",
+    "graph": "TEST"
+  },
+  {
+    "subject": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "predicate": ":created",
+    "object": "1517363625",
+    "graph": "TEST"
+  },
+  {
+    "subject": "40269a48-2643-470a-88a3-5169e6fe3c81",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "predicate": "rdfs:label",
+    "object": "more food pics",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "predicate": ":created",
+    "object": "1517363633",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f2c889eb-b1f5-40f7-80ee-d15e2d37a92b",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
+    "predicate": "rdfs:label",
+    "object": "Mistake vs conflict",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
+    "predicate": ":created",
+    "object": "1517363769",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2e83ad7a-3882-4e8f-8863-0473a1fd65b5",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
+    "predicate": "rdfs:label",
+    "object": "Adrian dinner",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
+    "predicate": ":created",
+    "object": "1517363803",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"
