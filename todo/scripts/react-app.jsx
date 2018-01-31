@@ -35,6 +35,7 @@ let App = ReactRedux.connect(
 				value: true
 			}
 			let task = {...tasks[id], completed: completed};
+			console.log(task);
 			return dispatch({type: "MODIFY_DATA", modify: [task]});
 		},
 		changeList: (task, oldlist, newlist) => {

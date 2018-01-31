@@ -7,10 +7,20 @@ const sqlite3 = require('sqlite3');
 const sqlstring = require('sqlstring');
 const bodyParser = require('body-parser');
 
+// this escape library isn't that great for SQLite...
 function escape(s) {
+	if (typeof(s)==="boolean") {
+		return String(s);
+	}
 	let san = sqlstring.escape(s);
 	san = san.replace(/\\'/g,"''");
+	// possibly other fixes, if I find more
 	return san;
+}
+function unescape(s) {
+	let unsan = s.replace(/\\/g,"");
+	unsan = unsan.replace(/''/g,"'");
+	return unsan;
 }
 app.use(bodyParser.json());
 // assign and open database
@@ -79,7 +89,6 @@ app.post('/db.*', function(req, res) {
 					  		inserts.push(escape(graph)+')');
 						}
 			  			let insert = inserts.join(',');
-			  			console.log(insert);
 			  			console.log("repairing rows from backup.");
 						db.run('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert,(err)=>{
 							if (err) {
@@ -102,6 +111,12 @@ app.post('/db.*', function(req, res) {
 				if (err) {
 					console.log("had an error retrieving updated rows.");
 					res.status(500).send();
+				}
+				for (let row of rows) {
+					row.subject = unescape(row.subject);
+					row.predicate = unescape(row.predicate);
+					row.object = unescape(row.object);
+					row.graph = unescape(row.graph);
 				}
 				console.log("sending rows");
 				res.send(JSON.stringify(rows));

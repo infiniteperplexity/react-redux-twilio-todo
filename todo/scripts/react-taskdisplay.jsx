@@ -44,7 +44,7 @@ class TaskToolbar extends React.Component {
 		if (this.props.app.toolbar.label!=="") {
 			let filter = this.props.app.filter;
 			let args = {label: this.props.app.toolbar.label};
-			if (filter==="$Repeating") {
+			if (filter==="$Repeating" || filter==="$Calendar") {
 				args.repeats = "daily";
 			} else if (args.filter==="$Clickers") {
 				args.repeats = "instantly";
