@@ -29,13 +29,16 @@ let App = ReactRedux.connect(
 		deleteTask: (id) => dispatch({type: "MODIFY_DATA", delete: [id]}),
 		completeTask: (id) => {
 			let tasks = {...store.getState().tasks};
-			let completed = {
-				id: uuid.v4(),
-				moment: moment().unix(),
-				value: true
+			let task = {...tasks[id]};
+			if (task.repeats==="instantly") {
+				task.clicked = moment().unix();
+			} else {
+				task.completed = {
+					id: uuid.v4(),
+					moment: moment().unix(),
+					value: true
+				}
 			}
-			let task = {...tasks[id], completed: completed};
-			console.log(task);
 			return dispatch({type: "MODIFY_DATA", modify: [task]});
 		},
 		changeList: (task, oldlist, newlist) => {

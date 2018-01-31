@@ -8,6 +8,23 @@ function TaskList(props) {
 					{...props}
 		/>
 	);
+	let ts = props.tasks;
+	if (props.app.filter==="$Clickers") {
+		listing.sort((a,b)=>{
+			a = parseInt(ts[a.props.id].clicked);
+			b = parseInt(ts[b.props.id].clicked);
+			console.log(a);
+			console.log(b);
+			if (a < b) {
+				return -1;
+			} else if (a > b) {
+				return +1;
+			} else {
+				return 0;
+			}
+		});
+	}
+	console.log(listing[0].props);
 	return (
 		<div>
 			{listing}
@@ -46,6 +63,16 @@ class TaskCard extends React.Component {
 		let task = this.props.tasks[this.props.id];
 		let id = this.props.id;
 		let app = this.props.app;
+		let badge = null;
+		if (task.repeats==="instantly") {
+			if (!task.clicked) {
+				task.clicked = task.created;
+			}
+			let then = moment(task.clicked,"X");
+			let now = moment();
+			let days = now.diff(then,"days");
+			badge = <div className="badge badge-primary">{days}</div>;
+		}
 		return (
 			<div	taskid={id}
 					draggable="true"
@@ -60,6 +87,7 @@ class TaskCard extends React.Component {
 					}}
 			>
 				{this.props.label}
+				{badge}
 				<span style={{float: "right"}}>
 					<TaskButton id={id} onClick={this.props.completeTask} tooltip="complete task">{"\u2713"}</TaskButton>
 					<TaskButton id={id} onClick={this.props.showDetails} tooltip="inspect/modify">{"?"}</TaskButton>

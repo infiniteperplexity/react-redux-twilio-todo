@@ -79,7 +79,8 @@ function reducer(state, action) {
 					"rdfs:label",
 					":created",
 					":inputs",
-					":comments"
+					":comments",
+					":clicked"
 				]) {
 				if (!predicates[p]) {
 					predicates[p] = [];	
@@ -147,6 +148,11 @@ function reducer(state, action) {
 			for (let [s,o] of predicates[":created"]) {
 				if (s in tasks) {
 					tasks[s].created = o;
+				}
+			}
+			for (let [s,o] of predicates[":clicked"]) {
+				if (s in tasks) {
+					tasks[s].clicked = o;
 				}
 			}
 			for (let [s,o] of predicates[":inputs"]) {
@@ -256,6 +262,9 @@ function reducer(state, action) {
 				triples.push([id, ":inputs", task.inputs]);
 				if (task.repeats) {
 					triples.push([id, ":repeats", task.repeats]);
+				}
+				if (task.clicked) {
+					triples.push([id, ":clicked", task.clicked]);
 				}
 				if (task.comments) {
 					triples.push([id, ":comments", task.comments]);
