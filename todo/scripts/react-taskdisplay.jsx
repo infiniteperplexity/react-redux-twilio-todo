@@ -7,6 +7,7 @@ function TaskDisplay({tasks, app, ...rest}) {
 	let filter = app.filter;
 	if (!tasks[filter]) {
 		// usually only when back button is involved
+		console.log("filter has been deleted, use inbox instead");
 		rest.setControl("filter","$Inbox");
 		filter = "$Inbox";
 	}

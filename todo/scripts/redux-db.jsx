@@ -148,13 +148,16 @@ function reducer(state, action) {
 			let lists = [];
 			for (let nth in predicates) {
 				let [_, ...n] = nth;
+				if (Array.isArray(n)) {
+					n = n.join('');
+				}
 				if (_==="_" && !isNaN(n)) {
+					
 					for (let [s,o] of predicates[nth]) {
-						// how is $Inbox on $Everything 9 times?
-						if (o==="$Inbox") {
-							console.log(s);
-						}
 						tasks[s].subtasks = tasks[s].subtasks || [];
+						if (tasks[s].label==="App") {
+							console.log(tasks[o].label);
+						}
 						if (tasks[s].subtasks.indexOf(tasks[o])===-1) {
 							tasks[s].subtasks[n] = tasks[o];
 						}
@@ -167,6 +170,9 @@ function reducer(state, action) {
 			// clean up lists
 			for (let list of lists) {
 				list.subtasks = list.subtasks.filter((e)=>(e!==undefined))
+				if (list.label==="App") {
+					console.log(list.subtasks);
+				}
 			}
 			// re-filter smartlists
 			tasks.$Inbox.subtasks = tasks.$Inbox.subtasks.filter((task)=>(
@@ -227,11 +233,12 @@ function reducer(state, action) {
 				if (t.subtasks) {
 					for (let i=0; i<t.subtasks.length; i++) {
 						let subtask = t.subtasks[i];
-						if (subtask===undefined) {
-							console.log(t.subtasks);
-						}
 						//if (subtask.id[0]==="$")
 						// this is actually an rdfs: thing I think
+						if (t.label==="App") {
+							console.log(subtask.label);
+							console.log([id, "_"+(i+1), subtask.id]);
+						}
 						triples.push([id, "_"+(i+1), subtask.id]);
 					}
 				}
