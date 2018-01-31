@@ -7,11 +7,6 @@ const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
-// app.use(express.logger({
-//   format: 'dev', 
-//   stream: fs.createWriteStream('app.log', {'flags': 'w'})
-// }));
-
 // assign and open database
 const db = new sqlite3.Database('./db/todo.db');
 
@@ -27,7 +22,6 @@ app.post('/db.*', function(req, res) {
 	let user = req.url.split(".")[1];
 	let inserts = [];
 	console.log("received rows");
-	// console.log(req.body);
 	for (let triplet of req.body) {
   		let [s, p, o] = triplet;
   		inserts.push('("'+s+'"');
@@ -54,7 +48,6 @@ app.post('/db.*', function(req, res) {
 			});
 		}
 		db.all("SELECT * FROM quads WHERE graph = ?",user,(err, rows)=>{
-		// // .all('SELECT * FROM quads WHERE graph IN ("resources",?)',user,(err, rows)=>{
 			if (err) {
 				console.log("had an error retrieving updated rows.");
 				res.status(404).send();

@@ -15,7 +15,9 @@ function reducer(state, action) {
 				modify: {
 					id: null,
 					label: "",
-					inputs: ""
+					inputs: "",
+					repeats: "",
+					comments: ""
 				}
 			}
 		};
@@ -34,7 +36,8 @@ function reducer(state, action) {
 				id: action.id,
 				label: task.label,
 				inputs: task.inputs,
-				repeats: task.repeats
+				repeats: task.repeats,
+				comments: task.comments
 			}
 			return {...state, app};
 		// ****Actions that get or post data from the server
@@ -75,7 +78,8 @@ function reducer(state, action) {
 					":repeats",
 					"rdfs:label",
 					":created",
-					":inputs"
+					":inputs",
+					":comments"
 				]) {
 				if (!predicates[p]) {
 					predicates[p] = [];	
@@ -122,6 +126,12 @@ function reducer(state, action) {
 					let task = tasks[s];
 					task.occasions = task.occasions || {};
 					task.occasions[statuses[o].moment] = statuses[o];
+				}
+			}
+			for (let [s,o] of predicates[":comments"]) {
+				if (s in tasks) {
+					let task = tasks[s];
+					task.comments = o;
 				}
 			}
 			for (let [s,o] of predicates[":repeats"]) {
@@ -253,6 +263,9 @@ function reducer(state, action) {
 				triples.push([id, ":inputs", task.inputs]);
 				if (task.repeats) {
 					triples.push([id, ":repeats", task.repeats]);
+				}
+				if (task.comments) {
+					triples.push([id, ":comments", task.comments]);
 				}
 				if (task.completed) {
 					triples.push([id, ":completed", task.completed.id]);

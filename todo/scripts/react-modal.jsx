@@ -26,6 +26,7 @@ class TaskModalControls extends React.Component {
     task.label = modify.label;
     task.inputs = modify.inputs;
     task.repeats = modify.repeats;
+    task.comments = modify.comments;
     this.props.modifyTask(task);
     this.props.setControl("modify", {})
   }
@@ -40,6 +41,9 @@ class TaskModalControls extends React.Component {
         </div>
         <div>
           Repeats: <ModalRepeatsInput {...this.props} />
+        </div>
+        <div>
+          Comments: <br /><ModalCommentsInput {...this.props} />
         </div>
         <div style={{overflow: "hidden"}}>
           <span style={{float: "right"}}>
@@ -106,4 +110,20 @@ class ModalRepeatsInput extends React.Component {
     );
   }
 }
-
+class ModalCommentsInput extends React.Component {
+  handleChange = (event) => {
+    event.preventDefault();
+    let modify = {...this.props.app.modify, comments: event.target.value};
+    this.props.setControl("modify",modify);
+  }
+  render() {
+    return (
+      <textarea
+              rows="12"
+              cols="25"
+              value={this.props.app.modify.comments} 
+              onChange={this.handleChange}
+      />
+    );
+  }
+}

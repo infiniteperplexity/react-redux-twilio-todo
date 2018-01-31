@@ -18,12 +18,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Inbox",
-    "predicate": "_4",
-    "object": "c269154a-56d9-4c15-8945-0666a6be7df4",
-    "graph": "TEST"
-  },
-  {
     "subject": "$Repeating",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -368,127 +362,31 @@
   {
     "subject": "$Everything",
     "predicate": "_36",
-    "object": "6ba7b9b7-a817-47ab-8169-61661c150d31",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_37",
     "object": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_38",
-    "object": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_39",
+    "predicate": "_37",
     "object": "242f2d6e-57c5-4327-9e14-2892bdde7d31",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_40",
+    "predicate": "_38",
     "object": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_41",
-    "object": "f40227b7-e864-496d-ad48-58df94b884fe",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_42",
-    "object": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_43",
-    "object": "8e940b79-32fc-43a9-983f-887caf5dc106",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_44",
-    "object": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_45",
-    "object": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_46",
-    "object": "532de912-a05e-445a-a3a2-b05d53a362b4",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_47",
-    "object": "57cc3429-4190-45ff-a781-4b0ba6ca4b56",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_48",
-    "object": "796acc49-87e8-4350-ad9e-3e285904edbe",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_49",
-    "object": "ea86a9e9-08b3-474a-afce-3e19e5b9ef70",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_50",
-    "object": "a48aa416-bf0e-472f-9680-1c17c59dabd7",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_51",
-    "object": "68810606-8be6-483b-83de-3cc113c4a0c0",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_52",
-    "object": "47500e5c-9e82-4e51-9618-ca87ac6b82b6",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_53",
-    "object": "e2998636-0091-42e0-8569-ac15519113fb",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_54",
-    "object": "8ad805fe-1416-4ee0-9459-4ffee8f4ca20",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_55",
-    "object": "c269154a-56d9-4c15-8945-0666a6be7df4",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_56",
+    "predicate": "_39",
     "object": "9c0451d6-64f1-42b1-8693-1bd1c2f9bd8e",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_40",
+    "object": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
     "graph": "TEST"
   },
   {
@@ -583,18 +481,6 @@
   },
   {
     "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "predicate": "_1",
-    "object": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
-    "predicate": "_2",
-    "object": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "graph": "TEST"
-  },
-  {
-    "subject": "5875944c-3ccc-447f-8b52-b339f0cac678",
     "predicate": "a",
     "object": ":Task",
     "graph": "TEST"
@@ -621,12 +507,6 @@
     "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
     "predicate": "_1",
     "object": "03355f72-d195-40bd-a336-cc32e9e9abbf",
-    "graph": "TEST"
-  },
-  {
-    "subject": "543a18f7-c722-46c7-8713-9519e768ce0c",
-    "predicate": "_2",
-    "object": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
     "graph": "TEST"
   },
   {
@@ -1591,6 +1471,12 @@
   },
   {
     "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_11",
+    "object": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "predicate": "a",
     "object": ":Task",
     "graph": "TEST"
@@ -1854,30 +1740,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
-    "predicate": "rdfs:label",
-    "object": "test",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
-    "predicate": ":created",
-    "object": "1517349016",
-    "graph": "TEST"
-  },
-  {
-    "subject": "6ba7b9b7-a817-47ab-8169-61661c150d31",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
     "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
     "predicate": "a",
     "object": ":Task",
@@ -1897,30 +1759,6 @@
   },
   {
     "subject": "852de1be-6422-42d6-9d7c-0d3c8ddf5dee",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
-    "predicate": "rdfs:label",
-    "object": "subtesting",
-    "graph": "TEST"
-  },
-  {
-    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
-    "predicate": ":created",
-    "object": "1517354144",
-    "graph": "TEST"
-  },
-  {
-    "subject": "d2c46ab6-9082-4601-87e1-fc7cc72c3a04",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"
@@ -1998,339 +1836,9 @@
     "graph": "TEST"
   },
   {
-    "subject": "f40227b7-e864-496d-ad48-58df94b884fe",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "f40227b7-e864-496d-ad48-58df94b884fe",
-    "predicate": "rdfs:label",
-    "object": "contact Hugh to ask about triple store stuff",
-    "graph": "TEST"
-  },
-  {
-    "subject": "f40227b7-e864-496d-ad48-58df94b884fe",
-    "predicate": ":created",
-    "object": "1517355800",
-    "graph": "TEST"
-  },
-  {
-    "subject": "f40227b7-e864-496d-ad48-58df94b884fe",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
-    "predicate": "rdfs:label",
-    "object": "today",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
-    "predicate": ":created",
-    "object": "1517356004",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a7aef09c-7dcd-4903-ad52-fc40e8c010ed",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8e940b79-32fc-43a9-983f-887caf5dc106",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8e940b79-32fc-43a9-983f-887caf5dc106",
-    "predicate": "rdfs:label",
-    "object": "today",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8e940b79-32fc-43a9-983f-887caf5dc106",
-    "predicate": ":created",
-    "object": "1517356009",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8e940b79-32fc-43a9-983f-887caf5dc106",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "predicate": "rdfs:label",
-    "object": "today",
-    "graph": "TEST"
-  },
-  {
-    "subject": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "predicate": ":created",
-    "object": "1517356015",
-    "graph": "TEST"
-  },
-  {
-    "subject": "c13904b8-ae2f-493a-b83e-36cf95d34a48",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "predicate": "rdfs:label",
-    "object": "another",
-    "graph": "TEST"
-  },
-  {
-    "subject": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "predicate": ":created",
-    "object": "1517356019",
-    "graph": "TEST"
-  },
-  {
-    "subject": "935355fe-f534-48e0-be2f-042d476f4a58",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "532de912-a05e-445a-a3a2-b05d53a362b4",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "532de912-a05e-445a-a3a2-b05d53a362b4",
-    "predicate": "rdfs:label",
-    "object": "another...",
-    "graph": "TEST"
-  },
-  {
-    "subject": "532de912-a05e-445a-a3a2-b05d53a362b4",
-    "predicate": ":created",
-    "object": "1517356025",
-    "graph": "TEST"
-  },
-  {
-    "subject": "532de912-a05e-445a-a3a2-b05d53a362b4",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "57cc3429-4190-45ff-a781-4b0ba6ca4b56",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "57cc3429-4190-45ff-a781-4b0ba6ca4b56",
-    "predicate": "rdfs:label",
-    "object": "testit",
-    "graph": "TEST"
-  },
-  {
-    "subject": "57cc3429-4190-45ff-a781-4b0ba6ca4b56",
-    "predicate": ":created",
-    "object": "1517356035",
-    "graph": "TEST"
-  },
-  {
-    "subject": "57cc3429-4190-45ff-a781-4b0ba6ca4b56",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "796acc49-87e8-4350-ad9e-3e285904edbe",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "796acc49-87e8-4350-ad9e-3e285904edbe",
-    "predicate": "rdfs:label",
-    "object": "testit",
-    "graph": "TEST"
-  },
-  {
-    "subject": "796acc49-87e8-4350-ad9e-3e285904edbe",
-    "predicate": ":created",
-    "object": "1517356088",
-    "graph": "TEST"
-  },
-  {
-    "subject": "796acc49-87e8-4350-ad9e-3e285904edbe",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "ea86a9e9-08b3-474a-afce-3e19e5b9ef70",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "ea86a9e9-08b3-474a-afce-3e19e5b9ef70",
-    "predicate": "rdfs:label",
-    "object": "testing",
-    "graph": "TEST"
-  },
-  {
-    "subject": "ea86a9e9-08b3-474a-afce-3e19e5b9ef70",
-    "predicate": ":created",
-    "object": "1517356167",
-    "graph": "TEST"
-  },
-  {
-    "subject": "ea86a9e9-08b3-474a-afce-3e19e5b9ef70",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a48aa416-bf0e-472f-9680-1c17c59dabd7",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a48aa416-bf0e-472f-9680-1c17c59dabd7",
-    "predicate": "rdfs:label",
-    "object": "testttt",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a48aa416-bf0e-472f-9680-1c17c59dabd7",
-    "predicate": ":created",
-    "object": "1517356333",
-    "graph": "TEST"
-  },
-  {
-    "subject": "a48aa416-bf0e-472f-9680-1c17c59dabd7",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "68810606-8be6-483b-83de-3cc113c4a0c0",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "68810606-8be6-483b-83de-3cc113c4a0c0",
-    "predicate": "rdfs:label",
-    "object": "test",
-    "graph": "TEST"
-  },
-  {
-    "subject": "68810606-8be6-483b-83de-3cc113c4a0c0",
-    "predicate": ":created",
-    "object": "1517356551",
-    "graph": "TEST"
-  },
-  {
-    "subject": "68810606-8be6-483b-83de-3cc113c4a0c0",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "47500e5c-9e82-4e51-9618-ca87ac6b82b6",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "47500e5c-9e82-4e51-9618-ca87ac6b82b6",
-    "predicate": "rdfs:label",
-    "object": "test",
-    "graph": "TEST"
-  },
-  {
-    "subject": "47500e5c-9e82-4e51-9618-ca87ac6b82b6",
-    "predicate": ":created",
-    "object": "1517356712",
-    "graph": "TEST"
-  },
-  {
-    "subject": "47500e5c-9e82-4e51-9618-ca87ac6b82b6",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "e2998636-0091-42e0-8569-ac15519113fb",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "e2998636-0091-42e0-8569-ac15519113fb",
-    "predicate": "rdfs:label",
-    "object": "10",
-    "graph": "TEST"
-  },
-  {
-    "subject": "e2998636-0091-42e0-8569-ac15519113fb",
-    "predicate": ":created",
-    "object": "1517357039",
-    "graph": "TEST"
-  },
-  {
-    "subject": "e2998636-0091-42e0-8569-ac15519113fb",
-    "predicate": ":inputs",
-    "object": "check",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8ad805fe-1416-4ee0-9459-4ffee8f4ca20",
-    "predicate": "a",
-    "object": ":Task",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8ad805fe-1416-4ee0-9459-4ffee8f4ca20",
-    "predicate": "rdfs:label",
-    "object": "11",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8ad805fe-1416-4ee0-9459-4ffee8f4ca20",
-    "predicate": ":created",
-    "object": "1517357041",
-    "graph": "TEST"
-  },
-  {
-    "subject": "8ad805fe-1416-4ee0-9459-4ffee8f4ca20",
-    "predicate": ":inputs",
-    "object": "check",
+    "subject": "b5c5c5ef-f659-4add-926e-805f6be07d2b",
+    "predicate": ":comments",
+    "object": "Not currently a big deal, because SQLite support unlimited-length text fields.  It will start to matter if I switch to a different RDBMS.",
     "graph": "TEST"
   },
   {
@@ -2379,6 +1887,30 @@
     "subject": "8027b67c-2053-4ccf-8804-7dd66e8e544a",
     "predicate": ":moment",
     "object": "1517357166",
+    "graph": "TEST"
+  },
+  {
+    "subject": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
+    "predicate": "rdfs:label",
+    "object": "contact Hugh about triple stores",
+    "graph": "TEST"
+  },
+  {
+    "subject": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
+    "predicate": ":created",
+    "object": "1517357311",
+    "graph": "TEST"
+  },
+  {
+    "subject": "29a3fd12-c2b3-4cc2-9566-159854814e3d",
+    "predicate": ":inputs",
+    "object": "check",
     "graph": "TEST"
   }
 ]
