@@ -51,7 +51,7 @@ function reducer(state, action) {
 			tasks = {};
 			statuses = {};
 			// set up static lists
-			let staticLists = ["Inbox","Repeating","Clickers","Completed","Everything","Static","Lists"];
+			let staticLists = ["Inbox","Calendar","Repeating","Clickers","Completed","Everything","Static","Lists"];
 			for (let list of staticLists) {
 				tasks["$"+list] = {
 					id: "$"+list,
@@ -188,6 +188,9 @@ function reducer(state, action) {
 			tasks.$Inbox.subtasks = tasks.$Inbox.subtasks.filter((task)=>(
 				!task.completed && !task.repeats
 			));
+			tasks.$Calendar.subtasks = tasks.$Repeating.subtasks.filter((task)=>(
+				task.repeats==="daily"
+			));
 			tasks.$Repeating.subtasks = tasks.$Repeating.subtasks.filter((task)=>(
 				task.repeats==="daily"
 			));
@@ -203,6 +206,7 @@ function reducer(state, action) {
 					tasks.$Completed.subtasks.push(tasks[id]);
 				} else if (tasks[id].repeats==="daily" && tasks.$Repeating.subtasks.indexOf(tasks[id])===-1) {
 					tasks.$Repeating.subtasks.push(tasks[id]);
+					tasks.$Calendar.subtasks.push(tasks[id]);
 				} else if (tasks[id].repeats==="instantly" && tasks.$Clickers.subtasks.indexOf(tasks[id])===-1) {
 					tasks.$Clickers.subtasks.push(tasks[id]);
 				} //else if (	id[0]!=="$" && tasks.$Inbox.subtasks.indexOf(tasks[id])===-1) {

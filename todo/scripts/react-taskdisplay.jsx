@@ -19,7 +19,7 @@ function TaskDisplay({tasks, app, ...rest}) {
 		filtered = filtered.filter(task=>!task.completed);
 	}
 	let listing;
-	if (filter==="$Repeating") {
+	if (filter==="$Calendar") {
 		listing = <TaskCalendar app={app} tasks={tasks} filtered={filtered} {...rest} />;
 	} else {
 		listing = <TaskList app={app} tasks={tasks} filtered={filtered} {...rest} />;
@@ -67,46 +67,3 @@ class TaskToolbar extends React.Component {
 		);
 	}
 }
-
-
-
-	// inspectTask = (id) => {
-	// 	// for now...let's allow changing the label.
-	// 	let label, inputs, list;
-	// 	let children =
-	// 		<div>
-	// 			<input type="text" ref={(e)=>(label=e)} defaultValue={this.props.tasks[id].label} />
-	// 			<input type="checkbox" ref={(e)=>(list=e)} defaultChecked={this.props.tasks[id].list!==undefined} />
-	// 			<select ref={(e)=>(inputs=e)} defaultValue={this.props.tasks[id].inputs}>
-	// 			    <option value="check">Check</option>
-	// 			    <option value="number">Number</option>
-	// 			</select>
-	// 		</div>
-	// 	;
-	// 	// applies only to static lists for now
-	// 	if (id[0]==="$") {
-	// 		children = <div>
-	// 			<input type="text" ref={(e)=>(label=e)} readOnly="true" value={this.props.tasks[id].label} />
-	// 			<input type="checkbox" ref={(e)=>(list=e)} readOnly="true" checked="true" />
-	// 		</div>
-	// 		;
-	// 		inputs = {
-	// 			value: undefined
-	// 		}
-	// 	}
-	// 	let modal = {
-	// 		children: children,
-	// 		submitModal: () => {
-	// 			let task = {...this.props.tasks[id]};
-	// 			task.label = label.value;
-	// 			task.inputs = inputs.value;
-	// 			if (!task.list && list.checked) {
-	// 				task.list = [];
-	// 			} else if (task.list && !list.checked) {
-	// 				delete task.list;
-	// 			}
-	// 			this.props.modifyTask(task);
-	// 		}
-	// 	};
-	// 	this.props.showModal(modal);
-	// }
