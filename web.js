@@ -18,7 +18,11 @@ function escape(s) {
 	return san;
 }
 function unescape(s) {
-	let unsan = s.replace(/\\/g,"");
+	let SPACER = "\u0000";
+	let SREGEX = new RegExp(SPACER,"g");
+	let unsan = s.replace(/\\n/g,SPACER);
+	unsan = unsan.replace(/\\/g,"");
+	unsan = unsan.replace(SREGEX,"\n");
 	unsan = unsan.replace(/''/g,"'");
 	return unsan;
 }

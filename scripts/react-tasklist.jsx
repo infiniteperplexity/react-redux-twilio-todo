@@ -24,7 +24,6 @@ function TaskList(props) {
 			}
 		});
 	}
-	console.log(listing[0].props);
 	return (
 		<div>
 			{listing}

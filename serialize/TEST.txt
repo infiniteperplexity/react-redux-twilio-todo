@@ -8,67 +8,73 @@
   {
     "subject": "$Inbox",
     "predicate": "_2",
-    "object": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Inbox",
-    "predicate": "_3",
     "object": "6bf49fb5-b441-4bcc-a6cd-ceb0d65876de",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_4",
+    "predicate": "_3",
     "object": "bb32ba0a-2b9c-41c2-b05a-6cd10ac2e2c6",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_5",
+    "predicate": "_4",
     "object": "d99195aa-36b0-4cfa-a291-e4f95ab68d27",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_6",
+    "predicate": "_5",
     "object": "45e2cb7e-b641-48ed-9cfb-b75c64d616b4",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_7",
+    "predicate": "_6",
     "object": "a862dad6-a423-4126-939d-201ff061bd02",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_8",
+    "predicate": "_7",
     "object": "4cf49ba4-d98a-4ae3-8e0a-16fa02b253d5",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_9",
+    "predicate": "_8",
     "object": "5be26822-b854-4178-a109-fd05b069570b",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_10",
+    "predicate": "_9",
     "object": "6098573c-2203-46d9-aeb9-7ae1012d418b",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
-    "predicate": "_11",
+    "predicate": "_10",
     "object": "494b2f0a-c759-4cfa-a61a-be86bf156adf",
     "graph": "TEST"
   },
   {
     "subject": "$Inbox",
+    "predicate": "_11",
+    "object": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
     "predicate": "_12",
-    "object": "e9f4c55a-3061-47dd-8bac-415618d86fa0",
+    "object": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
+    "predicate": "_13",
+    "object": "652fe288-b59b-471c-b26f-2048be02d3ca",
     "graph": "TEST"
   },
   {
@@ -339,6 +345,42 @@
     "subject": "$Completed",
     "predicate": "_15",
     "object": "87c73f4d-ecfa-47d8-a1af-43a8af736945",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_16",
+    "object": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_17",
+    "object": "78276618-3bf2-4b4e-ab3b-92cd6a6618d4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_18",
+    "object": "465f3c40-9d9a-4008-aec5-9d840031e2fa",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_19",
+    "object": "2cc6292d-be18-4c8c-ae71-7d845dfc6d23",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_20",
+    "object": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Completed",
+    "predicate": "_21",
+    "object": "e9f4c55a-3061-47dd-8bac-415618d86fa0",
     "graph": "TEST"
   },
   {
@@ -1400,19 +1442,73 @@
   {
     "subject": "$Everything",
     "predicate": "_177",
-    "object": "bc6a0281-1d1e-4454-b5ea-6cd6744a6441",
-    "graph": "TEST"
-  },
-  {
-    "subject": "$Everything",
-    "predicate": "_178",
     "object": "71716fb3-dcda-415f-a0b4-13b03ef6a62a",
     "graph": "TEST"
   },
   {
     "subject": "$Everything",
-    "predicate": "_179",
+    "predicate": "_178",
     "object": "d16ad603-66eb-48b9-9993-4a99dafb48bc",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_179",
+    "object": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_180",
+    "object": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_181",
+    "object": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_182",
+    "object": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_183",
+    "object": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_184",
+    "object": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_185",
+    "object": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_186",
+    "object": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_187",
+    "object": "92372622-419a-4885-8b39-147d901477df",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_188",
+    "object": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
     "graph": "TEST"
   },
   {
@@ -2761,6 +2857,54 @@
   },
   {
     "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_16",
+    "object": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_17",
+    "object": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_18",
+    "object": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_19",
+    "object": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_20",
+    "object": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_21",
+    "object": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_22",
+    "object": "92372622-419a-4885-8b39-147d901477df",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
+    "predicate": "_23",
+    "object": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
+    "graph": "TEST"
+  },
+  {
+    "subject": "4066aeb8-8c04-4979-9c0e-2539549b4f6b",
     "predicate": "a",
     "object": ":Task",
     "graph": "TEST"
@@ -2973,6 +3117,30 @@
     "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
     "predicate": ":inputs",
     "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ca4c1473-9e6c-44bd-9acc-ec371e99aba5",
+    "predicate": ":completed",
+    "object": "ff0e8ab2-90fe-4992-a265-1d67a24f3f3c",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ff0e8ab2-90fe-4992-a265-1d67a24f3f3c",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ff0e8ab2-90fe-4992-a265-1d67a24f3f3c",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "ff0e8ab2-90fe-4992-a265-1d67a24f3f3c",
+    "predicate": ":moment",
+    "object": "1517451108",
     "graph": "TEST"
   },
   {
@@ -3198,6 +3366,30 @@
     "graph": "TEST"
   },
   {
+    "subject": "2cc6292d-be18-4c8c-ae71-7d845dfc6d23",
+    "predicate": ":completed",
+    "object": "e42869eb-25dd-4963-a575-97f2f624d528",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e42869eb-25dd-4963-a575-97f2f624d528",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e42869eb-25dd-4963-a575-97f2f624d528",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e42869eb-25dd-4963-a575-97f2f624d528",
+    "predicate": ":moment",
+    "object": "1517451040",
+    "graph": "TEST"
+  },
+  {
     "subject": "d3b0d91b-7d59-40e8-a759-31b9129fa810",
     "predicate": "a",
     "object": ":Task",
@@ -3303,6 +3495,30 @@
     "subject": "465f3c40-9d9a-4008-aec5-9d840031e2fa",
     "predicate": ":comments",
     "object": "e.g. since last hangover",
+    "graph": "TEST"
+  },
+  {
+    "subject": "465f3c40-9d9a-4008-aec5-9d840031e2fa",
+    "predicate": ":completed",
+    "object": "a5ea4046-704d-4997-9e09-6bf3a0871026",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a5ea4046-704d-4997-9e09-6bf3a0871026",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a5ea4046-704d-4997-9e09-6bf3a0871026",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a5ea4046-704d-4997-9e09-6bf3a0871026",
+    "predicate": ":moment",
+    "object": "1517451037",
     "graph": "TEST"
   },
   {
@@ -4140,6 +4356,30 @@
     "graph": "TEST"
   },
   {
+    "subject": "78276618-3bf2-4b4e-ab3b-92cd6a6618d4",
+    "predicate": ":completed",
+    "object": "f983cd04-71df-4b6c-8091-22e9e7b88075",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f983cd04-71df-4b6c-8091-22e9e7b88075",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f983cd04-71df-4b6c-8091-22e9e7b88075",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "f983cd04-71df-4b6c-8091-22e9e7b88075",
+    "predicate": ":moment",
+    "object": "1517451013",
+    "graph": "TEST"
+  },
+  {
     "subject": "4b872913-dec5-48da-864e-9445642de0d1",
     "predicate": "_1",
     "object": "43c8d3d9-6ee2-4f68-8506-9e3860a741e2",
@@ -4329,6 +4569,12 @@
     "subject": "8d3f1892-b159-42a5-8f9a-9a77a945bf4c",
     "predicate": "_1",
     "object": "f85a6ead-ba0e-4292-af5e-ab065dc405de",
+    "graph": "TEST"
+  },
+  {
+    "subject": "8d3f1892-b159-42a5-8f9a-9a77a945bf4c",
+    "predicate": "_2",
+    "object": "ee988f1f-0471-48d3-95f3-d2b5e7888dd6",
     "graph": "TEST"
   },
   {
@@ -6830,7 +7076,31 @@
   {
     "subject": "e9f4c55a-3061-47dd-8bac-415618d86fa0",
     "predicate": ":comments",
-    "object": "http://www.newstylemotherlode.com/classes-cslrnnhttp://www.fulloutstudios.com/class-schedule/nnbookmarked at home for modern",
+    "object": "Contemporary\n\nhttp://www.newstylemotherlode.com/classes-cslr\n\nhttp://www.fulloutstudios.com/class-schedule/\n\nModern\n\nhttps://www.shawl-anderson.org/about\n\nhttps://www.berkeleymovingarts.com/index.php/classesn",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9f4c55a-3061-47dd-8bac-415618d86fa0",
+    "predicate": ":completed",
+    "object": "baf400e3-eeb0-4c77-89b3-a8be5353b227",
+    "graph": "TEST"
+  },
+  {
+    "subject": "baf400e3-eeb0-4c77-89b3-a8be5353b227",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "baf400e3-eeb0-4c77-89b3-a8be5353b227",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "baf400e3-eeb0-4c77-89b3-a8be5353b227",
+    "predicate": ":moment",
+    "object": "1517451801",
     "graph": "TEST"
   },
   {
@@ -7254,6 +7524,12 @@
     "graph": "TEST"
   },
   {
+    "subject": "71716fb3-dcda-415f-a0b4-13b03ef6a62a",
+    "predicate": ":clicked",
+    "object": "1517440636",
+    "graph": "TEST"
+  },
+  {
     "subject": "d16ad603-66eb-48b9-9993-4a99dafb48bc",
     "predicate": "a",
     "object": ":Task",
@@ -7281,6 +7557,300 @@
     "subject": "d16ad603-66eb-48b9-9993-4a99dafb48bc",
     "predicate": ":repeats",
     "object": "instantly",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d16ad603-66eb-48b9-9993-4a99dafb48bc",
+    "predicate": ":clicked",
+    "object": "1517440662",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "predicate": "rdfs:label",
+    "object": "HUMP",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "predicate": ":created",
+    "object": "1517447783",
+    "graph": "TEST"
+  },
+  {
+    "subject": "b89d57b3-8289-4f3c-b1ab-87e071cf72ca",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "predicate": "rdfs:label",
+    "object": "Doodle to vet",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "predicate": ":created",
+    "object": "1517447936",
+    "graph": "TEST"
+  },
+  {
+    "subject": "9e6704a4-a827-46ad-bef8-d802d36e0b69",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "predicate": "rdfs:label",
+    "object": "fix escaping of nextline characters",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "predicate": ":created",
+    "object": "1517448557",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "03c0a9d1-be9f-48b3-bec9-506cfc8814d7",
+    "predicate": ":completed",
+    "object": "a1a348aa-a479-49ac-82e6-d31d5eba66ae",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a1a348aa-a479-49ac-82e6-d31d5eba66ae",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a1a348aa-a479-49ac-82e6-d31d5eba66ae",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a1a348aa-a479-49ac-82e6-d31d5eba66ae",
+    "predicate": ":moment",
+    "object": "1517450093",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "predicate": "rdfs:label",
+    "object": "make a mobile version of the page",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "predicate": ":created",
+    "object": "1517450627",
+    "graph": "TEST"
+  },
+  {
+    "subject": "a87c3d38-778c-42e9-91dd-5bd09471ebba",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "predicate": "rdfs:label",
+    "object": "set up on heroku with postgres or mysql back end",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "predicate": ":created",
+    "object": "1517451029",
+    "graph": "TEST"
+  },
+  {
+    "subject": "d95eed48-f78f-4231-b684-327b9c337dd8",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "predicate": "rdfs:label",
+    "object": "make calendar view toggle-able",
+    "graph": "TEST"
+  },
+  {
+    "subject": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "predicate": ":created",
+    "object": "1517451117",
+    "graph": "TEST"
+  },
+  {
+    "subject": "cb50fe89-ce02-4dbd-87d3-c81d46908525",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "predicate": "rdfs:label",
+    "object": "some sort of visual nesting",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "predicate": ":created",
+    "object": "1517451135",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5414d08d-e41d-45b7-b0c8-21de2d744541",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "predicate": "rdfs:label",
+    "object": "add sorting dropdown",
+    "graph": "TEST"
+  },
+  {
+    "subject": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "predicate": ":created",
+    "object": "1517451172",
+    "graph": "TEST"
+  },
+  {
+    "subject": "17eb8488-e545-476c-b71d-3f480e57f903",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "92372622-419a-4885-8b39-147d901477df",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "92372622-419a-4885-8b39-147d901477df",
+    "predicate": "rdfs:label",
+    "object": "add note-taking dailies",
+    "graph": "TEST"
+  },
+  {
+    "subject": "92372622-419a-4885-8b39-147d901477df",
+    "predicate": ":created",
+    "object": "1517451277",
+    "graph": "TEST"
+  },
+  {
+    "subject": "92372622-419a-4885-8b39-147d901477df",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
+    "predicate": "rdfs:label",
+    "object": "make submit work with return button",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
+    "predicate": ":created",
+    "object": "1517451289",
+    "graph": "TEST"
+  },
+  {
+    "subject": "5d0c2281-69bf-48c0-b337-049b365ea6f5",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "652fe288-b59b-471c-b26f-2048be02d3ca",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "652fe288-b59b-471c-b26f-2048be02d3ca",
+    "predicate": "rdfs:label",
+    "object": "go to Shawl-Anderson class",
+    "graph": "TEST"
+  },
+  {
+    "subject": "652fe288-b59b-471c-b26f-2048be02d3ca",
+    "predicate": ":created",
+    "object": "1517451808",
+    "graph": "TEST"
+  },
+  {
+    "subject": "652fe288-b59b-471c-b26f-2048be02d3ca",
+    "predicate": ":inputs",
+    "object": "check",
     "graph": "TEST"
   }
 ]
