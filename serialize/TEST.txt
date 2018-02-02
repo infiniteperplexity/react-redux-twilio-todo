@@ -84,12 +84,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Inbox",
-    "predicate": "_15",
-    "object": "1d2acfa5-f5c3-4979-a5fc-a3c020a08632",
-    "graph": "TEST"
-  },
-  {
     "subject": "$Calendar",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -1548,12 +1542,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Everything",
-    "predicate": "_193",
-    "object": "1d2acfa5-f5c3-4979-a5fc-a3c020a08632",
-    "graph": "TEST"
-  },
-  {
     "subject": "$Lists",
     "predicate": "_1",
     "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
@@ -2175,6 +2163,54 @@
     "subject": "df1bbcaa-59c8-44cb-bbc7-1df2cb4c0f8a",
     "predicate": ":moment",
     "object": "1517385600",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": "rdfs:value",
+    "object": "2",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": ":moment",
+    "object": "1517472000",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": "rdfs:value",
+    "object": "1",
+    "graph": "TEST"
+  },
+  {
+    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "predicate": ":moment",
+    "object": "1517472000",
     "graph": "TEST"
   },
   {

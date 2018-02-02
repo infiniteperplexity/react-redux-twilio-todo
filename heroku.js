@@ -56,9 +56,11 @@ app.post('/db.*', function(req, res) {
     inserts.push("'"+user+"')");
   }
   let insert = inserts.join(',');
+  //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
   let backup;
   let status = 200;
   // backup not currently active
+  // I really should learn how to use aync / await
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting rows");
     client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
@@ -69,6 +71,7 @@ app.post('/db.*', function(req, res) {
         if (inserts.length>0) {
           console.log("inserting rows");
           console.log(insert);
+          // this part seems vulnerable to duplicates...
           client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
             if (err) {
               console.log("had an error inserting rows");
