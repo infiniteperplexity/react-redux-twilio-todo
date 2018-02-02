@@ -40,12 +40,12 @@ app.get('/*.js*', function(req, res) {
 
 app.post('/db.*', function(req, res) {
   let user = req.url.split(".")[1];
-  if (escape(user)!==("'"+user+"'")) {
-    console.log("no special characters allowed in user name.");
-    console.log(err);
-    res.status(404).send();
-    return;
-  }
+  // if (escape(user)!==("'"+user+"'")) {
+  //   console.log("no special characters allowed in user name.");
+  //   console.log(err);
+  //   res.status(404).send();
+  //   return;
+  // }
   let inserts = [];
   console.log("received rows");
   for (let triplet of req.body) {
@@ -61,7 +61,7 @@ app.post('/db.*', function(req, res) {
   // backup not currently active
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting rows");
-    client.query("DELETE FROM quads WHERE graph = ?",user, (err) => {
+    client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
       if (err) {
         done();
           console.error(err);
@@ -73,7 +73,7 @@ app.post('/db.*', function(req, res) {
               done();
               console.error(err);
             } else {
-              client.query("SELECT * FROM quads WHERE graph = ?",user,(err, result)=>{
+              client.query("SELECT * FROM quads WHERE graph = $1",[user],(err, result)=>{
                 done();
                 if (err) {
                   console.log("had an error retrieving updated rows.");
@@ -101,16 +101,13 @@ app.get('/db.*', function(req, res) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("selecting rows");
     client.query("SELECT * FROM quads WHERE graph = $1",[user], (err, result) => {
-      console.log("!!!!!!!!!!!0");
       done();
-      console.log("!!!!!!!!!!!1");
       if (err) {
         console.log(err);
         console.log("had an error retrieving rows.");
         res.status(500).send();
         return;
       }
-      console.log("!!!!!!!!!!!2");
       res.send(JSON.stringify(result.rows));
     });
   });
@@ -141,25 +138,7 @@ app.get('/dbinit', function (request, response) {
   });
 });
 
-app.get('/dbput', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query( `INSERT INTO quads (
-      subject,
-      predicate,
-      object,
-      graph)
-      VALUES
-      ('Hello','World','Foo','Bar'),
-      ('Goodbye','World','Foo','Baz')
-    ;`, (err, result)=> {
-      done();
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("sent a response");
-        response.send("That totally worked!");
-      }
-    });
-  });
+app.get('/dbfix', (req, res) => {
+  // this should refresh from a different table in the database...the user BACKUP
 });
 
