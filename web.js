@@ -11,21 +11,18 @@ app.use(bodyParser.json());
 
 const pg = require('pg');
 
-app
-  .set('views', path.join(__dirname, 'test'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(port, () => console.log('Example app listening on port'+port+'!'));
+app.listen(port, () => console.log('Example app listening on port'+port+'!'));
 
 
 app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM quads', function(err, result) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    client.query('SELECT * FROM quads', (err, result) => {
       done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
+      if (err) {
+        console.error(err); response.send("Error " + err);
+      } else {
+        response.send(JSON.stringify(result.rows));
+      }
     });
   });
 });
