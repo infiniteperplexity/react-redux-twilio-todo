@@ -81,6 +81,7 @@ app.post('/db.*', function(req, res) {
                   console.log("had an error retrieving updated rows.");
                   res.status(500).send();
                 }
+                let rows = result.rows;
                 for (let row of rows) {
                   row.subject = unescape(row.subject);
                   row.predicate = unescape(row.predicate);
@@ -88,7 +89,7 @@ app.post('/db.*', function(req, res) {
                   row.graph = unescape(row.graph);
                 }
                 console.log("sending rows");
-                res.send(JSON.stringify(result.rows));
+                res.send(JSON.stringify(rows));
               });
             }
           });
