@@ -59,7 +59,7 @@ app.post('/db.*', function(req, res) {
   let backup;
   let status = 200;
   // backup not currently active
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting rows");
     client.query("DELETE FROM quads WHERE graph = ?",user, (err) => {
       if (err) {
@@ -98,15 +98,17 @@ app.post('/db.*', function(req, res) {
 
 app.get('/db.*', function(req, res) {
   let user = req.url.split(".")[1];
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("selecting rows");
-    client.query("SELECT * FROM quads WHERE graph = ?1",[user], (err, result) => {
+    client.query("SELECT * FROM quads WHERE graph = $1",[user], (err, result) => {
       console.log("!!!!!!!!!!!0");
       done();
       console.log("!!!!!!!!!!!1");
       if (err) {
+        console.log(err);
         console.log("had an error retrieving rows.");
         res.status(500).send();
+        return;
       }
       console.log("!!!!!!!!!!!2");
       res.send(JSON.stringify(result.rows));
