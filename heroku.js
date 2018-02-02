@@ -101,11 +101,14 @@ app.get('/db.*', function(req, res) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     console.log("selecting rows");
     client.query("SELECT * FROM quads WHERE graph = ?",user, (err, result) => {
+      console.log("!!!!!!!!!!!0");
       done();
+      console.log("!!!!!!!!!!!1");
       if (err) {
         console.log("had an error retrieving rows.");
         res.status(500).send();
       }
+      console.log("!!!!!!!!!!!2");
       res.send(JSON.stringify(result.rows));
     });
   });
