@@ -46,6 +46,7 @@ app.listen(port, () => console.log('Example app listening on port'+port+'!'))
 
 
 app.get('/dbinit', function (request, response) {
+  console.log("test 0");
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       // client.query('SELECT * FROM test_table', function(err, result) {
      //     done();
@@ -56,7 +57,7 @@ app.get('/dbinit', function (request, response) {
      //       response.render('pages/db', {results: result.rows});
      //     }
       // });
-
+    console.log("test 1");
     client.query(`CREATE TABLE IF NOT EXISTS quads (
       subject text NOT NULL,
       predicate text NOT NULL,
@@ -64,9 +65,14 @@ app.get('/dbinit', function (request, response) {
       graph text NOT NULL,
       UNIQUE(subject, predicate, object, graph)
     )`, (err, result)=> {
+      console.log("test 2");
+      done();
+      console.log("test 3");
       if (err) {
+        console.log("test 4a");
         console.error(err);
       } else {
+        console.log("test 4b");
         response.render('pages/dbinit', {results: "Created table."});
       }
     });
