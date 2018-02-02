@@ -13,7 +13,7 @@ const pg = require('pg');
 
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
+    client.query('SELECT * FROM quads', function(err, result) {
       done();
       if (err)
        { console.error(err); response.send("Error " + err); }
@@ -22,17 +22,6 @@ app.get('/db', function (request, response) {
     });
   });
 });
-
-
-// var dbinfo = {
-//   host: 'us-cdbr-iron-east-04.cleardb.net',
-//   user: 'bc8309dedbcac6',
-//   password: '5271b38e',
-//   database: 'heroku_d9a408c946dbc65'
-// };
-
-// assign and open database
-//const db = new sqlite3.Database('./db/todo.db');
 
 app.get('/', function(req, res) {
    res.sendFile(path.join(__dirname, '/test.html'));
@@ -46,17 +35,7 @@ app.listen(port, () => console.log('Example app listening on port'+port+'!'))
 
 
 app.get('/dbinit', function (request, response) {
-  console.log("test 0");
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-      // client.query('SELECT * FROM test_table', function(err, result) {
-     //     done();
-     //     if (err) {
-     //       console.error(err);
-     //       response.send("Error " + err);
-     //     } else {
-     //       response.render('pages/db', {results: result.rows});
-     //     }
-      // });
     client.query(`CREATE TABLE IF NOT EXISTS quads (
       subject text NOT NULL,
       predicate text NOT NULL,
@@ -68,10 +47,31 @@ app.get('/dbinit', function (request, response) {
       if (err) {
         console.error(err);
       } else {
-        console.log("test 4b");
         response.send("That totally worked!");
-        //response.render('pages/dbinit', {results: "Created table."});
       }
     });
   });
 });
+
+app.get('/dbput', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query( `INSERT INTO quads (
+      subject,
+      predicate,
+      object,
+      graph)
+      VALUES
+      ('Hello','World','Foo','Bar'),
+      ('Goodbye','World','Foo','Baz')
+    ;`, (err, result)=> {
+      done();
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("sent a response");
+        response.send("That totally worked!");
+      }
+    });
+  });
+});
+
