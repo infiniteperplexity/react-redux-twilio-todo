@@ -31,6 +31,7 @@ app.get('/*.js*', function(req, res) {
    res.sendFile(path.join(__dirname, req.url));
 });
 
+app.set('view engine', 'ejs');
 app.listen(port, () => console.log('Example app listening on port'+port+'!'))
 
 
