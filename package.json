@@ -7,7 +7,6 @@
     "path": "",
     "sqlite3": "^3.1.13",
     "sqlstring": "^2.3.0",
-    "mysql": "",
     "pg": "6.x"
   },
   "engines": {
