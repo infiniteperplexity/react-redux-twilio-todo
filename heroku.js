@@ -68,6 +68,7 @@ app.post('/db.*', function(req, res) {
       } else {
         if (inserts.length>0) {
           console.log("inserting rows");
+          console.log(insert);
           client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
             if (err) {
               console.log("had an error inserting rows");
