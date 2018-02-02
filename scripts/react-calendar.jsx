@@ -100,7 +100,7 @@ class CalendarNumberInput extends React.Component {
 		let occasions = {...task.occasions};
 		let occasion = this.props.occasion;
 		occasion = {...occasion, value: event.target.value};
-		occasions[occasion.day] = occasion;
+		occasions[occasion.moment] = occasion;
 		task.occasions = occasions;
 		this.props.modifyTask(task);
 	}

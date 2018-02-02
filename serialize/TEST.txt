@@ -2180,7 +2180,7 @@
   {
     "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
     "predicate": "rdfs:value",
-    "object": "2",
+    "object": "1",
     "graph": "TEST"
   },
   {
@@ -2192,25 +2192,25 @@
   {
     "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
     "predicate": ":occasion",
-    "object": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "object": "69a3f923-3247-4df5-818c-9c5f83b32baf",
     "graph": "TEST"
   },
   {
-    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "subject": "69a3f923-3247-4df5-818c-9c5f83b32baf",
     "predicate": "a",
     "object": ":Status",
     "graph": "TEST"
   },
   {
-    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "subject": "69a3f923-3247-4df5-818c-9c5f83b32baf",
     "predicate": "rdfs:value",
-    "object": "1",
+    "object": "0",
     "graph": "TEST"
   },
   {
-    "subject": "6263cf3f-d366-47bf-9c94-1d52c3a9ec7f",
+    "subject": "69a3f923-3247-4df5-818c-9c5f83b32baf",
     "predicate": ":moment",
-    "object": "1517472000",
+    "object": "1517558400",
     "graph": "TEST"
   },
   {

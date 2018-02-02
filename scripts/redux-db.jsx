@@ -312,6 +312,15 @@ function getTriples() {
 }
 // POST
 function updateTriples(triples) {
+	// test for duplicates here
+	// let duptest = triples.map(([s, p, o])=>JSON.stringify([s, p, o]));
+	// duptest.sort();
+	// for (let i=1; i<duptest.length; i++) {
+	// 	if (duptest[i]===duptest[i-1]) {
+	// 		console.log("apparent duplicate:");
+	// 		console.log(duptest[i]);
+	// 	}
+	// }
 	console.log("sending data");
 	console.log(triples);
 	fetch('db.'+user, {
