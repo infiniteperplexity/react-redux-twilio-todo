@@ -1,0 +1,1 @@
+pgEscape = require('pg-escape');

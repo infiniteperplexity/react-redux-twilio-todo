@@ -9,26 +9,26 @@ const app = express();
 app.use(bodyParser.json());
 
 
-// function escape(s) {
-//   if (typeof(s)==="boolean") {
-//     return String("'"+s+"'");
-//   }
-//   let san = sqlstring.escape(s);
-//   san = san.replace(/\\'/g,"''");
-//   return san;
-// }
-// function unescape(s) {
-//   let SPACER = "\u0000";
-//   let SREGEX = new RegExp(SPACER,"g");
-//   let unsan = s.replace(/\\n/g,SPACER);
-//   unsan = unsan.replace(/\\/g,"");
-//   unsan = unsan.replace(SREGEX,"\n");
-//   unsan = unsan.replace(/''/g,"'");
-//   return unsan;
-// }
+function escape(s) {
+  if (typeof(s)==="boolean") {
+    return String("'"+s+"'");
+  }
+  let san = sqlstring.escape(s);
+  san = san.replace(/\\'/g,"''");
+  return san;
+}
+function unescape(s) {
+  let SPACER = "\u0000";
+  let SREGEX = new RegExp(SPACER,"g");
+  let unsan = s.replace(/\\n/g,SPACER);
+  unsan = unsan.replace(/\\/g,"");
+  unsan = unsan.replace(SREGEX,"\n");
+  unsan = unsan.replace(/''/g,"'");
+  return unsan;
+}
 
-function escape(s) {return s};
-function unescape(s) {return s};
+// function escape(s) {return s};
+// function unescape(s) {return s};
 
 app.get('/', function(req, res) {
    res.sendFile(path.join(__dirname, '/index.html'));
@@ -40,12 +40,12 @@ app.get('/*.js*', function(req, res) {
 
 app.post('/db.*', function(req, res) {
   let user = req.url.split(".")[1];
-  // if (escape(user)!==("'"+user+"'")) {
-  //   console.log("no special characters allowed in user name.");
-  //   console.log(err);
-  //   res.status(404).send();
-  //   return;
-  // }
+  if (escape(user)!==("'"+user+"'")) {
+    console.log("no special characters allowed in user name.");
+    console.log(err);
+    res.status(404).send();
+    return;
+  }
   let inserts = [];
   console.log("received rows");
   for (let triplet of req.body) {
@@ -70,6 +70,7 @@ app.post('/db.*', function(req, res) {
           console.log("inserting rows");
           client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
             if (err) {
+              console.log("had an error inserting rows");
               done();
               console.error(err);
             } else {
