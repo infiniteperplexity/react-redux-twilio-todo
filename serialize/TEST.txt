@@ -84,6 +84,12 @@
     "graph": "TEST"
   },
   {
+    "subject": "$Inbox",
+    "predicate": "_15",
+    "object": "1d2acfa5-f5c3-4979-a5fc-a3c020a08632",
+    "graph": "TEST"
+  },
+  {
     "subject": "$Calendar",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -1533,6 +1539,18 @@
     "subject": "$Everything",
     "predicate": "_191",
     "object": "6d84dfd7-4a39-42cb-b78b-cd6d9d83f464",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_192",
+    "object": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Everything",
+    "predicate": "_193",
+    "object": "1d2acfa5-f5c3-4979-a5fc-a3c020a08632",
     "graph": "TEST"
   },
   {

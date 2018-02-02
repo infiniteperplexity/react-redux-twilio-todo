@@ -53,7 +53,7 @@ app.post('/db.*', function(req, res) {
     inserts.push('('+escape(s));
     inserts.push(escape(p));
     inserts.push(escape(o));
-    inserts.push('"'+user+'")');
+    inserts.push("'"+user+"')");
   }
   let insert = inserts.join(',');
   let backup;
