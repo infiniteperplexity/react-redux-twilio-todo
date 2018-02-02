@@ -57,18 +57,18 @@ app.get('/dbinit', function (request, response) {
      //     }
       // });
 
-      client.query(`CREATE TABLE IF NOT EXISTS quads (
+    client.query(`CREATE TABLE IF NOT EXISTS quads (
       subject text NOT NULL,
       predicate text NOT NULL,
       object text NOT NULL,
       graph text NOT NULL,
       UNIQUE(subject, predicate, object, graph)
-     )`, (err, result)=> {
+    )`, (err, result)=> {
       if (err) {
         console.error(err);
       } else {
         response.render('pages/dbinit', {results: "Created table."});
       }
-     };
     });
+  });
 });
