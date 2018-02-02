@@ -11,6 +11,13 @@ app.use(bodyParser.json());
 
 const pg = require('pg');
 
+app
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(port, () => console.log('Example app listening on port'+port+'!'));
+
+  
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM quads', function(err, result) {
@@ -31,8 +38,7 @@ app.get('/*.js*', function(req, res) {
    res.sendFile(path.join(__dirname, req.url));
 });
 
-app.set('view engine', 'ejs');
-app.listen(port, () => console.log('Example app listening on port'+port+'!'))
+
 
 
 app.get('/dbinit', function (request, response) {
