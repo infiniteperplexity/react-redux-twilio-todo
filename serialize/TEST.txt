@@ -78,6 +78,12 @@
     "graph": "TEST"
   },
   {
+    "subject": "$Inbox",
+    "predicate": "_14",
+    "object": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
+    "graph": "TEST"
+  },
+  {
     "subject": "$Calendar",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -8083,6 +8089,30 @@
   },
   {
     "subject": "6d84dfd7-4a39-42cb-b78b-cd6d9d83f464",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
+    "predicate": "rdfs:label",
+    "object": "contact Mitchell",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
+    "predicate": ":created",
+    "object": "1517601620",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2d6d8541-f2a3-43ef-8b81-f7bcbaca406f",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"
