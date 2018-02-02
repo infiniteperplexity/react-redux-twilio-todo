@@ -100,7 +100,7 @@ app.get('/db.*', function(req, res) {
   let user = req.url.split(".")[1];
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     console.log("selecting rows");
-    client.query("SELECT * FROM quads WHERE graph = ?",user, (err, result) => {
+    client.query("SELECT * FROM quads WHERE graph = ?1",[user], (err, result) => {
       console.log("!!!!!!!!!!!0");
       done();
       console.log("!!!!!!!!!!!1");
