@@ -3,7 +3,8 @@ $(function () {
 });
 
 function App(props) {
-	return <p>Hello world</p>;
+	let words = "Goodbye world";
+	return <p>{words}</p>;
 }
 window.onpopstate = function(event) {
    	if (event.state) {
