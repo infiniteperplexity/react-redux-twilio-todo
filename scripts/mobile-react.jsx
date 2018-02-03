@@ -7,13 +7,14 @@ class Container extends React.Component {
 	render() {
 		return (
 			<div className="taskapp">
-				<p> Hola, world! </p>
+				<TaskMenu {...this.props} />
+				<div><p> Hola, world! </p></div>
 			</div>
 		);
 	}
 }
-/*
-					<TaskMenu {...this.props} />
+
+/*			
 					<TaskDisplay {...this.props} />
 					<TaskModal {...this.props} />
 */
