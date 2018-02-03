@@ -8,16 +8,13 @@ class Container extends React.Component {
 		return (
 			<div className="taskapp">
 				<TaskMenu {...this.props} />
+				<TaskDisplay {...this.props} />
+				<TaskModal {...this.props} />
 				<div><p> Hola, world! </p></div>
 			</div>
 		);
 	}
 }
-
-/*			
-					<TaskDisplay {...this.props} />
-					<TaskModal {...this.props} />
-*/
 let App = ReactRedux.connect(
 	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
