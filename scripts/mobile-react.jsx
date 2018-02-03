@@ -13,7 +13,14 @@ window.onpopstate = function(event) {
 };
 window.history.replaceState({filter: "$Inbox"},"title", window.location);
 let destination = document.querySelector("#container");
+// ReactDOM.render(
+// 	<App />,
+// 	destination
+// );
+
 ReactDOM.render(
-	<App />,
+	<ReactRedux.Provider store={store}>
+		<App />
+	</ReactRedux.Provider>,
 	destination
 );
