@@ -16,7 +16,7 @@ class MobileMenu extends React.Component {
 			<option key={i} value={list.id}>{list.label}</option>
 		);
 		return (
-			<div className="taskmenu appframe">
+			<div>
 				<select value={this.props.app.filter}
               			onChange={this.handleChange}
       			>
