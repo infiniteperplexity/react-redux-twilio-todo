@@ -306,6 +306,8 @@ store.dispatch({type: "INITIALIZE"});
 
 function getTriples() {
 	debugObject.called = true;
+	debugObject.user = user;
+	debugObject.fetch = (fetch!==undefined);
 	fetch('db.'+user).then((res)=>{
 		debugObject.fetched = true;
 		if (res.status!==200) {
