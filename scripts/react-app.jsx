@@ -10,7 +10,8 @@ class Container extends React.Component {
 		if (MOBILE) {
 			return (
 				<div>
-					<TaskMenu {...this.props} />
+					<MobileMenu {...this.props} />
+					<p>Hello, mobile world!</p>
 				</div>
 			)
 		} else {
