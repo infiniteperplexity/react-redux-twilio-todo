@@ -3,7 +3,7 @@ $(function () {
 });
 
 
-let MOBILE = (window.innerWidth<800);
+let MOBILE = (window.innerWidth<2800);
 
 class Container extends React.Component {
 	render() {
