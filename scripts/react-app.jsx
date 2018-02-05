@@ -12,6 +12,7 @@ class Container extends React.Component {
 				<div>
 					<MobileMenu {...this.props} />
 					<p>Hello, mobile world!</p>
+					<p>{JSON.stringify(debugObject)}</p>
 				</div>
 			)
 		} else {

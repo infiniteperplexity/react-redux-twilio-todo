@@ -1,5 +1,5 @@
 /// currently, completing a task on any list other than inbox doesn't work right.
-
+var debugObject = {};
 
 let user = "TEST";
 //let user = "GLENN";
@@ -301,11 +301,18 @@ store.dispatch({type: "INITIALIZE"});
 
 // **** database connection functions
 // GET
+
+
+
 function getTriples() {
+	debugObject.called = true;
 	fetch('db.'+user).then((res)=>{
+		debugObject.fetched = true;
 		if (res.status!==200) {
+			debugObject.failed = true;
 	        store.dispatch({type: "FAIL_UPDATE", response: res});
 	    } else {
+	    	debugObject.succeeded = true;
 			res.json().then((data)=>store.dispatch({type: "GET_DATA", data: data}));
 		}
 	});
