@@ -31,6 +31,10 @@
 
 class MobileMenu extends React.Component {
 	render() {
+		let tasks = this.props.tasks;
+ 		if (!tasks) {
+ 			return null;
+ 		}
 		return (
 			<div>
 				<select>
