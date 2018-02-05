@@ -187,4 +187,4 @@ function dbfix(user, path) {
   });
 }
 
-fixdb("TEST","tasks_20180204.txt");
+dbfix("TEST","tasks_20180204.txt");
