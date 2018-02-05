@@ -148,4 +148,43 @@ app.get('/dbinit', function (request, response) {
 app.get('/dbfix', (req, res) => {
   // this should refresh from a different table in the database...the user BACKUP
 });
+function dbfix(user, path) {
+  fs.readFile(__dirname+"/saved/"+fname, function read(err, data) {
+    if (err) {
+        throw err;
+    }
+    let resources = JSON.parse(data).map(({subject, predicate, object})=>[subject, predicate, object]);
+    let inserts = [];
+    for (let [s, p, o] of resources) {
+      inserts.push('("'+s+'"');
+      inserts.push('"'+p+'"');
+      inserts.push('"'+o+'"');
+      inserts.push('"'+user+'")');
+    }
+    let insert = inserts.join(',');
+    pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+      console.log("deleting rows");
+      client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
+        if (err) {
+          done();
+            console.error(err);
+        } else {
+          if (inserts.length>0) {
+            console.log("inserting rows");
+            console.log(insert);
+            // this part seems vulnerable to duplicates...
+            client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
+              if (err) {
+                console.log("had an error inserting rows");
+                done();
+                console.error(err);
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+}
 
+fixdb("TEST","tasks_20180204.txt");
