@@ -3,7 +3,7 @@ $(function () {
 });
 
 
-let MOBILE = (window.screen.width<4500);
+let MOBILE = (window.screen.width<500);
 
 class Container extends React.Component {
 	render() {
@@ -11,8 +11,7 @@ class Container extends React.Component {
 			return (
 				<div>
 					<MobileMenu {...this.props} />
-					<p>Hello, mobile world!</p>
-					<p>{JSON.stringify(debugObject)}</p>
+					<MobileDisplay {...this.props} />
 				</div>
 			)
 		} else {

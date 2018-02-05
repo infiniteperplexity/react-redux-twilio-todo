@@ -305,16 +305,10 @@ store.dispatch({type: "INITIALIZE"});
 
 
 function getTriples() {
-	debugObject.called = true;
-	debugObject.user = user;
-	debugObject.fetch = (fetch!==undefined);
 	fetch('db.'+user).then((res)=>{
-		debugObject.fetched = true;
 		if (res.status!==200) {
-			debugObject.failed = true;
 	        store.dispatch({type: "FAIL_UPDATE", response: res});
 	    } else {
-	    	debugObject.succeeded = true;
 			res.json().then((data)=>store.dispatch({type: "GET_DATA", data: data}));
 		}
 	});
