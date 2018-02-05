@@ -3,13 +3,13 @@ $(function () {
 });
 
 
-let MOBILE = (window.screen.width<500);
+let MOBILE = (window.screen.width<2500);
 
 class Container extends React.Component {
 	render() {
 		if (MOBILE) {
 			return (
-				<div>
+				<div className="mobileapp">
 					<MobileMenu {...this.props} />
 					<MobileDisplay {...this.props} />
 				</div>

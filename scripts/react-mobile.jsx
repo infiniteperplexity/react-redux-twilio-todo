@@ -16,7 +16,7 @@ class MobileMenu extends React.Component {
 			<option key={i} value={list.id}>{list.label}</option>
 		);
 		return (
-			<div>
+			<div class="taskmenu">
 				<select value={this.props.app.filter}
               			onChange={this.handleChange}
       			>
@@ -53,7 +53,7 @@ function MobileDisplay({tasks, app, ...rest}) {
 	let listing;
 	listing = <MobileList app={app} tasks={tasks} filtered={filtered} {...rest} />;
 	return 	(
-		<div>
+		<div className="taskdisplay">
 			<TaskToolbar app={app} {...rest} />
 			{listing}
 		</div>
