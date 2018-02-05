@@ -149,7 +149,7 @@ app.get('/dbinit', function (request, response) {
 app.get('/dbfix', (req, res) => {
   // this should refresh from a different table in the database...the user BACKUP
 });
-function dbfix(user, path) {
+function dbfix(user, fname) {
   fs.readFile(__dirname+"/saved/"+fname, function read(err, data) {
     if (err) {
         throw err;
