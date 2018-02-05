@@ -3,15 +3,21 @@ $(function () {
 });
 
 
+let MOBILE = (window.innerWidth<800);
+
 class Container extends React.Component {
 	render() {
-		return (
-			<div className="taskapp">
-					<TaskMenu {...this.props} />
-					<TaskDisplay {...this.props} />
-					<TaskModal {...this.props} />
-			</div>
-		);
+		if (MOBILE) {
+			return (<p>Hello {window.innerWidth}-pixel world!</p>)
+		} else {
+			return (
+				<div className="taskapp">
+						<TaskMenu {...this.props} />
+						<TaskDisplay {...this.props} />
+						<TaskModal {...this.props} />
+				</div>
+			);
+		}
 	}
 }
 
@@ -112,6 +118,8 @@ window.onpopstate = function(event) {
 };
 window.history.replaceState({filter: "$Inbox"},"title", window.location);
 let destination = document.querySelector("#container");
+
+
 ReactDOM.render(
 	<ReactRedux.Provider store={store}>
 		<App />
