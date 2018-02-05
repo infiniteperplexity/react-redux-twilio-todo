@@ -3,12 +3,16 @@ $(function () {
 });
 
 
-let MOBILE = (window.innerWidth<2800);
+let MOBILE = (window.screen.width<500);
 
 class Container extends React.Component {
 	render() {
 		if (MOBILE) {
-			return (<p>Hello {window.screen.width}-pixel world!</p>)
+			return (
+				<div>
+					<TaskMenu {...this.props} />
+				</div>
+			)
 		} else {
 			return (
 				<div className="taskapp">
