@@ -157,10 +157,10 @@ function dbfix(user, fname) {
     let resources = JSON.parse(data).map(({subject, predicate, object})=>[subject, predicate, object]);
     let inserts = [];
     for (let [s, p, o] of resources) {
-      inserts.push('("'+s+'"');
-      inserts.push('"'+p+'"');
-      inserts.push('"'+o+'"');
-      inserts.push('"'+user+'")');
+      inserts.push('('+escape(s));
+      inserts.push(escape(p));
+      inserts.push(escape(o));
+      inserts.push("'"+user+"')");
     }
     let insert = inserts.join(',');
     pg.connect(process.env.DATABASE_URL, (err, client, done) => {
