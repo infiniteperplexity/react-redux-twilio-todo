@@ -8,7 +8,7 @@ let MOBILE = (window.innerWidth<2800);
 class Container extends React.Component {
 	render() {
 		if (MOBILE) {
-			return (<p>Hello {window.devicePixelRatio}-ratio world!</p>)
+			return (<p>Hello {window.screen.width}-pixel world!</p>)
 		} else {
 			return (
 				<div className="taskapp">
