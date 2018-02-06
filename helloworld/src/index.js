@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import moment from 'moment';
 import uuid from 'uuid';
-import HelloWorld from './HelloWorld';
 import store from './redux-db';
 import TaskMenu from './react-taskmenu';
 import {TaskDisplay} from './react-taskdisplay';
 import TaskModal from './react-modal';
 import {MobileMenu, MobileDisplay} from './react-mobile';
+import './index.css';
 
 let MOBILE = (window.screen.width<500);
 
