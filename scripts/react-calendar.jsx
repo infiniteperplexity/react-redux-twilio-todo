@@ -13,7 +13,8 @@ function TaskCalendar(props) {
 		/>)
 	);
 	return (
-		<table className="table table-bordered">
+		<div className="table table-bordered" style={{overflow: "scroll", height: "100vh"}}>
+		<table>
 			<thead>
 				<tr height="25px">
 					<CalendarHeader days={days} />
@@ -23,6 +24,7 @@ function TaskCalendar(props) {
 				{listing}
 			</tbody>
 		</table>
+		</div>
 	);
 }
 

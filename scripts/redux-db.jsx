@@ -17,7 +17,8 @@ function reducer(state, action) {
 					label: "",
 					inputs: "",
 					repeats: "",
-					comments: ""
+					comments: "",
+					clicked: ""
 				}
 			}
 		};
@@ -37,7 +38,8 @@ function reducer(state, action) {
 				label: task.label,
 				inputs: task.inputs,
 				repeats: task.repeats,
-				comments: task.comments
+				comments: task.comments,
+				clicked: task.clicked || task.created
 			}
 			return {...state, app};
 		// ****Actions that get or post data from the server

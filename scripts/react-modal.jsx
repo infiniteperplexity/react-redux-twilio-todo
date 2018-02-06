@@ -27,10 +27,14 @@ class TaskModalControls extends React.Component {
     task.inputs = modify.inputs;
     task.repeats = modify.repeats;
     task.comments = modify.comments;
+    if (task.clicked) {
+      task.clicked = modify.clicked;
+    }
     this.props.modifyTask(task);
     this.props.setControl("modify", {})
   }
   render() {
+    let task = {...this.props.tasks[this.props.app.modify.id]};
     return (
       <div>
         <div>
@@ -41,6 +45,9 @@ class TaskModalControls extends React.Component {
         </div>
         <div>
           Repeats: <ModalRepeatsInput {...this.props} />
+        </div>
+        <div>
+          Touched: <ModalTouchedInput disabled={task.repeats!=="instantly"} {...this.props} />
         </div>
         <div>
           Comments: <br /><ModalCommentsInput {...this.props} />
@@ -55,6 +62,7 @@ class TaskModalControls extends React.Component {
             </button>
           </span>
         </div>
+        <ModalJsonDebug task={task} />
       </div>
     );
   }
@@ -99,13 +107,14 @@ class ModalRepeatsInput extends React.Component {
     this.props.setControl("modify",modify);
   }
   render() {
+    console.log(this.props.app.modify.repeats);
     return (
       <select value={this.props.app.modify.repeats}
               onChange={this.handleChange}
       >
         <option value="none">None</option>
         <option value="daily">Daily</option>
-        <option value="instanty">Instant</option>
+        <option value="instantly">Instant</option>
       </select>
     );
   }
@@ -126,4 +135,27 @@ class ModalCommentsInput extends React.Component {
       />
     );
   }
+}
+
+class ModalTouchedInput extends React.Component {
+  handleChange = (event) => {
+    event.preventDefault();
+    let date = moment(event.target.value);
+    let modify = {...this.props.app.modify, clicked: date.unix()};
+    this.props.setControl("modify",modify);
+  }
+  render() {
+    let date = moment(this.props.app.modify.clicked,"X");
+    return <input type="date" disabled={this.props.disabled} value={date.format("YYYY-MM-DD")} onChange={this.handleChange} />
+  }
+}
+
+function ModalJsonDebug(props) {
+  return (
+    <div>
+      <pre>
+      {JSON.stringify(props.task,null,2)}   
+      </pre>
+    </div>
+  );
 }

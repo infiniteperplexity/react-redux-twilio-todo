@@ -25,7 +25,7 @@ function TaskList(props) {
 		});
 	}
 	return (
-		<div>
+		<div style={{overflow: "scroll", height: "100vh"}}>
 			{listing}
 		</div>
 	);
