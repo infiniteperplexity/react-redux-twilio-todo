@@ -19328,12 +19328,7 @@ var Container = function (_React$Component) {
 					{ className: 'taskapp' },
 					React.createElement(_reactTaskmenu2.default, this.props),
 					React.createElement(_reactTaskdisplay.TaskDisplay, this.props),
-					React.createElement(_reactModal2.default, this.props),
-					React.createElement(
-						'p',
-						null,
-						'hello world'
-					)
+					React.createElement(_reactModal2.default, this.props)
 				);
 			}
 		}

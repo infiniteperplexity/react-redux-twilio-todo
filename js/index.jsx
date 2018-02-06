@@ -26,7 +26,6 @@ class Container extends React.Component {
 						<TaskMenu {...this.props} />
 						<TaskDisplay {...this.props} />
 						<TaskModal {...this.props} />
-						<p>hello world</p>
 				</div>
 			);
 		}
