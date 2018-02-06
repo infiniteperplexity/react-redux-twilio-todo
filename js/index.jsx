@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const React = require('react');
+const ReactDOM = require('react-dom');
 import {Provider, connect} from 'react-redux';
-import moment from 'moment';
-import uuid from 'uuid';
+const moment = require('moment');
+const uuid = require('uuid');
 import store from './redux-db.jsx';
 import TaskMenu from './react-taskmenu.jsx';
 import {TaskDisplay} from './react-taskdisplay.jsx';
 import TaskModal from './react-modal.jsx';
 import {MobileMenu, MobileDisplay} from './react-mobile.jsx';
-import './index.css';
 
 let MOBILE = (window.screen.width<500);
 
@@ -139,4 +138,3 @@ ReactDOM.render(
 	</Provider>,
 	destination
 );
-
