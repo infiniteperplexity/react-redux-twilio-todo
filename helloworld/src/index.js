@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import moment from 'moment';
 import uuid from 'uuid';
-import store from './redux-db';
-import TaskMenu from './react-taskmenu';
-import {TaskDisplay} from './react-taskdisplay';
-import TaskModal from './react-modal';
-import {MobileMenu, MobileDisplay} from './react-mobile';
+import store from './redux-db.jsx';
+import TaskMenu from './react-taskmenu.jsx';
+import {TaskDisplay} from './react-taskdisplay.jsx';
+import TaskModal from './react-modal.jsx';
+import {MobileMenu, MobileDisplay} from './react-mobile.jsx';
 import './index.css';
 
 let MOBILE = (window.screen.width<500);
@@ -130,7 +130,7 @@ window.onpopstate = function(event) {
   	}
 };
 window.history.replaceState({filter: "$Inbox"},"title", window.location);
-let destination = document.querySelector("#root");
+let destination = document.querySelector("#container");
 
 
 ReactDOM.render(

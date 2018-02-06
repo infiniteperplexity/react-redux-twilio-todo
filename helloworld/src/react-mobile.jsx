@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import TaskMenu from './react-taskmenu';
-import {TaskToolbar} from './react-taskdisplay';
+import TaskMenu from './react-taskmenu.jsx';
+import {TaskToolbar} from './react-taskdisplay.jsx';
 
 class MobileMenu extends React.Component {
 	handleChange = (event)=> {

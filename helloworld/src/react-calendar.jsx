@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import uuid from 'uuid';
-import {TaskButton} from './react-tasklist';
+import {TaskButton} from './react-tasklist.jsx';
 
 function TaskCalendar(props) {
 	let tasks = props.filtered;

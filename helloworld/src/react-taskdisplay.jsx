@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import {TaskList} from './react-tasklist';
-import TaskCalendar from './react-calendar';
+import {TaskList} from './react-tasklist.jsx';
+import TaskCalendar from './react-calendar.jsx';
 
 /********* The big element that contains lists and calendars ****************/
 function TaskDisplay({tasks, app, ...rest}) {
