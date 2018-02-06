@@ -1,14 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider, connect} from 'react-redux';
-import moment from 'moment';
-import uuid from 'uuid';
-import HelloWorld from './HelloWorld';
-import store from './redux-db';
-import TaskMenu from './react-taskmenu';
-import {TaskDisplay} from './react-taskdisplay';
-import TaskModal from './react-modal';
-import {MobileMenu, MobileDisplay} from './react-mobile';
 
 let MOBILE = (window.screen.width<500);
 
@@ -27,14 +16,13 @@ class Container extends React.Component {
 						<TaskMenu {...this.props} />
 						<TaskDisplay {...this.props} />
 						<TaskModal {...this.props} />
-						<p>hello world</p>
 				</div>
 			);
 		}
 	}
 }
 
-let App = connect(
+let App = ReactRedux.connect(
 	(state) => ({app: state.app, tasks: state.tasks}),
 	(dispatch) => ({
 		setControl: (control, value) => {
@@ -130,13 +118,12 @@ window.onpopstate = function(event) {
   	}
 };
 window.history.replaceState({filter: "$Inbox"},"title", window.location);
-let destination = document.querySelector("#root");
+let destination = document.querySelector("#container");
 
 
 ReactDOM.render(
-	<Provider store={store}>
+	<ReactRedux.Provider store={store}>
 		<App />
-	</Provider>,
+	</ReactRedux.Provider>,
 	destination
 );
-
