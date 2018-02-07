@@ -1,4 +1,3 @@
-console.time("scripts");
 const React = require('react');
 const ReactDOM = require('react-dom');
 import {Provider, connect} from 'react-redux';
@@ -13,11 +12,7 @@ import {MobileMenu, MobileDisplay} from './react-mobile.jsx';
 let MOBILE = (window.screen.width<500);
 
 class Container extends React.Component {
-	componentDidMount() {
-		console.timeEnd("rendering");
-	}
 	render() {
-		console.time("rendering");
 		if (MOBILE) {
 			return (
 				<div className="mobileapp">
@@ -142,4 +137,3 @@ ReactDOM.render(
 	</Provider>,
 	destination
 );
-console.timeEnd("scripts");

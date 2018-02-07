@@ -43,14 +43,10 @@ function reducer(state, action) {
 			return {...state, app};
 		// ****Actions that get or post data from the server
 		case "INITIALIZE":
-			console.time("update");
 			getTriples();
 			return state;
 		// Parse triples into hierarchical object data
 		case "GET_DATA":
-			console.log("got data");
-			console.log(action.data);
-			console.time("assemble");
 			tasks = {};
 			statuses = {};
 			// set up static lists
@@ -218,16 +214,9 @@ function reducer(state, action) {
 					tasks.$Everything.subtasks.push(tasks[id]);
 				}
 			}
-			console.log("got tasks");
-			console.log(tasks);
-			console.timeEnd("assemble");
-			console.timeEnd("update");
 			return {...state, tasks: tasks};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
-			console.log("modifying data");
-			console.log(action);
-			console.time("parse");
 			tasks = {...state.tasks};
 			action.add = action.add || [];
 			action.delete = action.delete || [];
@@ -292,12 +281,6 @@ function reducer(state, action) {
 				}
 				
 			}
-			console.timeEnd("parse");
-			console.time("update");
-			let json = JSON.stringify(triples);
-			let chars = json.length;
-			let mb = chars*2/1048576;
-			console.log("chars: " + chars + ", MB: "+mb);
 			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":
@@ -336,8 +319,6 @@ function updateTriples(triples) {
 	// 		console.log(duptest[i]);
 	// 	}
 	// }
-	console.log("sending data");
-	console.log(triples);
 	fetch('db.'+user, {
 		method: 'POST',
 		headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
