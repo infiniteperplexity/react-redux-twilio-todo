@@ -19294,6 +19294,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+console.time("scripts");
 var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(194);
 
@@ -19313,8 +19314,14 @@ var Container = function (_React$Component) {
 	}
 
 	_createClass(Container, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			console.timeEnd("rendering");
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			console.time("rendering");
 			if (MOBILE) {
 				return React.createElement(
 					'div',
@@ -19495,6 +19502,7 @@ ReactDOM.render(React.createElement(
 	{ store: _reduxDb2.default },
 	React.createElement(App, null)
 ), destination);
+console.timeEnd("scripts");
 
 /***/ }),
 /* 157 */
@@ -23232,12 +23240,14 @@ function reducer(state, action) {
 			return _extends({}, state, { app: app });
 		// ****Actions that get or post data from the server
 		case "INITIALIZE":
+			console.time("update");
 			getTriples();
 			return state;
 		// Parse triples into hierarchical object data
 		case "GET_DATA":
 			console.log("got data");
 			console.log(action.data);
+			console.time("assemble");
 			tasks = {};
 			statuses = {};
 			// set up static lists
@@ -23803,11 +23813,14 @@ function reducer(state, action) {
 			}
 			console.log("got tasks");
 			console.log(tasks);
+			console.timeEnd("assemble");
+			console.timeEnd("update");
 			return _extends({}, state, { tasks: tasks });
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			console.log("modifying data");
 			console.log(action);
+			console.time(parse);
 			tasks = _extends({}, state.tasks);
 			action.add = action.add || [];
 			action.delete = action.delete || [];
@@ -23937,6 +23950,8 @@ function reducer(state, action) {
 					}
 				}
 			}
+			console.timeEnd("parse");
+			console.time("update");
 			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":

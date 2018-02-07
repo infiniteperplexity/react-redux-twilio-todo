@@ -43,12 +43,14 @@ function reducer(state, action) {
 			return {...state, app};
 		// ****Actions that get or post data from the server
 		case "INITIALIZE":
+			console.time("update");
 			getTriples();
 			return state;
 		// Parse triples into hierarchical object data
 		case "GET_DATA":
 			console.log("got data");
 			console.log(action.data);
+			console.time("assemble");
 			tasks = {};
 			statuses = {};
 			// set up static lists
@@ -218,11 +220,14 @@ function reducer(state, action) {
 			}
 			console.log("got tasks");
 			console.log(tasks);
+			console.timeEnd("assemble");
+			console.timeEnd("update");
 			return {...state, tasks: tasks};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			console.log("modifying data");
 			console.log(action);
+			console.time(parse);
 			tasks = {...state.tasks};
 			action.add = action.add || [];
 			action.delete = action.delete || [];
@@ -287,6 +292,8 @@ function reducer(state, action) {
 				}
 				
 			}
+			console.timeEnd("parse");
+			console.time("update");
 			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":
