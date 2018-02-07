@@ -8,7 +8,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 
 function escape(s) {
