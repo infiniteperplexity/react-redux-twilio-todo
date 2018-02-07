@@ -47,9 +47,20 @@ app.post('/db.*', function(req, res) {
     res.status(404).send();
     return;
   }
-  let inserts = [];
   console.log("received rows");
-  for (let triplet of req.body) {
+
+
+  let delt = req.body.deletes;
+  let deletes = [];
+  for (let triplet of delt) {
+    let [s, p, o] = triplet;
+    deletes.push('(subject = ' + escape(s) + ' AND predicate = ' + escape(p) + ' AND object = ' + escape(o) + ' AND graph = ' + "'"+user+"')");
+  }
+  let delet = deletes.join(' OR ')
+
+  let insrt = req.body.inserts;
+  let inserts = [];
+  for (let triplet of insrt) {
       let [s, p, o] = triplet;
       inserts.push('('+escape(s));
       inserts.push(escape(p));
@@ -69,7 +80,9 @@ app.post('/db.*', function(req, res) {
     }
     backup = rows;
     db.serialize(()=> {
-      db.run("DELETE FROM quads WHERE graph = ?",user,(err)=>{
+      console.log("DELETE FROM quads WHERE "+delet);
+      db.run("DELETE FROM quads WHERE "+delet,(err)=>{
+      //db.run("DELETE FROM quads WHERE graph = ?",user,(err)=>{
         if (err) {
           console.log("had an error deleting rows.");
           console.log(err);

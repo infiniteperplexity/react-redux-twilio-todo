@@ -84,12 +84,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Inbox",
-    "predicate": "_15",
-    "object": "6b206217-0d33-4627-a2c5-2167a488e8b5",
-    "graph": "TEST"
-  },
-  {
     "subject": "$Calendar",
     "predicate": "_1",
     "object": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
@@ -1560,12 +1554,6 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Everything",
-    "predicate": "_195",
-    "object": "6b206217-0d33-4627-a2c5-2167a488e8b5",
-    "graph": "TEST"
-  },
-  {
     "subject": "$Lists",
     "predicate": "_1",
     "object": "543a18f7-c722-46c7-8713-9519e768ce0c",
@@ -2385,6 +2373,30 @@
     "subject": "65c63df0-f9b2-45bd-b82c-3a407f5e4175",
     "predicate": ":moment",
     "object": "1517299200",
+    "graph": "TEST"
+  },
+  {
+    "subject": "7c515db2-4663-4f10-a941-b4c28d526e32",
+    "predicate": ":occasion",
+    "object": "af66eb3a-69c2-4011-a948-f9ec6203c5b9",
+    "graph": "TEST"
+  },
+  {
+    "subject": "af66eb3a-69c2-4011-a948-f9ec6203c5b9",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "af66eb3a-69c2-4011-a948-f9ec6203c5b9",
+    "predicate": "rdfs:value",
+    "object": "true",
+    "graph": "TEST"
+  },
+  {
+    "subject": "af66eb3a-69c2-4011-a948-f9ec6203c5b9",
+    "predicate": ":moment",
+    "object": "1517990400",
     "graph": "TEST"
   },
   {
@@ -8395,6 +8407,36 @@
   },
   {
     "subject": "4d7549f9-998d-43b0-9632-503bad4e5c33",
+    "predicate": ":inputs",
+    "object": "check",
+    "graph": "TEST"
+  },
+  {
+    "subject": "$Inbox",
+    "predicate": "_15",
+    "object": "1f1e78d2-1dc8-49ee-a397-5a271ff0c429",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1f1e78d2-1dc8-49ee-a397-5a271ff0c429",
+    "predicate": "a",
+    "object": ":Task",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1f1e78d2-1dc8-49ee-a397-5a271ff0c429",
+    "predicate": "rdfs:label",
+    "object": "test",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1f1e78d2-1dc8-49ee-a397-5a271ff0c429",
+    "predicate": ":created",
+    "object": "1518026781",
+    "graph": "TEST"
+  },
+  {
+    "subject": "1f1e78d2-1dc8-49ee-a397-5a271ff0c429",
     "predicate": ":inputs",
     "object": "check",
     "graph": "TEST"

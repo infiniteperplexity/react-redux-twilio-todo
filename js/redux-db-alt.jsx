@@ -19,7 +19,8 @@ function reducer(state, action) {
 					comments: "",
 					clicked: ""
 				}
-			}
+			},
+			triples: [];
 		};
 	}
 	let tasks, statuses, app;
@@ -214,8 +215,8 @@ function reducer(state, action) {
 					tasks.$Everything.subtasks.push(tasks[id]);
 				}
 			}
-
-			return {...state, tasks: tasks, triples: action.data.map(({subject, predicate, object})=>([subject, predicate, object]))};
+			action.data.sort();
+			return {...state, tasks: tasks, triples: action.data};
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			tasks = {...state.tasks};
@@ -279,16 +280,17 @@ function reducer(state, action) {
 						triples.push([o.id, "rdfs:value", o.value]);
 						triples.push([o.id, ":moment", o.moment]);
 					}
-				}	
+				}
+				
 			}
+			// here's where we would diff it.
 			let t0 = state.triples.map(e=>JSON.stringify(e));
 			let t1 = triples.map(e=>JSON.stringify(e));
 			let inserts = t1.filter(e=>!t0.includes(e));
-			let deletes = t0.filter(e=>!t1.includes(e));
+			let deletes = t1.filter(e=>!t0.includes(e));
 			inserts = inserts.map(e=>JSON.parse(e));
 			deletes = deletes.map(e=>JSON.parse(e));
-			//updateTriples(triples);
-			updateTriples(inserts, deletes);
+			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":
 			alert("database update failed.");
@@ -316,8 +318,7 @@ function getTriples() {
 	});
 }
 // POST
-//function updateTriples(triples) {
-function updateTriples(inserts, deletes) {
+function updateTriples(triples) {
 	// test for duplicates here
 	// let duptest = triples.map(([s, p, o])=>JSON.stringify([s, p, o]));
 	// duptest.sort();
@@ -330,8 +331,7 @@ function updateTriples(inserts, deletes) {
 	fetch('db.'+user, {
 		method: 'POST',
 		headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-		//body: JSON.stringify(triples)
-		body: JSON.stringify({inserts: inserts, deletes: deletes})
+		body: JSON.stringify(triples)
 	}).then((res)=>{
 		if (res.status!==200) {
 	        store.dispatch({type: "FAIL_UPDATE", response: res});

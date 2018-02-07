@@ -23310,8 +23310,8 @@ function reducer(state, action) {
 
 			try {
 				for (var _iterator3 = action.data[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-					var _ref3 = _step3.value;
-					var p = _ref3.predicate;
+					var _ref4 = _step3.value;
+					var p = _ref4.predicate;
 
 					if (!predicates[p]) {
 						predicates[p] = [];
@@ -23345,10 +23345,10 @@ function reducer(state, action) {
 
 			try {
 				for (var _iterator4 = action.data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-					var _ref4 = _step4.value;
-					var s = _ref4.subject,
-					    _p = _ref4.predicate,
-					    o = _ref4.object;
+					var _ref5 = _step4.value;
+					var s = _ref5.subject,
+					    _p = _ref5.predicate,
+					    o = _ref5.object;
 
 					if (!predicates[_p]) {
 						predicates[_p] = [];
@@ -23807,7 +23807,13 @@ function reducer(state, action) {
 					tasks.$Everything.subtasks.push(tasks[id]);
 				}
 			}
-			return _extends({}, state, { tasks: tasks });
+
+			return _extends({}, state, { tasks: tasks, triples: action.data.map(function (_ref3) {
+					var subject = _ref3.subject,
+					    predicate = _ref3.predicate,
+					    object = _ref3.object;
+					return [subject, predicate, object];
+				}) });
 		case "MODIFY_DATA":
 			// delete, add, or modify tasks
 			tasks = _extends({}, state.tasks);
@@ -23939,7 +23945,26 @@ function reducer(state, action) {
 					}
 				}
 			}
-			updateTriples(triples);
+			var t0 = state.triples.map(function (e) {
+				return JSON.stringify(e);
+			});
+			var t1 = triples.map(function (e) {
+				return JSON.stringify(e);
+			});
+			var inserts = t1.filter(function (e) {
+				return !t0.includes(e);
+			});
+			var deletes = t0.filter(function (e) {
+				return !t1.includes(e);
+			});
+			inserts = inserts.map(function (e) {
+				return JSON.parse(e);
+			});
+			deletes = deletes.map(function (e) {
+				return JSON.parse(e);
+			});
+			//updateTriples(triples);
+			updateTriples(inserts, deletes);
 			return state;
 		case "FAIL_UPDATE":
 			alert("database update failed.");
@@ -23968,7 +23993,8 @@ function getTriples() {
 	});
 }
 // POST
-function updateTriples(triples) {
+//function updateTriples(triples) {
+function updateTriples(inserts, deletes) {
 	// test for duplicates here
 	// let duptest = triples.map(([s, p, o])=>JSON.stringify([s, p, o]));
 	// duptest.sort();
@@ -23981,7 +24007,8 @@ function updateTriples(triples) {
 	fetch('db.' + user, {
 		method: 'POST',
 		headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }),
-		body: JSON.stringify(triples)
+		//body: JSON.stringify(triples)
+		body: JSON.stringify({ inserts: inserts, deletes: deletes })
 	}).then(function (res) {
 		if (res.status !== 200) {
 			store.dispatch({ type: "FAIL_UPDATE", response: res });

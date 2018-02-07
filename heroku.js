@@ -49,9 +49,17 @@ app.post('/db.*', function(req, res) {
     res.status(404).send();
     return;
   }
-  let inserts = [];
   console.log("received rows");
-  for (let triplet of req.body) {
+  // rows to delete
+  let deletes = [];
+  for (let triplet of req.body.deletes) {
+    let [s, p, o] = triplet;
+    deletes.push('(subject = ' + escape(s) + ' AND predicate = ' + escape(p) + ' AND object = ' + escape(o) + ' AND graph = ' + "'"+user+"')");
+  }
+  let deletes = deletes.join(' OR ');
+  // rows to insert
+  let inserts = [];
+  for (let triplet of req.body.inserts) {
     let [s, p, o] = triplet;
     inserts.push('('+escape(s));
     inserts.push(escape(p));
@@ -66,7 +74,8 @@ app.post('/db.*', function(req, res) {
   // I really should learn how to use aync / await
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting rows");
-    client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
+    //client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
+      client.query("DELETE FROM quads WHERE "+deletes, (err) => {
       if (err) {
         done();
           console.error(err);
