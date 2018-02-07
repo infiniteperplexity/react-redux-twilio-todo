@@ -45,9 +45,11 @@ function reducer(state, action) {
 		// ****Actions that get or post data from the server
 		case "INITIALIZE":
 			getTriples();
+			console.time("update");
 			return state;
 		// Parse triples into hierarchical object data
 		case "GET_DATA":
+			console.timeEnd("update");
 			console.log("got data");
 			console.log(action.data);
 			tasks = {};
@@ -288,6 +290,7 @@ function reducer(state, action) {
 				}
 				
 			}
+			console.time("update");
 			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":
