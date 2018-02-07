@@ -294,6 +294,10 @@ function reducer(state, action) {
 			}
 			console.timeEnd("parse");
 			console.time("update");
+			let json = JSON.stringify(triples);
+			let chars = json.length;
+			let mb = chars*2/1048576;
+			console.log("chars: " + chars + ", MB: "+mb);
 			updateTriples(triples);
 			return state;
 		case "FAIL_UPDATE":
