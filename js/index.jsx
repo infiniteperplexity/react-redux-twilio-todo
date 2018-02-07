@@ -43,7 +43,19 @@ let App = connect(
 		},
 		showDetails: (id) => dispatch({type: "SHOW_DETAILS", id: id}),
 		modifyTask: (task) => dispatch({type: "MODIFY_DATA", modify: [task]}),
-		deleteTask: (id) => dispatch({type: "MODIFY_DATA", delete: [id]}),
+		//deleteTask: (id) => dispatch({type: "MODIFY_DATA", delete: [id]}),
+		deleteTask: (id) => {
+			let filter = store.getState().app.filter;
+			let tasks = store.getState().tasks;
+			let list = tasks[filter];
+			let task = tasks[id];
+			if (list && list.subtasks && list.subtasks.includes(task)) {
+				list = {...list, subtasks: [...list.subtasks]};
+				list.subtasks.splice(list.subtasks.indexOf(task),1);
+				return dispatch({type: "MODIFY_DATA", delete: [id], modify: [list]});
+			}
+			return dispatch({type: "MODIFY_DATA", delete: [id]});
+		},
 		completeTask: (id) => {
 			let tasks = {...store.getState().tasks};
 			let task = {...tasks[id]};

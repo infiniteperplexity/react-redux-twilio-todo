@@ -19361,7 +19361,17 @@ var App = (0, _reactRedux.connect)(function (state) {
 		modifyTask: function modifyTask(task) {
 			return dispatch({ type: "MODIFY_DATA", modify: [task] });
 		},
+		//deleteTask: (id) => dispatch({type: "MODIFY_DATA", delete: [id]}),
 		deleteTask: function deleteTask(id) {
+			var filter = _reduxDb2.default.getState().app.filter;
+			var tasks = _reduxDb2.default.getState().tasks;
+			var list = tasks[filter];
+			var task = tasks[id];
+			if (list && list.subtasks && list.subtasks.includes(task)) {
+				list = _extends({}, list, { subtasks: [].concat(_toConsumableArray(list.subtasks)) });
+				list.subtasks.splice(list.subtasks.indexOf(task), 1);
+				return dispatch({ type: "MODIFY_DATA", delete: [id], modify: [list] });
+			}
 			return dispatch({ type: "MODIFY_DATA", delete: [id] });
 		},
 		completeTask: function completeTask(id) {
@@ -23967,8 +23977,8 @@ function reducer(state, action) {
 			//updateTriples(triples);
 			updateTriples(inserts, deletes);
 			// if we're going to fix this, we need to deal with list updating better
-			return state;
-		//return {...state, tasks: tasks};
+			//return state;
+			return _extends({}, state, { tasks: tasks });
 		case "FAIL_UPDATE":
 			alert("database update failed.");
 			console.log(action.response);

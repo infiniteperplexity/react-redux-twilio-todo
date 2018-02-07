@@ -8532,15 +8532,27 @@
     "graph": "TEST"
   },
   {
-    "subject": "$Inbox",
-    "predicate": "_15",
-    "object": "ed3feb79-35f1-41b0-8efe-db60152e0613",
+    "subject": "57188fce-7510-4905-b21d-927832a6ce41",
+    "predicate": ":occasion",
+    "object": "e9a9766a-bbb6-4519-add4-5b14bee84321",
     "graph": "TEST"
   },
   {
-    "subject": "$Everything",
-    "predicate": "_195",
-    "object": "ed3feb79-35f1-41b0-8efe-db60152e0613",
+    "subject": "e9a9766a-bbb6-4519-add4-5b14bee84321",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9a9766a-bbb6-4519-add4-5b14bee84321",
+    "predicate": ":moment",
+    "object": "1517990400",
+    "graph": "TEST"
+  },
+  {
+    "subject": "e9a9766a-bbb6-4519-add4-5b14bee84321",
+    "predicate": "rdfs:value",
+    "object": "false",
     "graph": "TEST"
   }
 ]

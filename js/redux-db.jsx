@@ -291,8 +291,8 @@ function reducer(state, action) {
 			//updateTriples(triples);
 			updateTriples(inserts, deletes);
 			// if we're going to fix this, we need to deal with list updating better
-			return state;
-			//return {...state, tasks: tasks};
+			//return state;
+			return {...state, tasks: tasks};
 		case "FAIL_UPDATE":
 			alert("database update failed.");
 			console.log(action.response);
