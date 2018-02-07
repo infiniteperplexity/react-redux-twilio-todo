@@ -227,7 +227,7 @@ function reducer(state, action) {
 			// delete, add, or modify tasks
 			console.log("modifying data");
 			console.log(action);
-			console.time(parse);
+			console.time("parse");
 			tasks = {...state.tasks};
 			action.add = action.add || [];
 			action.delete = action.delete || [];
