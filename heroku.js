@@ -56,7 +56,12 @@ app.post('/db.*', function(req, res) {
     let [s, p, o] = triplet;
     deletes.push('(subject = ' + escape(s) + ' AND predicate = ' + escape(p) + ' AND object = ' + escape(o) + ' AND graph = ' + "'"+user+"')");
   }
-  let deletes = deletes.join(' OR ');
+  if (deletes.length===0) {
+    // dummy that's never true
+    deletes = "2+2 = 5";
+  } else {
+    deletes = deletes.join(' OR ');
+  }
   // rows to insert
   let inserts = [];
   for (let triplet of req.body.inserts) {
