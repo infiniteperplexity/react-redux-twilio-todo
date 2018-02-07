@@ -281,6 +281,7 @@ function reducer(state, action) {
 					}
 				}	
 			}
+			// this diffing may not be necessary if we continue to do things this way.
 			let t0 = state.triples.map(e=>JSON.stringify(e));
 			let t1 = triples.map(e=>JSON.stringify(e));
 			let inserts = t1.filter(e=>!t0.includes(e));
@@ -289,7 +290,9 @@ function reducer(state, action) {
 			deletes = deletes.map(e=>JSON.parse(e));
 			//updateTriples(triples);
 			updateTriples(inserts, deletes);
+			// if we're going to fix this, we need to deal with list updating better
 			return state;
+			//return {...state, tasks: tasks};
 		case "FAIL_UPDATE":
 			alert("database update failed.");
 			console.log(action.response);

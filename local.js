@@ -57,7 +57,9 @@ app.post('/db.*', function(req, res) {
     deletes.push('(subject = ' + escape(s) + ' AND predicate = ' + escape(p) + ' AND object = ' + escape(o) + ' AND graph = ' + "'"+user+"')");
   }
   let delet = deletes.join(' OR ')
-
+  if (deletes.length===0) {
+    delet = "2+2 = 5";
+  }
   let insrt = req.body.inserts;
   let inserts = [];
   for (let triplet of insrt) {
