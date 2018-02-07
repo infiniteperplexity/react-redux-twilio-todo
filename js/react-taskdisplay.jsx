@@ -6,7 +6,10 @@ import TaskCalendar from './react-calendar.jsx';
 /********* The big element that contains lists and calendars ****************/
 function TaskDisplay({tasks, app, ...rest}) {
 	if (!tasks) {
-		return null;
+		tasks = {};
+		tasks.$Inbox = {
+			subtasks: []
+		};
 	}
 	let filter = app.filter;
 	if (!tasks[filter]) {

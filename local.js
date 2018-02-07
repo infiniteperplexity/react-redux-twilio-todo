@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 const db = new sqlite3.Database('./db/todo.db');
 
 app.get('/', function(req, res) {
-   res.sendFile(path.join(__dirname, '/backup.html'));
+   res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get('/*.js*', function(req, res) {

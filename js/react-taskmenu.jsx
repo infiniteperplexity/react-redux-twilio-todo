@@ -43,7 +43,12 @@ class TaskMenu extends React.Component {
 		let app = this.props.app;
 		let setControl = this.props.setControl;
 		if (!tasks) {
-			return null;
+			tasks = {};
+			tasks.$Static = {};
+			tasks.$Static.subtasks = ["Inbox","Calendar","Repeating","Clickers","Completed","Everything","Static","Lists"].map((label)=>{
+				return {label: label, id: "$"+label};
+			});
+			tasks.$Lists = {subtasks: []};
 		}
 		let statics = tasks.$Static.subtasks.map((list,i)=>(
 			<div	key={i}
