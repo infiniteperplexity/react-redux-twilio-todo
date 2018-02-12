@@ -52,6 +52,7 @@ class TaskModalControls extends React.Component {
         <div>
           Touched: <ModalTouchedInput disabled={task.repeats!=="instantly"} {...this.props} />
         </div>
+        <ModalRepeatStats task={task} />
         <div>
           Comments: <br /><ModalCommentsInput {...this.props} />
         </div>
@@ -151,6 +152,34 @@ class ModalTouchedInput extends React.Component {
     let date = moment(this.props.app.modify.clicked,"X");
     return <input type="date" disabled={this.props.disabled} value={date.format("YYYY-MM-DD")} onChange={this.handleChange} />
   }
+}
+
+function ModalRepeatStats(props) {
+  console.log(props);
+  let task = props.task;
+  if (task.repeats!=="daily" || !task.occasions || task.inputs!=="number") {
+    return null;
+  }
+  let days = [moment().startOf('day')];
+  for (let i=0; i<6; i++) {
+    let day = moment(days[0]);
+    days.unshift(day.subtract(1,'days'));
+  }
+  let numerator = 0;
+  let denominator = 0;
+  for (let day of days) {
+    let occ = task.occasions[day.unix()];
+    if (occ) {
+      numerator+=Number(occ.value);
+      denominator+=1;
+    }
+  }
+  return (
+    <div>
+      <div>Weekly Total: {numerator}</div>   
+      <div>Weekly Average: {(numerator/denominator).toFixed(2)}</div>
+    </div>
+  );
 }
 
 function ModalJsonDebug(props) {

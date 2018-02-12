@@ -24800,6 +24800,7 @@ var TaskModalControls = function (_React$Component) {
           'Touched: ',
           _react2.default.createElement(ModalTouchedInput, _extends({ disabled: task.repeats !== "instantly" }, this.props))
         ),
+        _react2.default.createElement(ModalRepeatStats, { task: task }),
         _react2.default.createElement(
           'div',
           null,
@@ -25035,6 +25036,66 @@ var ModalTouchedInput = function (_React$Component6) {
 
   return ModalTouchedInput;
 }(_react2.default.Component);
+
+function ModalRepeatStats(props) {
+  console.log(props);
+  var task = props.task;
+  if (task.repeats !== "daily" || !task.occasions || task.inputs !== "number") {
+    return null;
+  }
+  var days = [(0, _moment2.default)().startOf('day')];
+  for (var i = 0; i < 6; i++) {
+    var day = (0, _moment2.default)(days[0]);
+    days.unshift(day.subtract(1, 'days'));
+  }
+  var numerator = 0;
+  var denominator = 0;
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = days[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var _day = _step.value;
+
+      var occ = task.occasions[_day.unix()];
+      if (occ) {
+        numerator += Number(occ.value);
+        denominator += 1;
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      null,
+      'Weekly Total: ',
+      numerator
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      'Weekly Average: ',
+      (numerator / denominator).toFixed(2)
+    )
+  );
+}
 
 function ModalJsonDebug(props) {
   return _react2.default.createElement(

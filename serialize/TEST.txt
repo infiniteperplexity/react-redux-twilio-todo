@@ -8554,5 +8554,53 @@
     "predicate": "rdfs:value",
     "object": "false",
     "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "02f7bf45-775f-41be-ba4c-67fffb0c3ba4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "02f7bf45-775f-41be-ba4c-67fffb0c3ba4",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "02f7bf45-775f-41be-ba4c-67fffb0c3ba4",
+    "predicate": ":moment",
+    "object": "1518249600",
+    "graph": "TEST"
+  },
+  {
+    "subject": "02f7bf45-775f-41be-ba4c-67fffb0c3ba4",
+    "predicate": "rdfs:value",
+    "object": "4",
+    "graph": "TEST"
+  },
+  {
+    "subject": "2dbb11d6-3a0b-4fc3-af42-d0e405a40e45",
+    "predicate": ":occasion",
+    "object": "0a6a5d4e-ba5f-48a9-87bc-bd1839c67098",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a6a5d4e-ba5f-48a9-87bc-bd1839c67098",
+    "predicate": "a",
+    "object": ":Status",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a6a5d4e-ba5f-48a9-87bc-bd1839c67098",
+    "predicate": ":moment",
+    "object": "1518163200",
+    "graph": "TEST"
+  },
+  {
+    "subject": "0a6a5d4e-ba5f-48a9-87bc-bd1839c67098",
+    "predicate": "rdfs:value",
+    "object": "5",
+    "graph": "TEST"
   }
 ]
