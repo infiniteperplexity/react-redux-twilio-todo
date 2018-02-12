@@ -155,7 +155,6 @@ class ModalTouchedInput extends React.Component {
 }
 
 function ModalRepeatStats(props) {
-  console.log(props);
   let task = props.task;
   if (task.repeats!=="daily" || !task.occasions || task.inputs!=="number") {
     return null;
