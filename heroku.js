@@ -19,7 +19,7 @@ twilio.api.messages.create({
   body: "To-do server started.",
   to: {phoneNumber: "+17344766988", name: "Glenn"},
   from: number
-}).then(data=>console.log("message sent.")
+}).then(data=>console.log("message sent."))
   .catch(err=>console.log(err));
 
 
