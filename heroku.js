@@ -12,13 +12,13 @@ const bodyParser = require('body-parser');
 // test
 let sid = "ACcb7c8005c24d580a19eaf45a8c68d348";
 let token = "ffeec01ba2e266d9e732caa3b72bdb2f";
-let number = "+19478004345";
-
+let fromNumber = "+19478004345";
+let toNumber = "+17344766988";
 const twilio = require('twilio')(sid, token);
 twilio.api.messages.create({
   body: "To-do server started.",
-  to: {phoneNumber: "+17344766988", name: "Glenn"},
-  from: number
+  to: toNumber,
+  from: fromNumber
 }).then(data=>console.log("message sent."))
   .catch(err=>console.log(err));
 
