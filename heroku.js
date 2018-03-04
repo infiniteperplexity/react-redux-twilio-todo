@@ -6,6 +6,41 @@ const pg = require('pg');
 const sqlstring = require('sqlstring');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+//live
+// let sid = "AC6c7ef037f263bd05302e3bc474276daf";
+// let token = "e8c2762c0410d41725f82217c0895391";
+// test
+let sid = "ACcb7c8005c24d580a19eaf45a8c68d348";
+let token = "ffeec01ba2e266d9e732caa3b72bdb2f";
+let number = "+19478004345";
+
+const twilio = require('twilio')(sid, token);
+twilio.api.messages.create({
+  body: "To-do server started.",
+  to: {phoneNumber: "+17344766988", name: "Glenn"},
+  from: number
+}).then(data=>console.log("message sent.")
+  .catch(err=>console.log(err));
+
+
+// var config = require('./config');
+
+// module.exports.sendSms = function(to, message) {
+//   var client = require('twilio')(config.accountSid, config.authToken);
+//   // console.log(client.api.messages.create())
+//   return client.api.messages
+//     .create({
+//       body: message,
+//       to: to,
+//       from: config.sendingNumber,
+//     }).then(function(data) {
+//       console.log('Administrator notified');
+//     }).catch(function(err) {
+//       console.error('Could not notify administrator');
+//       console.error(err);
+//     });
+// };
+
 
 const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
