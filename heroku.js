@@ -13,12 +13,12 @@ let fromNumber = process.env.TWILIO_FROM;
 let toNumber = process.env.TWILIO_TO;
 const twilio = require('twilio')(sid, token);
 
-twilio.api.messages.create({
-  body: "To-do server started.",
-  to: toNumber,
-  from: fromNumber
-}).then(data=>console.log("message sent."))
-  .catch(err=>console.log(err));
+// twilio.api.messages.create({
+//   body: "To-do server started.",
+//   to: toNumber,
+//   from: fromNumber
+// }).then(data=>console.log("message sent."))
+//   .catch(err=>console.log(err));
 
 const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
