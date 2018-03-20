@@ -25038,7 +25038,6 @@ var ModalTouchedInput = function (_React$Component6) {
 }(_react2.default.Component);
 
 function ModalRepeatStats(props) {
-  console.log(props);
   var task = props.task;
   if (task.repeats !== "daily" || !task.occasions || task.inputs !== "number") {
     return null;
@@ -25177,7 +25176,12 @@ var MobileMenu = function (_React$Component) {
 			var app = this.props.app;
 			var setControl = this.props.setControl;
 			if (!tasks) {
-				return null;
+				tasks = {};
+				tasks.$Static = {};
+				tasks.$Static.subtasks = ["Inbox", "Calendar", "Repeating", "Clickers", "Completed", "Everything", "Static", "Lists"].map(function (label) {
+					return { label: label, id: "$" + label };
+				});
+				tasks.$Lists = { subtasks: [] };
 			}
 			var statics = tasks.$Static.subtasks.map(function (list, i) {
 				return _react2.default.createElement(
@@ -25225,7 +25229,10 @@ function MobileDisplay(_ref2) {
 	    rest = _objectWithoutProperties(_ref2, ['tasks', 'app']);
 
 	if (!tasks) {
-		return null;
+		tasks = {};
+		tasks.$Inbox = {
+			subtasks: []
+		};
 	}
 	var filter = app.filter;
 	if (!tasks[filter]) {
