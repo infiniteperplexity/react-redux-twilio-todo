@@ -7,18 +7,14 @@ const sqlstring = require('sqlstring');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 
+
 let sid = process.env.TWILIO_SID;
 let token = process.env.TWILIO_TOKEN;
 let fromNumber = process.env.TWILIO_FROM;
 let toNumber = process.env.TWILIO_TO;
 const twilio = require('twilio')(sid, token);
+const cron = require('node-cron');
 
-// twilio.api.messages.create({
-//   body: "To-do server started.",
-//   to: toNumber,
-//   from: fromNumber
-// }).then(data=>console.log("message sent."))
-//   .catch(err=>console.log(err));
 
 const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
@@ -215,5 +211,30 @@ function dbfix(user, fname) {
     });
   });
 }
+
+function sendMessage(btxt) {
+  twilio.api.messages.create({
+    body: btxt,
+    to: toNumber,
+    from: fromNumber
+  }).then(data=>console.log("message sent."))
+  .catch(err=>console.log(err));
+}
+
+function chooseMessage() {
+  let messages = [
+    "Hi Glenn, have you recorded your dailies today?"
+  ];
+  let txt = messages[Math.floor(Math.random()*messages.length)];
+  return txt;
+}
+
+
+function doReminders() {
+  sendMessage(chooseMessage());
+}
+
+cron.schedule("* * 8 * *",doReminders);
+cron.start();
 
 //dbfix("TEST1","tasks_20180204.txt");
