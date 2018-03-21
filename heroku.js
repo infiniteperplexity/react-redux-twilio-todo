@@ -234,7 +234,7 @@ function doReminders() {
   sendMessage(chooseMessage());
 }
 
-cron.schedule("* * 8 * *",doReminders);
-cron.start();
+let task = cron.schedule("* * 8 * *",doReminders);
+task.start();
 
 //dbfix("TEST1","tasks_20180204.txt");
