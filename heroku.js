@@ -234,7 +234,7 @@ function chooseMessage() {
 
 
 function doReminders() {
-  //sendMessage(chooseMessage());
+  sendMessage(chooseMessage());
 }
 
 let task = cron.schedule("0 8 * * *",doReminders);
