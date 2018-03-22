@@ -223,7 +223,10 @@ function sendMessage(btxt) {
 
 function chooseMessage() {
   let messages = [
-    "Hi Glenn, have you recorded your dailies today?"
+    "Hi Glenn, have you recorded your dailies today?",
+    "Remember how important it is to record your dailies, Glenn.",
+    "Now would be a great time to record your dailies, don't you think?",
+    "Eight in the morning, time to record your dailies!"
   ];
   let txt = messages[Math.floor(Math.random()*messages.length)];
   return txt;
