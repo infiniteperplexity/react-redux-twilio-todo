@@ -231,8 +231,7 @@ function chooseMessage() {
 
 
 function doReminders() {
-  console.log("testing cron");
-  //sendMessage(chooseMessage());
+  sendMessage(chooseMessage());
 }
 
 let task = cron.schedule("* 15 * * *",doReminders);
