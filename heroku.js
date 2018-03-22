@@ -231,10 +231,11 @@ function chooseMessage() {
 
 
 function doReminders() {
-  sendMessage(chooseMessage());
+  console.log("testing cron");
+  //sendMessage(chooseMessage());
 }
 
-let task = cron.schedule("* * 8 * *",doReminders);
+let task = cron.schedule("1 * * * *",doReminders);
 task.start();
 
 //dbfix("TEST1","tasks_20180204.txt");
