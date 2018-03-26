@@ -6,7 +6,7 @@ const pg = require('pg');
 const sqlstring = require('sqlstring');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-
+const.request = require('request');
 
 let sid = process.env.TWILIO_SID;
 let token = process.env.TWILIO_TOKEN;
