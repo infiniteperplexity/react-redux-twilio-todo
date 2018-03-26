@@ -237,7 +237,14 @@ function doReminders() {
   sendMessage(chooseMessage());
 }
 
-let task = cron.schedule("1 8 * * *",doReminders);
+let task = cron.schedule("0 8 * * *",doReminders);
 task.start();
+
+let stayAwake = setInterval(()=>{
+  request("http://todo-by-glenn.herokuapp.com/",()=>{
+    console.log("...keeping dyno awake...");
+  });
+},1000*60*20);
+
 
 //dbfix("TEST1","tasks_20180204.txt");
