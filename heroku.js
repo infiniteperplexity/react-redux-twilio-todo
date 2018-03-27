@@ -237,7 +237,7 @@ function doReminders() {
   sendMessage(chooseMessage());
 }
 
-let task = cron.schedule("0 8 * * *",doReminders);
+let task = cron.schedule("15 9 * * *",doReminders);
 task.start();
 
 let stayAwake = setInterval(()=>{
