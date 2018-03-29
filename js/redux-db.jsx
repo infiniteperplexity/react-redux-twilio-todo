@@ -1,6 +1,7 @@
 import { createStore } from "redux";
 
 //let user = "TEST";
+console.log(window.location);
 let user = "GUEST";
 function reducer(state, action) {
 	if (!state) {
@@ -31,8 +32,6 @@ function reducer(state, action) {
 		case "SET_CONTROL":
 			app = {...state.app};
 			app[action.control] = action.value;
-			console.log(action);
-			console.log(app[action.control]);
 			return {...state, app: app};
 		case "SHOW_DETAILS":
 			app = {...state.app};

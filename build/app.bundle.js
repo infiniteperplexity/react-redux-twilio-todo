@@ -23217,6 +23217,7 @@ var _redux = __webpack_require__(15);
 function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
 //let user = "TEST";
+console.log(window.location);
 var user = "GUEST";
 function reducer(state, action) {
 	if (!state) {
@@ -23249,8 +23250,6 @@ function reducer(state, action) {
 		case "SET_CONTROL":
 			app = _extends({}, state.app);
 			app[action.control] = action.value;
-			console.log(action);
-			console.log(app[action.control]);
 			return _extends({}, state, { app: app });
 		case "SHOW_DETAILS":
 			app = _extends({}, state.app);
