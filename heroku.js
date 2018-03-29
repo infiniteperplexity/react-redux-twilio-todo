@@ -46,7 +46,7 @@ app.get('/', function(req, res) {
    //res.sendFile(path.join(__dirname, '/mobile.html'));
 });
 
-app.get('/users/*', function(req, res) {
+app.get('/GLENN', function(req, res) {
    res.sendFile(path.join(__dirname, '/index.html'));
    //res.sendFile(path.join(__dirname, '/mobile.html'));
 });
