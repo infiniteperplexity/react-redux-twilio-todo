@@ -24336,6 +24336,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function TaskCalendar(props) {
 	var tasks = props.filtered;
+	// here's where we use the current day instead of keeping state
 	var days = [(0, _moment2.default)().startOf('day')];
 	for (var i = 0; i < 6; i++) {
 		var day = (0, _moment2.default)(days[0]);
@@ -24381,7 +24382,24 @@ function CalendarHeader(_ref) {
 			day.format('ddd') + " " + day.format('D')
 		);
 	});
-	dayheaders.unshift(_react2.default.createElement('th', { scope: 'col', key: -1 }));
+	// let's add buttons here to go forward or back.
+
+	var selector = _react2.default.createElement(
+		'th',
+		{ scope: 'col', key: -1 },
+		_react2.default.createElement(
+			'button',
+			null,
+			'\u2190'
+		),
+		_react2.default.createElement(
+			'button',
+			{ style: { float: "right" } },
+			'\u2192'
+		)
+	);
+	//dayheaders.unshift(<th scope="col" key={-1} />);
+	dayheaders.unshift(selector);
 	return dayheaders;
 }
 
