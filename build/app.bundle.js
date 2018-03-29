@@ -24339,8 +24339,9 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 function TaskCalendar(props) {
 	var tasks = props.filtered;
 	// here's where we use the current day instead of keeping state
-	var thisDay = props.app.modify.date ? (0, _moment2.default)(props.app.modify.date, "X") : (0, _moment2.default)().startOf('day');
-	var days = [thisDay];
+	//let thisDay = (props.app.modify.date) ? moment(props.app.modify.date,"X") : moment().startOf('day');
+	//let days = [thisDay];
+	var days = [(0, _moment2.default)().startOf('day')];
 	for (var i = 0; i < 6; i++) {
 		// does this unnecessarily wrap a moment in a moment?
 		var day = (0, _moment2.default)(days[0]);
