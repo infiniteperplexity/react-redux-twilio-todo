@@ -249,13 +249,14 @@ function clearGuest() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting guest rows");
     client.query("DELETE FROM quads WHERE graph = 'GUEST'", (err) => {
-    if (err) {
-      done();
-      console.error(err);
-    } else {
-      console.log("cleared guest rows");
-    }
-  }
+      if (err) {
+        done();
+        console.error(err);
+      } else {
+        console.log("cleared guest rows");
+      }
+    });
+  });
 }
 
 let cleanse = cron.schedule("0 0 * * *",clearGuest);
