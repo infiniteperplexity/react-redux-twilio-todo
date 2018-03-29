@@ -23217,7 +23217,7 @@ var _redux = __webpack_require__(15);
 function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
 //let user = "TEST";
-var user = "GLENN";
+var user = "GUEST";
 function reducer(state, action) {
 	if (!state) {
 		return {

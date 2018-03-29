@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 
 //let user = "TEST";
-let user = "GLENN";
+let user = "GUEST";
 function reducer(state, action) {
 	if (!state) {
 		return {
