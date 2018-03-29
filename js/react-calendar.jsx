@@ -6,8 +6,10 @@ import {TaskButton} from './react-tasklist.jsx';
 function TaskCalendar(props) {
 	let tasks = props.filtered;
 	// here's where we use the current day instead of keeping state
-	let days = [moment().startOf('day')];
+	let thisDay = (props.app.modify.date) ? moment(props.app.modify.date,"X") : moment().startOf('day');
+	let days = [thisDay];
 	for (let i=0; i<6; i++) {
+		// does this unnecessarily wrap a moment in a moment?
 		let day = moment(days[0]);
 		days.unshift(day.subtract(1,'days'));
 	}
@@ -43,8 +45,8 @@ function CalendarHeader({days}) {
 	// let's add buttons here to go forward or back.
 	
 	let selector = (<th scope="col" key={-1}>
-		<button>{"\u2190"}</button>
-		<button style={{float: "right"}}>{"\u2192"}</button>
+		<button tooltip="earlier">{"\u2190"}</button>
+		<button tooltip="recent">style={{float: "right"}}>{"\u2192"}</button>
 	</th>);
 	//dayheaders.unshift(<th scope="col" key={-1} />);
 	dayheaders.unshift(selector);

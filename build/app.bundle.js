@@ -23235,6 +23235,8 @@ function reducer(state, action) {
 		case "SET_CONTROL":
 			app = _extends({}, state.app);
 			app[action.control] = action.value;
+			console.log(action);
+			console.log(app[action.control]);
 			return _extends({}, state, { app: app });
 		case "SHOW_DETAILS":
 			app = _extends({}, state.app);
@@ -24337,8 +24339,10 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 function TaskCalendar(props) {
 	var tasks = props.filtered;
 	// here's where we use the current day instead of keeping state
-	var days = [(0, _moment2.default)().startOf('day')];
+	var thisDay = props.app.modify.date ? (0, _moment2.default)(props.app.modify.date, "X") : (0, _moment2.default)().startOf('day');
+	var days = [thisDay];
 	for (var i = 0; i < 6; i++) {
+		// does this unnecessarily wrap a moment in a moment?
 		var day = (0, _moment2.default)(days[0]);
 		days.unshift(day.subtract(1, 'days'));
 	}
@@ -24389,12 +24393,15 @@ function CalendarHeader(_ref) {
 		{ scope: 'col', key: -1 },
 		_react2.default.createElement(
 			'button',
-			null,
+			{ tooltip: 'earlier' },
 			'\u2190'
 		),
 		_react2.default.createElement(
 			'button',
-			{ style: { float: "right" } },
+			{ tooltip: 'recent' },
+			'style=',
+			{ float: "right" },
+			'>',
 			'\u2192'
 		)
 	);
