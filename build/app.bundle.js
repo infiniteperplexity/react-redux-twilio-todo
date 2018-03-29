@@ -24370,7 +24370,7 @@ var TaskCalendar = function (_React$Component) {
 			_this.props.setControl("calendar", calendar);
 		}, _this.subtractDay = function (event) {
 			var calendar = _extends({}, _this.props.app.calendar);
-			calendar.date = calender.date.subtract(1, 'days');
+			calendar.date = calendar.date.subtract(1, 'days');
 			_this.props.setControl("calendar", calendar);
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}

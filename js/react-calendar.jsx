@@ -11,7 +11,7 @@ class TaskCalendar extends React.Component {
 	}
 	subtractDay = (event) => {
 		let calendar = {...this.props.app.calendar};
-		calendar.date = calender.date.subtract(1,'days');
+		calendar.date = calendar.date.subtract(1,'days');
 		this.props.setControl("calendar",calendar);
 	}
 	render() {
