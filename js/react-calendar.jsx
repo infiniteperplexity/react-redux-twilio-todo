@@ -138,8 +138,8 @@ class CalendarNumberInput extends React.Component {
 		return  (
 			<input 	type="number"
 					step="any"
-					value={this.props.occasion.value || ""}
-					onChange={this.handleChange}
+					defaultValue={this.props.occasion.value || ""}
+					onBlur={this.handleChange}
 					style={{width: "60px"}}
 			/>
 		);
