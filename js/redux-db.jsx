@@ -1,8 +1,6 @@
 import { createStore } from "redux";
 
-//let user = "TEST";
-console.log(window.location);
-let user = "GUEST";
+let user = (window.location.pathname==="/GLENN") ? "GLENN" : "GUEST";
 function reducer(state, action) {
 	if (!state) {
 		return {
