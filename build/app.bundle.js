@@ -24596,7 +24596,7 @@ var CalendarNumberInput = function (_React$Component3) {
 			return _react2.default.createElement('input', { type: 'number',
 				step: 'any',
 				value: this.props.occasion.value || "",
-				onChange: this.handleChange,
+				onBlur: this.handleChange,
 				style: { width: "60px" }
 			});
 		}
