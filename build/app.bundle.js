@@ -19315,9 +19315,17 @@ var Container = function (_React$Component) {
 	_inherits(Container, _React$Component);
 
 	function Container() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
 		_classCallCheck(this, Container);
 
-		return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Container.__proto__ || Object.getPrototypeOf(Container)).call.apply(_ref, [this].concat(args))), _this), _this.resetMostStates = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
 	_createClass(Container, [{
@@ -19351,6 +19359,8 @@ var App = (0, _reactRedux.connect)(function (state) {
 	return {
 		setControl: function setControl(control, value) {
 			if (control === "filter" && value !== _reduxDb2.default.getState().app.filter) {
+				var calendar = _extends({}, _reduxDb2.default.getState().app.calendar, { date: moment().startOf("day") });
+				dispatch({ type: "SET_CONTROL", control: "calendar", value: calendar });
 				window.history.pushState({ filter: value }, "");
 			}
 			dispatch({ type: "SET_CONTROL", control: control, value: value });
@@ -23216,6 +23226,9 @@ function reducer(state, action) {
 				toolbar: {
 					label: ""
 				},
+				calendar: {
+					date: ""
+				},
 				modify: {
 					id: null,
 					label: "",
@@ -24308,9 +24321,9 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
 
@@ -24328,57 +24341,90 @@ var _reactTasklist = __webpack_require__(145);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var TaskCalendar = function (_React$Component) {
+	_inherits(TaskCalendar, _React$Component);
 
-function TaskCalendar(props) {
-	var tasks = props.filtered;
-	// here's where we use the current day instead of keeping state
-	var thisDay = props.app.modify.date ? (0, _moment2.default)(props.app.modify.date, "X") : (0, _moment2.default)().startOf('day');
-	var days = [thisDay];
-	//let days = [moment().startOf('day')];
-	for (var i = 0; i < 6; i++) {
-		// does this unnecessarily wrap a moment in a moment?
-		var day = (0, _moment2.default)(days[0]);
-		days.unshift(day.subtract(1, 'days'));
+	function TaskCalendar() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, TaskCalendar);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TaskCalendar.__proto__ || Object.getPrototypeOf(TaskCalendar)).call.apply(_ref, [this].concat(args))), _this), _this.addDay = function (event) {
+			var calendar = _extends({}, _this.props.app.calendar);
+			calendar.date = calender.date.add(1, 'days');
+			_this.props.setControl("calendar", calendar);
+		}, _this.subtractDay = function (event) {
+			var calendar = _extends({}, _this.props.app.calendar);
+			calendar.date = calender.date.subtract(1, 'days');
+			_this.props.setControl("calendar", calendar);
+		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
-	var listing = props.filtered.map(function (task, i) {
-		return _react2.default.createElement(CalendarRow, _extends({ key: i,
-			task: task,
-			days: days
-		}, props));
-	});
-	return _react2.default.createElement(
-		'div',
-		{ className: 'table table-bordered', style: { overflow: "scroll", height: "100vh" } },
-		_react2.default.createElement(
-			'table',
-			null,
-			_react2.default.createElement(
-				'thead',
-				null,
-				_react2.default.createElement(
-					'tr',
-					{ height: '25px' },
-					_react2.default.createElement(CalendarHeader, { days: days })
-				)
-			),
-			_react2.default.createElement(
-				'tbody',
-				null,
-				listing
-			)
-		)
-	);
-}
 
-function CalendarHeader(_ref) {
-	var days = _ref.days;
+	_createClass(TaskCalendar, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var tasks = this.props.filtered;
+			// here's where we use the current day instead of keeping state
+			var thisDay = this.props.app.calendar.date ? (0, _moment2.default)(this.props.app.calendar.date, "X") : (0, _moment2.default)().startOf('day');
+			var days = [thisDay];
+			//let days = [moment().startOf('day')];
+			for (var i = 0; i < 6; i++) {
+				// does this unnecessarily wrap a moment in a moment?
+				var day = (0, _moment2.default)(days[0]);
+				days.unshift(day.subtract(1, 'days'));
+			}
+			var listing = this.props.filtered.map(function (task, i) {
+				return _react2.default.createElement(CalendarRow, _extends({ key: i,
+					task: task,
+					days: days
+				}, _this2.props));
+			});
+			return _react2.default.createElement(
+				'div',
+				{ className: 'table table-bordered', style: { overflow: "scroll", height: "100vh" } },
+				_react2.default.createElement(
+					'table',
+					null,
+					_react2.default.createElement(
+						'thead',
+						null,
+						_react2.default.createElement(
+							'tr',
+							{ height: '25px' },
+							_react2.default.createElement(CalendarHeader, { days: days })
+						)
+					),
+					_react2.default.createElement(
+						'tbody',
+						null,
+						listing
+					)
+				)
+			);
+		}
+	}]);
+
+	return TaskCalendar;
+}(_react2.default.Component);
+
+function CalendarHeader(_ref2) {
+	var days = _ref2.days;
 
 	var dayheaders = days.map(function (day, i) {
 		return _react2.default.createElement(
@@ -24394,12 +24440,12 @@ function CalendarHeader(_ref) {
 		{ scope: 'col', key: -1 },
 		_react2.default.createElement(
 			'button',
-			{ tooltip: 'earlier' },
+			{ tooltip: 'earlier', onClick: this.subtractDay },
 			'\u2190'
 		),
 		_react2.default.createElement(
 			'button',
-			{ tooltip: 'recent', style: { float: "right" } },
+			{ tooltip: 'recent', onClick: this.addDay, style: { float: "right" } },
 			'\u2192'
 		)
 	);
@@ -24408,9 +24454,9 @@ function CalendarHeader(_ref) {
 	return dayheaders;
 }
 
-function CalendarRow(_ref2) {
-	var days = _ref2.days,
-	    props = _objectWithoutProperties(_ref2, ['days']);
+function CalendarRow(_ref3) {
+	var days = _ref3.days,
+	    props = _objectWithoutProperties(_ref3, ['days']);
 
 	var app = props.app;
 	var task = props.task;
@@ -24478,29 +24524,29 @@ function CalendarDay(props) {
 	);
 }
 
-var CalendarCheckboxInput = function (_React$Component) {
-	_inherits(CalendarCheckboxInput, _React$Component);
+var CalendarCheckboxInput = function (_React$Component2) {
+	_inherits(CalendarCheckboxInput, _React$Component2);
 
 	function CalendarCheckboxInput() {
-		var _ref3;
+		var _ref4;
 
-		var _temp, _this, _ret;
+		var _temp2, _this3, _ret2;
 
 		_classCallCheck(this, CalendarCheckboxInput);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
+		for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+			args[_key2] = arguments[_key2];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref3 = CalendarCheckboxInput.__proto__ || Object.getPrototypeOf(CalendarCheckboxInput)).call.apply(_ref3, [this].concat(args))), _this), _this.handleChange = function (event) {
-			var task = _extends({}, _this.props.task);
+		return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref4 = CalendarCheckboxInput.__proto__ || Object.getPrototypeOf(CalendarCheckboxInput)).call.apply(_ref4, [this].concat(args))), _this3), _this3.handleChange = function (event) {
+			var task = _extends({}, _this3.props.task);
 			var occasions = _extends({}, task.occasions);
-			var occasion = _this.props.occasion;
+			var occasion = _this3.props.occasion;
 			occasion = _extends({}, occasion, { value: event.target.checked });
-			occasions[_this.props.day] = occasion;
+			occasions[_this3.props.day] = occasion;
 			task.occasions = occasions;
-			_this.props.modifyTask(task);
-		}, _temp), _possibleConstructorReturn(_this, _ret);
+			_this3.props.modifyTask(task);
+		}, _temp2), _possibleConstructorReturn(_this3, _ret2);
 	}
 
 	_createClass(CalendarCheckboxInput, [{
@@ -24516,29 +24562,29 @@ var CalendarCheckboxInput = function (_React$Component) {
 	return CalendarCheckboxInput;
 }(_react2.default.Component);
 
-var CalendarNumberInput = function (_React$Component2) {
-	_inherits(CalendarNumberInput, _React$Component2);
+var CalendarNumberInput = function (_React$Component3) {
+	_inherits(CalendarNumberInput, _React$Component3);
 
 	function CalendarNumberInput() {
-		var _ref4;
+		var _ref5;
 
-		var _temp2, _this2, _ret2;
+		var _temp3, _this4, _ret3;
 
 		_classCallCheck(this, CalendarNumberInput);
 
-		for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-			args[_key2] = arguments[_key2];
+		for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+			args[_key3] = arguments[_key3];
 		}
 
-		return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_ref4 = CalendarNumberInput.__proto__ || Object.getPrototypeOf(CalendarNumberInput)).call.apply(_ref4, [this].concat(args))), _this2), _this2.handleChange = function (event) {
-			var task = _extends({}, _this2.props.task);
+		return _ret3 = (_temp3 = (_this4 = _possibleConstructorReturn(this, (_ref5 = CalendarNumberInput.__proto__ || Object.getPrototypeOf(CalendarNumberInput)).call.apply(_ref5, [this].concat(args))), _this4), _this4.handleChange = function (event) {
+			var task = _extends({}, _this4.props.task);
 			var occasions = _extends({}, task.occasions);
-			var occasion = _this2.props.occasion;
+			var occasion = _this4.props.occasion;
 			occasion = _extends({}, occasion, { value: event.target.value });
 			occasions[occasion.moment] = occasion;
 			task.occasions = occasions;
-			_this2.props.modifyTask(task);
-		}, _temp2), _possibleConstructorReturn(_this2, _ret2);
+			_this4.props.modifyTask(task);
+		}, _temp3), _possibleConstructorReturn(_this4, _ret3);
 	}
 
 	_createClass(CalendarNumberInput, [{

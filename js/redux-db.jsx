@@ -11,6 +11,9 @@ function reducer(state, action) {
 				toolbar: {
 					label: ""
 				},
+				calendar: {
+					date: ""
+				},
 				modify: {
 					id: null,
 					label: "",

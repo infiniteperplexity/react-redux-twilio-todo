@@ -3,38 +3,50 @@ import moment from 'moment';
 import uuid from 'uuid';
 import {TaskButton} from './react-tasklist.jsx';
 
-function TaskCalendar(props) {
-	let tasks = props.filtered;
-	// here's where we use the current day instead of keeping state
-	let thisDay = (props.app.modify.date) ? moment(props.app.modify.date,"X") : moment().startOf('day');
-	let days = [thisDay];
-	//let days = [moment().startOf('day')];
-	for (let i=0; i<6; i++) {
-		// does this unnecessarily wrap a moment in a moment?
-		let day = moment(days[0]);
-		days.unshift(day.subtract(1,'days'));
+class TaskCalendar extends React.Component {
+	addDay = (event) => {
+		let calendar = {...this.props.app.calendar};
+		calendar.date = calender.date.add(1,'days');
+		this.props.setControl("calendar",calendar);
 	}
-	let listing = props.filtered.map((task, i) => (
-		<CalendarRow	key={i}
-						task={task}
-						days={days}
-						{...props}
-		/>)
-	);
-	return (
-		<div className="table table-bordered" style={{overflow: "scroll", height: "100vh"}}>
-		<table>
-			<thead>
-				<tr height="25px">
-					<CalendarHeader days={days} />
-				</tr>
-			</thead>
-			<tbody>
-				{listing}
-			</tbody>
-		</table>
-		</div>
-	);
+	subtractDay = (event) => {
+		let calendar = {...this.props.app.calendar};
+		calendar.date = calender.date.subtract(1,'days');
+		this.props.setControl("calendar",calendar);
+	}
+	render() {
+		let tasks = this.props.filtered;
+		// here's where we use the current day instead of keeping state
+		let thisDay = (this.props.app.calendar.date) ? moment(this.props.app.calendar.date,"X") : moment().startOf('day');
+		let days = [thisDay];
+		//let days = [moment().startOf('day')];
+		for (let i=0; i<6; i++) {
+			// does this unnecessarily wrap a moment in a moment?
+			let day = moment(days[0]);
+			days.unshift(day.subtract(1,'days'));
+		}
+		let listing = this.props.filtered.map((task, i) => (
+			<CalendarRow	key={i}
+							task={task}
+							days={days}
+							{...this.props}
+			/>)
+		);
+		return (
+			<div className="table table-bordered" style={{overflow: "scroll", height: "100vh"}}>
+			<table>
+				<thead>
+					<tr height="25px">
+						<CalendarHeader days={days} />
+					</tr>
+				</thead>
+				<tbody>
+					{listing}
+				</tbody>
+			</table>
+			</div>
+		);
+	}
 }
 
 function CalendarHeader({days}) {
@@ -46,8 +58,8 @@ function CalendarHeader({days}) {
 	// let's add buttons here to go forward or back.
 	
 	let selector = (<th scope="col" key={-1}>
-		<button tooltip="earlier">{"\u2190"}</button>
-		<button tooltip="recent" style={{float: "right"}}>{"\u2192"}</button>
+		<button tooltip="earlier" onClick={this.subtractDay}>{"\u2190"}</button>
+		<button tooltip="recent" onClick={this.addDay} style={{float: "right"}}>{"\u2192"}</button>
 	</th>);
 	//dayheaders.unshift(<th scope="col" key={-1} />);
 	dayheaders.unshift(selector);

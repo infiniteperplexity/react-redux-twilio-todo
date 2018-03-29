@@ -12,6 +12,9 @@ import {MobileMenu, MobileDisplay} from './react-mobile.jsx';
 let MOBILE = (window.screen.width<500);
 
 class Container extends React.Component {
+	resetMostStates = () => {
+		
+	}
 	render() {
 		if (MOBILE) {
 			return (
@@ -37,6 +40,8 @@ let App = connect(
 	(dispatch) => ({
 		setControl: (control, value) => {
 			if (control==="filter" && value!==store.getState().app.filter) {
+				let calendar = {...store.getState().app.calendar, date: moment().startOf("day")};
+				dispatch({type: "SET_CONTROL", control: "calendar", value: calendar});
 				window.history.pushState({filter: value},"");
 			}
 			dispatch({type: "SET_CONTROL", control: control, value: value});
