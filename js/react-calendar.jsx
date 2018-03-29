@@ -37,7 +37,7 @@ class TaskCalendar extends React.Component {
 			<table>
 				<thead>
 					<tr height="25px">
-						<CalendarHeader days={days} />
+						<CalendarHeader addDay={this.addDay} subtractDay={this.subtractDay} days={days} />
 					</tr>
 				</thead>
 				<tbody>
@@ -49,7 +49,7 @@ class TaskCalendar extends React.Component {
 	}
 }
 
-function CalendarHeader({days}) {
+function CalendarHeader({addDay, subtractDay, days}) {
 	let dayheaders = days.map((day,i) => {
 		return (
 		 	<th scope="col" key={i}>{day.format('ddd')+" "+day.format('D')}</th>
@@ -58,8 +58,8 @@ function CalendarHeader({days}) {
 	// let's add buttons here to go forward or back.
 	
 	let selector = (<th scope="col" key={-1}>
-		<button tooltip="earlier" onClick={this.subtractDay}>{"\u2190"}</button>
-		<button tooltip="recent" onClick={this.addDay} style={{float: "right"}}>{"\u2192"}</button>
+		<button tooltip="earlier" onClick={subtractDay}>{"\u2190"}</button>
+		<button tooltip="recent" onClick={addDay} style={{float: "right"}}>{"\u2192"}</button>
 	</th>);
 	//dayheaders.unshift(<th scope="col" key={-1} />);
 	dayheaders.unshift(selector);

@@ -40,6 +40,7 @@ let App = connect(
 	(dispatch) => ({
 		setControl: (control, value) => {
 			if (control==="filter" && value!==store.getState().app.filter) {
+				// should this be generalized into a "reset most states" method?
 				let calendar = {...store.getState().app.calendar, date: moment().startOf("day")};
 				dispatch({type: "SET_CONTROL", control: "calendar", value: calendar});
 				window.history.pushState({filter: value},"");

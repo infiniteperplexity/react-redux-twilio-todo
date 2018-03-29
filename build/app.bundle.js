@@ -19359,6 +19359,7 @@ var App = (0, _reactRedux.connect)(function (state) {
 	return {
 		setControl: function setControl(control, value) {
 			if (control === "filter" && value !== _reduxDb2.default.getState().app.filter) {
+				// should this be generalized into a "reset most states" method?
 				var calendar = _extends({}, _reduxDb2.default.getState().app.calendar, { date: moment().startOf("day") });
 				dispatch({ type: "SET_CONTROL", control: "calendar", value: calendar });
 				window.history.pushState({ filter: value }, "");
@@ -24407,7 +24408,7 @@ var TaskCalendar = function (_React$Component) {
 						_react2.default.createElement(
 							'tr',
 							{ height: '25px' },
-							_react2.default.createElement(CalendarHeader, { days: days })
+							_react2.default.createElement(CalendarHeader, { addDay: this.addDay, subtractDay: this.subtractDay, days: days })
 						)
 					),
 					_react2.default.createElement(
@@ -24424,7 +24425,9 @@ var TaskCalendar = function (_React$Component) {
 }(_react2.default.Component);
 
 function CalendarHeader(_ref2) {
-	var days = _ref2.days;
+	var addDay = _ref2.addDay,
+	    subtractDay = _ref2.subtractDay,
+	    days = _ref2.days;
 
 	var dayheaders = days.map(function (day, i) {
 		return _react2.default.createElement(
@@ -24440,12 +24443,12 @@ function CalendarHeader(_ref2) {
 		{ scope: 'col', key: -1 },
 		_react2.default.createElement(
 			'button',
-			{ tooltip: 'earlier', onClick: this.subtractDay },
+			{ tooltip: 'earlier', onClick: subtractDay },
 			'\u2190'
 		),
 		_react2.default.createElement(
 			'button',
-			{ tooltip: 'recent', onClick: this.addDay, style: { float: "right" } },
+			{ tooltip: 'recent', onClick: addDay, style: { float: "right" } },
 			'\u2192'
 		)
 	);
