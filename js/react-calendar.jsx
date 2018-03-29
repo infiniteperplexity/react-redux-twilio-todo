@@ -6,7 +6,7 @@ import {TaskButton} from './react-tasklist.jsx';
 class TaskCalendar extends React.Component {
 	addDay = (event) => {
 		let calendar = {...this.props.app.calendar};
-		calendar.date = calender.date.add(1,'days');
+		calendar.date = calendar.date.add(1,'days');
 		this.props.setControl("calendar",calendar);
 	}
 	subtractDay = (event) => {

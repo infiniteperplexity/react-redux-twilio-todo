@@ -24366,7 +24366,7 @@ var TaskCalendar = function (_React$Component) {
 
 		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TaskCalendar.__proto__ || Object.getPrototypeOf(TaskCalendar)).call.apply(_ref, [this].concat(args))), _this), _this.addDay = function (event) {
 			var calendar = _extends({}, _this.props.app.calendar);
-			calendar.date = calender.date.add(1, 'days');
+			calendar.date = calendar.date.add(1, 'days');
 			_this.props.setControl("calendar", calendar);
 		}, _this.subtractDay = function (event) {
 			var calendar = _extends({}, _this.props.app.calendar);
