@@ -246,17 +246,17 @@ let stayAwake = setInterval(()=>{
   });
 },1000*60*20);
 
-pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  client.query(`INSERT INTO quads
-    SELECT  subject, predicate, object, 'GLENN' as graph
-    FROM    quads
-    WHERE   graph = 'TEST'
-    `, (err, result)=> {
-    done();
-    if (err) {
-      console.error(err);
-    } else {
-      console.log("this worked");
-    }
-  });
-});
+// pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+//   client.query(`INSERT INTO quads
+//     SELECT  subject, predicate, object, 'GLENN' as graph
+//     FROM    quads
+//     WHERE   graph = 'TEST'
+//     `, (err, result)=> {
+//     done();
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       console.log("this worked");
+//     }
+//   });
+// });
