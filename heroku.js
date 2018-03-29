@@ -46,6 +46,11 @@ app.get('/', function(req, res) {
    //res.sendFile(path.join(__dirname, '/mobile.html'));
 });
 
+app.get('/users/*', function(req, res) {
+   res.sendFile(path.join(__dirname, '/index.html'));
+   //res.sendFile(path.join(__dirname, '/mobile.html'));
+});
+
 app.get('/*.js*', function(req, res) {
    res.sendFile(path.join(__dirname, req.url));
 });
