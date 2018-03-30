@@ -231,7 +231,7 @@ function chooseMessage() {
     "Hi Glenn, have you recorded your dailies today?",
     "Remember how important it is to record your dailies, Glenn.",
     "Now would be a great time to record your dailies, don't you think?",
-    "Eight in the morning, time to record your dailies!"
+    "Nine in the morning, time to record your dailies!"
   ];
   let txt = messages[Math.floor(Math.random()*messages.length)];
   return txt;
@@ -271,7 +271,7 @@ let stayAwake = setInterval(()=>{
     }
     console.log("...keeping dyno awake...");
   });
-},1000*60*20);
+},1000*60*10);
 
 // pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 //   client.query(`INSERT INTO quads
