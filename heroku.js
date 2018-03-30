@@ -270,9 +270,8 @@ let stayAwake = setInterval(()=>{
       console.log(err);
     }
     console.log("...keeping dyno awake...");
-    console.log("I'm like totally here dude...");
   });
-},1000*60*10);
+},1000*60*20);
 
 // pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 //   client.query(`INSERT INTO quads
