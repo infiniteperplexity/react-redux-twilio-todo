@@ -265,7 +265,7 @@ task.start();
 
 
 let stayAwake = setInterval(()=>{
-  request("http://react-redux-twilio-todo.herokuapp.com//",()=>{
+  request("https://react-redux-twilio-todo.herokuapp.com/",()=>{
     console.log("...keeping dyno awake...");
   });
 },1000*60*20);
