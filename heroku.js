@@ -270,6 +270,7 @@ let stayAwake = setInterval(()=>{
       console.log(err);
     }
     console.log("...keeping dyno awake...");
+    console.log("I'm like totally here dude...");
   });
 },1000*60*10);
 
