@@ -238,6 +238,24 @@ function chooseMessage() {
 }
 
 
+
+// function clearGuest() {
+//   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+//     console.log("deleting guest rows");
+//     client.query("DELETE FROM quads WHERE graph = 'GUEST'", (err) => {
+//       if (err) {
+//         done();
+//         console.error(err);
+//       } else {
+//         console.log("cleared guest rows");
+//       }
+//     });
+//   });
+// }
+
+// let cleanse = cron.schedule("0 0 * * *",clearGuest);
+// cleanse.start();
+
 function doReminders() {
   sendMessage(chooseMessage());
 }
@@ -245,22 +263,6 @@ let task = cron.schedule("15 9 * * *",doReminders);
 task.start();
 
 
-function clearGuest() {
-  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-    console.log("deleting guest rows");
-    client.query("DELETE FROM quads WHERE graph = 'GUEST'", (err) => {
-      if (err) {
-        done();
-        console.error(err);
-      } else {
-        console.log("cleared guest rows");
-      }
-    });
-  });
-}
-
-let cleanse = cron.schedule("0 0 * * *",clearGuest);
-cleanse.start();
 
 let stayAwake = setInterval(()=>{
   request("http://todo-by-glenn.herokuapp.com/",()=>{
