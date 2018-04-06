@@ -24461,7 +24461,10 @@ function CalendarRow(_ref3) {
 	var app = props.app;
 	var task = props.task;
 	var listing = days.map(function (day, i) {
-		return _react2.default.createElement(CalendarDay, _extends({ key: i, day: day.unix() }, props));
+		return (
+			// try switchign the key to day.unix()
+			_react2.default.createElement(CalendarDay, _extends({ key: day.unix(), day: day.unix() }, props))
+		);
 	});
 	return _react2.default.createElement(
 		'tr',
@@ -24590,12 +24593,20 @@ var CalendarNumberInput = function (_React$Component3) {
 	_createClass(CalendarNumberInput, [{
 		key: 'render',
 		value: function render() {
-			return _react2.default.createElement('input', { type: 'number',
-				step: 'any',
-				defaultValue: this.props.occasion.value || "",
-				onChange: this.handleChange,
-				style: { width: "60px" }
-			});
+			var _this5 = this;
+
+			return (
+				// aw crud...so, I think the "defaultValue" prevents proper updates of the numbers...
+				_react2.default.createElement('input', { type: 'number',
+					step: 'any',
+					ref: function ref(node) {
+						_this5.ref = node;
+					},
+					defaultValue: this.props.occasion.value || "",
+					onChange: this.handleChange,
+					style: { width: "60px" }
+				})
+			);
 		}
 	}]);
 

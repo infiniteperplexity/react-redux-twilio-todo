@@ -70,7 +70,8 @@ function CalendarRow({days, ...props}) {
 	let app = props.app;
 	let task = props.task;
 	let listing = days.map((day, i) =>
-		<CalendarDay key={i} day={day.unix()} {...props} />
+		// try switchign the key to day.unix()
+		<CalendarDay key={day.unix()} day={day.unix()} {...props} />
 	);
 	return (
 		<tr>
@@ -136,8 +137,10 @@ class CalendarNumberInput extends React.Component {
 	}
 	render() {
 		return  (
+			// aw crud...so, I think the "defaultValue" prevents proper updates of the numbers...
 			<input 	type="number"
 					step="any"
+					ref={(node)=>{this.ref = node;}}
 					defaultValue={this.props.occasion.value || ""}
 					onChange={this.handleChange}
 					style={{width: "60px"}}
