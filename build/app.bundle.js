@@ -24556,7 +24556,7 @@ var CalendarCheckboxInput = function (_React$Component2) {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement('input', { type: 'checkbox',
-				checked: this.props.occasion.value === "true" ? true : false,
+				defaultChecked: this.props.occasion.value === "true" ? true : false,
 				onChange: this.handleChange
 			});
 		}
@@ -24593,20 +24593,12 @@ var CalendarNumberInput = function (_React$Component3) {
 	_createClass(CalendarNumberInput, [{
 		key: 'render',
 		value: function render() {
-			var _this5 = this;
-
-			return (
-				// aw crud...so, I think the "defaultValue" prevents proper updates of the numbers...
-				_react2.default.createElement('input', { type: 'number',
-					step: 'any',
-					ref: function ref(node) {
-						_this5.ref = node;
-					},
-					defaultValue: this.props.occasion.value || "",
-					onChange: this.handleChange,
-					style: { width: "60px" }
-				})
-			);
+			return _react2.default.createElement('input', { type: 'number',
+				step: 'any',
+				defaultValue: this.props.occasion.value || "",
+				onChange: this.handleChange,
+				style: { width: "60px" }
+			});
 		}
 	}]);
 

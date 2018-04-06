@@ -119,7 +119,7 @@ class CalendarCheckboxInput extends React.Component {
 	render() {
 		return (
 			<input 	type="checkbox"
-					checked={(this.props.occasion.value==="true") ? true : false}
+					defaultChecked={(this.props.occasion.value==="true") ? true : false}
 					onChange={this.handleChange}
 			/>
 		);
@@ -137,10 +137,8 @@ class CalendarNumberInput extends React.Component {
 	}
 	render() {
 		return  (
-			// aw crud...so, I think the "defaultValue" prevents proper updates of the numbers...
 			<input 	type="number"
 					step="any"
-					ref={(node)=>{this.ref = node;}}
 					defaultValue={this.props.occasion.value || ""}
 					onChange={this.handleChange}
 					style={{width: "60px"}}
