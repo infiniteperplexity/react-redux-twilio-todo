@@ -25115,41 +25115,28 @@ function ModalRepeatStats(props) {
     return null;
   }
   var days = [(0, _moment2.default)().startOf('day')];
-  for (var i = 0; i < 6; i++) {
-    var day = (0, _moment2.default)(days[0]);
-    days.unshift(day.subtract(1, 'days'));
+  // try eight days, in case we don't want to count the current one
+  for (var i = 0; i < 7; i++) {
+    var _day = (0, _moment2.default)(days[0]);
+    days.unshift(_day.subtract(1, 'days'));
   }
   var numerator = 0;
   var denominator = 0;
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = days[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var _day = _step.value;
-
-      var occ = task.occasions[_day.unix()];
-      if (occ) {
-        numerator += Number(occ.value);
-        denominator += 1;
-      }
+  var useEight = false;
+  for (var _i = 0; _i < days.length; _i++) {
+    //for (let day of days) {
+    if (_i === 0 && task.occasions[day.unix()] === undefined) {
+      useEight = true;
+      continue;
+    } else if (_i === 7 && useEight === false) {
+      break;
     }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
+    var occ = task.occasions[day.unix()];
+    if (occ) {
+      numerator += Number(occ.value);
+      denominator += 1;
     }
   }
-
   return _react2.default.createElement(
     'div',
     null,

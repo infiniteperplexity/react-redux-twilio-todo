@@ -160,13 +160,22 @@ function ModalRepeatStats(props) {
     return null;
   }
   let days = [moment().startOf('day')];
-  for (let i=0; i<6; i++) {
+  // try eight days, in case we don't want to count the current one
+  for (let i=0; i<7; i++) {
     let day = moment(days[0]);
     days.unshift(day.subtract(1,'days'));
   }
   let numerator = 0;
   let denominator = 0;
-  for (let day of days) {
+  let useEight = false;
+  for (let i=0; i<days.length; i++) {  
+  //for (let day of days) {
+    if (i===0 && task.occasions[day.unix()]===undefined) {
+      useEight = true;
+      continue;
+    } else if (i===7 && useEight===false) {
+      break;
+    }
     let occ = task.occasions[day.unix()];
     if (occ) {
       numerator+=Number(occ.value);
