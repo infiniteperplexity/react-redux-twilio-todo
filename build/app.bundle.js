@@ -25117,21 +25117,22 @@ function ModalRepeatStats(props) {
   var days = [(0, _moment2.default)().startOf('day')];
   // try eight days, in case we don't want to count the current one
   for (var i = 0; i < 7; i++) {
-    var _day = (0, _moment2.default)(days[0]);
-    days.unshift(_day.subtract(1, 'days'));
+    var day = (0, _moment2.default)(days[0]);
+    days.unshift(day.subtract(1, 'days'));
   }
   var numerator = 0;
   var denominator = 0;
   var useEight = false;
   for (var _i = 0; _i < days.length; _i++) {
+    var _day = days[_i];
     //for (let day of days) {
-    if (_i === 0 && task.occasions[day.unix()] === undefined) {
+    if (_i === 0 && task.occasions[_day.unix()] === undefined) {
       useEight = true;
       continue;
     } else if (_i === 7 && useEight === false) {
       break;
     }
-    var occ = task.occasions[day.unix()];
+    var occ = task.occasions[_day.unix()];
     if (occ) {
       numerator += Number(occ.value);
       denominator += 1;
