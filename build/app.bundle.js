@@ -25123,9 +25123,12 @@ function ModalRepeatStats(props) {
   var numerator = 0;
   var denominator = 0;
   var useEight = false;
+  console.log(task.occasions);
   for (var _i = 0; _i < days.length; _i++) {
     var _day = days[_i];
     //for (let day of days) {
+    console.log(_i);
+    console.log(task.occasions[_day.unix()]);
     if (_i === 0 && task.occasions[_day.unix()] === undefined) {
       useEight = true;
       continue;
