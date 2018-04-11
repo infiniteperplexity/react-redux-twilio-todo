@@ -25117,7 +25117,7 @@ function ModalRepeatStats(props) {
   var days = [(0, _moment2.default)().startOf('day')];
   // try eight days, in case we don't want to count the current one
   for (var i = 0; i < 7; i++) {
-    var day = (0, _moment2.default)(days[0]);
+    var day = (0, _moment2.default)(days[days.length - 1]);
     days.push(day.subtract(1, 'days'));
   }
   var numerator = 0;
