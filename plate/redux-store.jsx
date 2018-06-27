@@ -1,5 +1,43 @@
 let store;
 
+let dummyDbConnection = {
+  tasks: [],
+  read: function() {
+    setTimeout(()=>{
+      store.dispatch({type: "gotTasks", tasks: this.tasks});
+      console.log("updated app from database");
+    },0);
+  },
+  update: function(tasks) {
+    setTimeout(()=>{
+      for (let task of tasks) {
+        this.tasks[task.id] = task;
+      }
+      console.log("database updated");
+    });
+  },
+  delete: function(ids) {
+    setTimeout(()=>{
+      for (let id of ids) {
+        delete this.tasks[id];
+      }
+      console.log("database updated");
+    });
+  }
+}
+
+function getTasks() {
+  dummyDbConnection.read();
+}
+
+function updateTasks(tasks) {
+  dummyDbConnection.update(tasks);
+}
+
+function deleteTasks(ids) {
+  dummyDbConnection.delete(ids);
+}
+
 function App(props, context) {
   return <TaskList {...props} />;
 }
@@ -23,14 +61,21 @@ let AppComponent = ReactRedux.connect(
 //a reducer function for a Redux store
 function reducer(state, action) {
   if (state === undefined) {
-    return {}
+    return {tasks: []};
   }
-  if (action.type==="addTask") {
-    return state;
+  if (action.type==="getTasks") {
+    getTasks();
+  } else if (action.type==="gotTasks") {
+    return {...state, tasks: action.tasks};
+  } else if (action.type==="addTask") {
+    updateTasks([]);
+    return {...state};
   } else if (action.type==="deleteTask") {
-    return state;
+    deleteTasks([]);
+    return {...state};
   } else if (action.type==="modifyTask") {
-    return state;
+    updateTasks([]);
+    return {...state};
   } else {
     console.log(state);
     throw new Error("unknown store action type");
