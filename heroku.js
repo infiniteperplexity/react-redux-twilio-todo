@@ -265,7 +265,7 @@ task.start();
 
 
 let stayAwake = setInterval(()=>{
-  request("http://react-redux-twilio-todo.herokuapp.com/",()=>{
+  request("http://react-redux-twilio-todo.herokuapp.com/",(err)=>{
     if (err) {
       console.log(err);
     }

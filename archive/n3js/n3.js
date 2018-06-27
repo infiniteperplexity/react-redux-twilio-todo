@@ -1,1 +1,1 @@
-N3 = require('n3');
+import DraggableSVG from 'react-draggable-svg';
