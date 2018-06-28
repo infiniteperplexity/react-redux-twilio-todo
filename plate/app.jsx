@@ -16,6 +16,13 @@ function MenuPanel(props, context) {
 
 }
 function MainPanel(props, context) {
+  // if (props.list==="$Calendar") {
+    return (
+      <div className="frame">
+        <TaskCalendar {...props}/>
+      </div>
+    );
+  // }
   return (
     <div className="frame">
       <TaskList {...props}/>
@@ -25,12 +32,19 @@ function MainPanel(props, context) {
 
 let AppComponent = ReactRedux.connect(
   (state)=>({
+    newTask: (args)=>({
+      id: uuid.v4(),
+      subtasks: [],
+      lists: [],
+      ...args
+    }),
     ...state
   }),
   (dispatch)=>({
       addTask: (task)=>dispatch({type: "addTask", task: task}),
       deleteTask: (task)=>dispatch({type: "deleteTask", task: task}),
-      modifyTask: (task)=>dispatch({type: "modifyTask", task: task})
+      modifyTask: (task)=>dispatch({type: "modifyTask", task: task}),
+      chooseList: (list)=>dispatch({type: "chooseList", list: list})
   })
 )(App);
 

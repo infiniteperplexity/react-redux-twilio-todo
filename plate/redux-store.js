@@ -6,16 +6,27 @@ function reducer(state, action) {
   console.log(action);
   if (state === undefined) {
     console.log("initializing store");
-    return {tasks: {}};
+    return {
+      tasks: {},
+      list: "$Inbox",
+      date: moment().startOf('day')
+    };
   }
   if (action.type==="getTasks") {
     getTasks();
     return state;
   } else if (action.type==="gotTasks") {
-    console.log("got tasks...");
     return {...state, tasks: action.tasks};
   } else if (action.type==="addTask") {
-    updateTasks([]);
+    let task = action.task;
+    let tasks = [task];
+    // probably should do all the validation in a centralized place
+    for (let listid of task.lists) {
+      let list = clone(state.tasks[listid]);
+      list.subtasks.push(task.id);
+      tasks.push(list);
+    }
+    updateTasks(tasks);
     return {...state};
   } else if (action.type==="deleteTask") {
     deleteTasks([]);
@@ -23,6 +34,8 @@ function reducer(state, action) {
   } else if (action.type==="modifyTask") {
     updateTasks([]);
     return {...state};
+  } else if (action.type==="chooseList") {
+    return {...state, list: action.list};
   } else {
     console.log(state);
     throw new Error("unknown store action type");

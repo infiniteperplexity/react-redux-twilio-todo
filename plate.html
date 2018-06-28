@@ -16,7 +16,15 @@
       .app {
         width: 100%;
         height: 720px;
+        overflow-y: auto;
         grid-template-columns: 1fr 4fr;
+        font-family: Arial;
+      }
+      .calendar {
+        border: 1px solid white;
+      }
+      button, input {
+        font-size: 16px;
       }
     </style>
     <link rel="stylesheet" type="text/css" href="todo.css" />
@@ -26,10 +34,15 @@
     <script src="https://unpkg.com/redux@latest/dist/redux.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.js"></script>
+    <script src="https://unpkg.com/moment@2.22.2/moment.js"></script>
+    <script src="https://unpkg.com/react-scripts@0.4.3/node_modules/node-uuid/uuid.js"></script>
+    <script src="scripts/fetch-polyfill.js"></script>
   </head>
   <body>
     <div id="container">
+      <script type="text/babel" src="plate/menu.jsx"></script>
       <script type="text/babel" src="plate/tasks.jsx"></script>
+      <script type="text/babel" src="plate/calendar.jsx"></script>
       <script type="text/babel" src="plate/app.jsx"></script>
       <script src="plate/db.js"></script>
       <script src="plate/redux-store.js"></script>
