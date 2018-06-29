@@ -9,6 +9,8 @@ function reducer(state, action) {
     return {
       tasks: {},
       list: "$Inbox",
+      details: null,
+      report: null,
       date: moment().startOf('day')
     };
   }
@@ -36,6 +38,10 @@ function reducer(state, action) {
     return {...state};
   } else if (action.type==="chooseList") {
     return {...state, list: action.list};
+  } else if (action.type==="chooseDetails") {
+    return {...state, details: action.details};
+  } else if (action.type==="chooseDate") {
+    return {...state, details: action.date};
   } else {
     console.log(state);
     throw new Error("unknown store action type");

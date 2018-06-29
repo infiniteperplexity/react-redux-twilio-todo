@@ -1,3 +1,7 @@
+const ROWHEAD = "200px";
+const COLWIDTH = "100px";
+const COLHEIGHT = "100px";
+
 class TaskCalendar extends React.Component {
   render() {
     let {tasks, date} = this.props;
@@ -10,24 +14,27 @@ class TaskCalendar extends React.Component {
       (task, i)=><CalendarRow key={i} task={task} days={days} {...this.props}/>
     );
     console.log(list);
-    let headers = days.map((day,i)=><th className="calendar" scope="col" key={i}>{day.format('ddd')+" "+day.format('D')}</th>);
+    let headers = days.map((day,i)=><th className="calendar" scope="col" key={i} style={{width: COLWIDTH}}>{day.format('ddd')+" "+day.format('D')}</th>);
     headers.unshift(
-      <th className="calendar" scope="col" key={-1} style={{width: "200px"}}>
+      <th className="calendar" scope="col" key={-1} style={{width: ROWHEAD}}>
         <button title="earlier" style={{float: "left"}}>{"\u2190"}</button>
         <button title="recent" style={{float: "right"}}>{"\u2192"}</button>
       </th>
     );
     return (
-      <table>
-        <thead>
-          <tr>
-            {headers}
-          </tr>
-        </thead>
-        <tbody>
-          {list}
-        </tbody>
-      </table>
+      <div>
+        <TaskToolbar {...this.props}/>
+        <table>
+          <thead>
+            <tr>
+              {headers}
+            </tr>
+          </thead>
+          <tbody>
+            {list}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -35,9 +42,12 @@ class TaskCalendar extends React.Component {
 class CalendarRow extends React.Component {
   render() {
     let {task, days, tasks} = this.props;
-    let list = days.map((day,i)=><td key={i} className="calendar">xxxx</td>);
+    let list = days.map((day,i)=><td key={i} style={{
+      width: COLWIDTH,
+      height: COLHEIGHT
+    }} className="calendar"> </td>);
     list.unshift(
-      <th className="calendar" scope="row" key="-1" style={{width: "200px"}}>
+      <th className="calendar" scope="row" key="-1" style={{width: ROWHEAD}}>
         {tasks[task].label}
         <span style={{float: "right"}}>
           <button>{"?"}</button>

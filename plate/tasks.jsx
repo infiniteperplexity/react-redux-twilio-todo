@@ -1,4 +1,20 @@
 class TaskList extends React.Component {
+  render() {
+    let tasks = this.props.tasks;
+    let task = tasks[this.props.list];
+    let list = task.subtasks.map((t,i)=><TaskItem key={i} n={i} taskid={t} tasks={tasks}/>);
+    return (
+      <div>
+        <TaskToolbar {...this.props}/>
+        <ol style={{listStyleType: "none", padding: "5px", margin: "0"}}>
+          {list}
+        </ol>
+      </div>
+    );
+  }
+}
+
+class TaskToolbar extends React.Component {
   handleAdd = (e)=>{
     let text = this._textInput.value;
     if (text) {
@@ -9,22 +25,15 @@ class TaskList extends React.Component {
     }
   }
   render() {
-    let tasks = this.props.tasks;
-    let task = tasks[this.props.list];
-    let list = task.subtasks.map((t,i)=><TaskItem key={i} n={i} taskid={t} tasks={tasks}/>);
     return (
       <div>
         <input ref={e=>this._textInput=e} type="text" style={{width: "40%"}}/>
         <br/>
         <button onClick={this.handleAdd}>Add task</button>
-        <ol style={{listStyleType: "none", padding: "5px", margin: "0"}}>
-          {list}
-        </ol>
       </div>
     );
   }
 }
-
 class TaskItem extends React.Component {
   handleDrag = (e)=>{
     let json = {taskid: this.props.taskid};
@@ -47,7 +56,7 @@ class TaskItem extends React.Component {
     // emphasize subtasks when there are some
     return <li 
       style={{ 
-        height: "28px",
+        height: "30px",
         paddingLeft: "5px",
         backgroundColor: (n%2)===0 ? "#ffffee" : "#eeeeff"
       }}
