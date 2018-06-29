@@ -33,7 +33,18 @@ class MenuListItem extends React.Component {
     e.target.style.fontWeight = "normal";
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
-    console.log(taskid);
+    let {tasks, task} = this.props;
+    let list = clone(tasks[task]);
+    if (!list.subtasks.includes(taskid)) {
+      list.subtasks.push(taskid);
+    }
+    // swap names
+    task = tasks[taskid];
+    if (!task.lists.includes(list.id)) {
+      task.lists.push(list.id); 
+    }
+    // do I want to remove it from old lists? not yet.
+    this.props.modifyTasks([task, list]);
   }
   render() {
     let {task, tasks, list} = this.props;

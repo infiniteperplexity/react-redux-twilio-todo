@@ -1,4 +1,7 @@
-- I seem to have chosen passing IDs around rather than data structures.
-- I'm not sure where reconciling should happen.  To guarantee intregrity, probably upon data loading?
-- So what do I worry about next?  Integrity?  Or adding all kinds of functionality and stuff?
-- For the sake of integrity, static lists should probably have no explicit subtasks.  Or wait...well...I do order them.  So instead, just check them at integrity time.
+So, let's try to organize this into major areas:
+- Add the backend.
+- Add the validation process.
+	- Seems okay for now.
+- Add more functionality:
+	- Details.
+	- Changing lists.

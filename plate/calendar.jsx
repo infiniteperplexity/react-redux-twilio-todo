@@ -3,6 +3,12 @@ const COLWIDTH = "100px";
 const COLHEIGHT = "100px";
 
 class TaskCalendar extends React.Component {
+  addDay = (e) => {
+    this.props.chooseDate(this.props.date.add(1,'days'));
+  }
+  subtractDay = (e) => {
+    this.props.chooseDate(this.props.date.subtract(1,'days'));
+  }
   render() {
     let {tasks, date} = this.props;
     let days = [date];
@@ -17,8 +23,8 @@ class TaskCalendar extends React.Component {
     let headers = days.map((day,i)=><th className="calendar" scope="col" key={i} style={{width: COLWIDTH}}>{day.format('ddd')+" "+day.format('D')}</th>);
     headers.unshift(
       <th className="calendar" scope="col" key={-1} style={{width: ROWHEAD}}>
-        <button title="earlier" style={{float: "left"}}>{"\u2190"}</button>
-        <button title="recent" style={{float: "right"}}>{"\u2192"}</button>
+        <button title="earlier" onClick={this.subtractDay} style={{float: "left"}}>{"\u2190"}</button>
+        <button title="recent" onClick={this.addDay} style={{float: "right"}}>{"\u2192"}</button>
       </th>
     );
     return (

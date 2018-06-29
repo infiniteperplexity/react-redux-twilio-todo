@@ -66,7 +66,7 @@ let dummyDbConnection = {
   read: function() {
     setTimeout(()=>{
       console.log("updating from database");
-      store.dispatch({type: "gotTasks", tasks: this.tasks});
+      store.dispatch({type: "gotTasks", tasks: this.denormalize()});
       console.log("updated app from database");
     },0);
   },
@@ -76,6 +76,7 @@ let dummyDbConnection = {
       for (let task of tasks) {
         this.tasks[task.id] = task;
       }
+      this.validate();
       console.log("database updated");
       this.read();
     });
@@ -83,11 +84,64 @@ let dummyDbConnection = {
   delete: function(ids) {
     setTimeout(()=>{
       for (let id of ids) {
-        delete this.tasks[id];
+        if (this.tasks[id]) {
+          delete this.tasks[id];
+        }
       }
+      this.validate();
       console.log("database updated");
       this.read();
     });
+  },
+  validate: function() {
+    this.normalize();
+  },
+  normalize: function() {
+    // the only thing so far is making sure subtask membership gets updated
+    for (let id in this.tasks) {
+      let task = this.tasks[id];
+      let dels = [];
+      if (task.subtasks) {
+        for (let sub of task.subtasks) {
+          if (!this.tasks[sub]) {
+            dels.push(sub);
+          }
+        }
+        // oh and delete denormalized properties
+        if (dels.length>0) {
+          task.subtasks = task.subtasks.filter(t=>!dels.includes(t));
+        }
+      } else {
+        task.subtasks = [];
+      }
+      dels = [];
+      if (task.lists) {
+        for (let list of task.lists) {
+          if (this.tasks[list] && !this.tasks[list].subtasks.includes(id)) {
+            this.tasks[list].subtasks.push(id);
+          }
+        }
+        delete task.lists;
+      }
+    }
+  },
+  denormalize: function() {
+    let tasks = clone(this.tasks);
+    // convert to useful hierarchical data
+    for (let id in tasks) {
+      let task = tasks[id];
+      if (!task.lists) {
+        task.lists = [];
+      }
+      for (let sub of task.subtasks) {
+        let subtask = tasks[sub];
+        if (!subtask.lists) {
+          subtask.lists = [];
+        }
+        task.lists.push(sub);
+      }
+    }
+    return tasks;
   }
 }
 

@@ -58,12 +58,12 @@ let AppComponent = ReactRedux.connect(
     ...state
   }),
   (dispatch)=>({
-      addTask: (task)=>dispatch({type: "addTask", task: task}),
-      deleteTask: (task)=>dispatch({type: "deleteTask", task: task}),
-      modifyTask: (task)=>dispatch({type: "modifyTask", task: task}),
+      addTasks: (tasks)=>dispatch({type: "addTasks", tasks: tasks}),
+      deleteTasks: (tasks)=>dispatch({type: "deleteTasks", tasks: tasks}),
+      modifyTasks: (tasks)=>dispatch({type: "modifyTasks", tasks: tasks}),
       chooseList: (list)=>dispatch({type: "chooseList", list: list}),
-      chooseDetails: (details)=>dispatch({type: "chooseList", details: details}),
-      chooseDate: (date)=>dispatch({type: "chooseList", date: date})
+      chooseDetails: (details)=>dispatch({type: "chooseDetails", details: details}),
+      chooseDate: (date)=>dispatch({type: "chooseDate", date: date})
   })
 )(App);
 

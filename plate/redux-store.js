@@ -19,30 +19,30 @@ function reducer(state, action) {
     return state;
   } else if (action.type==="gotTasks") {
     return {...state, tasks: action.tasks};
-  } else if (action.type==="addTask") {
-    let task = action.task;
-    let tasks = [task];
-    // probably should do all the validation in a centralized place
-    for (let listid of task.lists) {
-      let list = clone(state.tasks[listid]);
-      list.subtasks.push(task.id);
-      tasks.push(list);
-    }
-    updateTasks(tasks);
-    return {...state};
-  } else if (action.type==="deleteTask") {
-    deleteTasks([]);
-    return {...state};
-  } else if (action.type==="modifyTask") {
-    updateTasks([]);
-    return {...state};
+  } else if (action.type==="addTasks") {
+    updateTasks(action.tasks);
+    return state;
+  } else if (action.type==="deleteTasks") {
+    deleteTasks(action.tasks);
+    return state;
+  } else if (action.type==="modifyTasks") {
+    updateTasks(action.tasks);
+    return state;
   } else if (action.type==="chooseList") {
-    return {...state, list: action.list};
+    if (!state.tasks[action.list]) {
+      return state;
+    }
+    window.history.pushState({storeState: {list: state.list, details: state.details}}, "emptyTitle");
+    return {...state, date: moment().startOf('day'), list: action.list};
   } else if (action.type==="chooseDetails") {
+    if (action.details && !state.tasks[action.details]) {
+      return state;
+    }
+    window.history.pushState({storeState: {list: state.list, details: state.details}}, "emptyTitle");
     return {...state, details: action.details};
   } else if (action.type==="chooseDate") {
-    return {...state, details: action.date};
-  } else {
+    return {...state, date: action.date};
+  }  else {
     console.log(state);
     throw new Error("unknown store action type");
     return state;
@@ -53,7 +53,11 @@ store.dispatch({type: "getTasks"});
 let destination = document.querySelector("#container");
 
 window.onpopstate = function(event) {
-    if (event.state) {}
+    if (event.state) {
+      let {list, details} = event.state.storeState;
+      store.dispatch({type: "chooseList", list: list});
+      store.dispatch({type: "chooseDetails", details: details});
+    }
 };
-
-window.history.replaceState({}, "emptyTitle", window.location);
+let _state = store.getState();
+window.history.replaceState({storeState: {list: _state.list, details: _state.details}}, "emptyTitle", window.location);
