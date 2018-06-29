@@ -1,7 +1,7 @@
 So, let's try to organize this into major areas:
 - Add the backend.
-- Add the validation process.
-	- Seems okay for now.
 - Add more functionality:
-	- Details.
-	- Changing lists.
+	- Repeating tasks.
+	- Different types of input.
+	- Occasions.
+- Think carefully about what "static" actually means

@@ -138,7 +138,9 @@ let dummyDbConnection = {
         if (!subtask.lists) {
           subtask.lists = [];
         }
-        task.lists.push(sub);
+        if (!subtask.lists.includes(id)) {
+          subtask.lists.push(id);
+        }
       }
     }
     return tasks;

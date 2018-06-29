@@ -97,9 +97,11 @@ class TaskItem extends React.Component {
     this.props.modifyTasks([list]);
   }
   render() {
-    let {taskid, tasks, n} = this.props;
-    // emphasize subtasks when there are some
+    let {taskid, tasks, n, list} = this.props;
+    let task = tasks[taskid];
+    let title = tasks[taskid].notes;
     return <li 
+      title={title}
       style={{ 
         height: "30px",
         paddingLeft: "5px",
@@ -112,17 +114,25 @@ class TaskItem extends React.Component {
       onDrop={this.handleDrop}
     >
       <span>
-        <span style={{display: "inline-block", paddingTop: "5px"}}>{tasks[taskid].label}</span>
+        <span style={{display: "inline-block", paddingTop: "5px"}}>{task.label}</span>
       </span>
       <span style={{float: "right"}}>
-        <button title="complete" onClick={this.handleComplete}>{"\u2713"}</button>
+        <button title="complete" onClick={this.handleComplete} style={{
+          color: task.static ? "gray" : "black"
+        }}>{"\u2713"}</button>
         <button title="details" onClick={this.handleDetails}>{"?"}</button>
         <button title="subtasks" onClick={this.handleSubtasks} style={{
-          fontWeight: (tasks[taskid].subtasks && tasks[taskid].subtasks.length>0) ? "bold" : "normal"
+          fontWeight: (task.subtasks && task.subtasks.length>0) ? "bold" : "normal"
         }}>{"\u2261"}</button>
-        <button title="sort up" onClick={this.handleSortUp}>{"\u2191"}</button>
-        <button title="sort down" onClick={this.handleSortDown}>{"\u2193"}</button>
-        <button title="delete" onClick={this.handleDelete}>{"\u2717"}</button>
+        <button title="sort up" style={{
+          color: (!task.static && n>0) ? "black" : "gray"
+        }} onClick={this.handleSortUp}>{"\u2191"}</button>
+        <button title="sort down" onClick={this.handleSortDown} style={{
+          color: (!task.static && n<tasks[list].subtasks.length-1) ? "black" : "gray"
+        }}>{"\u2193"}</button>
+        <button title="delete" style={{
+          color: task.static ? "black" : "gray"
+        }} onClick={this.handleDelete}>{"\u2717"}</button>
       </span>
     </li>
   }
