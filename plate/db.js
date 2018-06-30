@@ -45,9 +45,8 @@ function merge(obj1, obj2) {
 let store;
 let dbTasks = {};
 
-function generateId() {
-  return Math.random().toFixed(5);
-}
+
+
 // set up static task lists
 let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"]
 for (let task of $Static) {
@@ -157,4 +156,31 @@ function updateTasks(tasks) {
 
 function deleteTasks(ids) {
   dummyDbConnection.delete(ids);
+}
+
+// GET
+function getTasks1() {
+  fetch('plate/db').then(res=>{
+    if (res.status!==200) {
+      alert("failed to get data");
+    } else {
+      res.json().then(tasks=>store.dispatch({type: "gotTasks", tasks: tasks}));
+    }
+  });
+}
+// Assuming server-side validation...and denormalization
+
+// POST
+function updateTasks1(tasks) {
+  fetch('plate/db', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: tasks
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+    }
+  });
 }

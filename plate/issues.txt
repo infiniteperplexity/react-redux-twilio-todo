@@ -5,3 +5,49 @@ So, let's try to organize this into major areas:
 	- Different types of input.
 	- Occasions.
 - Think carefully about what "static" actually means
+
+
+okay, we're serving...
+- the index file
+- /GLENN, still the index file.
+- All *.js files.
+- /db.USER (post or get)
+dbinit
+dbfix
+so...plate, probably.
+then maybe plate/db
+quads is the only table
+
+okay, we're serving...
+- the index file
+- /GLENN, still the index file.
+- All *.js files.
+- /db.USER (post or get)
+dbinit
+dbfix
+so...plate, probably.
+then maybe plate/db
+quads is the only table
+
+So...basically gonna do...
+get(plate)
+get(plate/db)
+post(plate/db)
+new table is tasks
+
+Okay...so how do we handle static tasks?
+- Each one is created automatically on a new account...or any account that doesn't have the,
+-...and cannot be deleted.
+...all have special details.
+-All can be reordered.
+- Each one has its own autofilter rules that kick in during validation.  That's something we check...for each task.  We go through the list of autofilters for each task; then, for each autofilter, we go through the subtasks and double-check them.
+$Inbox snags up any task that isn't on any list.
+What's the deal with $Lists, then?  The idea is that it's the main tray.  Maybe it's $Menu?  $SubMenu?  Basically, it's one permanent list that's guaranteed to be there and always shows up on the left-hand menu.  So...yeah, $Lists.
+So...drilling down to details on statics will replace notes and such with a description of what that static is all about.
+So....
+$Tasks: Always contains everything...is called "All Tasks"
+$List: Modifiable list that is always listed below the menu.
+$Inbox: Grabs any new task, or any orphan task.
+$Completed: Grabs any completed task.
+$Calendar: Grabs any repeats: "daily", plus possibly more.
+
