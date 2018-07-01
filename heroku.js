@@ -287,3 +287,44 @@ let stayAwake = setInterval(()=>{
 //     }
 //   });
 // });
+
+app.get('/plate', function(req, res) {
+   res.sendFile(path.join(__dirname, '/plate.html'));
+});
+app.get('/plate.html', function(req, res) {
+   res.sendFile(path.join(__dirname, '/plate.html'));
+});
+app.get('/plate/db', function(req, res) {
+  let user = req.url.split(".")[1];
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("selecting rows");
+    client.query("SELECT * FROM tasks", (err, result) => {
+      done();
+      if (err) {
+        console.log(err);
+        console.log("had an error retrieving rows.");
+        res.status(500).send();
+        return;
+      }
+      res.send(JSON.stringify(result.rows));
+    });
+  });
+});
+
+
+function dbsetup() {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    client.query(`
+      CREATE TABLE tasks (
+        user text,
+        id text,
+        task text
+      )`, (err) => {
+      if (err) {
+        done();
+        console.error(err);
+      }
+    });
+  }
+}
+
