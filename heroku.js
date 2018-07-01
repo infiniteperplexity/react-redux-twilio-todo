@@ -312,20 +312,34 @@ app.get('/plate/db', function(req, res) {
 });
 
 
+// function dbsetup() {
+//   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+//     client.query(`
+//       CREATE TABLE tasks (
+//         user text,
+//         id text,
+//         task text
+//       )`, (err) => {
+//       if (err) {
+//         done();
+//         console.error(err);
+//       }
+//     });
+//   });
+// }
+
+// dbsetup();
 function dbsetup() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query(`
-      CREATE TABLE tasks (
-        user text,
-        id text,
-        task text
-      )`, (err) => {
+      SELECT * FROM pg_catalog.pg_tables;
+      )`, (err,results) => {
       if (err) {
         done();
         console.error(err);
+      } else {
+        console.log(results);
       }
     });
   });
 }
-
-dbsetup();
