@@ -306,6 +306,9 @@ app.get('/plate/db', function(req, res) {
         res.status(500).send();
         return;
       }
+      //!!!! Not correct...
+      let tasks = rows.map(e=>JSON.parse(results.task));
+      
       res.send(JSON.stringify(result.rows));
     });
   });
@@ -327,20 +330,3 @@ app.get('/plate/db', function(req, res) {
     });
   });
 }
-
-dbsetup();*/
-function dbsetup() {
-  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-    client.query(`
-      SELECT count(distinct id) as n from tasks;
-      `, (err,results) => {
-      if (err) {
-        done();
-        console.error(err);
-      } else {
-        console.log(results);
-      }
-    });
-  });
-}
-dbsetup();
