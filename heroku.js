@@ -333,7 +333,7 @@ function dbsetup() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query(`
       SELECT * FROM pg_catalog.pg_tables;
-      )`, (err,results) => {
+      `, (err,results) => {
       if (err) {
         done();
         console.error(err);
