@@ -312,7 +312,7 @@ app.get('/plate/db', function(req, res) {
 });
 
 
-function dbsetup() {
+/*function dbsetup() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query(`
       CREATE TABLE tasks (
@@ -328,11 +328,11 @@ function dbsetup() {
   });
 }
 
-dbsetup();
-/*function dbsetup() {
+dbsetup();*/
+function dbsetup() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query(`
-      SELECT * FROM pg_catalog.pg_tables;
+      SELECT count(distinct id) as n from tasks;
       `, (err,results) => {
       if (err) {
         done();
@@ -343,4 +343,4 @@ dbsetup();
     });
   });
 }
-dbsetup();*/
+dbsetup();
