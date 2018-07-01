@@ -316,7 +316,7 @@ function dbsetup() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query(`
       CREATE TABLE tasks (
-        user text,
+        assignee text,
         id text,
         task text
       )`, (err) => {
