@@ -254,6 +254,7 @@ function setupUser(user) {
     } else {
       res.json().then(tasks=>{
         tasks = tasks.map(task=>JSON.parse(task));
+        console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     }
