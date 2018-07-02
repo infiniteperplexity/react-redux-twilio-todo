@@ -146,13 +146,13 @@ let dummyDbConnection = {
   }
 }
 
-function getTasks() {
-  dummyDbConnection.read();
-}
+// function getTasks() {
+//   dummyDbConnection.read();
+// }
 
-function updateTasks(tasks) {
-  dummyDbConnection.update(tasks);
-}
+// function updateTasks(tasks) {
+//   dummyDbConnection.update(tasks);
+// }
 
 function deleteTasks(ids) {
   dummyDbConnection.delete(ids);
@@ -162,16 +162,20 @@ function deleteTasks(ids) {
 function getTasks() {
   // fetch('plate/db').then(res=>{
   fetch('db').then(res=>{
-    res.json().then(data=>{
-      let tasks = {};
-      data.map(row=>{
-        let task = JSON.parse(row);
-        tasks[task.id] = task;
+    if (res.status!==200) {
+        alert("failed to get data");
+    } else {
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+          let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
+        console.log(tasks);
+        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
       });
-      console.log(tasks);
-      store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-    });
-  });
+    };
+  })
 }
 // Assuming server-side validation...and denormalization
 
@@ -203,16 +207,6 @@ function updateTasks(tasks) {
   });
 }
 
-for (let task of $Static) {
-  dbTasks[task] = {
-    id: task,
-    label: task.slice(1),
-    subtasks: [],
-    lists: ["$Tasks"],
-    static: true
-  }
-  dbTasks.$Tasks.subtasks.push(task);
-}
 function setupUser(user) {
   let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"];
   let inserts = [];
