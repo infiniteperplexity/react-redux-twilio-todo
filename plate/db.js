@@ -162,12 +162,14 @@ function deleteTasks(ids) {
 function getTasks1() {
   // fetch('plate/db').then(res=>{
   fetch('db').then(res=>{
-    res.json().then(data=>console.log(data));
-    // if (res.status!==200) {
-    //   alert("failed to get data");
-    // } else {
-    //   res.json().then(tasks=>store.dispatch({type: "gotTasks", tasks: tasks}));
-    // }
+    res.json().then(data=>{
+      let tasks = {};
+      data.map(row=>{
+        let task = JSON.parse(row);
+        tasks[task.id] = task;
+      });
+      store.dispatch({type: "gotTasks", tasks: tasks})
+    });
   });
 }
 // Assuming server-side validation...and denormalization
@@ -187,8 +189,14 @@ function updateTasks1(tasks) {
     if (res.status!==200) {
         alert("failed to post data");
     } else {
-      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
-      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+           let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
+        store.dispatch({type: "gotTasks", tasks: tasks})
+      });
     }
   });
 }
@@ -256,8 +264,12 @@ function setupUser(user) {
     if (res.status!==200) {
         alert("failed to post data");
     } else {
-      res.json().then(tasks=>{
-        tasks = tasks.map(task=>JSON.parse(task));
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+          let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     }
