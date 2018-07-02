@@ -299,9 +299,8 @@ app.get('/plate/db.*', function(req, res) {
         res.status(500).send();
         return;
       }
-      let tasks = result.rows.map(e=>JSON.parse(e.task));
+      let tasks = result.rows.map(row=>unescape(row.task));
       console.log(tasks);
-      tasks.push({hello: "world"});
       res.send(JSON.stringify(tasks));
     });
   });
