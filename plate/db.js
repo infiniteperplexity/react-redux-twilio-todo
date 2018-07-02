@@ -159,7 +159,7 @@ function deleteTasks(ids) {
 }
 
 // GET
-function getTasks1() {
+function getTasks() {
   // fetch('plate/db').then(res=>{
   fetch('db').then(res=>{
     res.json().then(data=>{
@@ -168,14 +168,14 @@ function getTasks1() {
         let task = JSON.parse(row);
         tasks[task.id] = task;
       });
-      store.dispatch({type: "gotTasks", tasks: tasks})
+      store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
     });
   });
 }
 // Assuming server-side validation...and denormalization
 
 // POST
-function updateTasks1(tasks) {
+function updateTasks(tasks) {
   let body = {
     deletes: [tasks.map(t=>t.id)],
     inserts: tasks
@@ -195,33 +195,7 @@ function updateTasks1(tasks) {
            let task = JSON.parse(row);
           tasks[task.id] = task;
         });
-        store.dispatch({type: "gotTasks", tasks: tasks})
-      });
-    }
-  });
-}
-
-function addTasks1(tasks) {
-  let body = {
-    deletes: [],
-    inserts: tasks
-  };
-  // fetch('plate/db', {
-  fetch('db.TEST', {
-    method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: JSON.stringify(body)
-  }).then((res)=>{
-    if (res.status!==200) {
-        alert("failed to post data");
-    } else {
-      res.json().then(data=>{
-        let tasks = {};
-        data.map(row=>{
-          let task = JSON.parse(row);
-          tasks[task.id] = task;
-        });
-        store.dispatch({type: "gotTasks", tasks: tasks})
+        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
       });
     }
   });
