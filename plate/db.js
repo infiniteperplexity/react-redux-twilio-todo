@@ -270,8 +270,29 @@ function setupUser(user) {
           let task = JSON.parse(row);
           tasks[task.id] = task;
         });
-        store.dispatch({type: "gotTasks", tasks: tasks})
+
+        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
       });
     }
   });
+}
+
+function denormalize(tasks) {
+  // convert to useful hierarchical data
+  for (let id in tasks) {
+    let task = tasks[id];
+    if (!task.lists) {
+      task.lists = [];
+    }
+    for (let sub of task.subtasks) {
+      let subtask = tasks[sub];
+      if (!subtask.lists) {
+        subtask.lists = [];
+      }
+      if (!subtask.lists.includes(id)) {
+        subtask.lists.push(id);
+      }
+    }
+  }
+  return tasks;
 }
