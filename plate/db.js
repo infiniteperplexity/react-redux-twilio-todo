@@ -207,6 +207,7 @@ function addTasks1(tasks) {
     if (res.status!==200) {
         alert("failed to post data");
     } else {
+      res.json.then(tasks=>console.log(tasks));
       // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
       // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
     }

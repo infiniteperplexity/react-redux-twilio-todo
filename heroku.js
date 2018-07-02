@@ -343,7 +343,6 @@ app.post('/plate/db.*', function(req, res) {
   let insert = inserts.join(',');
   console.log(deletes);
   console.log(inserts);
-  return;
   //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
   let backup;
   let status = 200;
