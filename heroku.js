@@ -311,7 +311,7 @@ app.post('/plate/db', function(req, res) {
       }
       let tasks = result.rows.map(e=>JSON.parse(results.task));
       //
-      res.send(JSON.stringify(result.rows));
+      res.send(JSON.stringify(tasks));
     });
   });
 });
