@@ -207,8 +207,12 @@ function addTasks1(tasks) {
     if (res.status!==200) {
         alert("failed to post data");
     } else {
-      res.json().then(tasks=>{
-        tasks = tasks.map(task=>JSON.parse(task));
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+          let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     }
@@ -254,7 +258,6 @@ function setupUser(user) {
     } else {
       res.json().then(tasks=>{
         tasks = tasks.map(task=>JSON.parse(task));
-        console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     }
