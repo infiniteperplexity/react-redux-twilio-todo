@@ -208,7 +208,7 @@ function addTasks1(tasks) {
         alert("failed to post data");
     } else {
       res.json().then(tasks=>{
-        tasks = tasks.map(task=>JSON.stringify(task));
+        tasks = tasks.map(task=>JSON.parse(task));
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     }
