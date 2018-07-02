@@ -308,7 +308,7 @@ app.get('/plate/db', function(req, res) {
       }
       //!!!! Not correct...
       let tasks = rows.map(e=>JSON.parse(results.task));
-      
+      //
       res.send(JSON.stringify(result.rows));
     });
   });
