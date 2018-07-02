@@ -168,6 +168,7 @@ function getTasks() {
         let task = JSON.parse(row);
         tasks[task.id] = task;
       });
+      console.log(tasks);
       store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
     });
   });
@@ -195,6 +196,7 @@ function updateTasks(tasks) {
            let task = JSON.parse(row);
           tasks[task.id] = task;
         });
+        console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
       });
     }
@@ -244,7 +246,6 @@ function setupUser(user) {
           let task = JSON.parse(row);
           tasks[task.id] = task;
         });
-
         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
       });
     }
