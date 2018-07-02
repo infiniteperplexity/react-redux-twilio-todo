@@ -273,20 +273,6 @@ let stayAwake = setInterval(()=>{
   });
 },1000*60*20);
 
-// pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-//   client.query(`INSERT INTO quads
-//     SELECT  subject, predicate, object, 'GLENN' as graph
-//     FROM    quads
-//     WHERE   graph = 'TEST'
-//     `, (err, result)=> {
-//     done();
-//     if (err) {
-//       console.error(err);
-//     } else {
-//       console.log("this worked");
-//     }
-//   });
-// });
 
 app.get('/plate', function(req, res) {
    res.sendFile(path.join(__dirname, '/plate.html'));
@@ -308,6 +294,100 @@ app.get('/plate/db', function(req, res) {
       let tasks = result.rows.map(e=>JSON.parse(results.task));
       //
       res.send(JSON.stringify(result.rows));
+    });
+  });
+});
+app.post('/plate/db', function(req, res) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("selecting rows");
+    client.query("SELECT * FROM tasks", (err, result) => {
+      done();
+      if (err) {
+        console.log(err);
+        console.log("had an error retrieving rows.");
+        res.status(500).send();
+        return;
+      }
+      let tasks = result.rows.map(e=>JSON.parse(results.task));
+      //
+      res.send(JSON.stringify(result.rows));
+    });
+  });
+});
+
+
+
+app.post('/plate/db', function(req, res) {
+  let user = req.url.split(".")[1];
+  if (escape(user)!==("'"+user+"'")) {
+    console.log("no special characters allowed in user name.");
+    console.log(err);
+    res.status(404).send();
+    return;
+  }
+  console.log("received rows");
+  // rows to delete
+  let deletes = [];
+  //req.body.deletes;
+  for (let task of req.body.deletes) {
+    deletes.push('(id = ' + escape(task.id) + ' AND assignee = ' + "'"+user+"')");
+  }
+  if (deletes.length===0) {
+    // dummy that's never true
+    deletes = "2+2 = 5";
+  } else {
+    deletes = deletes.join(' OR ');
+  }
+  // rows to insert
+  let inserts = [];
+  for (let task of req.body.inserts) {
+    let [assignee, id, task] = task;
+    inserts.push("('"+user+"'");
+    inserts.push(escape(id));
+    inserts.push(escape(task)+")";
+  }
+  let insert = inserts.join(',');
+  //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
+  let backup;
+  let status = 200;
+  // backup not currently active
+  // I really should learn how to use aync / await
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("deleting rows");
+      client.query("DELETE FROM tasks WHERE "+deletes, (err) => {
+      if (err) {
+        done();
+          console.error(err);
+      } else {
+        if (inserts.length>0) {
+          console.log("inserting rows");
+          console.log(insert);
+          // this part seems vulnerable to duplicates...
+          client.query('INSERT INTO tasks (assignee, id, task) VALUES '+insert, (err)=> {
+            if (err) {
+              console.log("had an error inserting rows");
+              done();
+              console.error(err);
+            } else {
+              client.query("SELECT * FROM tasks WHERE assignee = $1",[user],(err, result)=>{
+                done();
+                if (err) {
+                  console.log("had an error retrieving updated rows.");
+                  res.status(500).send();
+                }
+                let rows = result.rows;
+                for (let row of rows) {
+                  row.assignee = unescape(row.assignee);
+                  row.id = unescape(row.id);
+                  row.task = unescape(row.task);
+                }
+                console.log("sending rows");
+                res.send(JSON.stringify(rows));
+              });
+            }
+          });
+        }
+      }
     });
   });
 });
