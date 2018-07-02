@@ -214,3 +214,52 @@ function addTasks1(tasks) {
     }
   });
 }
+
+
+let 
+for (let task of $Static) {
+  dbTasks[task] = {
+    id: task,
+    label: task.slice(1),
+    subtasks: [],
+    lists: ["$Tasks"],
+    static: true
+  }
+  dbTasks.$Tasks.subtasks.push(task);
+}
+function setupUser(user) {
+  let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"];
+  let inserts = [];
+  for (let list of $Static) {
+    let task = {
+      id: list,
+      label: list.slice(1),
+      subtasks: [],
+      lists: ["$Tasks"],
+      static: true
+    }
+    inserts.push(task);
+    inserts[0].subtasks.push(task);
+  }
+  let body = {
+    deletes: [],
+    inserts: inserts
+  };
+  // fetch('plate/db', {
+  fetch('db.' + user, {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: JSON.stringify(body)
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      res.json().then(tasks=>{
+        tasks = tasks.map(task=>JSON.parse(task));
+        store.dispatch({type: "gotTasks", tasks: tasks})
+      });
+    }
+  });
+}
+
+setupUser("TEST");
