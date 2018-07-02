@@ -276,10 +276,10 @@ let stayAwake = setInterval(()=>{
 
 
 app.get('/plate', function(req, res) {
-   res.sendFile(path.join(__dirname, '/plate.html'));
+   res.sendFile(path.join(__dirname, '/plateweb.html'));
 });
 app.get('/plate.html', function(req, res) {
-   res.sendFile(path.join(__dirname, '/plate.html'));
+   res.sendFile(path.join(__dirname, '/plateweb.html'));
 });
 app.get('/plate/db', function(req, res) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
