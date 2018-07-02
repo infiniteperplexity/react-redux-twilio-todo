@@ -319,6 +319,7 @@ app.post('/plate/db.*', function(req, res) {
     return;
   }
   console.log("received rows");
+  console.log(req.body);
   // rows to delete
   let deletes = [];
   //req.body.deletes;
