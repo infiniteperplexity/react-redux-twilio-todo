@@ -215,8 +215,6 @@ function addTasks1(tasks) {
   });
 }
 
-
-let 
 for (let task of $Static) {
   dbTasks[task] = {
     id: task,
