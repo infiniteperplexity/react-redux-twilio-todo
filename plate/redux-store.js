@@ -18,7 +18,7 @@ function reducer(state, action) {
       tasks.$Tasks.subtasks.push(task);
     }
     return {
-      tasks: {},
+      tasks: tasks,
       list: "$Inbox",
       details: null,
       report: null,
