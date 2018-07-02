@@ -263,5 +263,3 @@ function setupUser(user) {
     }
   });
 }
-
-setupUser("TEST");
