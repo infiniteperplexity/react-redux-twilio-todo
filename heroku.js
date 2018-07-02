@@ -394,4 +394,4 @@ function purgeUser(user) {
   });
 }
 
-purgeUser("TEST");
+// purgeUser("TEST");
