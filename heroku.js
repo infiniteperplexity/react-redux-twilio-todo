@@ -381,3 +381,17 @@ app.post('/plate/db.*', function(req, res) {
     });
   });
 });
+
+function purgeUser(user) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+  console.log("deleting rows");
+    client.query("SELECT * FROM tasks WHERE assignee = $1",[user],(err, result)=>{
+      done();
+      if (err) {
+        console.log("had an error purging rows");
+      }
+    })
+  });
+}
+
+purgeUser("TEST");

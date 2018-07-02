@@ -31,6 +31,7 @@ function reducer(state, action) {
   } else if (action.type==="gotTasks") {
     return {...state, tasks: action.tasks};
   } else if (action.type==="addTasks") {
+    // this is kind of stupid way of handling it...or at least, inconsistent
     let tasks = {};
     for (let task of action.tasks) {
       tasks[task.id] = task;
