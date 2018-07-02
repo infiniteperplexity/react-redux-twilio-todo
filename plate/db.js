@@ -160,7 +160,8 @@ function deleteTasks(ids) {
 
 // GET
 function getTasks1() {
-  fetch('plate/db').then(res=>{
+  // fetch('plate/db').then(res=>{
+  fetch('db').then(res=>{
     let tasks = res;
     console.log(tasks);
     // if (res.status!==200) {
@@ -174,7 +175,8 @@ function getTasks1() {
 
 // POST
 function updateTasks1(tasks) {
-  fetch('plate/db', {
+  // fetch('plate/db', {
+  fetch('db', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: tasks
