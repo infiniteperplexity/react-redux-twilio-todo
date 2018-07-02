@@ -31,16 +31,16 @@ function reducer(state, action) {
   } else if (action.type==="gotTasks") {
     return {...state, tasks: action.tasks};
   } else if (action.type==="addTasks") {
-    let tasks = action.tasks;
-    for (let id in tasks) {
-      let task = tasks[id];
+    let tasks = {};
+    for (let task of action.tasks) {
+      tasks[task.id] = task;
       if (task.lists) {
         for (let list of task.lists) {
           if (!tasks[list]) {
             tasks[list] = clone(state.tasks[list]);
           }
-          if (!tasks[list].subtasks.includes(id)) {
-            tasks[list].subtasks.push(id);
+          if (!tasks[list].subtasks.includes(task.id)) {
+            tasks[list].subtasks.push(task.id);
           }
         }
         delete task.lists;
@@ -50,7 +50,7 @@ function reducer(state, action) {
     for (let id in tasks) {
       data.push(tasks[id]);
     }
-    console.log(data);
+    console.log(data)
     updateTasks(data);
     return state;
   } else if (action.type==="deleteTasks") {
