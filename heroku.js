@@ -305,9 +305,7 @@ app.get('/plate/db', function(req, res) {
         res.status(500).send();
         return;
       }
-      //!!!! Not correct...
-      console.log(result);
-      let tasks = result.map(e=>JSON.parse(results.task));
+      let tasks = result.rows.map(e=>JSON.parse(results.task));
       //
       res.send(JSON.stringify(result.rows));
     });
