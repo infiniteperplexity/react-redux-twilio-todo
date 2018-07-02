@@ -27,8 +27,8 @@ function reducer(state, action) {
           if (!tasks[list]) {
             tasks[list] = clone(state.tasks[list]);
           }
-          if (!tasks[list].subtasks(task.id)) {
-            tasks[list]subtasks.push(task.id);
+          if (!tasks[list].subtasks.includes(task.id)) {
+            tasks[list].subtasks.push(task.id);
           }
         }
         delete task.lists;
