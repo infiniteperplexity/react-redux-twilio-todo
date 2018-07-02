@@ -186,11 +186,12 @@ function updateTasks(tasks) {
     inserts: tasks
   };
   console.log("testing!");
+  console.log(body);
   // fetch('plate/db', {
   fetch('db.TEST', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: body
+    body: JSON.stringify(body)
   }).then((res)=>{
     if (res.status!==200) {
         alert("failed to post data");
