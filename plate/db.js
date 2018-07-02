@@ -202,7 +202,7 @@ function addTasks1(tasks) {
   fetch('db.TEST', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: body
+    body: json.stringify(body)
   }).then((res)=>{
     if (res.status!==200) {
         alert("failed to post data");
