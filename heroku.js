@@ -295,7 +295,6 @@ app.get('/plate.html', function(req, res) {
    res.sendFile(path.join(__dirname, '/plate.html'));
 });
 app.get('/plate/db', function(req, res) {
-  let user = req.url.split(".")[1];
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("selecting rows");
     client.query("SELECT * FROM tasks", (err, result) => {
@@ -307,7 +306,7 @@ app.get('/plate/db', function(req, res) {
         return;
       }
       //!!!! Not correct...
-      let tasks = rows.map(e=>JSON.parse(results.task));
+      let tasks = result.map(e=>JSON.parse(results.task));
       //
       res.send(JSON.stringify(result.rows));
     });
