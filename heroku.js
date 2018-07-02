@@ -335,9 +335,9 @@ app.post('/plate/db.*', function(req, res) {
   // rows to insert
   let inserts = [];
   console.log(req.body.inserts);
-  for (let task of req.body.inserts) {
+  for (let row of req.body.inserts) {
     console.log(task);
-    let [assignee, id, task] = task;
+    let [assignee, id, task] = row;
     inserts.push("('"+user+"'");
     inserts.push(escape(id));
     inserts.push(escape(task)+")");
