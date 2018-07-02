@@ -20,7 +20,7 @@ function reducer(state, action) {
   } else if (action.type==="gotTasks") {
     return {...state, tasks: action.tasks};
   } else if (action.type==="addTasks") {
-    updateTasks(action.tasks);
+    addTasks1(action.tasks);
     return state;
   } else if (action.type==="deleteTasks") {
     deleteTasks(action.tasks);

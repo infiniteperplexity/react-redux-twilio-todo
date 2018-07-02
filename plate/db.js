@@ -174,16 +174,41 @@ function getTasks1() {
 
 // POST
 function updateTasks1(tasks) {
+  let body = {
+    deletes: [tasks.map(t=>t.id)],
+    inserts: tasks
+  };
   // fetch('plate/db', {
-  fetch('db', {
+  fetch('db.TEST', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: tasks
+    body: body
   }).then((res)=>{
     if (res.status!==200) {
         alert("failed to post data");
     } else {
-      res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+    }
+  });
+}
+
+function addTasks1(tasks) {
+  let body = {
+    deletes: [],
+    inserts: tasks
+  };
+  // fetch('plate/db', {
+  fetch('db.TEST', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: body
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
+      // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
     }
   });
 }

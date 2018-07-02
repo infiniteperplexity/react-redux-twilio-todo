@@ -281,7 +281,14 @@ app.get('/plate', function(req, res) {
 app.get('/plate.html', function(req, res) {
    res.sendFile(path.join(__dirname, '/plateweb.html'));
 });
-app.get('/plate/db', function(req, res) {
+app.get('/plate/db.*', function(req, res) {
+  let user = req.url.split(".")[1];
+  if (escape(user)!==("'"+user+"'")) {
+    console.log("no special characters allowed in user name.");
+    console.log(err);
+    res.status(404).send();
+    return;
+  }
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("selecting rows");
     client.query("SELECT * FROM tasks", (err, result) => {
@@ -299,27 +306,11 @@ app.get('/plate/db', function(req, res) {
     });
   });
 });
-app.post('/plate/db', function(req, res) {
-  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-    console.log("selecting rows");
-    client.query("SELECT * FROM tasks", (err, result) => {
-      done();
-      if (err) {
-        console.log(err);
-        console.log("had an error retrieving rows.");
-        res.status(500).send();
-        return;
-      }
-      let tasks = result.rows.map(e=>JSON.parse(results.task));
-      //
-      res.send(JSON.stringify(tasks));
-    });
-  });
-});
 
 
 
-app.post('/plate/db', function(req, res) {
+
+app.post('/plate/db.*', function(req, res) {
   let user = req.url.split(".")[1];
   if (escape(user)!==("'"+user+"'")) {
     console.log("no special characters allowed in user name.");
@@ -349,6 +340,9 @@ app.post('/plate/db', function(req, res) {
     inserts.push(escape(task)+")");
   }
   let insert = inserts.join(',');
+  console.log(deletes);
+  console.log(inserts);
+  return;
   //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
   let backup;
   let status = 200;
