@@ -292,9 +292,9 @@ app.get('/plate/db', function(req, res) {
         res.status(500).send();
         return;
       }
-      let tasks = result.rows.map(e=>JSON.parse(results.task));
+      let tasks = result.rows.map(e=>JSON.parse(e.task));
       //
-      res.send(JSON.stringify(result.rows));
+      res.send(JSON.stringify(tasks));
     });
   });
 });
@@ -311,7 +311,6 @@ app.post('/plate/db', function(req, res) {
       }
       let tasks = result.rows.map(e=>JSON.parse(results.task));
       //
-      tasks = ["test"];
       res.send(JSON.stringify(tasks));
     });
   });
