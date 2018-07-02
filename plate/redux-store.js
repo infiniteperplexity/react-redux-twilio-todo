@@ -50,6 +50,7 @@ function reducer(state, action) {
     for (let id in tasks) {
       data.push(tasks[id]);
     }
+    console.log(data);
     updateTasks(data);
     return state;
   } else if (action.type==="deleteTasks") {

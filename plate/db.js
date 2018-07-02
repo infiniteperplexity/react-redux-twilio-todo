@@ -185,6 +185,7 @@ function updateTasks(tasks) {
     deletes: [tasks.map(t=>t.id)],
     inserts: tasks
   };
+  console.log("testing!");
   // fetch('plate/db', {
   fetch('db.TEST', {
     method: 'POST',
