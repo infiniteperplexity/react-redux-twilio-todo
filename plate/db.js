@@ -162,8 +162,7 @@ function deleteTasks(ids) {
 function getTasks1() {
   // fetch('plate/db').then(res=>{
   fetch('db').then(res=>{
-    let tasks = res;
-    console.log(tasks);
+    res.json().then(data=>console.log(data));
     // if (res.status!==200) {
     //   alert("failed to get data");
     // } else {
