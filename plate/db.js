@@ -161,7 +161,7 @@ function deleteTasks(ids) {
 // GET
 function getTasks() {
   // fetch('plate/db').then(res=>{
-  fetch('db').then(res=>{
+  fetch('db.TEST').then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
