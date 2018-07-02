@@ -371,14 +371,9 @@ app.post('/plate/db.*', function(req, res) {
                   console.log("had an error retrieving updated rows.");
                   res.status(500).send();
                 }
-                let rows = result.rows;
-                for (let row of rows) {
-                  row.assignee = unescape(row.assignee);
-                  row.id = unescape(row.id);
-                  row.task = unescape(row.task);
-                }
+                let tasks = result.rows.map(row=>unescape(row.task));
                 console.log("sending rows");
-                res.send(JSON.stringify(rows));
+                res.send(JSON.stringify(tasks));
               });
             }
           });
