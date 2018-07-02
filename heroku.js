@@ -52,6 +52,7 @@ app.get('/GLENN', function(req, res) {
 });
 
 app.get('/*.js*', function(req, res) {
+  console.log(path.join(__dirname, req.url));
    res.sendFile(path.join(__dirname, req.url));
 });
 
