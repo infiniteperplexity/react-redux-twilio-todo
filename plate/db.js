@@ -204,10 +204,11 @@ function addTasks1(tasks) {
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
   }).then((res)=>{
+    console.log("hey right here...");
     if (res.status!==200) {
         alert("failed to post data");
     } else {
-      res.json.then(tasks=>console.log(tasks));
+      res.json().then(tasks=>console.log(tasks));
       // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
       // res.json().then((tasks)=>store.dispatch({type: "gotTasks", tasks: tasks}));
     }
