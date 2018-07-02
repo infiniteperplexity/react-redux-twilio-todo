@@ -161,11 +161,13 @@ function deleteTasks(ids) {
 // GET
 function getTasks1() {
   fetch('plate/db').then(res=>{
-    if (res.status!==200) {
-      alert("failed to get data");
-    } else {
-      res.json().then(tasks=>store.dispatch({type: "gotTasks", tasks: tasks}));
-    }
+    let tasks = res;
+    console.log(tasks);
+    // if (res.status!==200) {
+    //   alert("failed to get data");
+    // } else {
+    //   res.json().then(tasks=>store.dispatch({type: "gotTasks", tasks: tasks}));
+    // }
   });
 }
 // Assuming server-side validation...and denormalization
