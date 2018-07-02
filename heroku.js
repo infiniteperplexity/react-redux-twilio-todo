@@ -313,20 +313,3 @@ app.get('/plate/db', function(req, res) {
     });
   });
 });
-
-
-/*function dbsetup() {
-  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-    client.query(`
-      CREATE TABLE tasks (
-        assignee text,
-        id text,
-        task text
-      )`, (err) => {
-      if (err) {
-        done();
-        console.error(err);
-      }
-    });
-  });
-}
