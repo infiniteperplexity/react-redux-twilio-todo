@@ -344,7 +344,7 @@ app.post('/plate/db', function(req, res) {
     let [assignee, id, task] = task;
     inserts.push("('"+user+"'");
     inserts.push(escape(id));
-    inserts.push(escape(task)+")";
+    inserts.push(escape(task)+")");
   }
   let insert = inserts.join(',');
   //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
