@@ -237,7 +237,7 @@ function setupUser(user) {
       static: true
     }
     inserts.push(task);
-    inserts[0].subtasks.push(task);
+    inserts[0].subtasks.push(list);
   }
   let body = {
     deletes: [],
