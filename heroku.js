@@ -335,10 +335,9 @@ app.post('/plate/db.*', function(req, res) {
   // rows to insert
   let inserts = [];
   console.log(req.body.inserts);
-  for (let row of req.body.inserts) {
-    let {assignee, id, task} = row;
+  for (let task of req.body.inserts) {
     inserts.push("('"+user+"'");
-    inserts.push(escape(id));
+    inserts.push(escape(task.id));
     inserts.push(escape(task)+")");
   }
   let insert = inserts.join(',');
