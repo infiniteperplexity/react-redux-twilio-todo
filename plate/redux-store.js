@@ -6,6 +6,17 @@ function reducer(state, action) {
   console.log(action);
   if (state === undefined) {
     console.log("initializing store");
+    let tasks = {};
+    for (let task of $Static) {
+      tasks[task] = {
+        id: task,
+        label: task.slice(1),
+        subtasks: [],
+        lists: ["$Tasks"],
+        static: true
+      }
+      tasks.$Tasks.subtasks.push(task);
+    }
     return {
       tasks: {},
       list: "$Inbox",
