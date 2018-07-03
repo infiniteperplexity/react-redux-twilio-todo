@@ -52,14 +52,12 @@ let AppComponent = ReactRedux.connect(
     newTask: (args)=>({
       id: uuid.v4(),
       subtasks: [],
-      lists: [],
       created: moment().unix(),
       ...args
     }),
     ...state
   }),
   (dispatch)=>({
-      addTasks: (tasks)=>dispatch({type: "addTasks", tasks: tasks}),
       deleteTasks: (tasks)=>dispatch({type: "deleteTasks", tasks: tasks}),
       modifyTasks: (tasks)=>dispatch({type: "modifyTasks", tasks: tasks}),
       chooseList: (list)=>dispatch({type: "chooseList", list: list}),
@@ -74,3 +72,7 @@ ReactDOM.render(
   </ReactRedux.Provider>,
   destination
 );
+
+
+
+

@@ -45,98 +45,6 @@ function merge(obj1, obj2) {
 let store;
 let dbTasks = {};
 
-let autofilters = {
-  $Tasks: {
-    filter: tasks=>{
-      for (let id in tasks) {
-        let task = tasks[id];
-        if (!tasks.$Tasks.subtasks.includes(id)) {
-          tasks.$Tasks.subtasks.push(id);
-          // should I add $Task to the .lists?
-        }
-      }
-    },
-    new: ()=>{
-
-    }
-  },
-  $Inbox: {
-    filter: tasks=>{
-      for (let id in tasks) {
-        let task = tasks[id];
-        if ((!task.lists || task.lists.length===0) && (!task.subtasks || task.subtasks.length===0)) {
-          tasks.$Inbox.subtasks.push(id);
-          task.lists = ["$Inbox"];
-        }
-      }
-    // any negative conditions for this one?
-    },
-    new: ()=>{
-
-    }
-  },
-  $Complete: {
-    filter: tasks=>{
-      for (let id in tasks) {
-        let task = tasks[id];
-        if (task.completed && !tasks.$Complete.subtasks.includes(id)) {
-          tasks.$Complete.subtasks.push(id);
-        }
-      }
-      tasks.$Complete.subtasks = tasks.$Complete.subtasks.filter(id=>tasks[id].completed);
-    },
-    new: task=>{
-      task.completed = moment().unix();
-      return task;
-    }
-  },
-  $Lists: {
-    filter: tasks=>{
-      for (let id in tasks) {
-        let task = tasks[id];
-        if ((!task.lists || task.lists.length===0) && (task.subtasks && task.subtasks.length>0)) {
-          tasks.$Lists.subtasks.push(id);
-          task.lists = ["$Lists"];
-        }
-      }
-    },
-    new: task=>{
-      // make a new task in there.
-      tasks.subtasks=[];    
-    }
-  },
-  $Calendar: {
-    filter: tasks=>{
-      for (let id in tasks) {
-        let task = tasks[id];
-        if (task.repeats==="daily" && !tasks.$Calendar.subtasks.includes(id)) {
-          tasks.$Calendar.subtasks.push(id);
-        }
-      }
-      // ugh, do I really wanna handle lists vs. subtasks for all these?  maybe just screw that whole
-      // thing and do it dynamically?
-      tasks.$Calendar.subtasks = tasks.$Calendar.subtasks.filter(id=>tasks[id].repeats==="daily");
-    },
-    new: task=>{
-      task.repeats = "daily";
-      return task;
-    }
-  }
-}
-
-// set up static task lists
-let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"]
-for (let task of $Static) {
-  dbTasks[task] = {
-    id: task,
-    label: task.slice(1),
-    subtasks: [],
-    lists: ["$Tasks"],
-    static: true
-  }
-  dbTasks.$Tasks.subtasks.push(task);
-}
-
 let dummyDbConnection = {
   tasks: dbTasks,
   read: function() {
@@ -173,53 +81,9 @@ let dummyDbConnection = {
     this.normalize();
   },
   normalize: function() {
-    // the only thing so far is making sure subtask membership gets updated
-    for (let id in this.tasks) {
-      let task = this.tasks[id];
-      let dels = [];
-      if (task.subtasks) {
-        for (let sub of task.subtasks) {
-          if (!this.tasks[sub]) {
-            dels.push(sub);
-          }
-        }
-        // oh and delete denormalized properties
-        if (dels.length>0) {
-          task.subtasks = task.subtasks.filter(t=>!dels.includes(t));
-        }
-      } else {
-        task.subtasks = [];
-      }
-      dels = [];
-      if (task.lists) {
-        for (let list of task.lists) {
-          if (this.tasks[list] && !this.tasks[list].subtasks.includes(id)) {
-            this.tasks[list].subtasks.push(id);
-          }
-        }
-        delete task.lists;
-      }
-    }
   },
   denormalize: function() {
-    let tasks = clone(this.tasks);
-    // convert to useful hierarchical data
-    for (let id in tasks) {
-      let task = tasks[id];
-      if (!task.lists) {
-        task.lists = [];
-      }
-      for (let sub of task.subtasks) {
-        let subtask = tasks[sub];
-        if (!subtask.lists) {
-          subtask.lists = [];
-        }
-        if (!subtask.lists.includes(id)) {
-          subtask.lists.push(id);
-        }
-      }
-    }
-    return tasks;
+    return clone(this.tasks);
   }
 }
 
@@ -345,4 +209,105 @@ function denormalize(tasks) {
     }
   }
   return tasks;
+}
+
+
+let autofilters = {
+  $Complete: {
+    filter: tasks=>{
+      let complete = tasks.$Complete;
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (task.completed && !complete.subtasks.includes(id)) {
+          complete.subtasks.push(id);
+        }
+      }
+      complete.subtasks = complete.subtasks.filter(id=>tasks[id].completed);
+      return tasks;
+    },
+    update: (task, tasks)=>{
+      task.completed = moment().unix();
+      return [task];
+    },
+    order: 2
+  },
+  $Calendar: {
+    filter: tasks=>{
+      let dailies = tasks.$Calendar;
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (task.repeats==="daily" && !dailies.subtasks.includes(id)) {
+          dailies.subtasks.push(id);
+        }
+      }
+      dailies.subtasks = dailies.subtasks.filter(id=>tasks[id].repeats==="daily");
+      return tasks;
+    },
+    update: (task, tasks)=>{
+      task.repeats = "daily";
+      return [task];
+    },
+    order: 1
+  },
+  $Lists: {
+    // I dunno if this is how I want to do it.
+    filter: tasks=>{
+      // for (let id in tasks) {
+      //   let task = tasks[id];
+      //   if ((!task.lists || task.lists.length===0) && (task.subtasks && task.subtasks.length>0)) {
+      //     tasks.$Lists.subtasks.push(id);
+      //   }
+      // }
+      return tasks;
+    },
+    update: (task, tasks)=>[],
+    order: 4
+  },
+  $Inbox: {
+    filter: tasks=>{
+      let inbox = tasks.$Inbox;
+      let listed = [];
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (task.subtasks && id!=="$Inbox" && id!=="$Tasks") {
+          listed = listed.concat(task.subtasks);
+        }
+      }
+      for (let id in tasks) {
+        if (!listed.includes(id) && !inbox.subtasks.includes(id)  && tasks[id].static!==true) {
+          inbox.subtasks.push(id);
+        }
+      }
+      inbox.subtasks = inbox.subtasks.filter(id=>!listed.includes(id));
+      return tasks;
+    // any negative conditions for this one?
+    },
+    update: (task, tasks)=>{
+      let updates = [task];
+      for (let id in tasks) {
+        let t = tasks[id];
+        if (id!=="$Inbox" && t.subtasks && t.subtasks.includes(task.id)) {
+          t = clone(tasks[id]);
+          t.subtasks = t.subtasks.filter(i=>i!==task.id);
+          updates.push(t);
+        }
+      }
+      return updates;
+    },
+    order: 0
+  },
+  $Tasks: {
+    filter: tasks=>{
+      let master = tasks.$Tasks;
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (!master.subtasks.includes(id)) {
+          master.subtasks.push(id);
+        }
+      }
+      return tasks;
+    },
+    update: (task, tasks)=>[task],
+    order: 3
+  }
 }

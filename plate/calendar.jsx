@@ -17,9 +17,8 @@ class TaskCalendar extends React.Component {
       days.unshift(day.subtract(1, 'days'));
     }
     let list = tasks[this.props.list].subtasks.map(
-      (task, i)=><CalendarRow key={i} task={task} days={days} {...this.props}/>
+      (task, i)=><CalendarRow key={i} n={i} task={task} days={days} {...this.props}/>
     );
-    console.log(list);
     let headers = days.map((day,i)=><th className="calendar" scope="col" key={i} style={{width: COLWIDTH}}>{day.format('ddd')+" "+day.format('D')}</th>);
     headers.unshift(
       <th className="calendar" scope="col" key={-1} style={{width: ROWHEAD}}>
@@ -46,9 +45,32 @@ class TaskCalendar extends React.Component {
 }
 
 class CalendarRow extends React.Component {
+  handleDetails = ()=>{
+    this.props.chooseDetails(this.props.task);
+  }
+  handleSort = (n)=> {
+    let list =  clone(this.props.tasks[this.props.list]);
+    let index = list.subtasks.indexOf(this.props.task);
+    if ((index<=0 && n<0) || (index>=list.length && n>0)) {
+      return;
+    }
+    let swap = list.subtasks[index+n];
+    list.subtasks[index+n] = this.props.task;
+    list.subtasks[index] = swap;
+    this.props.modifyTasks([list]);
+  }
+  handleSortUp = ()=> {
+    this.handleSort(-1);
+  }
+  handleSortDown = ()=> {
+    this.handleSort(+1);
+  }
+  handleDelete = ()=> {
+    this.props.deleteTasks([this.props.task]);
+  }
   render() {
     // <input type="checkbox" />
-    let {task, days, tasks} = this.props;
+    let {task, days, tasks, n} = this.props;
     let list = days.map((day,i)=><td key={i} style={{
       width: COLWIDTH,
       height: COLHEIGHT
@@ -59,10 +81,16 @@ class CalendarRow extends React.Component {
       <th className="calendar" scope="row" key="-1" style={{width: ROWHEAD}}>
         {tasks[task].label}
         <span style={{float: "right"}}>
-          <button>{"?"}</button>
-          <button>{"\u2191"}</button>
-          <button>{"\u2193"}</button>
-          <button>{"\u2717"}</button>
+          <button onClick={this.handleDetails}>{"?"}</button>
+          <button onClick={this.handleSortUp} style={{
+            color: (n>0) ? "black" : "gray"
+          }}>{"\u2191"}</button>
+          <button onClick={this.handleSortDown} style={{
+            color: (n<tasks[this.props.list].subtasks.length-1) ? "black" : "gray"
+          }}>{"\u2193"}</button>
+          <button onClick={this.handleDelete} style={{
+            color: (tasks[task].static) ? "gray" : "black"
+          }}>{"\u2717"}</button>
         </span>
       </th>
     );
@@ -72,10 +100,27 @@ class CalendarRow extends React.Component {
 
 class DayInput extends React.Component {
   onChange=(e)=>{
-
+    let task = this.props.tasks[this.props.task];
+    task = clone(task);
+    let day = this.props.day.unix();
+    if (!task.occasions) {
+      task.occasions = {};
+    }
+    task.occasions[day] = parseFloat(e.target.value);
+    this.props.modifyTasks([task]);
   }
   render() {
-    let {task, day, tasks} = this.props;
-    return <input onChange={this.onChange} type="number" style={{width: "50px"}}/>;
+    let task = this.props.tasks[this.props.task];
+    let day = this.props.day.unix();
+    if (!task.occasions) {
+      task.occasions = {};
+    }
+    let val = (task.occasions[day]===undefined) ? "" : task.occasions[day];
+    return <input
+      type="number"
+      value={val}
+      onChange={this.onChange}
+      style={{width: "50px"}}
+    />;
   }
 }

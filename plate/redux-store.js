@@ -6,19 +6,8 @@ function reducer(state, action) {
   console.log(action);
   if (state === undefined) {
     console.log("initializing store");
-    let tasks = {};
-    for (let task of $Static) {
-      tasks[task] = {
-        id: task,
-        label: task.slice(1),
-        subtasks: [],
-        lists: ["$Tasks"],
-        static: true
-      }
-      tasks.$Tasks.subtasks.push(task);
-    }
     return {
-      tasks: tasks,
+      tasks: {},
       list: "$Inbox",
       details: null,
       report: null,
@@ -29,31 +18,28 @@ function reducer(state, action) {
     getTasks();
     return state;
   } else if (action.type==="gotTasks") {
-    return {...state, tasks: action.tasks};
-  } else if (action.type==="addTasks") {
-    // this is kind of stupid way of handling it...or at least, inconsistent
-    let tasks = {};
-    for (let task of action.tasks) {
-      tasks[task.id] = task;
-      if (task.lists) {
-        for (let list of task.lists) {
-          if (!tasks[list]) {
-            tasks[list] = clone(state.tasks[list]);
-          }
-          if (!tasks[list].subtasks.includes(task.id)) {
-            tasks[list].subtasks.push(task.id);
-          }
-        }
-        delete task.lists;
+    let tasks = action.tasks;
+    for (let id in tasks) {
+      let task = tasks[id];
+      // clean up deleted tasks
+      if (task.subtasks) {
+        task.subtasks = task.subtasks.filter(id=>tasks[id]);
       }
     }
-    let data = [];
-    for (let id in tasks) {
-      data.push(tasks[id]);
+    // clean up autofilters
+    for (let f in autofilters) {
+      if (!tasks[f]) {
+        tasks[f] = {
+          id: f,
+          label: f.slice(1),
+          subtasks: [],
+          static: true
+        }
+      }
+      tasks = autofilters[f].filter(tasks);
     }
-    console.log(data)
-    updateTasks(data);
-    return state;
+    console.log(tasks);
+    return {...state, tasks: tasks};
   } else if (action.type==="deleteTasks") {
     deleteTasks(action.tasks);
     return state;

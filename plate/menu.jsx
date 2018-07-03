@@ -1,12 +1,10 @@
 
 function TaskMenu(props, context) {
-  let statics = [
-    "$Inbox",
-    "$Calendar",
-    "$Complete",
-    "$Tasks",
-    "$Lists"
-  ];
+  let statics = [];
+  for (let f in autofilters) {
+    let auto = autofilters[f];
+    statics[auto.order] = f;
+  }
   let tasks = props.tasks;
   let lists = tasks.$Lists.subtasks;
   let list = statics.concat(lists).map((e,i)=><MenuListItem key={i} task={e} {...props}/>);
@@ -34,17 +32,21 @@ class MenuListItem extends React.Component {
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
     let {tasks, task} = this.props;
+    if (tasks[taskid].static) {
+      return;
+    }
     let list = clone(tasks[task]);
-    if (!list.subtasks.includes(taskid)) {
-      list.subtasks.push(taskid);
+    // if the list is an autofilter, update the task to fit the list
+    if (autofilters[task]) {
+      this.props.modifyTasks(autofilters[task].update(tasks[taskid], tasks));
+    } else {
+      // otherwise, add the task to the list's subtasks
+      if (!list.subtasks.includes(taskid)) {
+        list.subtasks.push(taskid);
+      }
+      // do I want to remove it from old lists? not yet.
+      this.props.modifyTasks([list]);
     }
-    // swap names
-    task = tasks[taskid];
-    if (!task.lists.includes(list.id)) {
-      task.lists.push(list.id); 
-    }
-    // do I want to remove it from old lists? not yet.
-    this.props.modifyTasks([task, list]);
   }
   render() {
     let {task, tasks, list} = this.props;

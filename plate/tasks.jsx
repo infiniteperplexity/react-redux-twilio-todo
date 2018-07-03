@@ -17,24 +17,41 @@ class TaskList extends React.Component {
 
 class TaskToolbar extends React.Component {
   handleAdd = (e)=>{
+    e.preventDefault();
     let text = this._textInput.value;
     if (text) {
-      let list = this.props.list;
-      let task = this.props.tasks[list];
-      this.props.addTasks([this.props.newTask({label: text, lists: [list]})]);
+      let task = this.props.newTask({label: text});
+      // if the list is an autofilter, create a new task that fits the fitler
+      if (autofilters[this.props.list]) {
+        let auto = autofilters[this.props.list];
+        let updates = auto.update(task, this.props.tasks);
+        this.props.modifyTasks(updates);
+      } else {
+        // otherwise add an unmodified new task
+        let list = clone(this.props.tasks[this.props.list]);
+        if (!list.subtasks) {
+          list.subtasks = [];
+        }
+        list.subtasks.push(task.id);
+        this.props.modifyTasks([
+          task,
+          list
+        ]);
+      }
       this._textInput.value = "";
     }
   }
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleAdd}>
         <input ref={e=>this._textInput=e} type="text" style={{width: "40%"}}/>
         <br/>
-        <button onClick={this.handleAdd}>Add task</button>
-      </div>
+        <button type="submit">Add task</button>
+      </form>
     );
   }
 }
+
 class TaskItem extends React.Component {
   handleDrag = (e)=>{
     let json = {taskid: this.props.taskid};
@@ -54,22 +71,34 @@ class TaskItem extends React.Component {
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
     let {tasks} = this.props;
+    if (tasks[taskid].static) {
+      return;
+    }
     let list = clone(tasks[this.props.taskid]);
-    if (!list.subtasks.includes(taskid)) {
-      list.subtasks.push(taskid);
+    // if the list is an autofilter, update the task to fit the list
+    if (autofilters[list.id]) {
+      this.props.modifyTasks(autofilters[list.id].update(tasks[taskid], tasks));
+    } else {
+      // otherwise, add the task to the list's subtasks
+      if (!list.subtasks.includes(taskid)) {
+        list.subtasks.push(taskid);
+      }
+      // do I want to remove it from old lists? not yet.
+      this.props.modifyTasks([list]);
     }
-    let task = tasks[taskid];
-    if (!task.lists.includes(list.id)) {
-      task.lists.push(list.id); 
-    }
-    // do I want to remove it from old lists? not yet.
-    this.props.modifyTasks([task, list]);
   }
   handleDelete = (e)=>{
+    let task = this.props.tasks[this.props.taskid];
+    if (task.static) {
+      return;
+    }
     this.props.deleteTasks([this.props.taskid]);
   }
   handleComplete = (e)=>{
     let task = clone(this.props.tasks[this.props.taskid]);
+    if (task.static) {
+      return;
+    }
     task.completed = moment().unix();
     this.props.modifyTasks([task]);
   }
@@ -125,13 +154,13 @@ class TaskItem extends React.Component {
           fontWeight: (task.subtasks && task.subtasks.length>0) ? "bold" : "normal"
         }}>{"\u2261"}</button>
         <button title="sort up" style={{
-          color: (!task.static && n>0) ? "black" : "gray"
+          color: (n>0) ? "black" : "gray"
         }} onClick={this.handleSortUp}>{"\u2191"}</button>
         <button title="sort down" onClick={this.handleSortDown} style={{
-          color: (!task.static && n<tasks[list].subtasks.length-1) ? "black" : "gray"
+          color: (n<tasks[list].subtasks.length-1) ? "black" : "gray"
         }}>{"\u2193"}</button>
         <button title="delete" style={{
-          color: task.static ? "black" : "gray"
+          color: task.static ? "gray" : "black"
         }} onClick={this.handleDelete}>{"\u2717"}</button>
       </span>
     </li>
