@@ -287,10 +287,10 @@ let stayAwake = setInterval(()=>{
 
 
 app.get('/plate', function(req, res) {
-   res.sendFile(path.join(__dirname, '/plateweb.html'));
+   res.sendFile(path.join(__dirname, '/plate.html'));
 });
-app.get('/plate.html', function(req, res) {
-   res.sendFile(path.join(__dirname, '/plateweb.html'));
+app.get('/plate/GLENN', function(req, res) {
+   res.sendFile(path.join(__dirname, '/plate.html'));
 });
 app.get('/plate/db.*', function(req, res) {
   let user = req.url.split(".")[1];
