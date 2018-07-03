@@ -46,7 +46,7 @@ let store;
 
 // GET
 function getTasks() {
-  fetch('db.TEST1').then(res=>{
+  fetch('db.TEST2').then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
@@ -62,7 +62,6 @@ function getTasks() {
     };
   })
 }
-// Assuming server-side validation...and denormalization
 
 // POST
 function updateTasks(tasks) {
@@ -71,7 +70,7 @@ function updateTasks(tasks) {
     inserts: tasks
   };
 
-  fetch('db.TEST1', {
+  fetch('db.TEST2', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
@@ -97,7 +96,7 @@ function deleteTasks(ids) {
     deletes: ids,
     inserts: []
   };
-  fetch('db.TEST1', {
+  fetch('db.TEST2', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)

@@ -291,7 +291,7 @@ app.get('/plate/db.*', function(req, res) {
   }
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("selecting rows");
-    client.query("SELECT * FROM tasks", (err, result) => {
+    client.query("SELECT * FROM tasks WHERE assignee = $1",[user], (err, result) => {
       done();
       if (err) {
         console.log(err);
