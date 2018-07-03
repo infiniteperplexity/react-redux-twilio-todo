@@ -43,66 +43,10 @@ function merge(obj1, obj2) {
 
 
 let store;
-let dbTasks = {};
-
-let dummyDbConnection = {
-  tasks: dbTasks,
-  read: function() {
-    setTimeout(()=>{
-      console.log("updating from database");
-      store.dispatch({type: "gotTasks", tasks: this.denormalize()});
-      console.log("updated app from database");
-    },0);
-  },
-  update: function(tasks) {
-    setTimeout(()=>{
-      console.log("updating database");
-      for (let task of tasks) {
-        this.tasks[task.id] = task;
-      }
-      this.validate();
-      console.log("database updated");
-      this.read();
-    });
-  },
-  delete: function(ids) {
-    setTimeout(()=>{
-      for (let id of ids) {
-        if (this.tasks[id]) {
-          delete this.tasks[id];
-        }
-      }
-      this.validate();
-      console.log("database updated");
-      this.read();
-    });
-  },
-  validate: function() {
-    this.normalize();
-  },
-  normalize: function() {
-  },
-  denormalize: function() {
-    return clone(this.tasks);
-  }
-}
-
-// function getTasks() {
-//   dummyDbConnection.read();
-// }
-
-// function updateTasks(tasks) {
-//   dummyDbConnection.update(tasks);
-// }
-
-// function deleteTasks(ids) {
-//   dummyDbConnection.delete(ids);
-// }
 
 // GET
 function getTasks() {
-  // fetch('plate/db').then(res=>{
-  fetch('db.TEST').then(res=>{
+  fetch('db.TEST1').then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
@@ -126,8 +70,8 @@ function updateTasks(tasks) {
     deletes: [tasks.map(t=>t.id)],
     inserts: tasks
   };
-  // fetch('plate/db', {
-  fetch('db.TEST', {
+
+  fetch('db.TEST1', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
@@ -153,7 +97,7 @@ function deleteTasks(ids) {
     deletes: ids,
     inserts: []
   };
-  fetch('db.TEST', {
+  fetch('db.TEST1', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
@@ -173,68 +117,6 @@ function deleteTasks(ids) {
     }
   });
 }
-
-function setupUser(user) {
-  let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"];
-  let inserts = [];
-  for (let list of $Static) {
-    let task = {
-      id: list,
-      label: list.slice(1),
-      subtasks: [],
-      lists: ["$Tasks"],
-      static: true
-    }
-    inserts.push(task);
-    inserts[0].subtasks.push(list);
-  }
-  let body = {
-    deletes: [],
-    inserts: inserts
-  };
-  // fetch('plate/db', {
-  fetch('db.' + user, {
-    method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: JSON.stringify(body)
-  }).then((res)=>{
-    if (res.status!==200) {
-        alert("failed to post data");
-    } else {
-      res.json().then(data=>{
-        let tasks = {};
-        data.map(row=>{
-          let task = JSON.parse(row);
-          tasks[task.id] = task;
-        });
-        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-      });
-    }
-  });
-}
-
-// setupUser("TEST");
-
-// function denormalize(tasks) {
-//   // convert to useful hierarchical data
-//   for (let id in tasks) {
-//     let task = tasks[id];
-//     if (!task.lists) {
-//       task.lists = [];
-//     }
-//     for (let sub of task.subtasks) {
-//       let subtask = tasks[sub];
-//       if (!subtask.lists) {
-//         subtask.lists = [];
-//       }
-//       if (!subtask.lists.includes(id)) {
-//         subtask.lists.push(id);
-//       }
-//     }
-//   }
-//   return tasks;
-// }
-
 
 let autofilters = {
   $Complete: {
