@@ -122,8 +122,7 @@ function purgeUser(user) {
   let route = (user) ? ('purge.'+user) : "purge";
   fetch(route, {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: JSON.stringify(body)
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'})
   }).then((res)=>{
     if (res.status!==200) {
         alert("failed to post data");
