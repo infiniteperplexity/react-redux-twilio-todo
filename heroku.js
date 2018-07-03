@@ -333,8 +333,8 @@ app.post('/plate/db.*', function(req, res) {
   // rows to delete
   let deletes = [];
   //req.body.deletes;
-  for (let task of req.body.deletes) {
-    deletes.push('(id = ' + escape(task.id) + ' AND assignee = ' + "'"+user+"')");
+  for (let id of req.body.deletes) {
+    deletes.push('(id = ' + escape(id) + ' AND assignee = ' + "'"+user+"')");
   }
   if (deletes.length===0) {
     // dummy that's never true
