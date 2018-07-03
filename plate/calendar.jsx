@@ -47,11 +47,14 @@ class TaskCalendar extends React.Component {
 
 class CalendarRow extends React.Component {
   render() {
+    // <input type="checkbox" />
     let {task, days, tasks} = this.props;
     let list = days.map((day,i)=><td key={i} style={{
       width: COLWIDTH,
       height: COLHEIGHT
-    }} className="calendar"> </td>);
+    }} className="calendar">
+      <DayInput day={day} {...this.props}/>
+    </td>);
     list.unshift(
       <th className="calendar" scope="row" key="-1" style={{width: ROWHEAD}}>
         {tasks[task].label}
@@ -64,5 +67,15 @@ class CalendarRow extends React.Component {
       </th>
     );
     return (<tr>{list}</tr>);
+  }
+}
+
+class DayInput extends React.Component {
+  onChange=(e)=>{
+
+  }
+  render() {
+    let {task, day, tasks} = this.props;
+    return <input onChange={this.onChange} type="number" style={{width: "50px"}}/>;
   }
 }
