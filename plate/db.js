@@ -248,6 +248,8 @@ function setupUser(user) {
   });
 }
 
+setupUser("TEST");
+
 function denormalize(tasks) {
   // convert to useful hierarchical data
   for (let id in tasks) {
