@@ -6,8 +6,20 @@ function reducer(state, action) {
   console.log(action);
   if (state === undefined) {
     console.log("initializing store");
+    let tasks = {};
+    for (let f in autofilters) {
+      if (!tasks[f]) {
+        tasks[f] = {
+          id: f,
+          label: f.slice(1),
+          subtasks: [],
+          static: true
+        }
+      }
+      tasks = autofilters[f].filter(tasks);
+    }
     return {
-      tasks: {},
+      tasks: tasks,
       list: "$Inbox",
       details: null,
       report: null,
