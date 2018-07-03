@@ -398,7 +398,7 @@ app.post('/plate/purge.*', function(req, res) {
       done();
     });
   });
-}
+});
 
 app.post('/plate/purge', function(req, res) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
@@ -407,4 +407,4 @@ app.post('/plate/purge', function(req, res) {
       done();
     });
   });
-}
+});
