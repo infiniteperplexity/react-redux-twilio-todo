@@ -43,7 +43,7 @@ function merge(obj1, obj2) {
 
 
 let store;
-let user = "TEST";
+let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
 function getTasks() {
   fetch('db.'+user).then(res=>{
