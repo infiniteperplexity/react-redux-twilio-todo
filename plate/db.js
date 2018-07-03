@@ -43,10 +43,10 @@ function merge(obj1, obj2) {
 
 
 let store;
-
+let user = "TEST";
 // GET
 function getTasks() {
-  fetch('db.TEST2').then(res=>{
+  fetch('db.'+user).then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
@@ -70,7 +70,7 @@ function updateTasks(tasks) {
     inserts: tasks
   };
 
-  fetch('db.TEST2', {
+  fetch('db.'+user, {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
@@ -96,7 +96,7 @@ function deleteTasks(ids) {
     deletes: ids,
     inserts: []
   };
-  fetch('db.TEST2', {
+  fetch('db.'+user, {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
     body: JSON.stringify(body)
