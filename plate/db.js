@@ -87,68 +87,92 @@ let dummyDbConnection = {
   }
 }
 
-function getTasks() {
-  dummyDbConnection.read();
-}
+// function getTasks() {
+//   dummyDbConnection.read();
+// }
 
+// function updateTasks(tasks) {
+//   dummyDbConnection.update(tasks);
+// }
+
+// function deleteTasks(ids) {
+//   dummyDbConnection.delete(ids);
+// }
+
+// GET
+function getTasks() {
+  // fetch('plate/db').then(res=>{
+  fetch('db.TEST').then(res=>{
+    if (res.status!==200) {
+        alert("failed to get data");
+    } else {
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+          let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
+        console.log(tasks);
+        store.dispatch({type: "gotTasks", tasks: tasks})
+      });
+    };
+  })
+}
+// Assuming server-side validation...and denormalization
+
+// POST
 function updateTasks(tasks) {
-  dummyDbConnection.update(tasks);
+  let body = {
+    deletes: [tasks.map(t=>t.id)],
+    inserts: tasks
+  };
+  // fetch('plate/db', {
+  fetch('db.TEST', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: JSON.stringify(body)
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+           let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
+        console.log(tasks);
+        store.dispatch({type: "gotTasks", tasks: tasks})
+      });
+    }
+  });
 }
 
 function deleteTasks(ids) {
-  dummyDbConnection.delete(ids);
+  let body = {
+    deletes: ids,
+    inserts: []
+  };
+  fetch('db.TEST', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: JSON.stringify(body)
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      res.json().then(data=>{
+        let tasks = {};
+        data.map(row=>{
+           let task = JSON.parse(row);
+          tasks[task.id] = task;
+        });
+        console.log(tasks);
+        store.dispatch({type: "gotTasks", tasks: tasks})
+      });
+    }
+  });
 }
-
-// // GET
-// function getTasks() {
-//   // fetch('plate/db').then(res=>{
-//   fetch('db.TEST').then(res=>{
-//     if (res.status!==200) {
-//         alert("failed to get data");
-//     } else {
-//       res.json().then(data=>{
-//         let tasks = {};
-//         data.map(row=>{
-//           let task = JSON.parse(row);
-//           tasks[task.id] = task;
-//         });
-//         console.log(tasks);
-//         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-//       });
-//     };
-//   })
-// }
-// // Assuming server-side validation...and denormalization
-
-// // POST
-// function updateTasks(tasks) {
-//   let body = {
-//     deletes: [tasks.map(t=>t.id)],
-//     inserts: tasks
-//   };
-//   console.log("testing!");
-//   console.log(body);
-//   // fetch('plate/db', {
-//   fetch('db.TEST', {
-//     method: 'POST',
-//     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-//     body: JSON.stringify(body)
-//   }).then((res)=>{
-//     if (res.status!==200) {
-//         alert("failed to post data");
-//     } else {
-//       res.json().then(data=>{
-//         let tasks = {};
-//         data.map(row=>{
-//            let task = JSON.parse(row);
-//           tasks[task.id] = task;
-//         });
-//         console.log(tasks);
-//         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-//       });
-//     }
-//   });
-// }
 
 function setupUser(user) {
   let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"];
@@ -191,25 +215,25 @@ function setupUser(user) {
 
 // setupUser("TEST");
 
-function denormalize(tasks) {
-  // convert to useful hierarchical data
-  for (let id in tasks) {
-    let task = tasks[id];
-    if (!task.lists) {
-      task.lists = [];
-    }
-    for (let sub of task.subtasks) {
-      let subtask = tasks[sub];
-      if (!subtask.lists) {
-        subtask.lists = [];
-      }
-      if (!subtask.lists.includes(id)) {
-        subtask.lists.push(id);
-      }
-    }
-  }
-  return tasks;
-}
+// function denormalize(tasks) {
+//   // convert to useful hierarchical data
+//   for (let id in tasks) {
+//     let task = tasks[id];
+//     if (!task.lists) {
+//       task.lists = [];
+//     }
+//     for (let sub of task.subtasks) {
+//       let subtask = tasks[sub];
+//       if (!subtask.lists) {
+//         subtask.lists = [];
+//       }
+//       if (!subtask.lists.includes(id)) {
+//         subtask.lists.push(id);
+//       }
+//     }
+//   }
+//   return tasks;
+// }
 
 
 let autofilters = {
