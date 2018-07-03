@@ -51,3 +51,7 @@ $Inbox: Grabs any new task, or any orphan task.
 $Completed: Grabs any completed task.
 $Calendar: Grabs any repeats: "daily", plus possibly more.
 
+
+
+- Maybe just use subtasks, not lists
+- 

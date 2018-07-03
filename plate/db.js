@@ -45,7 +45,84 @@ function merge(obj1, obj2) {
 let store;
 let dbTasks = {};
 
+let autofilters = {
+  $Tasks: {
+    filter: tasks=>{
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (!tasks.$Tasks.subtasks.includes(id)) {
+          tasks.$Tasks.subtasks.push(id);
+          // should I add $Task to the .lists?
+        }
+      }
+    },
+    new: ()=>{
 
+    }
+  },
+  $Inbox: {
+    filter: tasks=>{
+      for (let id in tasks) {
+        let task = tasks[id];
+        if ((!task.lists || task.lists.length===0) && (!task.subtasks || task.subtasks.length===0)) {
+          tasks.$Inbox.subtasks.push(id);
+          task.lists = ["$Inbox"];
+        }
+      }
+    // any negative conditions for this one?
+    },
+    new: ()=>{
+
+    }
+  },
+  $Complete: {
+    filter: tasks=>{
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (task.completed && !tasks.$Complete.subtasks.includes(id)) {
+          tasks.$Complete.subtasks.push(id);
+        }
+      }
+      tasks.$Complete.subtasks = tasks.$Complete.subtasks.filter(id=>tasks[id].completed);
+    },
+    new: task=>{
+      task.completed = moment().unix();
+      return task;
+    }
+  },
+  $Lists: {
+    filter: tasks=>{
+      for (let id in tasks) {
+        let task = tasks[id];
+        if ((!task.lists || task.lists.length===0) && (task.subtasks && task.subtasks.length>0)) {
+          tasks.$Lists.subtasks.push(id);
+          task.lists = ["$Lists"];
+        }
+      }
+    },
+    new: task=>{
+      // make a new task in there.
+      tasks.subtasks=[];    
+    }
+  },
+  $Calendar: {
+    filter: tasks=>{
+      for (let id in tasks) {
+        let task = tasks[id];
+        if (task.repeats==="daily" && !tasks.$Calendar.subtasks.includes(id)) {
+          tasks.$Calendar.subtasks.push(id);
+        }
+      }
+      // ugh, do I really wanna handle lists vs. subtasks for all these?  maybe just screw that whole
+      // thing and do it dynamically?
+      tasks.$Calendar.subtasks = tasks.$Calendar.subtasks.filter(id=>tasks[id].repeats==="daily");
+    },
+    new: task=>{
+      task.repeats = "daily";
+      return task;
+    }
+  }
+}
 
 // set up static task lists
 let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"]
@@ -146,68 +223,68 @@ let dummyDbConnection = {
   }
 }
 
-// function getTasks() {
-//   dummyDbConnection.read();
-// }
+function getTasks() {
+  dummyDbConnection.read();
+}
 
-// function updateTasks(tasks) {
-//   dummyDbConnection.update(tasks);
-// }
+function updateTasks(tasks) {
+  dummyDbConnection.update(tasks);
+}
 
 function deleteTasks(ids) {
   dummyDbConnection.delete(ids);
 }
 
-// GET
-function getTasks() {
-  // fetch('plate/db').then(res=>{
-  fetch('db.TEST').then(res=>{
-    if (res.status!==200) {
-        alert("failed to get data");
-    } else {
-      res.json().then(data=>{
-        let tasks = {};
-        data.map(row=>{
-          let task = JSON.parse(row);
-          tasks[task.id] = task;
-        });
-        console.log(tasks);
-        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-      });
-    };
-  })
-}
-// Assuming server-side validation...and denormalization
+// // GET
+// function getTasks() {
+//   // fetch('plate/db').then(res=>{
+//   fetch('db.TEST').then(res=>{
+//     if (res.status!==200) {
+//         alert("failed to get data");
+//     } else {
+//       res.json().then(data=>{
+//         let tasks = {};
+//         data.map(row=>{
+//           let task = JSON.parse(row);
+//           tasks[task.id] = task;
+//         });
+//         console.log(tasks);
+//         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
+//       });
+//     };
+//   })
+// }
+// // Assuming server-side validation...and denormalization
 
-// POST
-function updateTasks(tasks) {
-  let body = {
-    deletes: [tasks.map(t=>t.id)],
-    inserts: tasks
-  };
-  console.log("testing!");
-  console.log(body);
-  // fetch('plate/db', {
-  fetch('db.TEST', {
-    method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
-    body: JSON.stringify(body)
-  }).then((res)=>{
-    if (res.status!==200) {
-        alert("failed to post data");
-    } else {
-      res.json().then(data=>{
-        let tasks = {};
-        data.map(row=>{
-           let task = JSON.parse(row);
-          tasks[task.id] = task;
-        });
-        console.log(tasks);
-        store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
-      });
-    }
-  });
-}
+// // POST
+// function updateTasks(tasks) {
+//   let body = {
+//     deletes: [tasks.map(t=>t.id)],
+//     inserts: tasks
+//   };
+//   console.log("testing!");
+//   console.log(body);
+//   // fetch('plate/db', {
+//   fetch('db.TEST', {
+//     method: 'POST',
+//     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+//     body: JSON.stringify(body)
+//   }).then((res)=>{
+//     if (res.status!==200) {
+//         alert("failed to post data");
+//     } else {
+//       res.json().then(data=>{
+//         let tasks = {};
+//         data.map(row=>{
+//            let task = JSON.parse(row);
+//           tasks[task.id] = task;
+//         });
+//         console.log(tasks);
+//         store.dispatch({type: "gotTasks", tasks: denormalize(tasks)})
+//       });
+//     }
+//   });
+// }
 
 function setupUser(user) {
   let $Static = ["$Tasks","$Inbox","$Complete","$Lists","$Calendar"];
@@ -248,7 +325,7 @@ function setupUser(user) {
   });
 }
 
-setupUser("TEST");
+// setupUser("TEST");
 
 function denormalize(tasks) {
   // convert to useful hierarchical data

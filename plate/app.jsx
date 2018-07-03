@@ -53,6 +53,7 @@ let AppComponent = ReactRedux.connect(
       id: uuid.v4(),
       subtasks: [],
       lists: [],
+      created: moment().unix(),
       ...args
     }),
     ...state
