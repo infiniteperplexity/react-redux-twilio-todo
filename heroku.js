@@ -382,7 +382,16 @@ app.post('/plate/db.*', function(req, res) {
   });
 });
 
-function purgeUser(user) {
+
+
+app.post('/plate/purge.*', function(req, res) {
+  let user = req.url.split(".")[1];
+  if (escape(user)!==("'"+user+"'")) {
+    console.log("no special characters allowed in user name.");
+    console.log(err);
+    res.status(404).send();
+    return;
+  }
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
   console.log("deleting rows");
     client.query("DELETE FROM tasks WHERE assignee = $1",[user],(err, result)=>{
@@ -391,4 +400,11 @@ function purgeUser(user) {
   });
 }
 
-// purgeUser("TEST");
+app.post('/plate/purge', function(req, res) {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+  console.log("deleting rows");
+    client.query("DELETE FROM tasks",(err, result)=>{
+      done();
+    });
+  });
+}

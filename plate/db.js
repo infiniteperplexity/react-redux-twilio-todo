@@ -117,6 +117,23 @@ function deleteTasks(ids) {
   });
 }
 
+
+function purgeUser(user) {
+  let route = (user) ? ('purge.'+user) : "purge";
+  fetch(route, {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
+    body: JSON.stringify(body)
+  }).then((res)=>{
+    if (res.status!==200) {
+        alert("failed to post data");
+    } else {
+      let message = (user) ? (" user "+user) : " all users";
+      console.log("purged " + message);
+    }
+  });
+}
+
 let autofilters = {
   $Complete: {
     filter: tasks=>{
@@ -216,3 +233,4 @@ let autofilters = {
     order: 3
   }
 }
+
