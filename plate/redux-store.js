@@ -4,7 +4,6 @@ store = Redux.createStore(reducer);
 function reducer(state, action) {
   console.log("store dispatch:");
   console.log(action);
-  console.log(state);
   if (state === undefined) {
     console.log("initializing store");
     let tasks = {};
@@ -57,9 +56,6 @@ function reducer(state, action) {
     deleteTasks(action.tasks);
     return state;
   } else if (action.type==="modifyTasks") {
-    console.log("modifying");
-    console.log(action.tasks);
-    updateTasks(action.tasks);
     return state;
   } else if (action.type==="chooseList") {
     if (!state.tasks[action.list]) {

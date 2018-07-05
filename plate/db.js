@@ -66,10 +66,9 @@ function getTasks() {
 // POST
 function updateTasks(tasks) {
   let body = {
-    deletes: [tasks.map(t=>t.id)],
+    deletes: tasks.map(t=>t.id),
     inserts: tasks
   };
-
   fetch('db.'+user, {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
