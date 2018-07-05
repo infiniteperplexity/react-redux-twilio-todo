@@ -233,10 +233,8 @@ function generateReport(tasks) {
   for (let id in tasks) {
     let task = tasks[id];
     if (task.repeats==="daily" && task.summaries) {
-      console.log(typeof(task.summaries.weeklyTotal));
-      console.log((task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2));
       let repeat = "Summary for " + task.label + ": "
-      + "\n  Weekly total: " + task.summaries.weeklyTotal +
+      + "\n  Weekly total: " + task.summaries.weeklyTotal
       + "\n  Weekly average: " + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
       repeats.push(repeat);
     }
@@ -270,9 +268,6 @@ function extractTasks(callback) {
   });
 }
 
-extractTasks((tasks)=>{
-  console.log(generateReport(tasks));
-});
 
 function chooseMessage() {
   let messages = [
@@ -315,9 +310,16 @@ function clearGuest() {
 let cleanse = cron.schedule("0 0 * * *",clearGuest);
 cleanse.start();
 
+// function doReminders() {
+//   sendMessage(chooseMessage());
+// }
+
 function doReminders() {
-  sendMessage(chooseMessage());
+  extractTasks((tasks)=>{
+    sendMessage(generateReport(tasks));
+  });
 }
+
 let task = cron.schedule("15 9 * * *",doReminders);
 task.start();
 
