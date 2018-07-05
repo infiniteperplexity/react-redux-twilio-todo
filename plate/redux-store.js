@@ -56,6 +56,41 @@ function reducer(state, action) {
     deleteTasks(action.tasks);
     return state;
   } else if (action.type==="modifyTasks") {
+    // not sure where this validation should happen
+    for (let task of action.tasks) {
+      if (task.repeats==="daily") {
+        let days = [moment().startOf('day')];
+        // try eight days, in case we don't want to count the current one
+        for (let i=0; i<7; i++) {
+          let day = moment(days[days.length-1]);
+          days.push(day.subtract(1,'days'));
+        }
+        let numerator = 0;
+        let denominator = 0;
+        let useEight = false;
+        if (!task.occasions) {
+          task.occasions = {};
+        }
+        for (let i=0; i<days.length; i++) {
+          let day = days[i];
+          if (i===0 && task.occasions[day.unix()]===undefined) {
+            useEight = true;
+            continue;
+          } else if (i===7 && useEight===false) {
+            break;
+          }
+          let occ = task.occasions[day.unix()];
+          if (occ) {
+            numerator+=occ;
+            denominator+=1;
+          }
+        }
+        task.summaries = {
+          weeklyTotal: numerator,
+          weeklyDays: denominator
+        }
+      }
+    }
     updateTasks(action.tasks);
     return state;
   } else if (action.type==="chooseList") {

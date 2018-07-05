@@ -229,9 +229,18 @@ function sendMessage(btxt) {
 
 
 function generateReport(tasks) {
-  // highlighted calendar tasks?  or all calendar tasks?
-  // # of tasks completed in past day
-  // untouched lists
+  let repeats = [];
+  for (let id in tasks) {
+    let task = tasks[id];
+    if (task.repeats==="daily") {
+      let repeat = "Summary for " + task.label + ": "
+      + "\n  Weekly total: " + task.summaries.weeklyTotal +
+      + "\n  Weekly average" + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
+      ;
+      repeats.push(repeat);
+    }
+  }
+  return repeats.join("\n");
 }
 
 function extractTasks(callback) {
@@ -241,6 +250,7 @@ function extractTasks(callback) {
       console.error(err);
     } else {
       let tasks = {};
+      console.log(result.rows);
       for (let row of result.rows) {
         tasks[row.id] = row.task;
       }
@@ -249,6 +259,10 @@ function extractTasks(callback) {
     }
   });
 }
+
+extractTasks((tasks)=>{
+  console.log(generateReport(tasks));
+});
 
 function chooseMessage() {
   let messages = [
@@ -356,8 +370,6 @@ app.post('/plate/db.*', function(req, res) {
   // rows to delete
   let deletes = [];
   //req.body.deletes;
-  console.log("deleting these?");
-  console.log(req.body.deletes);
   for (let id of req.body.deletes) {
     deletes.push('(id = ' + escape(id) + ' AND assignee = ' + "'"+user+"')");
   }

@@ -2,5 +2,9 @@ So, let's try to organize this into major areas:
 - Add more functionality:
 	- Different types of input.
 - Generate reports
-- Make $Lists work.
-	- Can this simply just return itself?
+	Every daily: total, average...or just average?
+		- This could be one or more flags on the tasks, that decides what goes into reports.
+		- Is there a way we could make the reports into tasks?  $Reports?
+			- I like where this is going but it doesn't have any obvious way of working.
+
+- Do we need a "remove from this list" button?  Or, do it in details?
