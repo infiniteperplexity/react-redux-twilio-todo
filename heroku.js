@@ -227,6 +227,29 @@ function sendMessage(btxt) {
   .catch(err=>console.log(err));
 }
 
+
+function generateReport(tasks) {
+  // highlighted calendar tasks?  or all calendar tasks?
+  // # of tasks completed in past day
+  // untouched lists
+}
+
+function extractTasks(callback) {
+  client.query("SELECT * FROM tasks WHERE assignee = 'GLENN'", (err, result) => {
+    if (err) {
+      done();
+      console.error(err);
+    } else {
+      let tasks = {};
+      for (let row of result.rows) {
+        tasks[row.id] = row.task;
+      }
+      console.log("report generated");
+      callback(tasks);
+    }
+  });
+}
+
 function chooseMessage() {
   let messages = [
     "Hi Glenn, have you recorded your dailies today?",

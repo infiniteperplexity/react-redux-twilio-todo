@@ -172,16 +172,14 @@ let autofilters = {
   },
   $Lists: {
     // I dunno if this is how I want to do it.
-    filter: tasks=>{
-      // for (let id in tasks) {
-      //   let task = tasks[id];
-      //   if ((!task.lists || task.lists.length===0) && (task.subtasks && task.subtasks.length>0)) {
-      //     tasks.$Lists.subtasks.push(id);
-      //   }
-      // }
-      return tasks;
+    filter: tasks=>tasks,
+    update: (task, tasks)=>{
+      if (!tasks.$Lists.subtasks.includes(task.id)) {
+        tasks.$Lists.subtasks.push(task.id);
+        return [tasks.$Lists];
+      }
+      return [];
     },
-    update: (task, tasks)=>[],
     order: 4
   },
   $Inbox: {
@@ -201,7 +199,6 @@ let autofilters = {
       }
       inbox.subtasks = inbox.subtasks.filter(id=>!listed.includes(id));
       return tasks;
-    // any negative conditions for this one?
     },
     update: (task, tasks)=>{
       let updates = [task];

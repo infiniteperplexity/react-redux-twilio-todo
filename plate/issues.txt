@@ -1,5 +1,6 @@
 So, let's try to organize this into major areas:
 - Add more functionality:
 	- Different types of input.
-
-So...we're basically about even with the functionality on the old version...
+- Generate reports
+- Make $Lists work.
+	- Can this simply just return itself?
