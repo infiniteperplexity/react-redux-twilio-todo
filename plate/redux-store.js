@@ -4,6 +4,7 @@ store = Redux.createStore(reducer);
 function reducer(state, action) {
   console.log("store dispatch:");
   console.log(action);
+  console.log(state);
   if (state === undefined) {
     console.log("initializing store");
     let tasks = {};
