@@ -244,18 +244,25 @@ function generateReport(tasks) {
 }
 
 function extractTasks(callback) {
-  client.query("SELECT * FROM tasks WHERE assignee = 'GLENN'", (err, result) => {
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     if (err) {
       done();
-      console.error(err);
+      console.log(error);
     } else {
-      let tasks = {};
-      console.log(result.rows);
-      for (let row of result.rows) {
-        tasks[row.id] = row.task;
-      }
-      console.log("report generated");
-      callback(tasks);
+      client.query("SELECT * FROM tasks WHERE assignee = 'GLENN'", (err, result) => {
+        if (err) {
+          done();
+          console.error(err);
+        } else {
+          let tasks = {};
+          console.log(result.rows);
+          for (let row of result.rows) {
+            tasks[row.id] = row.task;
+          }
+          console.log("report generated");
+          callback(tasks);
+        }
+      });
     }
   });
 }
