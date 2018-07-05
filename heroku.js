@@ -232,9 +232,8 @@ function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
     let task = tasks[id];
-    console.log("!");
-    console.log(task);
     if (task.repeats==="daily" && task.summaries) {
+      console.log("%%%%%%%%%%%%%%%%%%%%%%%%");
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal +
       + "\n  Weekly average" + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
