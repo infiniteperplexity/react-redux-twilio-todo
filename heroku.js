@@ -241,7 +241,7 @@ function generateReport(tasks) {
     }
   }
   return repeats.join("\n");
-}
+}//
 
 function extractTasks(callback) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
