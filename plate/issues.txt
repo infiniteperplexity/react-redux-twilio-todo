@@ -8,3 +8,4 @@ So, let's try to organize this into major areas:
 			- I like where this is going but it doesn't have any obvious way of working.
 
 - Do we need a "remove from this list" button?  Or, do it in details?
+- Bump summary back by one if current day blank (do I already do that?)
