@@ -231,7 +231,7 @@ function sendMessage(btxt) {
 function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
-    let task = JSON.parse(unescape(tasks[id]));
+    let task = tasks[id];
     if (task.repeats==="daily") {
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal +
@@ -257,9 +257,10 @@ function extractTasks(callback) {
           let tasks = {};
           console.log(result.rows);
           for (let row of result.rows) {
-            tasks[row.id] = row.task;
+            tasks[row.id] = JSON.parse(unescape(row.task));
           }
           console.log("report generated");
+          console.log(tasks);
           callback(tasks);
         }
       });
