@@ -233,6 +233,7 @@ function generateReport(tasks) {
   for (let id in tasks) {
     let task = tasks[id];
     console.log(typeof(task));
+    console.log(task);
     if (task.repeats==="daily" && task.summaries) {
       console.log("%%%%%%%%%%%%%%%%%%%%%%%%");
       let repeat = "Summary for " + task.label + ": "
@@ -259,7 +260,8 @@ function extractTasks(callback) {
           let tasks = {};
           console.log(result.rows);
           for (let row of result.rows) {
-            tasks[row.id] = JSON.parse(JSON.stringify(unescape(row.task)));
+            // tasks[row.id] = JSON.parse(JSON.stringify(unescape(row.task)));
+            tasks[row.id] = JSON.parse(unescape(row.task));            
           }
           console.log("report generated");
           console.log(tasks);
