@@ -232,14 +232,12 @@ function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
     let task = tasks[id];
-    console.log(typeof(task));
-    console.log(task);
     if (task.repeats==="daily" && task.summaries) {
-      console.log("%%%%%%%%%%%%%%%%%%%%%%%%");
+      console.log(typeof(task.summaries.weeklyTotal));
+      console.log((task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2));
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal +
-      + "\n  Weekly average" + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
-      ;
+      + "\n  Weekly average: " + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
       repeats.push(repeat);
     }
   }
