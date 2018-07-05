@@ -257,7 +257,11 @@ function extractTasks(callback) {
           let tasks = {};
           console.log(result.rows);
           for (let row of result.rows) {
-            tasks[row.id] = JSON.parse(unescape(row.task));
+            console.log("!!!!!!!");
+            console.log(row.task);
+            console.log(unescape(row.task));
+            console.log(JSON.parse(JSON.stringify(unescape(row.task))));
+            tasks[row.id] = JSON.parse(JSON.stringify(unescape(row.task)));
           }
           console.log("report generated");
           console.log(tasks);
