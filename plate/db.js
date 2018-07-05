@@ -177,10 +177,10 @@ let autofilters = {
       if (!tasks.$Lists.subtasks.includes(task.id)) {
         tasks.$Lists.subtasks.push(task.id);
         console.log("this");
-        return [tasks.$Lists];
+        return [task, tasks.$Lists];
       }
       console.log("that");
-      return [];
+      return [task];
     },
     order: 4
   },
