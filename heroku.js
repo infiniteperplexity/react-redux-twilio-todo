@@ -356,6 +356,8 @@ app.post('/plate/db.*', function(req, res) {
   // rows to delete
   let deletes = [];
   //req.body.deletes;
+  console.log("deleting these?");
+  console.log(req.body.deletes);
   for (let id of req.body.deletes) {
     deletes.push('(id = ' + escape(id) + ' AND assignee = ' + "'"+user+"')");
   }
