@@ -232,6 +232,7 @@ function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
     let task = tasks[id];
+    console.log(typeof(task));
     if (task.repeats==="daily" && task.summaries) {
       console.log("%%%%%%%%%%%%%%%%%%%%%%%%");
       let repeat = "Summary for " + task.label + ": "
