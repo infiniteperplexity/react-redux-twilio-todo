@@ -56,6 +56,8 @@ function reducer(state, action) {
     deleteTasks(action.tasks);
     return state;
   } else if (action.type==="modifyTasks") {
+    console.log("modifying");
+    console.log(action.tasks);
     updateTasks(action.tasks);
     return state;
   } else if (action.type==="chooseList") {
