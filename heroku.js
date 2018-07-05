@@ -231,7 +231,7 @@ function sendMessage(btxt) {
 function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
-    let task = JSON.parse(tasks[id]);
+    let task = JSON.parse(unescape(tasks[id]));
     if (task.repeats==="daily") {
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal +
