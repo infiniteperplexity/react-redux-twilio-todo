@@ -1,6 +1,6 @@
 
 class TaskMenu extends React.Component {
-  handleSave() {
+  handleSave = ()=>{
     this.props.saveTasks(this.props.tasks);
   }
   render() {
