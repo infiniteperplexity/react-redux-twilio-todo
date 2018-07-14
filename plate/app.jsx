@@ -62,7 +62,8 @@ let AppComponent = ReactRedux.connect(
       modifyTasks: (tasks)=>dispatch({type: "modifyTasks", tasks: tasks}),
       chooseList: (list)=>dispatch({type: "chooseList", list: list}),
       chooseDetails: (details)=>dispatch({type: "chooseDetails", details: details}),
-      chooseDate: (date)=>dispatch({type: "chooseDate", date: date})
+      chooseDate: (date)=>dispatch({type: "chooseDate", date: date}),
+      saveTasks: saveTasks
   })
 )(App);
 
@@ -73,6 +74,25 @@ ReactDOM.render(
   destination
 );
 
-
+function saveTasks(obj) {
+  let txt = (typeof(obj)==="string") ? obj : stringify(obj); 
+  let blob = new Blob([txt], {type : 'text/plain'});
+  let url = window.URL.createObjectURL(blob);
+  // window.open(url);
+  
+  let p = prompt("Enter name for saved file:","sequence.json");
+  if (p) {
+    let anchor = document.createElement("a");
+    anchor.download = p;
+    anchor.href = url;
+    anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
+    document.body.appendChild(anchor);
+    anchor.click();
+    setTimeout(()=>{
+      document.body.removeChild(anchor);
+      window.URL.revokeObjectURL(url);
+    }, 0);
+  }
+}
 
 
