@@ -236,6 +236,9 @@ function generateReport(tasks) {
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal
       + "\n  Weekly average: " + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
+      if (task.summaries.weeklyDays===0) {
+        repeats = "No weekly entries for " + task.label + ".";
+      }
       repeats.push(repeat);
     }
   }
