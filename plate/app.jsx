@@ -75,7 +75,7 @@ ReactDOM.render(
 );
 
 function saveTasks(obj) {
-  let txt = (typeof(obj)==="string") ? obj : stringify(obj); 
+  let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj, null, 2); 
   let blob = new Blob([txt], {type : 'text/plain'});
   let url = window.URL.createObjectURL(blob);
   // window.open(url);
