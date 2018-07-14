@@ -9,9 +9,9 @@ class TaskMenu extends React.Component {
       let auto = autofilters[f];
       statics[auto.order] = f;
     }
-    let tasks = props.tasks;
+    let tasks = this.props.tasks;
     let lists = tasks.$Lists.subtasks;
-    let list = statics.concat(lists).map((e,i)=><MenuListItem key={i} task={e} {...props}/>);
+    let list = statics.concat(lists).map((e,i)=><MenuListItem key={i} task={e} {...this.props}/>);
     list.splice(statics.length, 0, <hr key={-1}/>)
     list.unshift(<div key={-2}>
       <button onClick={this.handleSave}>Export</button>
