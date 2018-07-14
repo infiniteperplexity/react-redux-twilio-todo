@@ -1,23 +1,24 @@
 
 class TaskMenu extends React.Component {
-handleSave() {
-  this.props.saveTasks(this.props.tasks);
-}
-render() {
-  let statics = [];
-  for (let f in autofilters) {
-    let auto = autofilters[f];
-    statics[auto.order] = f;
+  handleSave() {
+    this.props.saveTasks(this.props.tasks);
   }
-  let tasks = props.tasks;
-  let lists = tasks.$Lists.subtasks;
-  let list = statics.concat(lists).map((e,i)=><MenuListItem key={i} task={e} {...props}/>);
-  list.splice(statics.length, 0, <hr key={-1}/>)
-  list.unshift(<div key={-2}>
-    <button onClick={this.handleSave}>Export</button>
-    <button>Import</button>
-  </div>);
-  return list;
+  render() {
+    let statics = [];
+    for (let f in autofilters) {
+      let auto = autofilters[f];
+      statics[auto.order] = f;
+    }
+    let tasks = props.tasks;
+    let lists = tasks.$Lists.subtasks;
+    let list = statics.concat(lists).map((e,i)=><MenuListItem key={i} task={e} {...props}/>);
+    list.splice(statics.length, 0, <hr key={-1}/>)
+    list.unshift(<div key={-2}>
+      <button onClick={this.handleSave}>Export</button>
+      <button>Import</button>
+    </div>);
+    return list;
+  }
 }
 
 class MenuListItem extends React.Component {
