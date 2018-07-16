@@ -505,3 +505,5 @@ let ex2 = sqlstring.escape(ex1);
 console.log(ex2);
 let ex3 = ex2.replace(/\\\\/g,"\\");
 console.log(ex3);
+let ex4 = JSON.parse(ex3);
+console.log(ex4);
