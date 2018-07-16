@@ -363,14 +363,12 @@ app.get('/plate/db.*', function(req, res) {
         return;
       }
       console.log("rows");
-      console.log(result.rows.map(row=>row.task));
+      console.log(result.rows.map(row=>row.task.replace(/\\/g),"/"));
       console.log("unescape");
-      console.log(result.rows.map(row=>JSON.parse(row.task)));
-      console.log("parse");
-      console.log(result.rows.map(row=>JSON.parse(row.task)));
+      console.log(result.rows.map(row=>JSON.parse(row.task.replace(/\\/g),"/")));
       // console.log("alt");
       // console.log(result.rows.map(row=>JSON.parse(row.task)));
-      let tasks = result.rows.map(row=>JSON.parse(row.task));
+      let tasks = result.rows.map(row=>JSON.parse(row.task.replace(/\\/g),"/"));
       console.log("tasks");
       console.log(tasks);
       console.log("sending rows");
