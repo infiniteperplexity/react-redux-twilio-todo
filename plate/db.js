@@ -54,7 +54,9 @@ function getTasks() {
       res.json().then(data=>{
         console.log("ho ho");
         let tasks = {};
+        console.log(data.length);
         data.map(row=>{
+          console.log("what on earth is going on?");
           let task = JSON.parse(row);
           tasks[task.id] = task;
         });
