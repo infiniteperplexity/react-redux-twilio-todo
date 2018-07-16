@@ -493,7 +493,7 @@ app.post('/plate/purge', function(req, res) {
 
 
 let example = {task: 'The film "Resolution"'};
-console.log(eJSON.stringify(example));
+console.log(sqlstring.escape(JSON.stringify(example)));
 console.log(unescape(escape(JSON.stringify(example))));
 console.log()
 
