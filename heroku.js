@@ -427,7 +427,7 @@ app.post('/plate/db.*', function(req, res) {
           console.log("inserting rows");
           console.log(insert);
           // this part seems vulnerable to duplicates...
-          client.query('INSERT INTO tasks (assignee, id, task) VALUES '+insert, (err)=> {
+          client.query('INSERT INTO tasks (assignee, id, task) VALUES ('+insert+')', (err)=> {
             if (err) {
               console.log("had an error inserting rows");
               done();
