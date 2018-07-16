@@ -56,10 +56,7 @@ function getTasks() {
           // this is silently failiung when it hits the quotes in "resolution"
           let task;
           try {
-            console.log(row);
-            console.log(typeof(row));
             task = JSON.parse(row);
-            console.log(task);
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
