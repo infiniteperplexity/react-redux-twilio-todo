@@ -46,11 +46,13 @@ let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
 function getTasks() {
+  console.log("Hey hey");
   fetch('db.'+user).then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
       res.json().then(data=>{
+        console.log("ho ho");
         let tasks = {};
         data.map(row=>{
           let task = JSON.parse(row);
