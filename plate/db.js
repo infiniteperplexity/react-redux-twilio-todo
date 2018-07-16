@@ -60,11 +60,7 @@ function getTasks() {
           console.log(task);
           tasks[task.id] = task;
         }
-        // data.map(row=>{
-        //   console.log("what on earth is going on?");
-        //   let task = JSON.parse(row);
-        //   tasks[task.id] = task;
-        // });
+        alert("let's get extreme");
         console.log("we got here");
         console.log(data.length);
         console.log(tasks);
