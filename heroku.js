@@ -491,5 +491,7 @@ app.post('/plate/purge', function(req, res) {
   });
 });
 
-console.log(escape('The film "Resolution"'));
-console.log(unescape(escape('The film "Resolution"')));
+
+let example = {task: 'The film "Resolution"'};
+console.log(escape(JSON.stringify(example)));
+console.log(unescape(escape(JSON.stringify(example))));
