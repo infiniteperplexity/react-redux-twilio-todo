@@ -59,6 +59,7 @@ function getTasks() {
         for (let i=0; i<data.length; i++) {
           let task = JSON.parse(data[i]);
           tasks[task.id] = task;
+          console.log(tasks);
         }
         // for (let row of data) {
         //   let task = JSON.parse(row);

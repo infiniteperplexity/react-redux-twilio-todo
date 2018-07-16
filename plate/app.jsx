@@ -74,25 +74,28 @@ ReactDOM.render(
   destination
 );
 
-function saveTasks(obj) {
-  let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj, null, 2); 
-  let blob = new Blob([txt], {type : 'text/plain'});
-  let url = window.URL.createObjectURL(blob);
-  // window.open(url);
+function saveTasks() {
   
-  let p = prompt("Enter name for saved file:","sequence.json");
-  if (p) {
-    let anchor = document.createElement("a");
-    anchor.download = p;
-    anchor.href = url;
-    anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
-    document.body.appendChild(anchor);
-    anchor.click();
-    setTimeout(()=>{
-      document.body.removeChild(anchor);
-      window.URL.revokeObjectURL(url);
-    }, 0);
-  }
 }
+// function saveTasks(obj) {
+//   let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj, null, 2); 
+//   let blob = new Blob([txt], {type : 'text/plain'});
+//   let url = window.URL.createObjectURL(blob);
+//   // window.open(url);
+  
+//   let p = prompt("Enter name for saved file:","sequence.json");
+//   if (p) {
+//     let anchor = document.createElement("a");
+//     anchor.download = p;
+//     anchor.href = url;
+//     anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
+//     document.body.appendChild(anchor);
+//     anchor.click();
+//     setTimeout(()=>{
+//       document.body.removeChild(anchor);
+//       window.URL.revokeObjectURL(url);
+//     }, 0);
+//   }
+// }
 
 
