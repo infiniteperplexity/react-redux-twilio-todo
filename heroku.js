@@ -338,6 +338,9 @@ let stayAwake = setInterval(()=>{
 },1000*60*20);
 
 
+
+
+
 app.get('/plate', function(req, res) {
    res.sendFile(path.join(__dirname, '/plate.html'));
 });
@@ -363,12 +366,12 @@ app.get('/plate/db.*', function(req, res) {
         return;
       }
       console.log("rows");
-      console.log(result.rows.map(row=>row.task.replace(/\\\\/g),"\\"));
+      console.log(result.rows.map(row=>row.task.replace(/\\\\/g,"\\"));
       console.log("unescape");
-      console.log(result.rows.map(row=>JSON.parse(row.task.replace(/\\\\/g),"\\")));
+      console.log(result.rows.map(row=>JSON.parse(row.task.replace(/\\\\/g,"\\")));
       // console.log("alt");
       // console.log(result.rows.map(row=>JSON.parse(row.task)));
-      let tasks = result.rows.map(row=>JSON.parse(row.task.replace(/\\\\/g),"\\"));
+      let tasks = result.rows.map(row=>JSON.parse(row.task.replace(/\\\\/g,"\\"));
       console.log("tasks");
       console.log(tasks);
       console.log("sending rows");
@@ -492,3 +495,13 @@ app.post('/plate/purge', function(req, res) {
     });
   });
 });
+
+
+let ex0 = {task: 'the film "resolution"'};
+console.log(ex0);
+let ex1 = JSON.stringify(ex0);
+console.log(ex1);
+let ex2 = sqlstring.escape(ex1);
+console.log(ex2);
+let ex3 = ex2.replace(/\\\\/g,"\\");
+console.log(ex3);
