@@ -364,8 +364,8 @@ app.get('/plate/db.*', function(req, res) {
       }
       console.log("rows");
       console.log(result.rows.map(row=>row.task));
-      console.log("alt");
-      console.log(result.rows.map(row=>JSON.parse(row.task)));
+      // console.log("alt");
+      // console.log(result.rows.map(row=>JSON.parse(row.task)));
       let tasks = result.rows.map(row=>unescape(row.task));
       console.log("tasks");
       console.log(tasks);
