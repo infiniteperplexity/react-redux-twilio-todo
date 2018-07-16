@@ -362,7 +362,12 @@ app.get('/plate/db.*', function(req, res) {
         res.status(500).send();
         return;
       }
+      console.log("rows");
+      console.log(rows);
+      console.log("alt");
+      console.log(result.rows.map(row=>JSON.parse(row.task)));
       let tasks = result.rows.map(row=>unescape(row.task));
+      console.log("tasks");
       console.log(tasks);
       console.log("sending rows");
       res.send(JSON.stringify(tasks));
@@ -434,13 +439,7 @@ app.post('/plate/db.*', function(req, res) {
                   console.log("had an error retrieving updated rows.");
                   res.status(500).send();
                 }
-                console.log("rows");
-                consoe.log(rows);
                 let tasks = result.rows.map(row=>unescape(row.task));
-                console.log("sending rows");
-                console.log(tasks);
-                console.log("...or...");
-                console.log(result.rows.map(row=>JSON.parse(row.task)));
                 res.send(JSON.stringify(tasks));
 
               });
