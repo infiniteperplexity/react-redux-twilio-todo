@@ -437,9 +437,10 @@ app.post('/plate/db.*', function(req, res) {
                 let tasks = result.rows.map(row=>unescape(row.task));
                 console.log("sending rows");
                 console.log(tasks);
-                res.send(JSON.stringify(tasks));
                 console.log("...or...");
-                console.log(result.rows.map(row=>JSON.parse(unescape(row.task))));
+                console.log(result.rows.map(row=>JSON.parse(row.task)));
+                res.send(JSON.stringify(tasks));
+
               });
             }
           });
