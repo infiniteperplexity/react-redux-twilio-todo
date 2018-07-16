@@ -58,6 +58,8 @@ function getTasks() {
           let task = JSON.parse(row);
           tasks[task.id] = task;
         });
+        console.log("we got here");
+        console.log(data.length);
         console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: tasks})
       });

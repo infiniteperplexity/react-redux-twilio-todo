@@ -364,6 +364,7 @@ app.get('/plate/db.*', function(req, res) {
       }
       let tasks = result.rows.map(row=>unescape(row.task));
       console.log(tasks);
+      console.log("sending rows");
       res.send(JSON.stringify(tasks));
     });
   });
