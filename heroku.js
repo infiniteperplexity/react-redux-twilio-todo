@@ -364,6 +364,10 @@ app.get('/plate/db.*', function(req, res) {
       }
       console.log("rows");
       console.log(result.rows.map(row=>row.task));
+      console.log("unescape");
+      console.log(result.rows.map(row=>sqlstring.unescape(row.task)));
+      console.log("parse");
+      console.log(result.rows.map(row=>JSON.parse(sqlstring.unescape(row.task))));
       // console.log("alt");
       // console.log(result.rows.map(row=>JSON.parse(row.task)));
       let tasks = result.rows.map(row=>unescape(row.task));
@@ -490,20 +494,3 @@ app.post('/plate/purge', function(req, res) {
     });
   });
 });
-
-
-let example = {task: 'The film "Resolution"'};
-console.log(sqlstring.escape(JSON.stringify(example)));
-console.log(unescape(escape(JSON.stringify(example))));
-console.log()
-
-
-function unescape2(s) {
-  let SPACER = "\u0000";
-  let SREGEX = new RegExp(SPACER,"g");
-  let unsan = s.replace(/\\n/g,SPACER);
-  unsan = unsan.replace(/\\/g,"");
-  unsan = unsan.replace(SREGEX,"\n");
-  unsan = unsan.replace(/''/g,"'");
-  return unsan;
-}
