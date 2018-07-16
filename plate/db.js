@@ -46,29 +46,23 @@ let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
 function getTasks() {
-  console.log("Hey hey");
   fetch('db.'+user).then(res=>{
     if (res.status!==200) {
         alert("failed to get data");
     } else {
       res.json().then(data=>{
-        console.log("ho ho");
         let tasks = {};
         for (let row of data) {
           // this is silently failiung when it hits the quotes in "resolution"
           let task;
           try {
             task = JSON.parse(row);
+            tasks[task.id] = task;
           } catch (e) {
-            console.log("can't parse "+row);
-            throw e;
+            alert("couldn't parse "+row);
           }
-          console.log(task);
-          tasks[task.id] = task;
+          
         }
-        console.log("we got here");
-        console.log(data.length);
-        console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
     };
