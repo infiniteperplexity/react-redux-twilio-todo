@@ -406,7 +406,7 @@ app.post('/plate/db.*', function(req, res) {
   for (let task of req.body.inserts) {
     inserts.push("('"+user+"'");
     inserts.push(escape(task.id));
-    inserts.push("'"+JSON.stringify(task)+"'");
+    inserts.push("'"+sqlstring.escape(JSON.stringify(task))+"'");
   }
   let insert = inserts.join(',');
   console.log(deletes);
@@ -493,5 +493,17 @@ app.post('/plate/purge', function(req, res) {
 
 
 let example = {task: 'The film "Resolution"'};
-console.log(escape(JSON.stringify(example)));
+console.log(eJSON.stringify(example));
 console.log(unescape(escape(JSON.stringify(example))));
+console.log()
+
+
+function unescape2(s) {
+  let SPACER = "\u0000";
+  let SREGEX = new RegExp(SPACER,"g");
+  let unsan = s.replace(/\\n/g,SPACER);
+  unsan = unsan.replace(/\\/g,"");
+  unsan = unsan.replace(SREGEX,"\n");
+  unsan = unsan.replace(/''/g,"'");
+  return unsan;
+}
