@@ -405,8 +405,8 @@ app.post('/plate/db.*', function(req, res) {
   console.log(req.body.inserts);
   for (let task of req.body.inserts) {
     inserts.push("('"+user+"'");
-    inserts.push(escape(task.id));
-    inserts.push(escape(JSON.stringify(task))+")");
+    inserts.push(task.id);
+    inserts.push(JSON.stringify(task));
   }
   let insert = inserts.join(',');
   console.log(deletes);
