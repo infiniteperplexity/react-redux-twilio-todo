@@ -55,11 +55,16 @@ function getTasks() {
         console.log("ho ho");
         let tasks = {};
         console.log(data.length);
-        for (let row of data) {
-          let task = JSON.parse(row);
-          console.log(task);
-          // tasks[task.id] = task;
+        console.log(data);
+        for (let i=0; i<data.length; i++) {
+          let task = JSON.parse(data[i]);
+          tasks[task.id] = task;
         }
+        // for (let row of data) {
+        //   let task = JSON.parse(row);
+        //   console.log(task);
+        //   // tasks[task.id] = task;
+        // }
         console.log("we got here");
         console.log(data.length);
         console.log(tasks);
