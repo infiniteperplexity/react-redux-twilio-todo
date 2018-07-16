@@ -366,7 +366,7 @@ app.get('/plate/db.*', function(req, res) {
         return;
       }
       console.log("rows");
-      console.log(result.rows.map(row=>row.task.replace(/\\\\/g,"\\"));
+      console.log(result.rows.map(row=>row.task.replace(/\\\\/g,"\\")));
       console.log("unescape");
       console.log(result.rows.map(row=>JSON.parse(row.task.replace(/\\\\/g,"\\"))));
       // console.log("alt");
