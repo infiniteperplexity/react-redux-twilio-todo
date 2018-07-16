@@ -483,3 +483,5 @@ app.post('/plate/purge', function(req, res) {
     });
   });
 });
+
+console.log(escape('The film "Resolution"'));

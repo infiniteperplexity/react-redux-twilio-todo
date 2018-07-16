@@ -59,9 +59,8 @@ function getTasks() {
             task = JSON.parse(row);
             tasks[task.id] = task;
           } catch (e) {
-            alert("couldn't parse "+row);
-          }
-          
+            console.log("couldn't parse "+row);
+          }   
         }
         store.dispatch({type: "gotTasks", tasks: tasks})
       });
@@ -86,8 +85,12 @@ function updateTasks(tasks) {
       res.json().then(data=>{
         let tasks = {};
         data.map(row=>{
-           let task = JSON.parse(row);
-          tasks[task.id] = task;
+          try {
+            let task = JSON.parse(row);
+            tasks[task.id] = task;
+          } catch (e) {
+            console.log("couldn't parse "+row);
+          }
         });
         console.log(tasks);
         store.dispatch({type: "gotTasks", tasks: tasks})
