@@ -42,7 +42,15 @@ function merge(obj1, obj2) {
 }
 
 
-let debugTasks = [];
+function unescape(task) {
+  let swapper = "ZOMG";
+  let swaprgx = new RegExp(swapper,"g");
+  task = task.replace(/\\\\\\\"/g,swapper);
+  task = task.replace(/\\/g,"");
+  task = task.replace(swaprgx,'\\\"');
+  return task;
+}
+
 
 let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
@@ -58,11 +66,10 @@ function getTasks() {
           // this is silently failiung when it hits the quotes in "resolution"
           let task;
           try {
-            task = JSON.parse(row);
+            task = JSON.parse(unescape(row));
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
-            debugTasks.push(row);
           }   
         }
         store.dispatch({type: "gotTasks", tasks: tasks})
@@ -89,7 +96,7 @@ function updateTasks(tasks) {
         let tasks = {};
         data.map(row=>{
           try {
-            let task = JSON.parse(row);
+            let task = JSON.parse(unescape(row));
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
@@ -118,7 +125,7 @@ function deleteTasks(ids) {
       res.json().then(data=>{
         let tasks = {};
         data.map(row=>{
-           let task = JSON.parse(row);
+           let task = JSON.parse(unescape(row));
           tasks[task.id] = task;
         });
         console.log(tasks);
