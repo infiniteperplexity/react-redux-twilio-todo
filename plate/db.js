@@ -55,6 +55,7 @@ function unescape(task) {
 let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
+let debugTasks = [];
 function getTasks() {
   fetch('db.'+user).then(res=>{
     if (res.status!==200) {
@@ -67,6 +68,7 @@ function getTasks() {
           let task;
           try {
             task = JSON.parse(unescape(row));
+            debugTasks.push(row);
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
