@@ -43,14 +43,25 @@ function merge(obj1, obj2) {
 
 
 function unescape(task) {
-  let swapper = "ZOMG";
-  let swaprgx = new RegExp(swapper,"g");
-  task = task.replace(/\\\\\\\"/g,swapper);
+  let unescapes = [
+    /\\\\\\\"/g,
+    /\\\\n/g
+  ];
+  let replacers = [
+    '\\\"',
+    '\n'
+  ];
+  let swappers = unescapes.map((_,i)=>("\u0000"+i));
+  let regexes = swappers.map(s=>new RegExp(s,"g"));
+  for (let i=0; i<unescapes.length; i++) {
+    task = task.replace(unescapes[i], swappers[i]);
+  }
   task = task.replace(/\\/g,"");
-  task = task.replace(swaprgx,'\\\"');
+  for (let i=0; i<unescapes.length; i++) {
+    task = task.replace(regexes[i], replacers[i]);
+  }
   return task;
 }
-
 
 let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
