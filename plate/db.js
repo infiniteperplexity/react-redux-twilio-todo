@@ -49,7 +49,7 @@ function unescape(task) {
   ];
   let replacers = [
     '\\\"',
-    '\n'
+    '\\n'
   ];
   let swappers = unescapes.map((_,i)=>("\u0000"+i));
   let regexes = swappers.map(s=>new RegExp(s,"g"));
