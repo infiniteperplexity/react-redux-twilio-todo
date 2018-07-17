@@ -144,8 +144,6 @@ function purgeUser(user) {
   });
 }
 
-purgeUser("GLENN");
-
 let autofilters = {
   $Complete: {
     filter: tasks=>{
