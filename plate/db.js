@@ -42,6 +42,8 @@ function merge(obj1, obj2) {
 }
 
 
+let debugTasks = [];
+
 let store;
 let user = (window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
@@ -60,6 +62,7 @@ function getTasks() {
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
+            debugTasks.push(row);
           }   
         }
         store.dispatch({type: "gotTasks", tasks: tasks})
