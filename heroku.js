@@ -444,7 +444,7 @@ app.post('/plate/db.*', function(req, res) {
                   console.log("had an error retrieving updated rows.");
                   res.status(500).send();
                 }
-                let tasks = result.rows.map(row=>unescape(row.task));
+                let tasks = result.rows.map(row=>row.task);
                 res.send(JSON.stringify(tasks));
 
               });
@@ -458,7 +458,7 @@ app.post('/plate/db.*', function(req, res) {
               res.status(500).send();
             }
             // let tasks = result.rows.map(row=>unescape(row.task));
-            let tasks = result.rows.map(row=>unescape(row.task));
+            let tasks = result.rows.map(row=>row.task);
             console.log("sending rows");
             console.log(tasks);
             res.send(JSON.stringify(tasks));
@@ -495,19 +495,3 @@ app.post('/plate/purge', function(req, res) {
     });
   });
 });
-
-
-let ex0 = {task: 'the film "resolution"'};
-console.log(ex0);
-let ex1 = JSON.stringify(ex0);
-console.log(ex1);
-let ex2 = sqlstring.escape(ex1);
-console.log(ex2);
-let SPACER = "\u0000";
-let SREGEX = new RegExp(SPACER,"g");
-let ex3 = ex2.replace(/\\\\/g,SPACER);
-ex3 = ex3.replace(/\\/g, "");
-ex3.replace(SREGEX,"\\");
-console.log(ex3);
-let ex4 = JSON.parse(ex3);
-console.log(ex4);
