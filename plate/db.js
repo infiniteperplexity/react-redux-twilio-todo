@@ -79,10 +79,10 @@ function getTasks() {
           let task;
           try {
             task = JSON.parse(unescape(row));
-            debugTasks.push(row);
             tasks[task.id] = task;
           } catch (e) {
             console.log("couldn't parse "+row);
+            debugTasks.push(row);
           }   
         }
         store.dispatch({type: "gotTasks", tasks: tasks})
