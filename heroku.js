@@ -293,9 +293,6 @@ function extractTasks(callback) {
   });
 }
 
-extractTasks((tasks)=>console.log(tasks));
-
-
 function chooseMessage() {
   let messages = [
     "Hi Glenn, have you recorded your dailies today?",
