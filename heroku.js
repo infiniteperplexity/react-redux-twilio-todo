@@ -245,6 +245,28 @@ function generateReport(tasks) {
   return repeats.join("\n");
 }//
 
+
+
+function unescape2(task) {
+  let unescapes = [
+    /\\\\\\\"/g,
+    /\\\\n/g
+  ];
+  let replacers = [
+    '\\\"',
+    '\\n'
+  ];
+  let swappers = unescapes.map((_,i)=>("\u0000"+i));
+  let regexes = swappers.map(s=>new RegExp(s,"g"));
+  for (let i=0; i<unescapes.length; i++) {
+    task = task.replace(unescapes[i], swappers[i]);
+  }
+  task = task.replace(/\\/g,"");
+  for (let i=0; i<unescapes.length; i++) {
+    task = task.replace(regexes[i], replacers[i]);
+  }
+  return task;
+}
 function extractTasks(callback) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     if (err) {
@@ -260,7 +282,7 @@ function extractTasks(callback) {
           console.log(result.rows);
           for (let row of result.rows) {
             // tasks[row.id] = JSON.parse(JSON.stringify(unescape(row.task)));
-            tasks[row.id] = JSON.parse(unescape(row.task));            
+            tasks[row.id] = JSON.parse(unescape2(row.task));            
           }
           console.log("report generated");
           console.log(tasks);
@@ -270,6 +292,8 @@ function extractTasks(callback) {
     }
   });
 }
+
+extractTasks((tasks)=>console.log(tasks));
 
 
 function chooseMessage() {
