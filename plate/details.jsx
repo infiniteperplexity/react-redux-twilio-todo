@@ -61,7 +61,7 @@ class TaskDetails extends React.Component {
         <div>Created: {task.created || "N/A"}</div>
         <div>Touched: {task.touched || task.created || "N/A"}</div>
         <div>Notes:</div>
-        <textarea rows="25" cols="50" ref={e=>this._notes=e} defaultValue={task.notes.replace()} style={{
+        <textarea rows="25" cols="50" ref={e=>this._notes=e} defaultValue={task.notes} style={{
             color: (task.static) ? "gray" : "black"
           }}/>
         {dailies}
