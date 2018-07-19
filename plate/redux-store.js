@@ -80,7 +80,7 @@ function reducer(state, action) {
             break;
           }
           let occ = task.occasions[day.unix()];
-          if (occ) {
+          if (occ!==undefined) {
             numerator+=occ;
             denominator+=1;
           }
