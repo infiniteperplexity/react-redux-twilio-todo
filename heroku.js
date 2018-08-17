@@ -7,6 +7,7 @@ const sqlstring = require('sqlstring');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const request = require('request');
+const moment = require('moment');
 
 let sid = process.env.TWILIO_SID;
 let token = process.env.TWILIO_TOKEN;
@@ -228,11 +229,51 @@ function sendMessage(btxt) {
 }
 
 
+// for (let task of action.tasks) {
+//       if (task.repeats==="daily") {
+//         let days = [moment().startOf('day')];
+//         // try eight days, in case we don't want to count the current one
+//         for (let i=0; i<7; i++) {
+//           let day = moment(days[days.length-1]);
+//           days.push(day.subtract(1,'days'));
+//         }
+//         let numerator = 0;
+//         let denominator = 0;
+//         let useEight = false;
+//         if (!task.occasions) {
+//           task.occasions = {};
+//         }
+//         for (let i=0; i<days.length; i++) {
+//           let day = days[i];
+//           if (i===0 && task.occasions[day.unix()]===undefined) {
+//             useEight = true;
+//             continue;
+//           } else if (i===7 && useEight===false) {
+//             break;
+//           }
+//           let occ = task.occasions[day.unix()];
+//           console.log(occ);
+//           if (occ!==undefined) {
+//             numerator+=occ;
+//             denominator+=1;
+//           }
+//         }
+//         task.summaries = {
+//           weeklyTotal: numerator,
+//           weeklyDays: denominator
+//         }
+//       }
+//     }
+
 function generateReport(tasks) {
   let repeats = [];
   for (let id in tasks) {
     let task = tasks[id];
     if (task.repeats==="daily" && task.summaries) {
+
+
+
+
       let repeat = "Summary for " + task.label + ": "
       + "\n  Weekly total: " + task.summaries.weeklyTotal
       + "\n  Weekly average: " + (task.summaries.weeklyTotal/task.summaries.weeklyDays).toFixed(2);
