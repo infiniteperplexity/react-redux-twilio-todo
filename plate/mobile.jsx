@@ -74,7 +74,7 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text" style={{width: "99%"}}/>
+        <input ref={e=>this._textInput=e} type="text"/>
         <br/>
         <button onClick={this.handleAdd}>Add Task</button>
       </div>
@@ -84,7 +84,14 @@ class MobileToolbar extends React.Component {
 
 function MobileTasks(props, context) {
   let {tasks, list} = props;
-  let listed = tasks[list].subtasks.map((e,i)=><div key={i} style={{width: "450px", backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"}}>{tasks[e].label}</div>);
+  let listed = tasks[list].subtasks.map((e,i)=>
+    <div key={i}
+      style={{
+        overflow: "hidden",
+        backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"
+      }}>{tasks[e].label}
+    </div>
+  );
   return (
     <div >
       {listed}
