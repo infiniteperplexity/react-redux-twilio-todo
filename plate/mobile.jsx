@@ -37,12 +37,37 @@ class MobileMenu extends React.Component {
 }
 
 class MobileToolbar extends React.Component {
-  handleClick = (e)=>{
+  // handleClick = (e)=>{
+  //   let text = this._textInput.value;
+  //   if (text) {
+  //     let list = this.props.list;
+  //     let task = this.props.tasks[list];
+  //     this.props.addTask(this.props.newTask({label: text, lists: [list]}));
+  //     this._textInput.value = "";
+  //   }
+  // }
+  handleAdd = (e)=>{
+    e.preventDefault();
     let text = this._textInput.value;
     if (text) {
-      let list = this.props.list;
-      let task = this.props.tasks[list];
-      this.props.addTask(this.props.newTask({label: text, lists: [list]}));
+      let task = this.props.newTask({label: text});
+      // if the list is an autofilter, create a new task that fits the fitler
+      if (autofilters[this.props.list]) {
+        let auto = autofilters[this.props.list];
+        let updates = auto.update(task, this.props.tasks);
+        this.props.modifyTasks(updates);
+      } else {
+        // otherwise add an unmodified new task
+        let list = clone(this.props.tasks[this.props.list]);
+        if (!list.subtasks) {
+          list.subtasks = [];
+        }
+        list.subtasks.push(task.id);
+        this.props.modifyTasks([
+          task,
+          list
+        ]);
+      }
       this._textInput.value = "";
     }
   }
@@ -51,7 +76,7 @@ class MobileToolbar extends React.Component {
       <div>
         <input ref={e=>this._textInput=e} type="text" style={{width: "99%"}}/>
         <br/>
-        <button onClick={this.handleClick}>Add Task</button>
+        <button onClick={this.handleAdd}>Add Task</button>
       </div>
     );
   }
