@@ -1,7 +1,7 @@
 class MobilePanel extends React.Component {
   render() {
     return (
-      <div className="app mobile">
+      <div className="app frame mobile">
         <MobileMenu {...this.props}/>
         <MobileToolbar {...this.props}/>
         <MobileTasks {...this.props}/>
@@ -65,7 +65,7 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text" size="36" style={{fontSize: "36px"}}/>
+        <input ref={e=>this._textInput=e} type="text" size="42" style={{fontSize: "36px"}}/>
         <br/>
         <button style={{fontSize: "36px"}} onClick={this.handleAdd}>Add Task</button>
       </div>
