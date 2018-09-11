@@ -55,6 +55,7 @@ let AppComponent = ReactRedux.connect(
       created: moment().unix(),
       ...args
     }),
+    saveTasks: saveTasks
     ...state
   }),
   (dispatch)=>({
@@ -62,8 +63,7 @@ let AppComponent = ReactRedux.connect(
       modifyTasks: (tasks)=>dispatch({type: "modifyTasks", tasks: tasks}),
       chooseList: (list)=>dispatch({type: "chooseList", list: list}),
       chooseDetails: (details)=>dispatch({type: "chooseDetails", details: details}),
-      chooseDate: (date)=>dispatch({type: "chooseDate", date: date}),
-      saveTasks: saveTasks
+      chooseDate: (date)=>dispatch({type: "chooseDate", date: date})
   })
 )(App);
 
@@ -75,27 +75,28 @@ ReactDOM.render(
 );
 
 function saveTasks() {
-  
+  let obj = store.getState().tasks;
+  let fname = "tasks.json";
+  let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj); 
+  let blob = new Blob([txt], {type : 'text/plain'});
+  let url = window.URL.createObjectURL(blob);
+  let p = prompt("Enter name for saved file:",fname);
+  if (p.length<5 || p.substring(p.length-5)!==".json") {
+    p = p+".json";
+  }
+  if (p) {
+    let anchor = document.createElement("a");
+    anchor.download = p;
+    anchor.href = url;
+    anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
+    document.body.appendChild(anchor);
+    anchor.click();
+    setTimeout(()=>{
+      document.body.removeChild(anchor);
+      window.URL.revokeObjectURL(url);
+    }, 0);
+  } 
+  return p;
 }
-// function saveTasks(obj) {
-//   let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj, null, 2); 
-//   let blob = new Blob([txt], {type : 'text/plain'});
-//   let url = window.URL.createObjectURL(blob);
-//   // window.open(url);
-  
-//   let p = prompt("Enter name for saved file:","sequence.json");
-//   if (p) {
-//     let anchor = document.createElement("a");
-//     anchor.download = p;
-//     anchor.href = url;
-//     anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
-//     document.body.appendChild(anchor);
-//     anchor.click();
-//     setTimeout(()=>{
-//       document.body.removeChild(anchor);
-//       window.URL.revokeObjectURL(url);
-//     }, 0);
-//   }
-// }
 
 

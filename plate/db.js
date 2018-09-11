@@ -260,4 +260,3 @@ let autofilters = {
     order: 3
   }
 }
-
