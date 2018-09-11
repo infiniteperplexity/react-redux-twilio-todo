@@ -1,5 +1,7 @@
 let MOBILE = (window.screen.width<500);
 
+MOBILE = true;
+
 function App(props, context) {
   // what about a mobile report?
   if (MOBILE) {

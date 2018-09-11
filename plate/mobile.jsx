@@ -65,7 +65,7 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text" size="75"/>
+        <input ref={e=>this._textInput=e} type="text" size="50"/>
         <br/>
         <button onClick={this.handleAdd}>Add Task</button>
       </div>
