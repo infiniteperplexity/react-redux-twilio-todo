@@ -4,9 +4,7 @@ function App(props, context) {
   // what about a mobile report?
   if (MOBILE) {
     return (
-      <div className="app mobile">
-        <MobilePanel {...props} />
-      </div>
+      <MobilePanel {...props} />
     );
   } else {
     return (

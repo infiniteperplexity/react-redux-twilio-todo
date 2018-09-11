@@ -1,7 +1,7 @@
 class MobilePanel extends React.Component {
   render() {
     return (
-      <div className="frame mobile">
+      <div className="app mobile">
         <MobileMenu {...this.props}/>
         <MobileToolbar {...this.props}/>
         <MobileTasks {...this.props}/>
