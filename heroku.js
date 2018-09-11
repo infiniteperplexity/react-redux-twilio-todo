@@ -52,6 +52,11 @@ app.get('/GLENN', function(req, res) {
    //res.sendFile(path.join(__dirname, '/mobile.html'));
 });
 
+app.get('/plate/GLENN', function(req, res) {
+   res.sendFile(path.join(__dirname, '/index.html'));
+   //res.sendFile(path.join(__dirname, '/mobile.html'));
+});
+
 app.get('/*.js*', function(req, res) {
   console.log(path.join(__dirname, req.url));
    res.sendFile(path.join(__dirname, req.url));

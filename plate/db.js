@@ -64,7 +64,7 @@ function unescape(task) {
 }
 
 let store;
-let user = (window.location.pathname==="/GLENN") ? "GLENN" : "GUEST";
+let user = (window.location.pathname==="/GLENN" || window.location.pathname==="/plate/GLENN") ? "GLENN" : "GUEST";
 // GET
 let debugTasks = [];
 function getTasks() {
