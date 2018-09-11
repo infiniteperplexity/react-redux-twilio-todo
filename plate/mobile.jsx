@@ -78,7 +78,7 @@ function MobileTasks(props, context) {
   let listed = tasks[list].subtasks.map((e,i)=>
     <div key={i}
       style={{
-        fontSize: "24px",
+        fontSize: "36px",
         overflow: "hidden",
         backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"
       }}>{tasks[e].label}
