@@ -57,51 +57,167 @@ app.get('/*.js*', function(req, res) {
    res.sendFile(path.join(__dirname, req.url));
 });
 
+app.post('/db.*', function(req, res) {
+  let user = req.url.split(".")[1];
+  if (escape(user)!==("'"+user+"'")) {
+    console.log("no special characters allowed in user name.");
+    console.log(err);
+    res.status(404).send();
+    return;
+  }
+  console.log("received rows");
+  // rows to delete
+  let deletes = [];
+  for (let triplet of req.body.deletes) {
+    let [s, p, o] = triplet;
+    deletes.push('(subject = ' + escape(s) + ' AND predicate = ' + escape(p) + ' AND object = ' + escape(o) + ' AND graph = ' + "'"+user+"')");
+  }
+  if (deletes.length===0) {
+    // dummy that's never true
+    deletes = "2+2 = 5";
+  } else {
+    deletes = deletes.join(' OR ');
+  }
+  // rows to insert
+  let inserts = [];
+  for (let triplet of req.body.inserts) {
+    let [s, p, o] = triplet;
+    inserts.push('('+escape(s));
+    inserts.push(escape(p));
+    inserts.push(escape(o));
+    inserts.push("'"+user+"')");
+  }
+  let insert = inserts.join(',');
+  //insert = insert + " ON CONFLICT (id) DO UPDATE SET (username, password, level, email) = (EXCLUDED.username, EXCLUDED.password, EXCLUDED.level, EXCLUDED.email)";
+  let backup;
+  let status = 200;
+  // backup not currently active
+  // I really should learn how to use aync / await
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("deleting rows");
+    //client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
+      client.query("DELETE FROM quads WHERE "+deletes, (err) => {
+      if (err) {
+        done();
+          console.error(err);
+      } else {
+        if (inserts.length>0) {
+          console.log("inserting rows");
+          console.log(insert);
+          // this part seems vulnerable to duplicates...
+          client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
+            if (err) {
+              console.log("had an error inserting rows");
+              done();
+              console.error(err);
+            } else {
+              client.query("SELECT * FROM quads WHERE graph = $1",[user],(err, result)=>{
+                done();
+                if (err) {
+                  console.log("had an error retrieving updated rows.");
+                  res.status(500).send();
+                }
+                let rows = result.rows;
+                for (let row of rows) {
+                  row.subject = unescape(row.subject);
+                  row.predicate = unescape(row.predicate);
+                  row.object = unescape(row.object);
+                  row.graph = unescape(row.graph);
+                }
+                console.log("sending rows");
+                res.send(JSON.stringify(rows));
+              });
+            }
+          });
+        }
+      }
+    });
+  });
+});
+
+app.get('/db.*', function(req, res) {
+  let user = req.url.split(".")[1];
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("selecting rows");
+    client.query("SELECT * FROM quads WHERE graph = $1",[user], (err, result) => {
+      done();
+      if (err) {
+        console.log(err);
+        console.log("had an error retrieving rows.");
+        res.status(500).send();
+        return;
+      }
+      res.send(JSON.stringify(result.rows));
+    });
+  });
+});
+
+
 app.listen(port, () => console.log('Example app listening on port'+port+'!'))
 
 
 /********************************************************/
+
+app.get('/dbinit', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(`CREATE TABLE IF NOT EXISTS quads (
+      subject text NOT NULL,
+      predicate text NOT NULL,
+      object text NOT NULL,
+      graph text NOT NULL,
+      UNIQUE(subject, predicate, object, graph)
+    )`, (err, result)=> {
+      done();
+      if (err) {
+        console.error(err);
+      } else {
+        response.send("That totally worked!");
+      }
+    });
+  });
+});
+
 app.get('/dbfix', (req, res) => {
   // this should refresh from a different table in the database...the user BACKUP
 });
-// function dbfix(user, fname) {
-//   fs.readFile(__dirname+"/saved/"+fname, function read(err, data) {
-//     if (err) {
-//         throw err;
-//     }
-//     let resources = JSON.parse(data).map(({subject, predicate, object})=>[subject, predicate, object]);
-//     let inserts = [];
-//     for (let [s, p, o] of resources) {
-//       inserts.push('('+escape(s));
-//       inserts.push(escape(p));
-//       inserts.push(escape(o));
-//       inserts.push("'"+user+"')");
-//     }
-//     let insert = inserts.join(',');
-//     pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-//       console.log("deleting rows");
-//       client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
-//         if (err) {
-//           done();
-//           console.error(err);
-//         } else {
-//           if (inserts.length>0) {
-//             console.log("inserting rows");
-//             console.log(insert);
-//             // this part seems vulnerable to duplicates...
-//             client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
-//               if (err) {
-//                 console.log("had an error inserting rows");
-//                 done();
-//                 console.error(err);
-//               }
-//             });
-//           }
-//         }
-//       });
-//     });
-//   });
-// }
+function dbfix(user, fname) {
+  fs.readFile(__dirname+"/saved/"+fname, function read(err, data) {
+    if (err) {
+        throw err;
+    }
+    let resources = JSON.parse(data).map(({subject, predicate, object})=>[subject, predicate, object]);
+    let inserts = [];
+    for (let [s, p, o] of resources) {
+      inserts.push('('+escape(s));
+      inserts.push(escape(p));
+      inserts.push(escape(o));
+      inserts.push("'"+user+"')");
+    }
+    let insert = inserts.join(',');
+    pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+      console.log("deleting rows");
+      client.query("DELETE FROM quads WHERE graph = $1",[user], (err) => {
+        if (err) {
+          done();
+          console.error(err);
+        } else {
+          if (inserts.length>0) {
+            console.log("inserting rows");
+            console.log(insert);
+            // this part seems vulnerable to duplicates...
+            client.query('INSERT INTO quads (subject,predicate,object,graph) VALUES '+insert, (err)=> {
+              if (err) {
+                console.log("had an error inserting rows");
+                done();
+                console.error(err);
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+}
 
 function sendMessage(btxt) {
   twilio.api.messages.create({
@@ -111,6 +227,43 @@ function sendMessage(btxt) {
   }).then(data=>console.log("message sent."))
   .catch(err=>console.log(err));
 }
+
+
+// for (let task of action.tasks) {
+//       if (task.repeats==="daily") {
+//         let days = [moment().startOf('day')];
+//         // try eight days, in case we don't want to count the current one
+//         for (let i=0; i<7; i++) {
+//           let day = moment(days[days.length-1]);
+//           days.push(day.subtract(1,'days'));
+//         }
+//         let numerator = 0;
+//         let denominator = 0;
+//         let useEight = false;
+//         if (!task.occasions) {
+//           task.occasions = {};
+//         }
+//         for (let i=0; i<days.length; i++) {
+//           let day = days[i];
+//           if (i===0 && task.occasions[day.unix()]===undefined) {
+//             useEight = true;
+//             continue;
+//           } else if (i===7 && useEight===false) {
+//             break;
+//           }
+//           let occ = task.occasions[day.unix()];
+//           console.log(occ);
+//           if (occ!==undefined) {
+//             numerator+=occ;
+//             denominator+=1;
+//           }
+//         }
+//         task.summaries = {
+//           weeklyTotal: numerator,
+//           weeklyDays: denominator
+//         }
+//       }
+//     }
 
 function generateReport(tasks) {
   let repeats = [];
@@ -224,6 +377,17 @@ function chooseMessage() {
 function clearGuest() {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     console.log("deleting guest rows");
+    client.query("DELETE FROM quads WHERE graph = 'GUEST'", (err) => {
+      if (err) {
+        done();
+        console.error(err);
+      } else {
+        console.log("cleared guest rows");
+      }
+    });
+  });
+  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    console.log("deleting guest rows");
     client.query("DELETE FROM tasks WHERE assignee = 'GUEST'", (err) => {
       if (err) {
         done();
@@ -263,7 +427,16 @@ let stayAwake = setInterval(()=>{
 },1000*60*20);
 
 
-app.get('/db.*', function(req, res) {
+
+
+
+app.get('/plate', function(req, res) {
+   res.sendFile(path.join(__dirname, '/plate.html'));
+});
+app.get('/plate/GLENN', function(req, res) {
+   res.sendFile(path.join(__dirname, '/plate.html'));
+});
+app.get('/plate/db.*', function(req, res) {
   let user = req.url.split(".")[1];
   if (escape(user)!==("'"+user+"'")) {
     console.log("no special characters allowed in user name.");
@@ -290,7 +463,7 @@ app.get('/db.*', function(req, res) {
 
 
 
-app.post('/db.*', function(req, res) {
+app.post('/plate/db.*', function(req, res) {
   let user = req.url.split(".")[1];
   if (escape(user)!==("'"+user+"'")) {
     console.log("no special characters allowed in user name.");
@@ -378,7 +551,7 @@ app.post('/db.*', function(req, res) {
 
 
 
-app.post('/purge.*', function(req, res) {
+app.post('/plate/purge.*', function(req, res) {
   let user = req.url.split(".")[1];
   if (escape(user)!==("'"+user+"'")) {
     console.log("no special characters allowed in user name.");
@@ -394,7 +567,7 @@ app.post('/purge.*', function(req, res) {
   });
 });
 
-app.post('/purge', function(req, res) {
+app.post('/plate/purge', function(req, res) {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
   console.log("deleting rows");
     client.query("DELETE FROM tasks",(err, result)=>{

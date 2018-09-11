@@ -1,0 +1,171 @@
+{
+  "$Lists": {
+    "id": "$Lists",
+    "label": "Lists",
+    "subtasks": [],
+    "static": true
+  },
+  "82d5424c-cfd4-461e-890f-420e8bd68c75": {
+    "id": "82d5424c-cfd4-461e-890f-420e8bd68c75",
+    "subtasks": [],
+    "created": 1532024076,
+    "label": "cook from Burma Superstar cookbook"
+  },
+  "e48eab50-0b32-4c90-8e0e-7d9e35a1137b": {
+    "id": "e48eab50-0b32-4c90-8e0e-7d9e35a1137b",
+    "subtasks": [],
+    "created": 1532395673,
+    "label": "Thai curry pizza"
+  },
+  "95bfd33d-63f9-453d-8847-5415a0495bf0": {
+    "id": "95bfd33d-63f9-453d-8847-5415a0495bf0",
+    "subtasks": [],
+    "created": 1531618745,
+    "label": "the film \"Resolution\""
+  },
+  "0da46276-9e78-438a-ad6a-8fce3c7a28bf": {
+    "id": "0da46276-9e78-438a-ad6a-8fce3c7a28bf",
+    "subtasks": [],
+    "created": 1534883230,
+    "label": "Essay about second-order effects"
+  },
+  "a577ddf0-2f25-427a-b6c6-b62bc3af483f": {
+    "id": "a577ddf0-2f25-427a-b6c6-b62bc3af483f",
+    "subtasks": [],
+    "created": 1534956907,
+    "label": "The Book of Why"
+  },
+  "6404f738-c6b4-40c3-a1ba-3401e09b8131": {
+    "id": "6404f738-c6b4-40c3-a1ba-3401e09b8131",
+    "subtasks": [],
+    "created": 1531777323,
+    "label": "watch \"Her Opponent\""
+  },
+  "$Inbox": {
+    "id": "$Inbox",
+    "label": "Inbox",
+    "subtasks": [
+      "82d5424c-cfd4-461e-890f-420e8bd68c75",
+      "e48eab50-0b32-4c90-8e0e-7d9e35a1137b",
+      "95bfd33d-63f9-453d-8847-5415a0495bf0",
+      "0da46276-9e78-438a-ad6a-8fce3c7a28bf",
+      "a577ddf0-2f25-427a-b6c6-b62bc3af483f",
+      "6404f738-c6b4-40c3-a1ba-3401e09b8131",
+      "9d60fe4e-d3db-49cf-8c93-fe75b40ac3b7",
+      "979854b8-1d85-43c9-bae0-9943f2b6aa9b",
+      "82c98625-7d92-4ec4-84b1-2b692d8b0f6b"
+    ],
+    "static": true
+  },
+  "9d60fe4e-d3db-49cf-8c93-fe75b40ac3b7": {
+    "id": "9d60fe4e-d3db-49cf-8c93-fe75b40ac3b7",
+    "subtasks": [],
+    "created": 1535043255,
+    "label": "Atul Gawande how to live"
+  },
+  "979854b8-1d85-43c9-bae0-9943f2b6aa9b": {
+    "id": "979854b8-1d85-43c9-bae0-9943f2b6aa9b",
+    "subtasks": [],
+    "created": 1535313930,
+    "label": "https://www.researchgate.net/publication/233864067_Johnson_Penke_Spinath_2011_-_Heritability_rejoinder"
+  },
+  "82c98625-7d92-4ec4-84b1-2b692d8b0f6b": {
+    "id": "82c98625-7d92-4ec4-84b1-2b692d8b0f6b",
+    "subtasks": [],
+    "created": 1536683703,
+    "label": "Verily stuff"
+  },
+  "fc8285f3-435a-4ef4-bbe1-a5318ccf278e": {
+    "id": "fc8285f3-435a-4ef4-bbe1-a5318ccf278e",
+    "subtasks": [],
+    "created": 1531237231,
+    "label": "drinks",
+    "repeats": "daily",
+    "occasions": {
+      "1530082800": 6,
+      "1530169200": 6,
+      "1530255600": 8,
+      "1530342000": 8,
+      "1530428400": 6,
+      "1530514800": 0,
+      "1530601200": 0,
+      "1530860400": 8,
+      "1530946800": 8,
+      "1531033200": 4,
+      "1531119600": 0,
+      "1531206000": 0,
+      "1531292400": 0,
+      "1531378800": 0,
+      "1531465200": 2,
+      "1531551600": 2,
+      "1531638000": 3,
+      "1531724400": 0,
+      "1531810800": 0,
+      "1531897200": 0,
+      "1531983600": 0,
+      "1532070000": 5,
+      "1532156400": 9,
+      "1532242800": 8,
+      "1532329200": 0,
+      "1532415600": 4,
+      "1532502000": 0,
+      "1532588400": 6,
+      "1532674800": 6,
+      "1532761200": 6,
+      "1532847600": 0,
+      "1532934000": 0,
+      "1533020400": 0,
+      "1533106800": 0,
+      "1533193200": 7,
+      "1533279600": 7,
+      "1533366000": 6,
+      "1533452400": 5,
+      "1533538800": 0,
+      "1533625200": 0,
+      "1536390000": 2,
+      "1536476400": 3,
+      "1536562800": 0
+    },
+    "summaries": {
+      "weeklyTotal": 5,
+      "weeklyDays": 3
+    },
+    "notes": ""
+  },
+  "$Complete": {
+    "id": "$Complete",
+    "label": "Complete",
+    "subtasks": [],
+    "static": true
+  },
+  "$Calendar": {
+    "id": "$Calendar",
+    "label": "Calendar",
+    "subtasks": [
+      "fc8285f3-435a-4ef4-bbe1-a5318ccf278e"
+    ],
+    "static": true
+  },
+  "$Tasks": {
+    "id": "$Tasks",
+    "label": "Tasks",
+    "subtasks": [
+      "$Lists",
+      "82d5424c-cfd4-461e-890f-420e8bd68c75",
+      "e48eab50-0b32-4c90-8e0e-7d9e35a1137b",
+      "95bfd33d-63f9-453d-8847-5415a0495bf0",
+      "0da46276-9e78-438a-ad6a-8fce3c7a28bf",
+      "a577ddf0-2f25-427a-b6c6-b62bc3af483f",
+      "6404f738-c6b4-40c3-a1ba-3401e09b8131",
+      "$Inbox",
+      "9d60fe4e-d3db-49cf-8c93-fe75b40ac3b7",
+      "979854b8-1d85-43c9-bae0-9943f2b6aa9b",
+      "82c98625-7d92-4ec4-84b1-2b692d8b0f6b",
+      "fc8285f3-435a-4ef4-bbe1-a5318ccf278e",
+      "$Complete",
+      "$Calendar",
+      "$Tasks"
+    ],
+    "static": true
+  }
+}
