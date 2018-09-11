@@ -65,9 +65,9 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text" size="50" style={{fontSize: "36px"}}/>
+        <input ref={e=>this._textInput=e} type="text" size="36" style={{fontSize: "36px"}}/>
         <br/>
-        <button onClick={this.handleAdd}>Add Task</button>
+        <button style={{fontSize: "36px"}} onClick={this.handleAdd}>Add Task</button>
       </div>
     );
   }
@@ -78,7 +78,7 @@ function MobileTasks(props, context) {
   let listed = tasks[list].subtasks.map((e,i)=>
     <div key={i}
       style={{
-
+        fontSize: "24px",
         overflow: "hidden",
         backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"
       }}>{tasks[e].label}
