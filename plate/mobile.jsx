@@ -29,7 +29,7 @@ class MobileMenu extends React.Component {
       list.splice(statics.length, 0, <option key="-1" disabled="true">---------------------</option>)
     }
     return (
-      <select value={this.props.list} onChange={this.handleChange}>
+      <select style={{fontSize: "36px"}} value={this.props.list} onChange={this.handleChange}>
         {list}
       </select>
     );
@@ -65,7 +65,7 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text" size="50"/>
+        <input ref={e=>this._textInput=e} type="text" size="50" style={{fontSize: "36px"}}/>
         <br/>
         <button onClick={this.handleAdd}>Add Task</button>
       </div>
@@ -78,6 +78,7 @@ function MobileTasks(props, context) {
   let listed = tasks[list].subtasks.map((e,i)=>
     <div key={i}
       style={{
+
         overflow: "hidden",
         backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"
       }}>{tasks[e].label}
