@@ -84,7 +84,7 @@ class MobileToolbar extends React.Component {
 
 function MobileTasks(props, context) {
   let {tasks, list} = props;
-  let listed = tasks[list].subtasks.map((e,i)=><div key={i} style={{backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"}}>{tasks[e].label}</div>);
+  let listed = tasks[list].subtasks.map((e,i)=><div key={i} style={{width: "450px", backgroundColor: (i%2)===0 ? "#ffffee" : "#eeeeff"}}>{tasks[e].label}</div>);
   return (
     <div >
       {listed}
