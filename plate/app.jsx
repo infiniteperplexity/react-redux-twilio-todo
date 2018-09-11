@@ -55,7 +55,7 @@ let AppComponent = ReactRedux.connect(
       created: moment().unix(),
       ...args
     }),
-    saveTasks: saveTasks
+    saveTasks: saveTasks,
     ...state
   }),
   (dispatch)=>({
