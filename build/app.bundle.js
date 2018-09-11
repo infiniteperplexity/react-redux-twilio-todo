@@ -19310,6 +19310,7 @@ var uuid = __webpack_require__(146);
 
 
 var MOBILE = window.screen.width < 500;
+MOBILE = true;
 
 var Container = function (_React$Component) {
 	_inherits(Container, _React$Component);

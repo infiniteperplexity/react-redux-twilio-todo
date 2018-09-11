@@ -10,7 +10,7 @@ import TaskModal from './react-modal.jsx';
 import {MobileMenu, MobileDisplay} from './react-mobile.jsx';
 
 let MOBILE = (window.screen.width<500);
-
+MOBILE = true;
 class Container extends React.Component {
 	resetMostStates = () => {
 		
