@@ -77,7 +77,7 @@ ReactDOM.render(
 function saveTasks() {
   let obj = store.getState().tasks;
   let fname = "tasks.json";
-  let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj); 
+  let txt = (typeof(obj)==="string") ? obj : JSON.stringify(obj, null, 2); 
   let blob = new Blob([txt], {type : 'text/plain'});
   let url = window.URL.createObjectURL(blob);
   let p = prompt("Enter name for saved file:",fname);
