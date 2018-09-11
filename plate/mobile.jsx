@@ -37,15 +37,6 @@ class MobileMenu extends React.Component {
 }
 
 class MobileToolbar extends React.Component {
-  // handleClick = (e)=>{
-  //   let text = this._textInput.value;
-  //   if (text) {
-  //     let list = this.props.list;
-  //     let task = this.props.tasks[list];
-  //     this.props.addTask(this.props.newTask({label: text, lists: [list]}));
-  //     this._textInput.value = "";
-  //   }
-  // }
   handleAdd = (e)=>{
     e.preventDefault();
     let text = this._textInput.value;
@@ -74,7 +65,7 @@ class MobileToolbar extends React.Component {
   render() {
     return (
       <div>
-        <input ref={e=>this._textInput=e} type="text"/>
+        <input ref={e=>this._textInput=e} type="text" size="75"/>
         <br/>
         <button onClick={this.handleAdd}>Add Task</button>
       </div>
