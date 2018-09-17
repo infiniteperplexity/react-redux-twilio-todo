@@ -10,4 +10,4 @@ So, let's try to organize this into major areas:
 - Do we need a "remove from this list" button?  Or, do it in details?
 - Bump summary back by one if current day blank (do I already do that?)
 
-- Mobile browser cuts off vertically too soon.
+- Fail to post data for lists other than inbox? - seems to be fixed.
