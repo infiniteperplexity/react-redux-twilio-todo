@@ -97,6 +97,8 @@ function updateTasks(tasks) {
     deletes: tasks.map(t=>t.id),
     inserts: tasks
   };
+  console.log("body looks like this:");
+  console.log(body);
   fetch('db.'+user, {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
@@ -127,6 +129,8 @@ function deleteTasks(ids) {
     deletes: ids,
     inserts: []
   };
+  console.log("body looks like this:");
+  console.log(body);
   fetch('db.'+user, {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json;charset=UTF-8'}),
