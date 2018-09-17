@@ -321,9 +321,9 @@ app.post('/db.*', function(req, res) {
   let inserts = [];
   console.log(req.body.inserts);
   for (let task of req.body.inserts) {
-    inserts.push(sqlstring.escape(user));
+    inserts.push("("+sqlstring.escape(user));
     inserts.push(sqlstring.escape(task.id));
-    inserts.push(sqlstring.escape(JSON.stringify(task)));
+    inserts.push(sqlstring.escape(JSON.stringify(task))+")");
   }
   let insert = inserts.join(',');
   console.log(deletes);
@@ -344,7 +344,8 @@ app.post('/db.*', function(req, res) {
           console.log("inserting rows");
           console.log(insert);
           // this part seems vulnerable to duplicates...
-          client.query('INSERT INTO tasks (assignee, id, task) VALUES ('+insert+')', (err)=> {
+          // client.query('INSERT INTO tasks (assignee, id, task) VALUES ('+insert+')', (err)=> {
+          client.query('INSERT INTO tasks (assignee, id, task) VALUES '+insert+'', (err)=> {
             if (err) {
               console.log("had an error inserting rows");
               done();
