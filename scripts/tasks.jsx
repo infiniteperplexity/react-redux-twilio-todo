@@ -3,7 +3,11 @@ class TaskList extends React.Component {
     let tasks = this.props.tasks;
     console.log(this.props.list);
     let task = tasks[this.props.list];
-    let list = task.subtasks.map((t,i)=><TaskItem key={i} n={i} taskid={t} {...this.props}/>);
+    let list = task.subtasks;
+    if (this.props.list!=="$Complete") {
+      list = list.filter(t=>!tasks[t].completed);
+    }
+    list = list.map((t,i)=><TaskItem key={i} n={i} taskid={t} {...this.props}/>);
     return (
       <div>
         <TaskToolbar {...this.props}/>
