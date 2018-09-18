@@ -38,14 +38,8 @@ class MenuListItem extends React.Component {
   handleDrop = (e)=>{
     e.preventDefault();
     e.target.style.fontWeight = "normal";
-    console.log(e);
-    console.log(e.button);
-    console.log(e.buttons);
-    console.log(e.altKey);
-    console.log(e.ctrlKey);
-    console.log(e.shiftKey);
+    let copy = (e.button || e.buttons || e.altKey || e.ctrlKey || e.shiftKey) ? true : false;
     let json = e.dataTransfer.getData("text");
-    console.log(json);
     let {taskid} = JSON.parse(json);
     let {tasks, task} = this.props;
     if (tasks[taskid].static) {
@@ -60,8 +54,15 @@ class MenuListItem extends React.Component {
       if (!list.subtasks.includes(taskid)) {
         list.subtasks.push(taskid);
       }
-      // do I want to remove it from old lists? not yet.
-      this.props.modifyTasks([list]);
+      if (copy) {
+        this.props.modifyTasks([list]);
+      } else {
+        let old = clone(tasks[this.props.list]);
+        if (old.subtasks.includes(taskid)) {
+          old.subtasks = old.subtasks.filter(id=>id!==taskid);
+        }
+        this.props.modifyTasks([list, old]);
+      }
     }
   }
   render() {

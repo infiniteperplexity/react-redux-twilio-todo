@@ -75,6 +75,7 @@ class TaskItem extends React.Component {
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
     let {tasks} = this.props;
+    let copy = (e.button || e.buttons || e.ctrlKey || e.altKey || e.shiftKey) ? true : false;
     if (tasks[taskid].static) {
       return;
     }
@@ -87,8 +88,13 @@ class TaskItem extends React.Component {
       if (!list.subtasks.includes(taskid)) {
         list.subtasks.push(taskid);
       }
-      // do I want to remove it from old lists? not yet.
-      this.props.modifyTasks([list]);
+      if (copy) {
+        this.props.modifyTasks([list]);
+      } else {
+        let old = tasks[this.props.list];
+        old.subtasks = old.subtasks.filter(id=>id!==taskid);
+        this.props.modifyTasks([list, old]);
+      }
     }
   }
   handleDelete = (e)=>{
