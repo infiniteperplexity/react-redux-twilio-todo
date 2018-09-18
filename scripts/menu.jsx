@@ -38,7 +38,14 @@ class MenuListItem extends React.Component {
   handleDrop = (e)=>{
     e.preventDefault();
     e.target.style.fontWeight = "normal";
+    console.log(e);
+    console.log(e.button);
+    console.log(e.buttons);
+    console.log(e.altKey);
+    console.log(e.ctrlKey);
+    console.log(e.shiftKey);
     let json = e.dataTransfer.getData("text");
+    console.log(json);
     let {taskid} = JSON.parse(json);
     let {tasks, task} = this.props;
     if (tasks[taskid].static) {
