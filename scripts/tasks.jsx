@@ -74,6 +74,10 @@ class TaskItem extends React.Component {
     e.target.style.fontWeight = "normal";
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
+    if (taskid===this.props.taskid) {
+      // can't drag it onto itself
+      return; 
+    }
     let {tasks} = this.props;
     let copy = (e.button || e.buttons || e.ctrlKey || e.altKey || e.shiftKey) ? true : false;
     if (tasks[taskid].static) {

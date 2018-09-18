@@ -41,6 +41,10 @@ class MenuListItem extends React.Component {
     let copy = (e.button || e.buttons || e.altKey || e.ctrlKey || e.shiftKey) ? true : false;
     let json = e.dataTransfer.getData("text");
     let {taskid} = JSON.parse(json);
+    if (taskid===this.props.task) {
+      // can't drag it onto itself
+      return; 
+    }
     let {tasks, task} = this.props;
     if (tasks[taskid].static) {
       return;
